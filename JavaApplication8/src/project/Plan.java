@@ -168,14 +168,37 @@ public class Plan {
     }
 
     //plan name ห้ามเปลี่ยน!!!
-//    public String edit(String planName, String description) throws ClassNotFoundException, SQLException {
-//        Connection conn = MySQLConnect.getMySQLConnection();
-//        this.show();
-//        PreparedStatement pstm = conn.prepareStatement("update test set password='planName','description' where username=?,?");
-//        pstm.setString(1, planName);
-//        pstm.setString(2, description);
-//        return "";
-//    }
+    public void editPlanName(String oldPlanName,String newPlanName) throws ClassNotFoundException, SQLException {
+       Connection conn = MySQLConnect.getMySQLConnection();
+        this.show();
+        PreparedStatement pstm = conn.prepareStatement("update test set username='" + newPlanName + "'where username ='" + oldPlanName + "'");
+        int rs = pstm.executeUpdate();
+        System.out.println(rs);
+    }
+    
+    public void editDescription(String oldDescription,String newDescription) throws ClassNotFoundException, SQLException {
+       Connection conn = MySQLConnect.getMySQLConnection();
+        this.show();
+        PreparedStatement pstm = conn.prepareStatement("update test set username='" + newDescription + "'where username ='" + oldDescription+ "'");
+        int rs = pstm.executeUpdate();
+        System.out.println(rs);
+    }
+    
+    public void editDayPerWeek(String oldDayPerWeek,String newDayPerWeek) throws ClassNotFoundException, SQLException {
+       Connection conn = MySQLConnect.getMySQLConnection();
+        this.show();
+        PreparedStatement pstm = conn.prepareStatement("update test set username='" + newDayPerWeek + "'where username ='" + oldDayPerWeek+ "'");
+        int rs = pstm.executeUpdate();
+        System.out.println(rs);
+    }
+    
+    public void editDay(String oldDay,String newDay) throws ClassNotFoundException, SQLException {
+       Connection conn = MySQLConnect.getMySQLConnection();
+        this.show();
+        PreparedStatement pstm = conn.prepareStatement("update test set username='" + newDay + "'where username ='" + oldDay + "'");
+        int rs = pstm.executeUpdate();
+        System.out.println(rs);
+    }
 
     public void delete(String planName) throws ClassNotFoundException, SQLException {
         Connection conn = MySQLConnect.getMySQLConnection();
