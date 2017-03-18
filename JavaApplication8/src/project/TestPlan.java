@@ -18,17 +18,14 @@ import java.util.Scanner;
 public class TestPlan {
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException{
-        
+        MySQLConnect connection = new MySQLConnect();
         Scanner sc = new Scanner(System.in);
         Plan p = new Plan();
-        System.out.println(".............");
-        String newPassword = sc.nextLine();
-        String oldUsername = sc.nextLine();
-        System.out.println(p.edit(newPassword,oldUsername));
-        //System.out.println(cep.create(,"Strong together","workout together"));
+        //p.show();
+        p.create("Strong together","Abs workout");
        
         
-//        MySQLConnect connection = new MySQLConnect();
+
 //        
 //        try{
 //            MySQLConnect.getMySQLConnection();

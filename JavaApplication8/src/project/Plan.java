@@ -34,9 +34,7 @@ public class Plan {
             System.out.println(rs.getString("username"));
             System.out.print("Description : ");
             System.out.println(rs.getString("password"));
-
         }
-
         return "";
     }
 
@@ -158,25 +156,26 @@ public class Plan {
         }
 
         Connection conn = MySQLConnect.getMySQLConnection();
-        PreparedStatement pstm = conn.prepareStatement("insert into test(u_id,username,password) values (?,?,?)");
-        pstm.setInt(1, this.dayPerWeek);
-        pstm.setString(2, planName);
-        pstm.setString(3, description);
+        PreparedStatement pstm = conn.prepareStatement("insert into test(username,password) values (?,?)");
+        pstm.setString(1, planName);
+        pstm.setString(2, description);
         int rs = pstm.executeUpdate();
         System.out.println(rs);
 
         return "--------------Plan name : " + planName + "--------------"
                 + "\nThe total day in your plan : " + day + " days"
-                + "\nThe day that you have to exercisefdjcpxmc : " + nameDay;
+                + "\nThe day that you have to exercise : " + nameDay;
     }
 
     //plan name ห้ามเปลี่ยน!!!
-    public String edit(String planName, String description) throws ClassNotFoundException, SQLException {
-        Connection conn = MySQLConnect.getMySQLConnection();
-        this.show();
-        PreparedStatement pstm = conn.prepareStatement("update test set password  = '" + planName + "' where username='" + description + "'");
-        return "";
-    }
+//    public String edit(String planName, String description) throws ClassNotFoundException, SQLException {
+//        Connection conn = MySQLConnect.getMySQLConnection();
+//        this.show();
+//        PreparedStatement pstm = conn.prepareStatement("update test set password='planName','description' where username=?,?");
+//        pstm.setString(1, planName);
+//        pstm.setString(2, description);
+//        return "";
+//    }
 
     public void delete(String planName) throws ClassNotFoundException, SQLException {
         Connection conn = MySQLConnect.getMySQLConnection();
