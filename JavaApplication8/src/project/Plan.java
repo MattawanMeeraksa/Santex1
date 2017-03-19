@@ -167,7 +167,7 @@ public class Plan {
                 + "\nThe day that you have to exercise : " + nameDay;
     }
 
-    //plan name ห้ามเปลี่ยน!!!
+    
     public void editPlanName(String oldPlanName,String newPlanName) throws ClassNotFoundException, SQLException {
        Connection conn = MySQLConnect.getMySQLConnection();
         this.show();
