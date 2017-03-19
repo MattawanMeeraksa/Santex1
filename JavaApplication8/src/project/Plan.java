@@ -184,15 +184,131 @@ public class Plan {
         System.out.println(rs);
     }
     
-    public void editDayPerWeek(String oldDayPerWeek,String newDayPerWeek) throws ClassNotFoundException, SQLException {
+    public void editDayPerWeek(int oldDayPerWeek,int newDayPerWeek) throws ClassNotFoundException, SQLException {
        Connection conn = MySQLConnect.getMySQLConnection();
         this.show();
         PreparedStatement pstm = conn.prepareStatement("update test set username='" + newDayPerWeek + "'where username ='" + oldDayPerWeek+ "'");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+        String nameDay = sdf.format(date);
+        switch (dayPerWeek) {
+            case 1:
+                if (sdf.format(date).equals("วันจันทร์") || sdf.format(date).equals("Monday")) {
+                    nameDay = "Monday";
+                } else if (sdf.format(date).equals("วันอังคาร") || sdf.format(date).equals("Tuesday")) {
+                    nameDay = "Tuesday";
+                } else if (sdf.format(date).equals("วันพุธ") || sdf.format(date).equals("Wednesday")) {
+                    nameDay = "Wednesday";
+                } else if (sdf.format(date).equals("วันพฤหัสบดี") || sdf.format(date).equals("Thursday")) {
+                    nameDay = "Thursday";
+                } else if (sdf.format(date).equals("วันศุกร์") || sdf.format(date).equals("Friday")) {
+                    nameDay = "Friday";
+                } else if (sdf.format(date).equals("วันเสาร์") || sdf.format(date).equals("Saturday")) {
+                    nameDay = "Saturday";
+                } else if (sdf.format(date).equals("วันอาทิตย์") || sdf.format(date).equals("Sunday")) {
+                    nameDay = "Sunday";
+                }
+                break;
+            case 2:
+                if (sdf.format(date).equals("วันจันทร์") || sdf.format(date).equals("Monday")) {
+                    nameDay = "Monday, Friday";
+                } else if (sdf.format(date).equals("วันอังคาร") || sdf.format(date).equals("Tuesday")) {
+                    nameDay = "Tuesday, Saturday";
+                } else if (sdf.format(date).equals("วันพุธ") || sdf.format(date).equals("Wednesday")) {
+                    nameDay = "Wednesday, Sunday";
+                } else if (sdf.format(date).equals("วันพฤหัสบดี") || sdf.format(date).equals("Thursday")) {
+                    nameDay = "Thursday, Monday";
+                } else if (sdf.format(date).equals("วันศุกร์") || sdf.format(date).equals("Friday")) {
+                    nameDay = "Friday, Tuesday";
+                } else if (sdf.format(date).equals("วันเสาร์") || sdf.format(date).equals("Saturday")) {
+                    nameDay = "Saturday, Wednesday";
+                } else if (sdf.format(date).equals("วันอาทิตย์") || sdf.format(date).equals("Sunday")) {
+                    nameDay = "Sunday, Thursday";
+                }
+                break;
+            case 3:
+                if (sdf.format(date).equals("วันจันทร์") || sdf.format(date).equals("Monday")) {
+                    nameDay = "Monday, Wednesday, Friday";
+                } else if (sdf.format(date).equals("วันอังคาร") || sdf.format(date).equals("Tuesday")) {
+                    nameDay = "Tuesday, Thursday, Saturday";
+                } else if (sdf.format(date).equals("วันพุธ") || sdf.format(date).equals("Wednesday")) {
+                    nameDay = "Wednesday, Friday, Sunday";
+                } else if (sdf.format(date).equals("วันพฤหัสบดี") || sdf.format(date).equals("Thursday")) {
+                    nameDay = "Thursday, Saturday, Monday";
+                } else if (sdf.format(date).equals("วันศุกร์") || sdf.format(date).equals("Friday")) {
+                    nameDay = "Friday, Sunday, Tuesday";
+                } else if (sdf.format(date).equals("วันเสาร์") || sdf.format(date).equals("Saturday")) {
+                    nameDay = "Saturday, Monday, Wednesday";
+                } else if (sdf.format(date).equals("วันอาทิตย์") || sdf.format(date).equals("Sunday")) {
+                    nameDay = "Sunday, Tuesday, Thursday";
+                }
+                break;
+            case 4:
+                if (sdf.format(date).equals("วันจันทร์") || sdf.format(date).equals("Monday")) {
+                    nameDay = "Monday, Tuesday, Thursday, Saturday";
+                } else if (sdf.format(date).equals("วันอังคาร") || sdf.format(date).equals("Tuesday")) {
+                    nameDay = "Tuesday, Wednesday, Friday, Sunday";
+                } else if (sdf.format(date).equals("วันพุธ") || sdf.format(date).equals("Wednesday")) {
+                    nameDay = "Wednesday, Thursday, Saturday, Monday";
+                } else if (sdf.format(date).equals("วันพฤหัสบดี") || sdf.format(date).equals("Thursday")) {
+                    nameDay = "Thursday, Friday, Sunday, Tuesday";
+                } else if (sdf.format(date).equals("วันศุกร์") || sdf.format(date).equals("Friday")) {
+                    nameDay = "Friday, Saturday, Monday, Wednesday";
+                } else if (sdf.format(date).equals("วันเสาร์") || sdf.format(date).equals("Saturday")) {
+                    nameDay = "Saturday, Sunday, Tuesday, Thursday";
+                } else if (sdf.format(date).equals("วันอาทิตย์") || sdf.format(date).equals("Sunday")) {
+                    nameDay = "Sunday, Monday, Wednesday, Friday";
+                }
+                break;
+            case 5:
+                if (sdf.format(date).equals("วันจันทร์") || sdf.format(date).equals("Monday")) {
+                    nameDay = "Monday, Tuesday, Wednesday, Friday, Saturday";
+                } else if (sdf.format(date).equals("วันอังคาร") || sdf.format(date).equals("Tuesday")) {
+                    nameDay = "Tuesday, Wednesday, Thursday, Saturday, Sunday";
+                } else if (sdf.format(date).equals("วันพุธ") || sdf.format(date).equals("Wednesday")) {
+                    nameDay = "Wednesday, Thursday, Friday, Sunday, Monday";
+                } else if (sdf.format(date).equals("วันพฤหัสบดี") || sdf.format(date).equals("Thursday")) {
+                    nameDay = "Thursday, Friday, Saturday, Monday, Tuesday";
+                } else if (sdf.format(date).equals("วันศุกร์") || sdf.format(date).equals("Friday")) {
+                    nameDay = "Friday, Saturday, Sunday, Tuesday, Wednesday";
+                } else if (sdf.format(date).equals("วันเสาร์") || sdf.format(date).equals("Saturday")) {
+                    nameDay = "Saturday, Sunday, Monday, Wednesday, Thursday";
+                } else if (sdf.format(date).equals("วันอาทิตย์") || sdf.format(date).equals("Sunday")) {
+                    nameDay = "Sunday, Monday, Tuesday, Thursday, Friday";
+                }
+                break;
+            case 6:
+                if (sdf.format(date).equals("วันจันทร์") || sdf.format(date).equals("Monday")) {
+                    nameDay = "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday";
+                } else if (sdf.format(date).equals("วันอังคาร") || sdf.format(date).equals("Tuesday")) {
+                    nameDay = "Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday";
+                } else if (sdf.format(date).equals("วันพุธ") || sdf.format(date).equals("Wednesday")) {
+                    nameDay = "Wednesday, Thursday, Friday, Saturday, Sunday, Monday";
+                } else if (sdf.format(date).equals("วันพฤหัสบดี") || sdf.format(date).equals("Thursday")) {
+                    nameDay = "Thursday, Friday, Saturday, Sunday, Monday, Tuesday";
+                } else if (sdf.format(date).equals("วันศุกร์") || sdf.format(date).equals("Friday")) {
+                    nameDay = "Friday, Saturday, Sunday, Monday, Tuesday, Wednesday";
+                } else if (sdf.format(date).equals("วันเสาร์") || sdf.format(date).equals("Saturday")) {
+                    nameDay = "Saturday, Sunday, Monday, Tuesday, Wednesday, Thursday";
+                } else if (sdf.format(date).equals("วันอาทิตย์") || sdf.format(date).equals("Sunday")) {
+                    nameDay = "Sunday, Monday, Tuesday, Wednesday, Thursday, Friday";
+                }
+                break;
+            case 7:
+                nameDay = "Monday, Tuesday, Wednesday ,Thursday, Friday, Saturday, Sunday";
+                break;
+            default:
+                nameDay = "The day that you input are more than 7 days or less than 1 day";
+
+        }
+        
+        
         int rs = pstm.executeUpdate();
         System.out.println(rs);
     }
     
-    public void editDay(String oldDay,String newDay) throws ClassNotFoundException, SQLException {
+    public void editDay(int oldDay,int newDay) throws ClassNotFoundException, SQLException {
        Connection conn = MySQLConnect.getMySQLConnection();
         this.show();
         PreparedStatement pstm = conn.prepareStatement("update test set username='" + newDay + "'where username ='" + oldDay + "'");
