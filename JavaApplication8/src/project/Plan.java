@@ -192,7 +192,7 @@ public class Plan {
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         String nameDay = sdf.format(date);
-        switch (dayPerWeek) {
+        switch (newDayPerWeek) {
             case 1:
                 if (sdf.format(date).equals("วันจันทร์") || sdf.format(date).equals("Monday")) {
                     nameDay = "Monday";
@@ -302,8 +302,6 @@ public class Plan {
                 nameDay = "The day that you input are more than 7 days or less than 1 day";
 
         }
-        
-        
         int rs = pstm.executeUpdate();
         System.out.println(rs);
     }
