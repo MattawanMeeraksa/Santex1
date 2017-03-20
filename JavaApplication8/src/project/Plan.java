@@ -186,12 +186,11 @@ public class Plan {
     
     public void editDayPerWeek(int oldDayPerWeek,int newDayPerWeek) throws ClassNotFoundException, SQLException {
        Connection conn = MySQLConnect.getMySQLConnection();
-        this.show();
-        PreparedStatement pstm = conn.prepareStatement("update test set username='" + newDayPerWeek + "'where username ='" + oldDayPerWeek+ "'");
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+       DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         String nameDay = sdf.format(date);
+        this.show();
         switch (newDayPerWeek) {
             case 1:
                 if (sdf.format(date).equals("วันจันทร์") || sdf.format(date).equals("Monday")) {
@@ -302,6 +301,8 @@ public class Plan {
                 nameDay = "The day that you input are more than 7 days or less than 1 day";
 
         }
+        PreparedStatement pstm = conn.prepareStatement("update test set username='" + newDayPerWeek + "'where username ='" + oldDayPerWeek+ "'");
+        
         int rs = pstm.executeUpdate();
         System.out.println(rs);
     }
