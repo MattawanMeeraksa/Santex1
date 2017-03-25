@@ -55,19 +55,19 @@ public class ListPlan {
         System.out.println(rs);
     }
     
-    public void editDescription(String oldDescription,String newDescription) throws ClassNotFoundException, SQLException {
+    public void editDescription(String listPlanName,String oldDescription,String newDescription, int reps) throws ClassNotFoundException, SQLException {
        Connection conn = MySQLConnect.getMySQLConnection();
         this.show();
-        PreparedStatement pstm = conn.prepareStatement("update test set username='" + newDescription + "'where username ='" 
+        PreparedStatement pstm = conn.prepareStatement("update test set password='" + newDescription + "'where password ='" 
                                                         + oldDescription+ "'");
         int rs = pstm.executeUpdate();
         System.out.println(rs);
     }
     
-    public void editReps(String oldReps,String newReps) throws ClassNotFoundException, SQLException {
+    public void editReps(String listPlanName,String description ,int oldReps,int newReps) throws ClassNotFoundException, SQLException {
        Connection conn = MySQLConnect.getMySQLConnection();
         this.show();
-        PreparedStatement pstm = conn.prepareStatement("update test set username='" + newReps + "'where username ='" 
+        PreparedStatement pstm = conn.prepareStatement("update test set reps='" + newReps + "'where reps ='" 
                                                         + oldReps+ "'");
         int rs = pstm.executeUpdate();
         System.out.println(rs);

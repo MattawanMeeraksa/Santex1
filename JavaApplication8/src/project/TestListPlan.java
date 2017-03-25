@@ -21,9 +21,7 @@ public class TestListPlan {
         MySQLConnect connection = new MySQLConnect();
         Scanner sc = new Scanner(System.in);
         ListPlan lp = new ListPlan();
-        lp.create("Sit-up", "Up and down.",30);
-        lp.create("Push up", "Go Go", 25);
-        
+        lp.editReps("Sit-up","up and down",30,20);
     }  
 }
         
