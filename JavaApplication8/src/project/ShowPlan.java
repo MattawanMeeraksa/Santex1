@@ -6,10 +6,17 @@
 package project;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import static javax.xml.ws.Endpoint.create;
 
 /**
  *
@@ -17,14 +24,44 @@ import javax.swing.JPanel;
  */
 public class ShowPlan extends JFrame {
 
-    JFrame jf = new JFrame();
-    JLabel myP;
-    JPanel headMyP;
+    JButton back;
+    JLabel lblMyP;
 
     public ShowPlan() {
-        headMyP = new JPanel();
-        myP = new JLabel("My Plan");
-        setTitle("My Plan");
+        back = new JButton("<");
+        lblMyP = new JLabel("My Plan");
+        
+        //lblDescribe = new JLabel("Bank");
+        JPanel frame = new JPanel();
+        setTitle("Create Plan");
+        FlowLayout top = new FlowLayout();
+        BorderLayout bl = new BorderLayout(10, 10);
+        top.setHgap(50);
+        
+        frame.add(back);
+        back.setAlignmentX(LEFT_ALIGNMENT);
+        frame.add(lblMyP);
+        
+        JPanel frame1 = new JPanel();
+        frame1.setLayout(new GridLayout());
+        
+       
+        getContentPane().add(frame);
+        //getContentPane().add(frame1);
+
+
+        back.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                CreatePlan cp = new CreatePlan();
+                cp.setSize(400, 400);
+                cp.setVisible(true);
+                cp.setDefaultCloseOperation(cp.EXIT_ON_CLOSE);
+                setVisible(false);
+                cp.setLocationRelativeTo(null);
+            }
+        }
+        );
+
     }
 
     public static void main(String[] args) {
@@ -33,6 +70,7 @@ public class ShowPlan extends JFrame {
         sp.setSize(300, 400);
         sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         sp.setVisible(true);
+        sp.setLocationRelativeTo(null);
 
     }
 }

@@ -19,6 +19,6 @@ public class ExercisePlan extends JFrame{
         ep.setSize(300, 400);
         ep.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ep.setVisible(true);
-        
+        ep.setLocationRelativeTo(null);
     }
 }

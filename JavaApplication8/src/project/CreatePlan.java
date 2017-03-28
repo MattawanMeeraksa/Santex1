@@ -55,7 +55,7 @@ public class CreatePlan extends JFrame {
         createbtn = new JButton("Create");
         canclebtn = new JButton("Cancle");
         
-        JLabel frame = new JLabel();
+        JPanel frame = new JPanel();
         frame.setLayout(new GridLayout(5, 3, 20, 10));
         setTitle("Create Plan");
         
@@ -82,6 +82,7 @@ public class CreatePlan extends JFrame {
                 setVisible(false);
                 sp.setSize(300, 400);
                 sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                sp.setLocationRelativeTo(null);
             }
         });
         
@@ -93,6 +94,7 @@ public class CreatePlan extends JFrame {
                 setVisible(false);
                 ep.setSize(300, 400);
                 ep.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                ep.setLocationRelativeTo(null);
             }
         });
     }
