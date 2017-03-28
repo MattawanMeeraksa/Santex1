@@ -25,10 +25,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-/**
- *
- * @author Administrator
- */
+
 public class CreatePlan extends JFrame {
     
     JButton createbtn;
@@ -76,7 +73,7 @@ public class CreatePlan extends JFrame {
         createbtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                ShowPlan sp = new ShowPlan();
+                MyPlan sp = new MyPlan();
                 sp.setVisible(true);
                 System.out.println("Plan created");
                 setVisible(false);
@@ -105,7 +102,6 @@ public class CreatePlan extends JFrame {
         plan.setSize(300, 400);
         plan.setVisible(true);
         plan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        plan.setLocationRelativeTo(null);
-        
+        plan.setLocationRelativeTo(null);      
     }
 }

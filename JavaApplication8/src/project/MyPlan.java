@@ -22,17 +22,17 @@ import static javax.xml.ws.Endpoint.create;
  *
  * @author Administrator
  */
-public class ShowPlan extends JFrame {
+public class MyPlan extends JFrame {
 
     JButton back;
     JLabel lblMyP;
 
-    public ShowPlan() {
+    public MyPlan() {
         back = new JButton("<");
         lblMyP = new JLabel("My Plan");
 
         JPanel frame = new JPanel();
-        setTitle("Create Plan");
+        setTitle("Show Plan");
         FlowLayout top = new FlowLayout();
         BorderLayout bl = new BorderLayout(10, 10);
 
@@ -56,7 +56,7 @@ public class ShowPlan extends JFrame {
     }
 
     public static void main(String[] args) {
-        ShowPlan sp = new ShowPlan();
+        MyPlan sp = new MyPlan();
         sp.pack();
         sp.setSize(300, 400);
         sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

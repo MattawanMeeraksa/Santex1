@@ -5,8 +5,12 @@
  */
 package project;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,19 +22,51 @@ import javax.swing.JPanel;
 public class ExercisePlan extends JFrame{
     JLabel lblExP;
     JLabel lblTDL; //TDl = to do list
+    JButton myPlan;
+    JButton createP;
     
     public ExercisePlan(){
         JPanel frame = new JPanel();
         setTitle("Home");
-        GridLayout top = new GridLayout(1, 2, 10,0);
+        frame.setLayout(new GridLayout(4,1, 10,0));
         
         lblExP = new JLabel("Exercise Plan");
         lblTDL = new JLabel("To do list");
+        myPlan = new JButton("My Plan");
+        createP = new JButton("Create Plan");
        
         frame.add(lblExP);
         frame.add(lblTDL);
+        frame.add(myPlan);
+        frame.add(createP);
+         
+        getContentPane().add(frame, BorderLayout.SOUTH);
+       //getContentPane().add(frame);
+       
+       myPlan.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                MyPlan mp = new MyPlan();
+                mp.setVisible(true);
+                System.out.println("Plan created");
+                setVisible(false);
+                mp.setSize(300, 400);
+                mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                mp.setLocationRelativeTo(null);
+            }
+        });
         
-        getContentPane().add(frame);
+        createP.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                CreatePlan ep = new CreatePlan();
+                ep.setVisible(true);
+                setVisible(false);
+                ep.setSize(300, 400);
+                ep.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                ep.setLocationRelativeTo(null);
+            }
+        });
     }
     
     public static void main(String[] args) {
