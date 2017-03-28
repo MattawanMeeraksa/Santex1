@@ -30,25 +30,17 @@ public class ShowPlan extends JFrame {
     public ShowPlan() {
         back = new JButton("<");
         lblMyP = new JLabel("My Plan");
-        
-        //lblDescribe = new JLabel("Bank");
+
         JPanel frame = new JPanel();
         setTitle("Create Plan");
         FlowLayout top = new FlowLayout();
         BorderLayout bl = new BorderLayout(10, 10);
-        top.setHgap(50);
-        
+
         frame.add(back);
         back.setAlignmentX(LEFT_ALIGNMENT);
         frame.add(lblMyP);
-        
-        JPanel frame1 = new JPanel();
-        frame1.setLayout(new GridLayout());
-        
-       
-        getContentPane().add(frame);
-        //getContentPane().add(frame1);
 
+        getContentPane().add(frame);
 
         back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -61,7 +53,6 @@ public class ShowPlan extends JFrame {
             }
         }
         );
-
     }
 
     public static void main(String[] args) {
