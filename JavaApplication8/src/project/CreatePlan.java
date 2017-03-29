@@ -53,7 +53,9 @@ public class CreatePlan extends JFrame {
         canclebtn = new JButton("Cancle");
         
         JPanel frame = new JPanel();
-        frame.setLayout(new GridLayout(5, 3, 20, 10));
+        
+        
+        frame.setLayout(new GridLayout(5, 2, 20, 10));
         setTitle("Create Plan");
         
         frame.add(lblPName);
