@@ -38,7 +38,7 @@ public class Plan {
         return "";
     }
 
-    public String create(String planName, String description) throws ClassNotFoundException, SQLException {
+    public String create(String planName, String description, int totalDays,int daysPerWeek) throws ClassNotFoundException, SQLException {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");

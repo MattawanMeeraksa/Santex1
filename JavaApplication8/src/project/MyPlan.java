@@ -30,6 +30,7 @@ public class MyPlan extends JFrame {
     public MyPlan() {
         back = new JButton("<");
         lblMyP = new JLabel("My Plan");
+        show();
 
         JPanel frame = new JPanel();
         setTitle("Show Plan");
@@ -58,7 +59,8 @@ public class MyPlan extends JFrame {
     public static void main(String[] args) {
         MyPlan sp = new MyPlan();
         sp.pack();
-        sp.setSize(300, 400);
+        
+        sp.setSize(400, 400);
         sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         sp.setVisible(true);
         sp.setLocationRelativeTo(null);
