@@ -6,8 +6,10 @@
 package project;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -16,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import static javax.xml.ws.Endpoint.create;
 
 /**
@@ -30,6 +33,7 @@ public class MyPlan extends JFrame {
     JLabel lblMyP2;
     JButton editbtn;
     JButton deletebtn;
+    MyPlan mp = new MyPlan();
 
     public MyPlan() {
         back = new JButton("<");
@@ -38,21 +42,24 @@ public class MyPlan extends JFrame {
         lblMyP2 = new JLabel("My Plan");
         editbtn = new JButton("Edit");
         deletebtn = new JButton("Delete");
-
+        
         JPanel frame = new JPanel();
-        setTitle("Show Plan");
-        //FlowLayout top = new FlowLayout();
-        //BorderLayout bl = new BorderLayout(10, 10);
-        frame.setLayout(new GridLayout(1, 2, 5, 5));
-        
-        
+        setTitle("Show Plan"); 
+        frame.setLayout(new GridLayout(1, 2));
         frame.add(back);
+        frame.add(lblMyP);   
         
-        frame.add(lblMyP);
-        frame.add(editbtn);
-        frame.add(deletebtn);
-        
-         getContentPane().add(frame);
+        getContentPane().add(frame);
+        JPanel frame1 = new JPanel(new BorderLayout());
+        //Component add = frame1.add(new JTextField(rs.show()));
+        JPanel frame2 = new JPanel(new GridLayout(1,2,5,5));
+        //frame2.add();
+         
+//        JPanel top = new JPanel();
+//        top.add(editbtn,BorderLayout.WEST);
+//        top.add(lblMyP,BorderLayout.CENTER);
+//         getContentPane().add(top);
+
          
 //        JPanel frame1 = new JPanel(new BorderLayout(10,10));
 //        frame1.add(lblMyP1);
