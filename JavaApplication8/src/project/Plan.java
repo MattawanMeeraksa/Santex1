@@ -23,22 +23,26 @@ public class Plan {
     private String planName;
     private int dayPerWeek;
     private String description;
-    private int day;
+    private int totaldays;
 
     public String show() throws ClassNotFoundException, SQLException {
         Connection conn = MySQLConnect.getMySQLConnection();
-        PreparedStatement pstm = conn.prepareStatement("select * from test");
+        PreparedStatement pstm = conn.prepareStatement("select * from ExercisePlan.plan");
         ResultSet rs = pstm.executeQuery();
         while (rs.next()) {
             System.out.print("Plan name : ");
-            System.out.println(rs.getString("username"));
+            System.out.println(rs.getString("planName"));
             System.out.print("Description : ");
-            System.out.println(rs.getString("password"));
+            System.out.println(rs.getString("descriptionPlan"));
+            System.out.print("Total days : ");
+            System.out.println(rs.getString("totaldays"));
+            System.out.print("Days per week : ");
+            System.out.println(rs.getString("dayperweek"));
         }
         return "";
     }
 
-    public String create(String planName, String description, int totalDays,int daysPerWeek) throws ClassNotFoundException, SQLException {
+    public String create(String planName, String description,int totalDays,int dayPerWeek) throws ClassNotFoundException, SQLException {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
@@ -156,15 +160,19 @@ public class Plan {
         }
 
         Connection conn = MySQLConnect.getMySQLConnection();
-        PreparedStatement pstm = conn.prepareStatement("insert into test(username,password) values (?,?)");
+        PreparedStatement pstm = conn.prepareStatement("insert into PLAN (planName,descriptionPlan,totaldays,dayperweek) values (?,?,?,?)");
         pstm.setString(1, planName);
         pstm.setString(2, description);
+        pstm.setInt(3, totalDays);
+        pstm.setInt(4, dayPerWeek);
         int rs = pstm.executeUpdate();
         System.out.println(rs);
 
         return "--------------Plan name : " + planName + "--------------"
-                + "\nThe total day in your plan : " + day + " days"
+                + "\nDescription : " + description 
+                + "\nThe total day in your plan : " + totaldays + " days"
                 + "\nThe day that you have to exercise : " + nameDay;
+                
     }
 
     

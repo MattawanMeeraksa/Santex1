@@ -8,10 +8,12 @@ package project;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,7 +35,8 @@ public class MyPlan extends JFrame {
     JLabel lblMyP2;
     JButton editbtn;
     JButton deletebtn;
-    MyPlan mp = new MyPlan();
+    JTextArea txtDes;
+    
 
     public MyPlan() {
         back = new JButton("<");
@@ -42,17 +45,44 @@ public class MyPlan extends JFrame {
         lblMyP2 = new JLabel("My Plan");
         editbtn = new JButton("Edit");
         deletebtn = new JButton("Delete");
+        txtDes = new JTextArea();
         
-        JPanel frame = new JPanel();
+   
+        //frame ใหญ่อันแรกเพื่อเก็บปุ่ม back กับ หัวข้อ My plan
+        JPanel frame1 = new JPanel();
         setTitle("Show Plan"); 
-        frame.setLayout(new GridLayout(1, 2));
-        frame.add(back);
-        frame.add(lblMyP);   
+        add(frame1);
+        frame1.setLayout(new GridLayout(1, 1));
         
-        getContentPane().add(frame);
-        JPanel frame1 = new JPanel(new BorderLayout());
+        frame1.add(back);
+        frame1.add(lblMyP);
+        
+        JPanel frame2 = new JPanel();
+        frame2.setLayout(new GridLayout(1, 2));
+        //add.(frame1,new GridLayout(1,2));
+        frame2.add(frame1);
+        frame2.add(txtDes);
+        frame2.add(editbtn);
+        frame2.add(deletebtn);
+        
+//        JPanel frame3 = new JPanel();
+//        frame3.setLayout(new FlowLayout());
+//        frame3.add(lblMyP2);
+//        bigFrame.add(frame3);
+                
+        
+//        
+//        JPanel frame4= new JPanel();
+//        frame4.setLayout(new FlowLayout());
+//        frame4.add(lblMyP2);
+//        bigFrame.add(frame4);
+         
+        
+        
+       // getContentPane().add(frame);
+        //JPanel frame1 = new JPanel(new BorderLayout());
         //Component add = frame1.add(new JTextField(rs.show()));
-        JPanel frame2 = new JPanel(new GridLayout(1,2,5,5));
+       // JPanel frame2 = new JPanel(new GridLayout(1,2,5,5));
         //frame2.add();
          
 //        JPanel top = new JPanel();

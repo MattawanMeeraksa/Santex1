@@ -18,7 +18,7 @@ public class MySQLConnect {
             throws ClassNotFoundException, SQLException {
 
         String hostName = "54.187.59.174";
-        String dbName = "sentex";
+        String dbName = "ExercisePlan";
         String dbPort = "3306";
         String userName = "itangx";
         String password = "password";

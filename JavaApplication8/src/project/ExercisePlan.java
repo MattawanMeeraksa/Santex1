@@ -50,7 +50,7 @@ public class ExercisePlan extends JFrame{
                 mp.setVisible(true);
                 System.out.println("Plan created");
                 setVisible(false);
-                mp.setSize(300, 400);
+                mp.setSize(400, 400);
                 mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 mp.setLocationRelativeTo(null);
             }
@@ -62,7 +62,7 @@ public class ExercisePlan extends JFrame{
                 CreatePlan ep = new CreatePlan();
                 ep.setVisible(true);
                 setVisible(false);
-                ep.setSize(300, 400);
+                ep.setSize(400, 400);
                 ep.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 ep.setLocationRelativeTo(null);
             }
@@ -71,7 +71,7 @@ public class ExercisePlan extends JFrame{
     
     public static void main(String[] args) {
         ExercisePlan ep = new ExercisePlan();
-        ep.setSize(300, 400);
+        ep.setSize(400, 400);
         ep.pack();
         ep.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ep.setVisible(true);

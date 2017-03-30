@@ -76,7 +76,7 @@ public class CreatePlan extends JFrame {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 Plan p = new Plan();
-                 String planName = txtPName.getText();
+                String planName = txtPName.getText();
                 String description = txtDescribe.getText();
                 String tTDays = txtTtDays.getText();
                 int totalDays = Integer.parseInt(tTDays);
@@ -107,7 +107,7 @@ public class CreatePlan extends JFrame {
                 ExercisePlan ep = new ExercisePlan();
                 ep.setVisible(true);
                 setVisible(false);
-                ep.setSize(300, 400);
+                ep.setSize(400, 400);
                 ep.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 ep.setLocationRelativeTo(null);
             }
@@ -117,7 +117,7 @@ public class CreatePlan extends JFrame {
     public static void main(String[] args) {
         CreatePlan plan = new CreatePlan();
         plan.pack();
-        plan.setSize(300, 400);
+        plan.setSize(400, 400);
         plan.setVisible(true);
         plan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         plan.setLocationRelativeTo(null);      
