@@ -9,6 +9,9 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -68,12 +71,18 @@ public class EditPlan extends JFrame{
         savebtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                MyPlan mp = new MyPlan();
-                mp.setVisible(true);
-                setVisible(false);
-                mp.setSize(400, 400);
-                mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                mp.setLocationRelativeTo(null);
+                try {
+                    MyPlan mp = new MyPlan();
+                    mp.setVisible(true);
+                    setVisible(false);
+                    mp.setSize(400, 400);
+                    mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    mp.setLocationRelativeTo(null);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(EditPlan.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(EditPlan.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         
