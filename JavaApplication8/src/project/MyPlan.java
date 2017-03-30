@@ -46,11 +46,13 @@ public class MyPlan extends JFrame implements ActionListener {
     JButton detailbtn;
     JButton addbtn;
     JTextArea txtDes;
-    ArrayList<JButton> buttons1;
-    ArrayList<JButton> buttons2;
-    ArrayList<JButton> buttons3;
-    ArrayList<JButton> buttons4;
-    ArrayList<String> planName;
+    JLabel lbldl; //dl = delete
+
+    ArrayList<JButton> buttons1; //เก็บปุ่ม buttons1 เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่ปุ่มเลยเลือกเก็บเป็นแบบนี้ 
+    ArrayList<JButton> buttons2; //เก็บปุ่ม buttons2 เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่ปุ่มเลยเลือกเก็บเป็นแบบนี้ 
+    ArrayList<JButton> buttons3; //เก็บปุ่ม buttons3 เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่ปุ่มเลยเลือกเก็บเป็นแบบนี้
+    ArrayList<JButton> buttons4; //เก็บปุ่ม buttons4 เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่ปุ่มเลยเลือกเก็บเป็นแบบนี้
+    ArrayList<String> planName; //เก็บ planName เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่อันเลยเลือกเก็บเป็นแบบนี้
 
     public MyPlan() throws ClassNotFoundException, SQLException {
         Plan p1 = new Plan();
@@ -97,18 +99,20 @@ public class MyPlan extends JFrame implements ActionListener {
         add(alltop, BorderLayout.NORTH);
 
         while (rs.next()) {
-            //
+
+            //เราทำเพื่อเพิ่ม planName เข้าไปเพื่อใช้งานและเมื่อเราเอา
+            //ไปทำงานจะได้รู้ว่าเรากดปุ่มของ planName ไหน
             planName.add(rs.getString("planName"));
-            //Bank1.add(new JTextArea());
             Bank1.add(new JLabel("Plan name"));
             Bank1.add(new JLabel(rs.getString("planName")));
             Bank1.add(new JLabel("Description"));
             Bank1.add(new JLabel(rs.getString("descriptionPlan")));
+
             Bank1.add(new JLabel("Total days"));
             Bank1.add(new JLabel(rs.getString("totaldays")));
             Bank1.add(new JLabel("Days per week"));
             Bank1.add(new JLabel(rs.getString("dayperweek")));
-            //Bank1.add(new JLabel("----------------------------\n"));
+
         }
 
         JPanel Bank2 = new JPanel(new GridLayout(4, 2));
@@ -126,7 +130,7 @@ public class MyPlan extends JFrame implements ActionListener {
             buttons2.add(deletebtn[j]);
             j++;
 
-            detailbtn[k] = new JButton("Detal List" + k);
+            detailbtn[k] = new JButton("Detail List" + k);
             detailbtn[k].addActionListener(this);
             Bank2.add(detailbtn[k]);
             buttons3.add(detailbtn[k]);
@@ -156,28 +160,6 @@ public class MyPlan extends JFrame implements ActionListener {
             }
         }
         );
-//            editbtn.addActionListener(new ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent evt) {
-//                    EditPlan eplan = new EditPlan();
-//                    eplan.setVisible(true);
-//                    setVisible(false);
-//                    eplan.setSize(400, 400);
-//                    eplan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//                    eplan.setLocationRelativeTo(null);
-//                }
-//            });
-//            deletebtn.addActionListener(new ActionListener() {
-//                public void actionPerformed(ActionEvent e) {
-//                    CreatePlan cp = new CreatePlan();
-//                    cp.setSize(400, 400);
-//                    cp.setVisible(true);
-//                    cp.setDefaultCloseOperation(cp.EXIT_ON_CLOSE);
-//                    setVisible(false);
-//                    cp.setLocationRelativeTo(null);
-//                }
-//            }
-//            );
 
     }
 
@@ -185,18 +167,27 @@ public class MyPlan extends JFrame implements ActionListener {
         for (int i = 0; i < buttons1.size(); i++) {
             if (e.getSource() == buttons1.get(i)) {
                 System.out.println("edit");
-                System.out.println(planName.get(i));
+                //System.out.println(planName.get(i));
             }
+
+            EditPlan eplan = new EditPlan();
+            eplan.pack();
+            eplan.setSize(400, 400);
+            eplan.setVisible(true);
+            eplan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            eplan.setLocationRelativeTo(null);
+
         }
         for (int i = 0; i < buttons2.size(); i++) {
             if (e.getSource() == buttons2.get(i)) {
                 Object[] options = {"Yes", "No"};
                 int n = JOptionPane.showOptionDialog(deletebtn, "Do you want delete plan?", "Delete Plan!!!",
                         JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null,
-                        options,options[0]);
-                if(n==0){
-                    System.out.println("Delete");
-                    Plan p1= new Plan();
+                        options, options[0]);
+                //กด yes n จะมีค่าเป็น 0 ถ้ากดปุ่มอื่นจะเป็น 1
+                if (n == 0) {
+                    System.out.println("Deleted");
+                    Plan p1 = new Plan();
                     try {
                         p1.delete(planName.get(i));
                     } catch (ClassNotFoundException ex) {
@@ -204,23 +195,17 @@ public class MyPlan extends JFrame implements ActionListener {
                     } catch (SQLException ex) {
                         Logger.getLogger(MyPlan.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }else{
-                    System.out.println("No Delete");
+                    JOptionPane.showMessageDialog(lbldl, "Your plan is deleted");
+
+                } else {
+                    System.out.println("Cancled");
                 }
+
             }
-            //JOptionPane.showMessageDialog(deletebtn, "Do you want delete plan?");
 
         }
     }
 
-    /*  if(e.getSource()==buttons.get(0)){
-                
-            }else if(e.getSource()==buttons.get(1)){
-                
-            }                
-            System.out.println(buttons.get(0));
-             System.out.println(e.getSource());
-             System.out.println(buttons.get(0) == e.getSource());*/
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         MyPlan sp = new MyPlan();
         sp.pack();

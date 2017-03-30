@@ -199,7 +199,7 @@ public class Plan {
         pstm.setString(1, planName);
         pstm.setString(2, description);
         pstm.setInt(3, totalDays);
-        pstm.setInt(4, dayPerWeek);
+        pstm.setString(4, nameDay);
         int rs = pstm.executeUpdate();
         System.out.println(rs);
 
