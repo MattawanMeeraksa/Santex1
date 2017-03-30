@@ -190,15 +190,26 @@ public class MyPlan extends JFrame implements ActionListener {
         }
         for (int i = 0; i < buttons2.size(); i++) {
             if (e.getSource() == buttons2.get(i)) {
-                System.out.println("delete");
-                System.out.println(planName.get(i));
+                Object[] options = {"Yes", "No"};
+                int n = JOptionPane.showOptionDialog(deletebtn, "Do you want delete plan?", "Delete Plan!!!",
+                        JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null,
+                        options,options[0]);
+                if(n==0){
+                    System.out.println("Delete");
+                    Plan p1= new Plan();
+                    try {
+                        p1.delete(planName.get(i));
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(MyPlan.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(MyPlan.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    System.out.println("No Delete");
+                }
             }
             //JOptionPane.showMessageDialog(deletebtn, "Do you want delete plan?");
-            Object[] options = {"Yes", "No"};
-            int n = JOptionPane.showOptionDialog(deletebtn, "Do you want delete plan?", "Delete Plan!!!",
-                    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null,
-                    options,
-                    options[0]);
+
         }
     }
 

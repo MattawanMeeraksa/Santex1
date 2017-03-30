@@ -75,27 +75,35 @@ public class CreatePlan extends JFrame {
         createbtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                Plan p = new Plan();
-                String planName = txtPName.getText();
-                String description = txtDescribe.getText();
-                String tTDays = txtTtDays.getText();
-                int totalDays = Integer.parseInt(tTDays);
-                String DPW = txtDPW.getText();
-                int daysPerWeek = Integer.parseInt(DPW);
                 try {
-                    p.create(planName,description,totalDays,daysPerWeek);
+                    Plan p = new Plan();
+                    String planName = txtPName.getText();
+                    String description = txtDescribe.getText();
+                    String tTDays = txtTtDays.getText();
+                    int totalDays = Integer.parseInt(tTDays);
+                    String DPW = txtDPW.getText();
+                    int daysPerWeek = Integer.parseInt(DPW);
+                    try {
+                        p.create(planName,description,totalDays,daysPerWeek);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(CreatePlan.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(CreatePlan.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    MyPlan sp = new MyPlan();
+                    sp.setVisible(true);
+                    System.out.println("Plan created");
+                    setVisible(false);
+                    sp.setSize(400, 400);
+                    sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    sp.setLocationRelativeTo(null);
+                    
+                    
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(CreatePlan.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
                     Logger.getLogger(CreatePlan.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                MyPlan sp = new MyPlan();
-                sp.setVisible(true);
-                System.out.println("Plan created");
-                setVisible(false);
-                sp.setSize(400, 400);
-                sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                sp.setLocationRelativeTo(null);
                
                 
             }
