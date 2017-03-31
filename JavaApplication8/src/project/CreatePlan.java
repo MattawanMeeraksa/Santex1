@@ -37,7 +37,8 @@ public class CreatePlan extends JFrame {
     JLabel lblTtDays;
     JTextField txtTtDays;
     JLabel lblDPW; //DPW : Days Per Week
-    JTextField txtDPW;
+    JTextArea txtDPW;
+    
     
     public CreatePlan() {
         
@@ -48,7 +49,7 @@ public class CreatePlan extends JFrame {
         lblTtDays = new JLabel("Total Days");
         txtTtDays = new JTextField(2);
         lblDPW = new JLabel("Days Per Week");
-        txtDPW = new JTextField(2);
+        txtDPW = new JTextArea();
         createbtn = new JButton("Create");
         cancelbtn = new JButton("Cancel");
         

@@ -113,18 +113,20 @@ public class MyPlan extends JFrame implements ActionListener {
             totaldays.add(rs.getString("totaldays"));
             dayperweek.add(rs.getString("dayperweek"));
             Bank1.add(new JLabel("Plan name"));
-            Bank1.add(new JLabel(rs.getString("planName")));
+            Bank1.add(new JTextField(rs.getString("planName")));
             Bank1.add(new JLabel("Description"));
-            Bank1.add(new JLabel(rs.getString("descriptionPlan")));
+            Bank1.add(new JTextArea(rs.getString("descriptionPlan")));
 
             Bank1.add(new JLabel("Total days"));
-            Bank1.add(new JLabel(rs.getString("totaldays")));
+            Bank1.add(new JTextField(rs.getString("totaldays")));
             Bank1.add(new JLabel("Days per week"));
-            Bank1.add(new JLabel(rs.getString("dayperweek")));
+            Bank1.add(new JTextField(rs.getString("dayperweek")));
+            Bank1.add(new JLabel("Name day"));
+            Bank1.add(new JTextArea(rs.getString("dayperweek")));
 
         }
 
-        JPanel Bank2 = new JPanel(new GridLayout(4, 2));
+        JPanel Bank2 = new JPanel(new GridLayout(0,2));
         rs = p.show();
         while (rs.next()) {
             editbtn[i] = new JButton("Edit" + i);
