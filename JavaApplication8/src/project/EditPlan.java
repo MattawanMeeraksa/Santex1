@@ -67,22 +67,22 @@ public class EditPlan extends JFrame {
         this.edittotal = edittotal;
     }
 
-    public int getEditDPW() {
-        return editDPW;
-    }
-
-    public void setEditDPW(int editDPW) {
-        this.editDPW = editDPW;
-    }
-    
-    public EditPlan(String planName,String des,String totaldays,String dPW){
+//    public int getEditDPW() {
+//        return editDPW;
+//    }
+//
+//    public void setEditDPW(int editDPW) {
+//        this.editDPW = editDPW;
+//    }
+//    
+    public EditPlan(String planName,String des,String totaldays){
         this();
         editName=planName;
         editDes=des;
         int Total=Integer.parseInt(totaldays);
         edittotal=Total;
-        int DPW=Integer.parseInt(dPW);
-        editDPW = DPW;
+//        int DPW=Integer.parseInt(dPW);
+//        editDPW = DPW;
         txtPName.setText(this.editName);
         txtDescribe.setText(this.editDes);
         txtTtDays.setText(this.edittotal+"");
