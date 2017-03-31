@@ -67,14 +67,14 @@ public class EditPlan extends JFrame {
         this.edittotal = edittotal;
     }
 
-    public int getEditDPW() {
-        return editDPW;
-    }
-
-    public void setEditDPW(int editDPW) {
-        this.editDPW = editDPW;
-    }
-    
+//    public int getEditDPW() {
+//        return editDPW;
+//    }
+//
+//    public void setEditDPW(int editDPW) {
+//        this.editDPW = editDPW;
+//    }
+//    
     public EditPlan(String planName,String des,String totaldays,String dPW){
         this();
         editName=planName;
@@ -97,7 +97,7 @@ public class EditPlan extends JFrame {
         lblTtDays = new JLabel("Total Days");
         txtTtDays = new JTextField(2);
         lblDPW = new JLabel("Days Per Week");
-        txtDPW = new JTextField(2);
+        txtDPW = new JTextField();
         savebtn = new JButton("Save");
         backbtn = new JButton("Back");
 

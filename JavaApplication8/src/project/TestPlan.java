@@ -21,7 +21,7 @@ public class TestPlan {
         MySQLConnect connection = new MySQLConnect();
         Scanner sc = new Scanner(System.in);
         Plan p = new Plan();
-        p.create("Strong together","Abs workout",11,11);
+        //p.create("Strong together","Abs workout",11,11);
        
         
 

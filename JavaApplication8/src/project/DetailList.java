@@ -72,7 +72,6 @@ public class DetailList extends JFrame {
         set = new ArrayList<String>();
         
         JButton[] editbtn = new JButton[100];
-        editbtn[i].setSize(20,20);
         JButton[] deletebtn = new JButton[100];
         
         JPanel top = new JPanel();
