@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Scanner;
+import project.ListPlan;
+import project.MySQLConnect;
 
 /**
  *
@@ -21,7 +23,7 @@ public class TestListPlan {
         MySQLConnect connection = new MySQLConnect();
         Scanner sc = new Scanner(System.in);
         ListPlan lp = new ListPlan();
-        lp.editReps("Sit-up","up and down",30,20);
+        lp.create("kkkk", "kkkk", 1,1,1);
     }  
 }
         
