@@ -85,7 +85,7 @@ public class CreatePlan extends JFrame {
                     String DPW = txtDPW.getText();
                     int daysPerWeek = Integer.parseInt(DPW);
                     try {
-                        p.create(planName,description,totalDays,daysPerWeek);
+                        p.create(planName,description,totalDays);
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(CreatePlan.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (SQLException ex) {

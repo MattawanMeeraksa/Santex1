@@ -29,7 +29,10 @@ public class Plan {
 
     public Plan() {
     }
-
+    public void start(int dayPerWeek){
+        this.dayPerWeek = dayPerWeek;
+        
+    }
 //    private static void getDataFromDB(ResultSet rs, Plan p) throws SQLException {
 //        p.setPlanName(rs.getString("planName"));
 //        p.setDescription(rs.getString("descriptionPlan"));
@@ -75,7 +78,7 @@ public class Plan {
         return rs;
     }
 
-    public String create(String planName, String description, int totalDays, int dayPerWeek) throws ClassNotFoundException, SQLException {
+    public String create(String planName, String description, int totalDays) throws ClassNotFoundException, SQLException {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");

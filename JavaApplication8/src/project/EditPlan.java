@@ -67,14 +67,14 @@ public class EditPlan extends JFrame {
         this.edittotal = edittotal;
     }
 
-    public int getEditDPW() {
-        return editDPW;
-    }
-
-    public void setEditDPW(int editDPW) {
-        this.editDPW = editDPW;
-    }
-    
+//    public int getEditDPW() {
+//        return editDPW;
+//    }
+//
+//    public void setEditDPW(int editDPW) {
+//        this.editDPW = editDPW;
+//    }
+//    
     public EditPlan(String planName,String des,String totaldays,String dPW){
         this();
         editName=planName;
