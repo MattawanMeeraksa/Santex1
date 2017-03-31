@@ -27,15 +27,15 @@ public class ListPlan {
         PreparedStatement pstm = conn.prepareStatement("select * from LIST");
         ResultSet rs = pstm.executeQuery();
         while (rs.next()) {
-            System.out.print("List plan : ");
+            /*System.out.print("List plan : ");
             System.out.println(rs.getString("listName"));
             System.out.print("Description : ");
             System.out.println(rs.getString("descriptionList"));
             System.out.print("Reps : ");
             System.out.println(rs.getString("reps"));
             System.out.print("Set : ");
-            System.out.println(rs.getString("`set`"));
-            System.out.println("--------------------------------------------------");
+            System.out.println(rs.getString("set"));
+            System.out.println("--------------------------------------------------");*/
             
         }
         return "";
@@ -92,7 +92,7 @@ public class ListPlan {
 
     public void delete(String listPlanName) throws ClassNotFoundException, SQLException {
         Connection conn = MySQLConnect.getMySQLConnection();
-        PreparedStatement pstm = conn.prepareStatement("delete from LSIT where listPlanName=?");
+        PreparedStatement pstm = conn.prepareStatement("delete from LIST where listName=?");
         pstm.setString(1, listPlanName);
         int rs = pstm.executeUpdate();
         System.out.println(rs);

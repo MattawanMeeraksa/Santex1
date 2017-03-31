@@ -23,7 +23,7 @@ public class TestListPlan {
         MySQLConnect connection = new MySQLConnect();
         Scanner sc = new Scanner(System.in);
         ListPlan lp = new ListPlan();
-        lp.create("kkkk", "kkkk", 1,1,1);
+        lp.delete("Run");
     }  
 }
         
