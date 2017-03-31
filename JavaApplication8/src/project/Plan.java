@@ -37,7 +37,7 @@ public class Plan {
         p.setTotaldays(rs.getInt("totaldays"));
     }
 
-   /* public static List<Plan> show() {
+    /* public static List<Plan> show() {
         List<Plan> listPlans = null;
         try {
             Connection conn = MySQLConnect.getMySQLConnection();
@@ -51,7 +51,6 @@ public class Plan {
                 getDataFromDB(rs, p);
                 listPlans.add(p);
             }
-            conn.close();
         }catch(ClassNotFoundException e){
             System.err.print(e);
         }catch(SQLException e){
@@ -59,12 +58,11 @@ public class Plan {
         }
         return listPlans;
     }*/
-
     public ResultSet show() throws ClassNotFoundException, SQLException {
         Connection conn = MySQLConnect.getMySQLConnection();
         PreparedStatement pstm = conn.prepareStatement("select * from PLAN");
         ResultSet rs = pstm.executeQuery();
-    /*    while (rs.next()) {
+        /*    while (rs.next()) {
             System.out.print("Plan name : ");
             System.out.println(rs.getString("planName"));
             System.out.print("Description : ");
@@ -199,10 +197,9 @@ public class Plan {
         pstm.setString(1, planName);
         pstm.setString(2, description);
         pstm.setInt(3, totalDays);
-        pstm.setString(4, nameDay);
+        pstm.setInt(4, dayPerWeek);
         int rs = pstm.executeUpdate();
         System.out.println(rs);
-
         return "--------------Plan name : " + planName + "--------------"
                 + "\nDescription : " + description
                 + "\nThe total day in your plan : " + totaldays + " days"
@@ -347,6 +344,7 @@ public class Plan {
 
         int rs = pstm.executeUpdate();
         System.out.println(rs);
+
     }
 
     public void editTotalDay(int oldDay, int newDay) throws ClassNotFoundException, SQLException {
@@ -363,6 +361,7 @@ public class Plan {
         pstm.setString(1, planName);
         int rs = pstm.executeUpdate();
         System.out.println(rs);
+
     }
 
     public String getPlanName() {

@@ -5,6 +5,7 @@
  */
 package project;
 
+import com.sun.glass.ui.Cursor;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.FlowLayout;
@@ -52,10 +53,12 @@ public class MyPlan extends JFrame implements ActionListener {
     ArrayList<JButton> buttons2; //เก็บปุ่ม buttons2 เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่ปุ่มเลยเลือกเก็บเป็นแบบนี้ 
     ArrayList<JButton> buttons3; //เก็บปุ่ม buttons3 เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่ปุ่มเลยเลือกเก็บเป็นแบบนี้
     ArrayList<JButton> buttons4; //เก็บปุ่ม buttons4 เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่ปุ่มเลยเลือกเก็บเป็นแบบนี้
-    ArrayList<String> planName; //เก็บ planName เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่อันเลยเลือกเก็บเป็นแบบนี้
+    ArrayList<String> planName, descrip; //เก็บ planName เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่อันเลยเลือกเก็บเป็นแบบนี้
+    ArrayList<String> totaldays, dayperweek;
 
     public MyPlan() throws ClassNotFoundException, SQLException {
         Plan p1 = new Plan();
+
         back = new JButton("<");
         lblMyP = new JLabel("My Plan");
 
@@ -81,6 +84,9 @@ public class MyPlan extends JFrame implements ActionListener {
         buttons3 = new ArrayList<JButton>();
         buttons4 = new ArrayList<JButton>();
         planName = new ArrayList<String>();
+        descrip = new ArrayList<String>();
+        totaldays = new ArrayList<String>();
+        dayperweek = new ArrayList<String>();
         JButton[] editbtn = new JButton[100];
         JButton[] deletebtn = new JButton[100];
         JButton[] detailbtn = new JButton[100];
@@ -103,6 +109,9 @@ public class MyPlan extends JFrame implements ActionListener {
             //เราทำเพื่อเพิ่ม planName เข้าไปเพื่อใช้งานและเมื่อเราเอา
             //ไปทำงานจะได้รู้ว่าเรากดปุ่มของ planName ไหน
             planName.add(rs.getString("planName"));
+            descrip.add(rs.getString("descriptionPlan"));
+            totaldays.add(rs.getString("totaldays"));
+            dayperweek.add(rs.getString("dayperweek"));
             Bank1.add(new JLabel("Plan name"));
             Bank1.add(new JLabel(rs.getString("planName")));
             Bank1.add(new JLabel("Description"));
@@ -152,11 +161,13 @@ public class MyPlan extends JFrame implements ActionListener {
         back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 CreatePlan cp = new CreatePlan();
+
                 cp.setSize(400, 400);
                 cp.setVisible(true);
-                cp.setDefaultCloseOperation(cp.EXIT_ON_CLOSE);
+                cp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 setVisible(false);
                 cp.setLocationRelativeTo(null);
+                
             }
         }
         );
@@ -168,12 +179,13 @@ public class MyPlan extends JFrame implements ActionListener {
             if (e.getSource() == buttons1.get(i)) {
                 System.out.println("edit");
                 System.out.println("Plan Name : " + planName.get(i));
-                EditPlan eplan = new EditPlan();
+                EditPlan eplan = new EditPlan(planName.get(i), descrip.get(i), totaldays.get(i), dayperweek.get(i));
                 eplan.pack();
                 eplan.setSize(400, 400);
                 eplan.setVisible(true);
                 eplan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 eplan.setLocationRelativeTo(null);
+                this.setVisible(false);
             }
 
         }
@@ -185,19 +197,32 @@ public class MyPlan extends JFrame implements ActionListener {
                         options, options[0]);
                 //กด yes n จะมีค่าเป็น 0 ถ้ากดปุ่มอื่นจะเป็น 1
                 if (n == 0) {
-                    System.out.println("Deleted");
-                    Plan p1 = new Plan();
                     try {
-                        p1.delete(planName.get(i));
+                        System.out.println("Deleted");
+                        Plan p1 = new Plan();
+                        try {
+                            p1.delete(planName.get(i));
+                        } catch (ClassNotFoundException ex) {
+                            Logger.getLogger(MyPlan.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(MyPlan.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        JOptionPane.showMessageDialog(lbldl, "Your plan is deleted");
+                        MyPlan sp = new MyPlan();
+                        sp.pack();
+                        sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        sp.setVisible(true);
+                        sp.setLocationRelativeTo(null);
+                        setVisible(false);
+
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(MyPlan.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (SQLException ex) {
                         Logger.getLogger(MyPlan.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    JOptionPane.showMessageDialog(lbldl, "Your plan is deleted");
 
                 } else {
-                    System.out.println("Cancled");
+                    System.out.println("Canceled");
                 }
 
             }

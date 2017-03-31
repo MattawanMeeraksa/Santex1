@@ -29,7 +29,7 @@ import javax.swing.border.TitledBorder;
 public class CreatePlan extends JFrame {
     
     JButton createbtn;
-    JButton canclebtn;
+    JButton cancelbtn;
     JLabel lblPName;
     JTextField txtPName;
     JLabel lblDescribe;
@@ -50,7 +50,7 @@ public class CreatePlan extends JFrame {
         lblDPW = new JLabel("Days Per Week");
         txtDPW = new JTextField(2);
         createbtn = new JButton("Create");
-        canclebtn = new JButton("Cancle");
+        cancelbtn = new JButton("Cancel");
         
         JPanel frame = new JPanel();
         
@@ -68,7 +68,7 @@ public class CreatePlan extends JFrame {
         frame.add(lblDPW);
         frame.add(txtDPW);
         frame.add(createbtn);
-        frame.add(canclebtn);
+        frame.add(cancelbtn);
         
         getContentPane().add(frame, BorderLayout.CENTER);
         
@@ -109,7 +109,7 @@ public class CreatePlan extends JFrame {
             }
         });
         
-        canclebtn.addActionListener(new ActionListener() {
+        cancelbtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 ExercisePlan ep = new ExercisePlan();
