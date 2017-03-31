@@ -167,15 +167,14 @@ public class MyPlan extends JFrame implements ActionListener {
         for (int i = 0; i < buttons1.size(); i++) {
             if (e.getSource() == buttons1.get(i)) {
                 System.out.println("edit");
-                //System.out.println(planName.get(i));
+                System.out.println("Plan Name : " + planName.get(i));
+                EditPlan eplan = new EditPlan();
+                eplan.pack();
+                eplan.setSize(400, 400);
+                eplan.setVisible(true);
+                eplan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                eplan.setLocationRelativeTo(null);
             }
-
-            EditPlan eplan = new EditPlan();
-            eplan.pack();
-            eplan.setSize(400, 400);
-            eplan.setVisible(true);
-            eplan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            eplan.setLocationRelativeTo(null);
 
         }
         for (int i = 0; i < buttons2.size(); i++) {

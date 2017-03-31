@@ -74,7 +74,7 @@ public class EditPlan extends JFrame{
                 try {
                     MyPlan mp = new MyPlan();
                     mp.setVisible(true);
-                    setVisible(false);
+                    setVisible(true);
                     mp.setSize(400, 400);
                     mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     mp.setLocationRelativeTo(null);
