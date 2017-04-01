@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package project;
 
 import com.sun.glass.ui.Cursor;
@@ -199,7 +194,7 @@ public class MyPlan extends JFrame implements ActionListener {
             if (e.getSource() == buttons1.get(i)) {
                 System.out.println("edit");
                 System.out.println("Plan Name : " + planName.get(i));
-                EditPlan eplan = new EditPlan(planName.get(i), descrip.get(i), totaldays.get(i));
+                EditPlan1 eplan = new EditPlan1(planName.get(i), descrip.get(i), totaldays.get(i));
                 eplan.pack();
                 eplan.setSize(400, 400);
                 eplan.setVisible(true);

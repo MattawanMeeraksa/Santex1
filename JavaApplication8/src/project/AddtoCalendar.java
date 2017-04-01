@@ -9,9 +9,6 @@ package project;
  *
  * @author Administrator
  */
-public class MainTest {
-    public static void main(String[] args) {
-        EditPlan1 eplan = new EditPlan1("bank","nnnn","20");
-        System.out.println(eplan.getEditName());
-    }
+public class AddtoCalendar {
+    
 }

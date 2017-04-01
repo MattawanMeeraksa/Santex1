@@ -86,9 +86,9 @@ public class StartPlan extends JFrame {
 //                    setVisible(false);
 
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(EditPlan.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(EditPlan1.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(EditPlan.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(EditPlan1.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }

@@ -26,7 +26,7 @@ import javax.swing.JTextField;
  *
  * @author Administrator
  */
-public class EditPlan extends JFrame {
+public class EditPlan1 extends JFrame {
     private String editName;
     private String editDes;
     private int edittotal;
@@ -68,6 +68,7 @@ public class EditPlan extends JFrame {
         this.edittotal = edittotal;
     }
 
+
     public int getEditDPW() {
         return editDPW;
     }
@@ -76,21 +77,24 @@ public class EditPlan extends JFrame {
         this.editDPW = editDPW;
     }
     
-    public EditPlan(String planName,String description,String totaldays){
+    public EditPlan1(String planName,String description,String totaldays){
         this();
         editName=planName;
         editDes=description;
         int Total=Integer.parseInt(totaldays);
         edittotal=Total;
-        //int DPW=Integer.parseInt(dPW);
-        //editDPW = DPW;
+
+//        int DPW=Integer.parseInt(dPW);
+//        editDPW = DPW;
+
         txtPName.setText(this.editName);
         txtDescribe.setText(this.editDes);
         txtTtDays.setText(this.edittotal+"");
         //txtDPW.setText(this.editDPW+"");
     }
 
-    public EditPlan() {
+
+    public EditPlan1() {
         lblPName = new JLabel("Plan Name");
         txtPName = new JTextField(3);
         lblDescribe = new JLabel("Description");
@@ -142,9 +146,9 @@ public class EditPlan extends JFrame {
                         setVisible(false);
 
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(EditPlan.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(EditPlan1.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(EditPlan.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(EditPlan1.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -161,9 +165,9 @@ public class EditPlan extends JFrame {
                     mp.setLocationRelativeTo(null);
 
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(EditPlan.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(EditPlan1.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(EditPlan.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(EditPlan1.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -171,7 +175,7 @@ public class EditPlan extends JFrame {
     }
 
     public static void main(String[] args) {
-        EditPlan eplan = new EditPlan();
+        EditPlan1 eplan = new EditPlan1();
         eplan.pack();
         eplan.setSize(400, 400);
         eplan.setVisible(true);
@@ -179,3 +183,4 @@ public class EditPlan extends JFrame {
         eplan.setLocationRelativeTo(null);
     }
 }
+

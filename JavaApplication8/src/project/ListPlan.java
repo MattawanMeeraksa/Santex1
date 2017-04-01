@@ -22,12 +22,24 @@ public class ListPlan {
     private int set;
     private int list;
     
-    public String show() throws ClassNotFoundException, SQLException {
+    public ListPlan(){
+        
+    }
+    
+    public static void getDataFromDB(ResultSet rs , ListPlan lp) throws SQLException {
+        lp.setListPlanName(rs.getString("listName"));
+        lp.setDescription(rs.getString("descriptionList"));
+        lp.setReps(rs.getInt("reps"));
+        lp.setSet(rs.getInt("set"));
+    }
+            
+            
+    public ResultSet show() throws ClassNotFoundException, SQLException {
         Connection conn = MySQLConnect.getMySQLConnection();
         PreparedStatement pstm = conn.prepareStatement("select * from LIST");
         ResultSet rs = pstm.executeQuery();
-        while (rs.next()) {
-            /*System.out.print("List plan : ");
+        /*while (rs.next()) {
+            System.out.print("List plan : ");
             System.out.println(rs.getString("listName"));
             System.out.print("Description : ");
             System.out.println(rs.getString("descriptionList"));
@@ -35,10 +47,10 @@ public class ListPlan {
             System.out.println(rs.getString("reps"));
             System.out.print("Set : ");
             System.out.println(rs.getString("set"));
-            System.out.println("--------------------------------------------------");*/
+            System.out.println("--------------------------------------------------");
             
-        }
-        return "";
+        }*/
+        return rs;
     }
     
     public String create(String listPlanName, String description,int reps, int set, int list) throws ClassNotFoundException, SQLException {
@@ -54,7 +66,7 @@ public class ListPlan {
 
         return "";
     }
-     public void editListPlanName(String oldListPlanName,String newListPlanName,String description,int reps ,int set) throws ClassNotFoundException, SQLException {
+     public void editListPlanName(String oldListPlanName,String newListPlanName) throws ClassNotFoundException, SQLException {
         Connection conn = MySQLConnect.getMySQLConnection();
         this.show();
         PreparedStatement pstm = conn.prepareStatement("update LIST set listName='" + newListPlanName + "'where listName ='"
@@ -63,7 +75,7 @@ public class ListPlan {
         System.out.println(rs);
     }
     
-    public void editDescription(String listPlanName, String oldDescription,String newDescription, int reps, int set) throws ClassNotFoundException, SQLException {
+    public void editDescription(String oldDescription,String newDescription) throws ClassNotFoundException, SQLException {
        Connection conn = MySQLConnect.getMySQLConnection();
         this.show();
         PreparedStatement pstm = conn.prepareStatement("update LIST set descriptionList ='" + newDescription + "'where descriptionList  ='" 
@@ -72,7 +84,7 @@ public class ListPlan {
         System.out.println(rs);
     }
     
-    public void editReps(String listPlanName, String description ,int newReps, int oldReps, int set) throws ClassNotFoundException, SQLException {
+    public void editReps(int oldReps, int newReps) throws ClassNotFoundException, SQLException {
        Connection conn = MySQLConnect.getMySQLConnection();
         this.show();
         PreparedStatement pstm = conn.prepareStatement("update LIST set reps='" + newReps + "'where reps ='" 
@@ -81,7 +93,7 @@ public class ListPlan {
         System.out.println(rs);
     }
     
-    public void edistSet(String listPlanName, String description ,int reps, int oldSet, int newSet) throws ClassNotFoundException, SQLException {
+    public void editSet(int oldSet, int newSet) throws ClassNotFoundException, SQLException {
        Connection conn = MySQLConnect.getMySQLConnection();
         this.show();
         PreparedStatement pstm = conn.prepareStatement("update LIST set `set`='" + newSet + "'where `set` ='" 
@@ -97,4 +109,46 @@ public class ListPlan {
         int rs = pstm.executeUpdate();
         System.out.println(rs);
     }
+
+    public void setListPlanName(String listPlanName) {
+        this.listPlanName = listPlanName;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setReps(int reps) {
+        this.reps = reps;
+    }
+
+    public void setSet(int set) {
+        this.set = set;
+    }
+
+    public void setList(int list) {
+        this.list = list;
+    }
+
+    public String getListPlanName() {
+        return listPlanName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getReps() {
+        return reps;
+    }
+
+    public int getSet() {
+        return set;
+    }
+
+    public int getList() {
+        return list;
+    }
+
+    
 }
