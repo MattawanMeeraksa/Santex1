@@ -46,6 +46,7 @@ public class MyPlan extends JFrame implements ActionListener {
     JButton deletebtn;
     JButton detailbtn;
     JButton addbtn;
+    JButton startbtn;
     JTextArea txtDes;
     JLabel lbldl; //dl = delete
 
@@ -53,6 +54,7 @@ public class MyPlan extends JFrame implements ActionListener {
     ArrayList<JButton> buttons2; //เก็บปุ่ม buttons2 เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่ปุ่มเลยเลือกเก็บเป็นแบบนี้ 
     ArrayList<JButton> buttons3; //เก็บปุ่ม buttons3 เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่ปุ่มเลยเลือกเก็บเป็นแบบนี้
     ArrayList<JButton> buttons4; //เก็บปุ่ม buttons4 เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่ปุ่มเลยเลือกเก็บเป็นแบบนี้
+    ArrayList<JButton> buttons5; //เก็บปุ่ม buttons4 เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่ปุ่มเลยเลือกเก็บเป็นแบบนี้
     ArrayList<String> planName, descrip; //เก็บ planName เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่อันเลยเลือกเก็บเป็นแบบนี้
     ArrayList<String> totaldays, dayperweek;
 
@@ -65,7 +67,8 @@ public class MyPlan extends JFrame implements ActionListener {
         editbtn = new JButton("Edit");
         deletebtn = new JButton("Delete");
         txtDes = new JTextArea(5, 20);
-        Show = new JLabel("");
+        //Show = new JLabel("");
+        startbtn = new JButton("Start");
         detailbtn = new JButton("Detail List");
         addbtn = new JButton("Edit List");
 
@@ -79,18 +82,25 @@ public class MyPlan extends JFrame implements ActionListener {
         int j = 0;
         int l = 0;
         int k = 0;
+        int m = 0;
+        
+        
         buttons1 = new ArrayList<JButton>();
         buttons2 = new ArrayList<JButton>();
         buttons3 = new ArrayList<JButton>();
         buttons4 = new ArrayList<JButton>();
+        buttons5 = new ArrayList<JButton>();
+
         planName = new ArrayList<String>();
         descrip = new ArrayList<String>();
         totaldays = new ArrayList<String>();
         dayperweek = new ArrayList<String>();
+
         JButton[] editbtn = new JButton[100];
         JButton[] deletebtn = new JButton[100];
         JButton[] detailbtn = new JButton[100];
         JButton[] addbtn = new JButton[100];
+        JButton[] startbtn = new JButton[100];
 
         JPanel top = new JPanel();
         top.add(back);
@@ -125,8 +135,9 @@ public class MyPlan extends JFrame implements ActionListener {
             Bank1.add(new JTextArea(rs.getString("dayperweek")));
 
         }
-
-        JPanel Bank2 = new JPanel(new GridLayout(0,2));
+        
+        //เก็บในฝั่งของปุ่มด้านขวา
+        JPanel Bank2 = new JPanel(new GridLayout(0, 2));
         rs = p.show();
         while (rs.next()) {
             editbtn[i] = new JButton("Edit" + i);
@@ -152,14 +163,20 @@ public class MyPlan extends JFrame implements ActionListener {
             Bank2.add(addbtn[l]);
             buttons4.add(addbtn[l]);
             l++;
-
+            
+             startbtn[m] = new JButton("Start" + m);
+            startbtn[m].addActionListener(this);
+            Bank2.add(startbtn[m]);
+            buttons5.add(startbtn[m]);
+            m++;
         }
 
         Bank.add(Bank1, BorderLayout.WEST);
         Bank.add(Bank2, BorderLayout.CENTER);
         //     add(Bank1,BorderLayout.WEST);
         add(Bank, BorderLayout.CENTER);
-
+        
+        //เป็น action ของการกดปุ่ม back
         back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 CreatePlan cp = new CreatePlan();
@@ -169,19 +186,20 @@ public class MyPlan extends JFrame implements ActionListener {
                 cp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 setVisible(false);
                 cp.setLocationRelativeTo(null);
-                
+
             }
         }
         );
 
     }
-
+    
+    //เป็น method เก็บ action ที่ออบเจกต์สามารถเรียกใช้ได้
     public void actionPerformed(ActionEvent e) {
         for (int i = 0; i < buttons1.size(); i++) {
             if (e.getSource() == buttons1.get(i)) {
                 System.out.println("edit");
                 System.out.println("Plan Name : " + planName.get(i));
-                EditPlan eplan = new EditPlan(planName.get(i), descrip.get(i), totaldays.get(i), dayperweek.get(i));
+                EditPlan eplan = new EditPlan(planName.get(i), descrip.get(i), totaldays.get(i));
                 eplan.pack();
                 eplan.setSize(400, 400);
                 eplan.setVisible(true);
@@ -227,6 +245,20 @@ public class MyPlan extends JFrame implements ActionListener {
                     System.out.println("Canceled");
                 }
 
+            }
+
+        }
+         for (int i = 0; i < buttons5.size(); i++) {
+            if (e.getSource() == buttons5.get(i)) {
+                System.out.println("Start");
+                System.out.println("Plan Name : " + planName.get(i));
+                StartPlan stp = new StartPlan();
+                stp.pack();
+                stp.setSize(400, 400);
+                stp.setVisible(true);
+                stp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                stp.setLocationRelativeTo(null);
+                this.setVisible(false);
             }
 
         }

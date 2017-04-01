@@ -29,56 +29,9 @@ public class Plan {
 
     public Plan() {
     }
-    public void start(int dayPerWeek){
+
+    public String start(int dayPerWeek) throws ClassNotFoundException, SQLException {
         this.dayPerWeek = dayPerWeek;
-        
-    }
-//    private static void getDataFromDB(ResultSet rs, Plan p) throws SQLException {
-//        p.setPlanName(rs.getString("planName"));
-//        p.setDescription(rs.getString("descriptionPlan"));
-//        p.setDayPerWeek(rs.getInt("dayperweek"));
-//        p.setTotaldays(rs.getInt("totaldays"));
-//    }
-
-    /* public static List<Plan> show() {
-        List<Plan> listPlans = null;
-        try {
-            Connection conn = MySQLConnect.getMySQLConnection();
-            PreparedStatement pstm = conn.prepareStatement("select * from PLAN");
-            ResultSet rs = pstm.executeQuery();
-            while (rs.next()) {
-                if(listPlans == null){
-                    listPlans = new ArrayList<Plan>();
-                }
-                Plan p = new Plan();
-                getDataFromDB(rs, p);
-                listPlans.add(p);
-            }
-        }catch(ClassNotFoundException e){
-            System.err.print(e);
-        }catch(SQLException e){
-            System.err.print(e);
-        }
-        return listPlans;
-    }*/
-    public ResultSet show() throws ClassNotFoundException, SQLException {
-        Connection conn = MySQLConnect.getMySQLConnection();
-        PreparedStatement pstm = conn.prepareStatement("select * from PLAN");
-        ResultSet rs = pstm.executeQuery();
-        /*    while (rs.next()) {
-            System.out.print("Plan name : ");
-            System.out.println(rs.getString("planName"));
-            System.out.print("Description : ");
-            System.out.println(rs.getString("descriptionPlan"));
-            System.out.print("Total days : ");
-            System.out.println(rs.getString("totaldays"));
-            System.out.print("Days per week : ");
-            System.out.println(rs.getString("dayperweek"));
-        }*/
-        return rs;
-    }
-
-    public String create(String planName, String description, int totalDays) throws ClassNotFoundException, SQLException {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
@@ -196,14 +149,69 @@ public class Plan {
         }
 
         Connection conn = MySQLConnect.getMySQLConnection();
-        PreparedStatement pstm = conn.prepareStatement("insert into PLAN (planName,descriptionPlan,totaldays,dayperweek) values (?,?,?,?)");
+        PreparedStatement pstm = conn.prepareStatement("insert into PLAN (dayperweek,nameDay) values (?,?)");
+        pstm.setInt(1, dayPerWeek);
+        pstm.setString(2, nameDay);
+       
+        int rs = pstm.executeUpdate();
+        System.out.println(rs);
+        return "";
+    }
+//    private static void getDataFromDB(ResultSet rs, Plan p) throws SQLException {
+//        p.setPlanName(rs.getString("planName"));
+//        p.setDescription(rs.getString("descriptionPlan"));
+//        p.setDayPerWeek(rs.getInt("dayperweek"));
+//        p.setTotaldays(rs.getInt("totaldays"));
+//    }
+
+    /* public static List<Plan> show() {
+        List<Plan> listPlans = null;
+        try {
+            Connection conn = MySQLConnect.getMySQLConnection();
+            PreparedStatement pstm = conn.prepareStatement("select * from PLAN");
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                if(listPlans == null){
+                    listPlans = new ArrayList<Plan>();
+                }
+                Plan p = new Plan();
+                getDataFromDB(rs, p);
+                listPlans.add(p);
+            }
+        }catch(ClassNotFoundException e){
+            System.err.print(e);
+        }catch(SQLException e){
+            System.err.print(e);
+        }
+        return listPlans;
+    }*/
+    public ResultSet show() throws ClassNotFoundException, SQLException {
+        Connection conn = MySQLConnect.getMySQLConnection();
+        PreparedStatement pstm = conn.prepareStatement("select * from PLAN");
+        ResultSet rs = pstm.executeQuery();
+        /*    while (rs.next()) {
+            System.out.print("Plan name : ");
+            System.out.println(rs.getString("planName"));
+            System.out.print("Description : ");
+            System.out.println(rs.getString("descriptionPlan"));
+            System.out.print("Total days : ");
+            System.out.println(rs.getString("totaldays"));
+            System.out.print("Days per week : ");
+            System.out.println(rs.getString("dayperweek"));
+        }*/
+        return rs;
+    }
+
+    public String create(String planName, String description, int totalDays) throws ClassNotFoundException, SQLException {
+
+        Connection conn = MySQLConnect.getMySQLConnection();
+        PreparedStatement pstm = conn.prepareStatement("insert into PLAN (planName,descriptionPlan,totaldays) values (?,?,?)");
         pstm.setString(1, planName);
         pstm.setString(2, description);
         pstm.setInt(3, totalDays);
-        pstm.setInt(4, dayPerWeek);
         int rs = pstm.executeUpdate();
         System.out.println(rs);
-        return nameDay;
+        return "";
 
     }
 
@@ -230,7 +238,7 @@ public class Plan {
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         String nameDay = sdf.format(date);
         this.show();
-         switch (newDayPerWeek) {
+        switch (newDayPerWeek) {
             case 1:
                 if (sdf.format(date).equals("วันจันทร์") || sdf.format(date).equals("Monday")) {
                     nameDay = 1 + " = Monday";
@@ -338,7 +346,7 @@ public class Plan {
                 break;
             default:
                 nameDay = "The day that you input are more than 7 days or less than 1 day";
-         }
+        }
         PreparedStatement pstm = conn.prepareStatement("update PLAN set dayperweek ='" + newDayPerWeek + "'where dayperweek ='" + oldDayPerWeek + "'");
 
         int rs = pstm.executeUpdate();

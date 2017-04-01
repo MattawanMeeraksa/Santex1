@@ -34,6 +34,7 @@ public class EditPlan extends JFrame {
     
     JButton savebtn;
     JButton backbtn;
+    JButton startbtn;
     JLabel lblPName;
     JTextField txtPName;
     JLabel lblDescribe;
@@ -67,26 +68,26 @@ public class EditPlan extends JFrame {
         this.edittotal = edittotal;
     }
 
-//    public int getEditDPW() {
-//        return editDPW;
-//    }
-//
-//    public void setEditDPW(int editDPW) {
-//        this.editDPW = editDPW;
-//    }
-//    
-    public EditPlan(String planName,String des,String totaldays){
+    public int getEditDPW() {
+        return editDPW;
+    }
+
+    public void setEditDPW(int editDPW) {
+        this.editDPW = editDPW;
+    }
+    
+    public EditPlan(String planName,String description,String totaldays){
         this();
         editName=planName;
-        editDes=des;
+        editDes=description;
         int Total=Integer.parseInt(totaldays);
         edittotal=Total;
-//        int DPW=Integer.parseInt(dPW);
-//        editDPW = DPW;
+        //int DPW=Integer.parseInt(dPW);
+        //editDPW = DPW;
         txtPName.setText(this.editName);
         txtDescribe.setText(this.editDes);
         txtTtDays.setText(this.edittotal+"");
-        txtDPW.setText(this.editDPW+"");
+        //txtDPW.setText(this.editDPW+"");
     }
 
     public EditPlan() {
@@ -100,6 +101,7 @@ public class EditPlan extends JFrame {
         txtDPW = new JTextField();
         savebtn = new JButton("Save");
         backbtn = new JButton("Back");
+        startbtn = new JButton("Start");
 
         JPanel frame = new JPanel();
 

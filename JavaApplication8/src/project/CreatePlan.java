@@ -36,8 +36,8 @@ public class CreatePlan extends JFrame {
     JTextArea txtDescribe;
     JLabel lblTtDays;
     JTextField txtTtDays;
-    JLabel lblDPW; //DPW : Days Per Week
-    JTextArea txtDPW;
+    //JLabel lblDPW; //DPW : Days Per Week
+    //JTextArea txtDPW;
     
     
     public CreatePlan() {
@@ -48,15 +48,15 @@ public class CreatePlan extends JFrame {
         txtDescribe = new JTextArea();
         lblTtDays = new JLabel("Total Days");
         txtTtDays = new JTextField(2);
-        lblDPW = new JLabel("Days Per Week");
-        txtDPW = new JTextArea();
+        //lblDPW = new JLabel("Days Per Week");
+        //txtDPW = new JTextArea();
         createbtn = new JButton("Create");
         cancelbtn = new JButton("Cancel");
         
         JPanel frame = new JPanel();
         
         
-        frame.setLayout(new GridLayout(5, 2, 20, 10));
+        frame.setLayout(new GridLayout(4, 2, 20, 10));
         setTitle("Create Plan");
         
         frame.add(lblPName);
@@ -66,8 +66,8 @@ public class CreatePlan extends JFrame {
         frame.add(txtDescribe);
         frame.add(lblTtDays);
         frame.add(txtTtDays);
-        frame.add(lblDPW);
-        frame.add(txtDPW);
+        //frame.add(lblDPW);
+        //frame.add(txtDPW);
         frame.add(createbtn);
         frame.add(cancelbtn);
         
@@ -82,8 +82,8 @@ public class CreatePlan extends JFrame {
                     String description = txtDescribe.getText();
                     String tTDays = txtTtDays.getText();
                     int totalDays = Integer.parseInt(tTDays);
-                    String DPW = txtDPW.getText();
-                    int daysPerWeek = Integer.parseInt(DPW);
+                    //String DPW = txtDPW.getText();
+                    //int daysPerWeek = Integer.parseInt(DPW);
                     try {
                         p.create(planName,description,totalDays);
                     } catch (ClassNotFoundException ex) {
