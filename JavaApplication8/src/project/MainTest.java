@@ -11,7 +11,7 @@ package project;
  */
 public class MainTest {
     public static void main(String[] args) {
-        EditPlan1 eplan = new EditPlan1("bank","nnnn","20");
-        System.out.println(eplan.getEditName());
+        //EditPlan1 eplan = new EditPlan1("bank","nnnn","20");
+        //System.out.println(eplan.getEditName());
     }
 }

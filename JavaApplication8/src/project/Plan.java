@@ -210,16 +210,26 @@ public class Plan {
         pstm.setString(2, description);
         pstm.setInt(3, totalDays);
         pstm.setInt(4, 0);
+
         pstm.setString(5, null);
+        pstm.setString(5, "null");
+ 
         int rs = pstm.executeUpdate();
         System.out.println(rs);
         return "";
 
     }
+    
+    public void editAll(String oldPlanName, String newPlanName, String newDescription, int totalDays ) throws ClassNotFoundException, SQLException {
+        Connection conn = MySQLConnect.getMySQLConnection();
+        PreparedStatement pstm = conn.prepareStatement("update PLAN set planName='" + newPlanName + "' where planName ='" + oldPlanName + "'");
+        pstm = conn.prepareStatement("update PLAN set planName='" + newPlanName + "' where planName ='" + oldPlanName + "'");
+        int rs = pstm.executeUpdate();
+        System.out.println(rs);
+    }
 
     public void editPlanName(String oldPlanName, String newPlanName) throws ClassNotFoundException, SQLException {
         Connection conn = MySQLConnect.getMySQLConnection();
-        this.show();
         PreparedStatement pstm = conn.prepareStatement("update PLAN set planName='" + newPlanName + "'where planName ='" + oldPlanName + "'");
         int rs = pstm.executeUpdate();
         System.out.println(rs);
@@ -227,8 +237,7 @@ public class Plan {
 
     public void editDescription(String oldDescription, String newDescription) throws ClassNotFoundException, SQLException {
         Connection conn = MySQLConnect.getMySQLConnection();
-        this.show();
-        PreparedStatement pstm = conn.prepareStatement("update PLAN set descriptionPlan='" + newDescription + "'where descriptionPlan ='" + oldDescription + "'");
+        PreparedStatement pstm = conn.prepareStatement("update PLAN set descriptionPlan='" + newDescription + "' where descriptionPlan ='" + oldDescription + "'");
         int rs = pstm.executeUpdate();
         System.out.println(rs);
     }
@@ -239,7 +248,6 @@ public class Plan {
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         String nameDay = sdf.format(date);
-        this.show();
         switch (newDayPerWeek) {
             case 1:
                 if (sdf.format(date).equals("วันจันทร์") || sdf.format(date).equals("Monday")) {
@@ -358,7 +366,6 @@ public class Plan {
 
     public void editTotalDay(int oldDay, int newDay) throws ClassNotFoundException, SQLException {
         Connection conn = MySQLConnect.getMySQLConnection();
-        this.show();
         PreparedStatement pstm = conn.prepareStatement("update PLAN set totaldays='" + newDay + "'where totaldays ='" + oldDay + "'");
         int rs = pstm.executeUpdate();
         System.out.println(rs);

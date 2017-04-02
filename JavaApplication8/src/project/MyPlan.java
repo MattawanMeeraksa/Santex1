@@ -116,7 +116,7 @@ public class MyPlan extends JFrame implements ActionListener {
             planName.add(rs.getString("planName"));
             descrip.add(rs.getString("descriptionPlan"));
             totaldays.add(rs.getString("totaldays"));
-            dayperweek.add(rs.getString("dayperweek"));
+            //dayperweek.add(rs.getString("dayperweek"));
             Bank1.add(new JLabel("Plan name"));
             Bank1.add(new JTextField(rs.getString("planName")));
             Bank1.add(new JLabel("Description"));
@@ -194,6 +194,8 @@ public class MyPlan extends JFrame implements ActionListener {
             if (e.getSource() == buttons1.get(i)) {
                 System.out.println("edit");
                 System.out.println("Plan Name : " + planName.get(i));
+                System.out.println("Plan Name : " + descrip.get(i));
+                System.out.println("Plan Name : " + totaldays.get(i));
                 EditPlan1 eplan = new EditPlan1(planName.get(i), descrip.get(i), totaldays.get(i));
                 eplan.pack();
                 eplan.setSize(400, 400);
