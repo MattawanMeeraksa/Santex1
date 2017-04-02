@@ -50,6 +50,7 @@ public class MyPlan extends JFrame implements ActionListener {
     ArrayList<JButton> buttons3; //เก็บปุ่ม buttons3 เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่ปุ่มเลยเลือกเก็บเป็นแบบนี้
     ArrayList<JButton> buttons4; //เก็บปุ่ม buttons4 เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่ปุ่มเลยเลือกเก็บเป็นแบบนี้
     ArrayList<JButton> buttons5; //เก็บปุ่ม buttons4 เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่ปุ่มเลยเลือกเก็บเป็นแบบนี้
+     ArrayList<JButton> buttons6; //เก็บปุ่ม buttons4 เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่ปุ่มเลยเลือกเก็บเป็นแบบนี้
     ArrayList<String> planName, descrip; //เก็บ planName เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่อันเลยเลือกเก็บเป็นแบบนี้
     ArrayList<String> totaldays, dayperweek;
 
@@ -78,6 +79,7 @@ public class MyPlan extends JFrame implements ActionListener {
         int l = 0;
         int k = 0;
         int m = 0;
+        int n = 0;
         
         
         buttons1 = new ArrayList<JButton>();
@@ -85,6 +87,7 @@ public class MyPlan extends JFrame implements ActionListener {
         buttons3 = new ArrayList<JButton>();
         buttons4 = new ArrayList<JButton>();
         buttons5 = new ArrayList<JButton>();
+        buttons6 = new ArrayList<JButton>();
 
         planName = new ArrayList<String>();
         descrip = new ArrayList<String>();
@@ -96,6 +99,8 @@ public class MyPlan extends JFrame implements ActionListener {
         JButton[] detailbtn = new JButton[100];
         JButton[] addbtn = new JButton[100];
         JButton[] startbtn = new JButton[100];
+        JButton[] blankbtn = new JButton[100];
+        
 
         JPanel top = new JPanel();
         top.add(back);
@@ -159,11 +164,16 @@ public class MyPlan extends JFrame implements ActionListener {
             buttons4.add(addbtn[l]);
             l++;
             
-             startbtn[m] = new JButton("Start" + m);
+            startbtn[m] = new JButton("Start" + m);
             startbtn[m].addActionListener(this);
             Bank2.add(startbtn[m]);
             buttons5.add(startbtn[m]);
             m++;
+            
+            blankbtn[n] = new JButton(" ");
+            Bank2.add(blankbtn[n]);
+            buttons6.add(blankbtn[n]);
+            n++;
         }
 
         Bank.add(Bank1, BorderLayout.WEST);
