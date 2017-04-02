@@ -205,10 +205,12 @@ public class Plan {
     public String create(String planName, String description, int totalDays) throws ClassNotFoundException, SQLException {
 
         Connection conn = MySQLConnect.getMySQLConnection();
-        PreparedStatement pstm = conn.prepareStatement("insert into PLAN (planName,descriptionPlan,totaldays) values (?,?,?)");
+        PreparedStatement pstm = conn.prepareStatement("insert into PLAN (planName,descriptionPlan,totaldays,dayperweek,nameDay) values (?,?,?,?,?)");
         pstm.setString(1, planName);
         pstm.setString(2, description);
         pstm.setInt(3, totalDays);
+        pstm.setInt(4, 0);
+        pstm.setString(5, null);
         int rs = pstm.executeUpdate();
         System.out.println(rs);
         return "";
