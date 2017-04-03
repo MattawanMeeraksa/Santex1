@@ -45,14 +45,14 @@ public class MyPlan extends JFrame implements ActionListener {
     JTextArea txtDes;
     JLabel lbldl; //dl = delete
 
-    ArrayList<JButton> buttons1; //เก็บปุ่ม buttons1 เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่ปุ่มเลยเลือกเก็บเป็นแบบนี้ 
-    ArrayList<JButton> buttons2; //เก็บปุ่ม buttons2 เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่ปุ่มเลยเลือกเก็บเป็นแบบนี้ 
-    ArrayList<JButton> buttons3; //เก็บปุ่ม buttons3 เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่ปุ่มเลยเลือกเก็บเป็นแบบนี้
-    ArrayList<JButton> buttons4; //เก็บปุ่ม buttons4 เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่ปุ่มเลยเลือกเก็บเป็นแบบนี้
-    ArrayList<JButton> buttons5; //เก็บปุ่ม buttons4 เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่ปุ่มเลยเลือกเก็บเป็นแบบนี้
-     ArrayList<JButton> buttons6; //เก็บปุ่ม buttons4 เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่ปุ่มเลยเลือกเก็บเป็นแบบนี้
-    ArrayList<String> planName, descrip; //เก็บ planName เป็น arraylist เพราะไม่รู้ว่าจะมีทั้งหมดกี่อันเลยเลือกเก็บเป็นแบบนี้
-    ArrayList<String> totaldays, dayperweek;
+    ArrayList<JButton> buttons1; //เก็บปุ่ม buttons1 เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้ 
+    ArrayList<JButton> buttons2; //เก็บปุ่ม buttons2 เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้ 
+    ArrayList<JButton> buttons3; //เก็บปุ่ม buttons3 เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้
+    ArrayList<JButton> buttons4; //เก็บปุ่ม buttons4 เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้
+    ArrayList<JButton> buttons5; //เก็บปุ่ม buttons4 เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้
+     ArrayList<JButton> buttons6; //เก็บปุ่ม buttons4 เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้
+    ArrayList<String> planName, descrip; //เก็บ planName เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้
+    ArrayList<String> totaldays, dayperweek; //เก็บ planName เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้
 
     public MyPlan() throws ClassNotFoundException, SQLException {
         Plan p1 = new Plan();
@@ -191,21 +191,19 @@ public class MyPlan extends JFrame implements ActionListener {
                 cp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 setVisible(false);
                 cp.setLocationRelativeTo(null);
-
             }
         }
         );
 
     }
-    
     //เป็น method เก็บ action ที่ออบเจกต์สามารถเรียกใช้ได้
     public void actionPerformed(ActionEvent e) {
         for (int i = 0; i < buttons1.size(); i++) {
             if (e.getSource() == buttons1.get(i)) {
                 System.out.println("edit");
                 System.out.println("Plan Name : " + planName.get(i));
-                System.out.println("Plan Name : " + descrip.get(i));
-                System.out.println("Plan Name : " + totaldays.get(i));
+                System.out.println("Description : " + descrip.get(i));
+                System.out.println("Total days : " + totaldays.get(i));
                 EditPlan1 eplan = new EditPlan1(planName.get(i), descrip.get(i), totaldays.get(i));
                 eplan.pack();
                 eplan.setSize(400, 400);

@@ -105,8 +105,6 @@ public class CreatePlan extends JFrame {
                 } catch (SQLException ex) {
                     Logger.getLogger(CreatePlan.class.getName()).log(Level.SEVERE, null, ex);
                 }
-               
-                
             }
         });
         
