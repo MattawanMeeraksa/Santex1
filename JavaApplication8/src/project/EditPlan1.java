@@ -9,8 +9,6 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -31,23 +29,24 @@ public class EditPlan1 extends JFrame {
     private String editDes;
     private int edittotal;
     private int editDPW;
+    private int planId;
     
-    JButton savebtn;
-    JButton backbtn;
-    JButton startbtn;
-    JLabel lblPName;
-    JTextField txtPName;
-    JLabel lblDescribe;
-    JTextArea txtDescribe;
-    JLabel lblTtDays;
-    JTextField txtTtDays;
-    JLabel lblDPW; //DPW : Days Per Week
-    JTextField txtDPW;
+    private JButton savebtn;
+    private JButton backbtn;
+    private JButton startbtn;
+    private JLabel lblPName;
+    private JTextField txtPName;
+    private JLabel lblDescribe;
+    private JTextArea txtDescribe;
+    private JLabel lblTtDays;
+    private JTextField txtTtDays;
+    private JLabel lblDPW; //DPW : Days Per Week
+    private JTextField txtDPW;
 
     public String getEditName() {
         return editName;
     }
-
+    
     public void setEditName(String editName) {
         this.editName = editName;
     }
@@ -77,8 +76,9 @@ public class EditPlan1 extends JFrame {
         this.editDPW = editDPW;
     }
     
-    public EditPlan1(String planName,String description,String totaldays){
+    public EditPlan1(int planId, String planName,String description,String totaldays){
         this();
+        this.planId = planId;
         editName=planName;
         editDes=description;
         int Total=Integer.parseInt(totaldays);
@@ -87,6 +87,7 @@ public class EditPlan1 extends JFrame {
 //       int DPW=Integer.parseInt(dPW);
 //        editDPW = DPW;
 
+        //เอาข้อมูลที่เราต้องการแก้ไขใส่ลงไปในช่องต่างๆ
         txtPName.setText(this.editName);
         txtDescribe.setText(this.editDes);
         txtTtDays.setText(this.edittotal+"");
@@ -109,7 +110,7 @@ public class EditPlan1 extends JFrame {
 
         JPanel frame = new JPanel();
 
-        frame.setLayout(new GridLayout(5, 2, 20, 10));
+        frame.setLayout(new GridLayout(4, 2, 20, 10));
         setTitle("Edit Plan");
 
         frame.add(lblPName);
@@ -131,19 +132,22 @@ public class EditPlan1 extends JFrame {
                 try {
                     Plan p = new Plan();
                     ResultSet rs = p.show();
-                        p.editPlanName(editName, txtPName.getText());
-                        p.editDescription(editDes, txtDescribe.getText());
+                        
+                        p.editPlanName(planId, txtPName.getText());
+                        p.editDescription(planId, txtDescribe.getText());
                         String tTDays = txtTtDays.getText();
                         int totalDays = Integer.parseInt(tTDays);
-                        p.editTotalDay(edittotal, totalDays);
+                        p.editTotalDay(planId, totalDays);
 //                        String dayper = txtDPW.getText();
 //                        int DPW = Integer.parseInt(dayper);
 //                        p.editDayPerWeek(editDPW,DPW);
                         MyPlan mp = new MyPlan();
-                        mp.setSize(400, 400);
+                       
+                        //mp.setSize(400, 400);
                         mp.setVisible(true);
                         mp.setDefaultCloseOperation(mp.EXIT_ON_CLOSE);
                         setVisible(false);
+                        mp.pack();
 
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(EditPlan1.class.getName()).log(Level.SEVERE, null, ex);
@@ -158,7 +162,7 @@ public class EditPlan1 extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     MyPlan mp = new MyPlan();
-                    mp.setSize(400, 400);
+                    //mp.setSize(400, 400);
                     mp.setVisible(true);
                     mp.setDefaultCloseOperation(mp.EXIT_ON_CLOSE);
                     setVisible(false);
@@ -181,6 +185,15 @@ public class EditPlan1 extends JFrame {
         eplan.setVisible(true);
         eplan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         eplan.setLocationRelativeTo(null);
+        eplan.pack();
+    }
+
+    public int getPlanId() {
+        return planId;
+    }
+
+    public void setPlanId(int planId) {
+        this.planId = planId;
     }
 }
 

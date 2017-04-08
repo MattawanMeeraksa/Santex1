@@ -37,7 +37,8 @@ public class StartPlan extends JFrame {
     JLabel blank4;
     JLabel blank5;
     JLabel blank6;
-
+    private int planId;
+    private String planName;
     public StartPlan() {
         message = new JLabel("How many days per week");
         txtday = new JTextField(2);
@@ -73,17 +74,19 @@ public class StartPlan extends JFrame {
 
         startbtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                
                 try {
+                    MyPlan mp = new MyPlan();
+                    System.out.println("Started Plan " + getPlanName());
                     Plan p = new Plan();
                     ResultSet rs = p.show();
                     String dayperweek = txtday.getText();
                     int DPW = Integer.parseInt(dayperweek);
-                    p.start(DPW);
-//                    MyPlan mp = new MyPlan();
-//                    mp.setSize(400, 400);
-//                    mp.setVisible(true);
-//                    mp.setDefaultCloseOperation(mp.EXIT_ON_CLOSE);
-//                    setVisible(false);
+                    p.start(DPW, getPlanId());
+                    mp.setSize(400, 400);
+                    mp.setVisible(true);
+                    mp.setDefaultCloseOperation(mp.EXIT_ON_CLOSE);
+                    setVisible(false);
 
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(EditPlan1.class.getName()).log(Level.SEVERE, null, ex);
@@ -98,6 +101,7 @@ public class StartPlan extends JFrame {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 try {
+                    System.out.println("Canceled");
                     MyPlan mp = new MyPlan();
                     mp.setVisible(true);
                     setVisible(false);
@@ -122,4 +126,22 @@ public class StartPlan extends JFrame {
         sp.setVisible(true);
         sp.setLocationRelativeTo(null);
     }
+
+    public int getPlanId() {
+        return planId;
+    }
+
+    public void setPlanId(int planId) {
+        this.planId = planId;
+    }
+
+    public String getPlanName() {
+        return planName;
+    }
+
+    public void setPlanName(String planName) {
+        this.planName = planName;
+    }
+    
+    
 }

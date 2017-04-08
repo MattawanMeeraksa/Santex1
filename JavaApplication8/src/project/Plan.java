@@ -11,10 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
-import java.util.Scanner;
 
 /**
  *
@@ -30,7 +27,8 @@ public class Plan {
     public Plan() {
     }
 
-    public String start(int dayPerWeek) throws ClassNotFoundException, SQLException {
+  
+    public String start(int dayPerWeek, int planId) throws ClassNotFoundException, SQLException {
         this.dayPerWeek = dayPerWeek;
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
@@ -149,9 +147,10 @@ public class Plan {
         }
 
         Connection conn = MySQLConnect.getMySQLConnection();
-        PreparedStatement pstm = conn.prepareStatement("insert into PLAN (dayperweek,nameDay) values (?,?)");
-        pstm.setInt(1, dayPerWeek);
-        pstm.setString(2, nameDay);
+        PreparedStatement pstm = conn.prepareStatement("update PLAN set nameDay = ?,dayperweek = ? where planID = ?");
+        pstm.setString(1, nameDay);
+        pstm.setInt(2, dayPerWeek);
+        pstm.setInt(3, planId);
 
         int rs = pstm.executeUpdate();
         System.out.println(rs);
@@ -191,23 +190,23 @@ public class Plan {
         System.out.println(rs);
     }
 
-    public void editPlanName(String oldPlanName, String newPlanName) throws ClassNotFoundException, SQLException {
+    public void editPlanName(int PlanId, String newPlanName) throws ClassNotFoundException, SQLException {
         Connection conn = MySQLConnect.getMySQLConnection();
         PreparedStatement pstm = conn.prepareStatement("update PLAN set planName='"
-                + newPlanName + "'where planName ='" + oldPlanName + "'");
+                + newPlanName + "'where planID ='" + PlanId + "'");
         int rs = pstm.executeUpdate();
         System.out.println(rs);
     }
 
-    public void editDescription(String oldDescription, String newDescription) throws ClassNotFoundException, SQLException {
+    public void editDescription(int PlanId, String newDescription) throws ClassNotFoundException, SQLException {
         Connection conn = MySQLConnect.getMySQLConnection();
         PreparedStatement pstm = conn.prepareStatement("update PLAN set descriptionPlan='"
-                + newDescription + "' where descriptionPlan ='" + oldDescription + "'");
+                + newDescription + "' where planID ='" + PlanId + "'");
         int rs = pstm.executeUpdate();
         System.out.println(rs);
     }
 
-    public void editDayPerWeek(int oldDayPerWeek, int newDayPerWeek) throws ClassNotFoundException, SQLException {
+    public void editDayPerWeek(int PlanId, int newDayPerWeek) throws ClassNotFoundException, SQLException {
         Connection conn = MySQLConnect.getMySQLConnection();
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
@@ -323,16 +322,16 @@ public class Plan {
                 nameDay = "The day that you input are more than 7 days or less than 1 day";
         }
         PreparedStatement pstm = conn.prepareStatement("update PLAN set dayperweek ='" + newDayPerWeek + 
-                "'where dayperweek ='" + oldDayPerWeek + "'");
+                "'where planID ='" + PlanId + "'");
         int rs = pstm.executeUpdate();
         System.out.println(rs);
 
     }
 
-    public void editTotalDay(int oldDay, int newDay) throws ClassNotFoundException, SQLException {
+    public void editTotalDay(int PlanId, int newDay) throws ClassNotFoundException, SQLException {
         Connection conn = MySQLConnect.getMySQLConnection();
         PreparedStatement pstm = conn.prepareStatement("update PLAN set totaldays='" 
-                + newDay + "'where totaldays ='" + oldDay + "'");
+                + newDay + "'where planID ='" + PlanId + "'");
         int rs = pstm.executeUpdate();
         System.out.println(rs);
     }
