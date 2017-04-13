@@ -111,12 +111,13 @@ public class CreatePlan extends JFrame {
         cancelbtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                ExercisePlan ep = new ExercisePlan();
-                ep.setVisible(true);
-                setVisible(false);
-                ep.setSize(400, 400);
-                ep.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                ep.setLocationRelativeTo(null);
+            Calendargui frame = new Calendargui();
+            frame.pack();
+            frame.setSize(500, 350);
+            frame.setVisible(true);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setLocationRelativeTo(null);
+            setVisible(false);
             }
         });
     }

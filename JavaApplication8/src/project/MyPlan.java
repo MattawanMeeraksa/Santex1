@@ -270,7 +270,6 @@ public class MyPlan extends JFrame implements ActionListener {
         backBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 CreatePlan cp = new CreatePlan();
-
                 cp.setSize(400, 400);
                 cp.setVisible(true);
                 cp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

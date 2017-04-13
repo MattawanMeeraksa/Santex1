@@ -33,14 +33,28 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Calendargui extends JFrame implements ActionListener {
 
-    DefaultTableModel model;
-    Calendar cal = new GregorianCalendar();
-    JLabel label;
-    String month;
-    int year;
-    JTextArea textArea;
+    private DefaultTableModel model;
+    private Calendar cal = new GregorianCalendar();
+    private JLabel label;
+    private String month;
+    private int year;
+    private JTextArea textArea;
+    private int dayperweek;
 
-    Calendargui() {
+    public int getDayperweek() {
+        return dayperweek;
+    }
+
+    public void setDayperweek(int dayperweek) {
+        this.dayperweek = dayperweek;
+    }
+
+    public Calendargui(int dayperweek) {
+        this();
+        this.dayperweek = dayperweek;
+    }
+
+    public Calendargui() {
 
         label = new JLabel();
         label.setHorizontalAlignment(SwingConstants.CENTER);
