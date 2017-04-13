@@ -82,6 +82,7 @@ public class StartPlan extends JFrame {
                     ResultSet rs = p.show();
                     String dayperweek = txtday.getText();
                     int DPW = Integer.parseInt(dayperweek);
+                    Calendargui ac = new Calendargui();
                     p.start(DPW, getPlanId());
                     mp.setSize(400, 400);
                     mp.setVisible(true);
