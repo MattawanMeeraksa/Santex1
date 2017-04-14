@@ -186,7 +186,7 @@ public class MyPlan extends JFrame implements ActionListener {
         allTop.add(topLabel, BorderLayout.CENTER);
         add(allTop, BorderLayout.NORTH);
 
-        JPanel planLayer = new JPanel(new GridLayout(0, 1));
+        JPanel planLayer = new JPanel(new GridLayout(0, 1,0,10));
         Plan p = new Plan();
         ResultSet rs = p.show();
         while (rs.next()) {
@@ -362,7 +362,6 @@ public class MyPlan extends JFrame implements ActionListener {
 
         try {
             MyPlan sp = new MyPlan();
-            
             sp.setSize(400, 400);
             sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             sp.setVisible(true);

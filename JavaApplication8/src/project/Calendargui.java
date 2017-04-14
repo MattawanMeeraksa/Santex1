@@ -11,6 +11,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -40,7 +41,28 @@ public class Calendargui extends JFrame implements ActionListener {
     private int year;
     private JTextArea textArea;
     private int dayperweek;
+    private String nameDay;
 
+    public Calendargui(String nameDay) {
+        this.nameDay = nameDay;
+    }
+    
+    public Calendargui(int dayperweek) {
+        this();
+        this.dayperweek = dayperweek;
+        this.nameDay = nameDay;
+    }
+
+    public String getNameDay() {
+        return nameDay;
+    }
+
+    public void setNameDay(String nameDay) {
+        this.nameDay = nameDay;
+    }
+
+    
+    
     public int getDayperweek() {
         return dayperweek;
     }
@@ -49,10 +71,7 @@ public class Calendargui extends JFrame implements ActionListener {
         this.dayperweek = dayperweek;
     }
 
-    public Calendargui(int dayperweek) {
-        this();
-        this.dayperweek = dayperweek;
-    }
+    
 
     public Calendargui() {
 
@@ -94,7 +113,7 @@ public class Calendargui extends JFrame implements ActionListener {
                     if (table.getValueAt(row, col) == null) {
                         textArea.setText("1");
                     } else if (table.getValueAt(row, col) != null) {
-                        textArea.setText("");
+                        textArea.setText(""+getDayperweek()+getNameDay());
                     }
                 }
             }

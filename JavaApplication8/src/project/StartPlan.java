@@ -76,17 +76,18 @@ public class StartPlan extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 
                 try {
-                    MyPlan mp = new MyPlan();
                     System.out.println("Started Plan " + getPlanName());
                     Plan p = new Plan();
                     ResultSet rs = p.show();
                     String dayperweek = txtday.getText();
                     int DPW = Integer.parseInt(dayperweek);
-                    Calendargui ac = new Calendargui(DPW);
                     p.start(DPW, getPlanId());
-                    mp.setSize(400, 400);
-                    mp.setVisible(true);
-                    mp.setDefaultCloseOperation(mp.EXIT_ON_CLOSE);
+                    Calendargui frame = new Calendargui(DPW);
+                    frame.pack();
+                    frame.setSize(500, 350);
+                    frame.setVisible(true);
+                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    frame.setLocationRelativeTo(null);
                     setVisible(false);
 
                 } catch (ClassNotFoundException ex) {
