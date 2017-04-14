@@ -84,7 +84,7 @@ public class StartPlan extends JFrame {
                     int DPW = Integer.parseInt(dayperweek);
                     Calendargui ac = new Calendargui();
                     p.start(DPW, getPlanId());
-                    mp.setSize(400, 400);
+                    mp.pack();
                     mp.setVisible(true);
                     mp.setDefaultCloseOperation(mp.EXIT_ON_CLOSE);
                     setVisible(false);
