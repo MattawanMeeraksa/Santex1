@@ -39,6 +39,7 @@ public class StartPlan extends JFrame {
     JLabel blank6;
     private int planId;
     private String planName;
+
     public StartPlan() {
         message = new JLabel("How many days per week");
         txtday = new JTextField(2);
@@ -74,19 +75,24 @@ public class StartPlan extends JFrame {
 
         startbtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
+
                 try {
-                    MyPlan mp = new MyPlan();
                     System.out.println("Started Plan " + getPlanName());
                     Plan p = new Plan();
                     ResultSet rs = p.show();
                     String dayperweek = txtday.getText();
                     int DPW = Integer.parseInt(dayperweek);
-                    Calendargui ac = new Calendargui();
                     p.start(DPW, getPlanId());
+                    MyPlan mp = new MyPlan();
                     mp.pack();
                     mp.setVisible(true);
                     mp.setDefaultCloseOperation(mp.EXIT_ON_CLOSE);
+                    Calendargui frame = new Calendargui(DPW);
+                    frame.pack();
+                    frame.setSize(500, 350);
+                    frame.setVisible(true);
+                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    frame.setLocationRelativeTo(null);
                     setVisible(false);
 
                 } catch (ClassNotFoundException ex) {
@@ -143,6 +149,5 @@ public class StartPlan extends JFrame {
     public void setPlanName(String planName) {
         this.planName = planName;
     }
-    
-    
+
 }

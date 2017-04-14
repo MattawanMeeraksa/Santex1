@@ -145,13 +145,12 @@ public class Plan {
                 nameDay = "The day that you input are more than 7 days or less than 1 day";
 
         }
-
+        Calendargui cd = new Calendargui(nameDay);
         Connection conn = MySQLConnect.getMySQLConnection();
         PreparedStatement pstm = conn.prepareStatement("update PLAN set nameDay = ?,dayperweek = ? where planID = ?");
         pstm.setString(1, nameDay);
         pstm.setInt(2, dayPerWeek);
         pstm.setInt(3, planId);
-
         int rs = pstm.executeUpdate();
         System.out.println(rs);
         return "";
