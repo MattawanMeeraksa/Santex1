@@ -44,13 +44,13 @@ public class Calendargui extends JFrame implements ActionListener {
     private String nameDay;
 
     public Calendargui(String nameDay) {
+        this();
         this.nameDay = nameDay;
     }
-    
+
     public Calendargui(int dayperweek) {
         this();
         this.dayperweek = dayperweek;
-        this.nameDay = nameDay;
     }
 
     public String getNameDay() {
@@ -61,8 +61,6 @@ public class Calendargui extends JFrame implements ActionListener {
         this.nameDay = nameDay;
     }
 
-    
-    
     public int getDayperweek() {
         return dayperweek;
     }
@@ -70,8 +68,6 @@ public class Calendargui extends JFrame implements ActionListener {
     public void setDayperweek(int dayperweek) {
         this.dayperweek = dayperweek;
     }
-
-    
 
     public Calendargui() {
 
@@ -110,10 +106,38 @@ public class Calendargui extends JFrame implements ActionListener {
                 int row = table.rowAtPoint(evt.getPoint());
                 int col = table.columnAtPoint(evt.getPoint());
                 if (row >= 0 && col >= 0) {
-                    if (table.getValueAt(row, col) == null) {
-                        textArea.setText("1");
-                    } else if (table.getValueAt(row, col) != null) {
-                        textArea.setText(""+getDayperweek()+getNameDay());
+                    for (int i = 1; i <= 31; i++) {
+                        if (i % 7 == 1) {
+                            if (table.getValueAt(row, col).equals(i) == true) {
+                                textArea.setText(""+i);
+                            }
+                        }if (i % 7 == 0) {
+                            if (table.getValueAt(row, col).equals(i) == true) {
+                                textArea.setText(""+i);
+                            }
+                        }if (i % 7 == 2) {
+                            if (table.getValueAt(row, col).equals(i) == true) {
+                                textArea.setText(""+i);
+                            }
+                        }if (i % 7 == 3) {
+                            if (table.getValueAt(row, col).equals(i) == true) {
+                                textArea.setText(""+i);
+                            }
+                        }if (i % 7 == 4) {
+                            if (table.getValueAt(row, col).equals(i) == true) {
+                                textArea.setText(""+i);
+                            }
+                        }if (i % 7 == 5) {
+                            if (table.getValueAt(row, col).equals(i) == true) {
+                                textArea.setText(""+i);
+                            }
+                        }if (i % 7 == 6) {
+                            if (table.getValueAt(row, col).equals(i) == true) {
+                                textArea.setText(""+i);
+                            }
+                        } else if (table.getValueAt(row, col) == null) {
+                            textArea.setText("11" + getDayperweek());
+                        }
                     }
                 }
             }
@@ -126,16 +150,16 @@ public class Calendargui extends JFrame implements ActionListener {
         textArea = new JTextArea(5, 20);
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        
+
         JButton b3 = new JButton("My Plan");
         JButton b4 = new JButton("Create Plan");
-        JPanel Bt = new JPanel(new GridLayout(1,1));
+        JPanel Bt = new JPanel(new GridLayout(1, 1));
         Bt.add(b3);
         Bt.add(b4);
-        JPanel South = new JPanel(new GridLayout(2,1));
+        JPanel South = new JPanel(new GridLayout(2, 1));
         South.add(main2);
         South.add(Bt);
-        
+
         b3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 try {
@@ -153,7 +177,7 @@ public class Calendargui extends JFrame implements ActionListener {
                 }
             }
         });
-        
+
         b4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 CreatePlan cp = new CreatePlan();
@@ -165,7 +189,6 @@ public class Calendargui extends JFrame implements ActionListener {
                 cp.setLocationRelativeTo(null);
             }
         });
-                
 
         main2.add(scrollPane, BorderLayout.CENTER);
 
@@ -175,7 +198,6 @@ public class Calendargui extends JFrame implements ActionListener {
         this.updateMonth();
 
     }
-    
 
     void updateMonth() {
         cal.set(Calendar.DAY_OF_MONTH, 1);

@@ -286,6 +286,8 @@ public class MyPlan extends JFrame implements ActionListener {
         //ลูปของปุ่ม edit
         for (int i = 0; i < buttons1.size(); i++) {
             if (e.getSource() == buttons1.get(i)) {
+//                System.out.println(""+e.getSource()+"\n");
+//                System.out.println(""+buttons1.get(i));
                 System.out.println("edit");
                 System.out.println("Plan Id : " + planId.get(i));
                 System.out.println("Plan Name : " + planName.get(i));
