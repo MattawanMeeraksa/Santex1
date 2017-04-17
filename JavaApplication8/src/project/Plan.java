@@ -145,7 +145,7 @@ public class Plan {
                 nameDay = "The day that you input are more than 7 days or less than 1 day";
 
         }
-        Calendargui cd = new Calendargui(nameDay);
+        
         Connection conn = MySQLConnect.getMySQLConnection();
         PreparedStatement pstm = conn.prepareStatement("update PLAN set nameDay = ?,dayperweek = ? where planID = ?");
         pstm.setString(1, nameDay);
@@ -172,21 +172,10 @@ public class Plan {
         pstm.setString(2, description);
         pstm.setInt(3, totalDays);
         pstm.setInt(4, 0);
-        pstm.setString(5, null);
         pstm.setString(5, "null");
         int rs = pstm.executeUpdate();
         System.out.println(rs);
         return "";
-    }
-
-    public void editAll(String oldPlanName, String newPlanName, String newDescription, int totalDays) throws ClassNotFoundException, SQLException {
-        Connection conn = MySQLConnect.getMySQLConnection();
-        PreparedStatement pstm = conn.prepareStatement("update PLAN set planName='" + newPlanName
-                + "' where planName ='" + oldPlanName + "'");
-        pstm = conn.prepareStatement("update PLAN set planName='"
-                + newPlanName + "' where planName ='" + oldPlanName + "'");
-        int rs = pstm.executeUpdate();
-        System.out.println(rs);
     }
 
     public void editPlanName(int PlanId, String newPlanName) throws ClassNotFoundException, SQLException {

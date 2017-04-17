@@ -75,7 +75,6 @@ public class StartPlan extends JFrame {
 
         startbtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
                 try {
                     System.out.println("Started Plan " + getPlanName());
                     Plan p = new Plan();
@@ -85,7 +84,7 @@ public class StartPlan extends JFrame {
                     p.start(DPW, getPlanId());
                     MyPlan mp = new MyPlan();
                     mp.pack();
-                    mp.setVisible(true);
+                    mp.setVisible(false);
                     mp.setDefaultCloseOperation(mp.EXIT_ON_CLOSE);
                     Calendargui frame = new Calendargui(DPW);
                     frame.pack();
@@ -96,7 +95,7 @@ public class StartPlan extends JFrame {
                     setVisible(false);
 
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(EditPlan1.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println(ex.getMessage());
                 } catch (SQLException ex) {
                     Logger.getLogger(EditPlan1.class.getName()).log(Level.SEVERE, null, ex);
                 }
