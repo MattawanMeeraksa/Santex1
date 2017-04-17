@@ -84,14 +84,11 @@ public class EditPlan1 extends JFrame {
         int Total=Integer.parseInt(totaldays);
         edittotal=Total;
 
-//       int DPW=Integer.parseInt(dPW);
-//        editDPW = DPW;
 
         //เอาข้อมูลที่เราต้องการแก้ไขใส่ลงไปในช่องต่างๆ
         txtPName.setText(this.editName);
         txtDescribe.setText(this.editDes);
         txtTtDays.setText(this.edittotal+"");
-//        txtDPW.setText(this.editDPW+"");
     }
 
 
@@ -102,8 +99,6 @@ public class EditPlan1 extends JFrame {
         txtDescribe = new JTextArea();
         lblTtDays = new JLabel("Total Days");
         txtTtDays = new JTextField(2);
-//        lblDPW = new JLabel("Days Per Week");
-//        txtDPW = new JTextField();
         savebtn = new JButton("Save");
         backbtn = new JButton("Back");
         startbtn = new JButton("Start");
@@ -120,8 +115,6 @@ public class EditPlan1 extends JFrame {
         frame.add(txtDescribe);
         frame.add(lblTtDays);
         frame.add(txtTtDays);
-//        frame.add(lblDPW);
-//        frame.add(txtDPW);
         frame.add(savebtn);
         frame.add(backbtn);
 
@@ -131,19 +124,13 @@ public class EditPlan1 extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     Plan p = new Plan();
-                    ResultSet rs = p.show();
-                        
+                    ResultSet rs = p.show();   
                         p.editPlanName(planId, txtPName.getText());
                         p.editDescription(planId, txtDescribe.getText());
                         String tTDays = txtTtDays.getText();
                         int totalDays = Integer.parseInt(tTDays);
                         p.editTotalDay(planId, totalDays);
-//                        String dayper = txtDPW.getText();
-//                        int DPW = Integer.parseInt(dayper);
-//                        p.editDayPerWeek(editDPW,DPW);
                         MyPlan mp = new MyPlan();
-                       
-                        //mp.setSize(400, 400);
                         mp.setVisible(true);
                         mp.setDefaultCloseOperation(mp.EXIT_ON_CLOSE);
                         setVisible(false);

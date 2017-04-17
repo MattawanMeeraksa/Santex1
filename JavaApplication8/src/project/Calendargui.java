@@ -46,11 +46,13 @@ public class Calendargui extends JFrame implements ActionListener {
     public Calendargui(String nameDay) {
         this();
         this.nameDay = nameDay;
+
     }
 
     public Calendargui(int dayperweek) {
         this();
         this.dayperweek = dayperweek;
+
     }
 
     public String getNameDay() {
@@ -109,39 +111,48 @@ public class Calendargui extends JFrame implements ActionListener {
                     for (int i = 1; i <= 31; i++) {
                         if (i % 7 == 1) {
                             if (table.getValueAt(row, col).equals(i) == true) {
-                                textArea.setText(""+i);
+                                textArea.setText("" + i);
                             }
-                        }if (i % 7 == 0) {
+                        }
+                        if (i % 7 == 0) {
                             if (table.getValueAt(row, col).equals(i) == true) {
-                                textArea.setText(""+i);
+                                textArea.setText("" + i);
                             }
-                        }if (i % 7 == 2) {
+                        }
+                        if (i % 7 == 2) {
                             if (table.getValueAt(row, col).equals(i) == true) {
-                                textArea.setText(""+i);
+                                textArea.setText("" + i);
                             }
-                        }if (i % 7 == 3) {
+                        }
+                        if (i % 7 == 3) {
                             if (table.getValueAt(row, col).equals(i) == true) {
-                                textArea.setText(""+i);
+                                textArea.setText("" + i);
                             }
-                        }if (i % 7 == 4) {
+                        }
+                        if (i % 7 == 4) {
                             if (table.getValueAt(row, col).equals(i) == true) {
-                                textArea.setText(""+i);
+                                textArea.setText("" + i);
                             }
-                        }if (i % 7 == 5) {
+                        }
+                        if (i % 7 == 5) {
                             if (table.getValueAt(row, col).equals(i) == true) {
-                                textArea.setText(""+i);
+                                textArea.setText("" + i);
                             }
-                        }if (i % 7 == 6) {
+                        }
+                        if (i % 7 == 6) {
                             if (table.getValueAt(row, col).equals(i) == true) {
-                                textArea.setText(""+i);
+                                textArea.setText("" + i);
                             }
                         } else if (table.getValueAt(row, col) == null) {
                             textArea.setText("11" + getDayperweek());
+                            textArea.setText("" + i);
                         }
                     }
+
                 }
             }
         });
+
         JPanel main1 = new JPanel(new BorderLayout());
         main1.add(panel, BorderLayout.NORTH);
         main1.add(pane, BorderLayout.CENTER);

@@ -17,14 +17,16 @@ import java.util.Scanner;
  */
 public class TestPlan {
 
-    public static void main(String[] args) throws ClassNotFoundException, SQLException{
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
         MySQLConnect connection = new MySQLConnect();
         Scanner sc = new Scanner(System.in);
         Plan p = new Plan();
-        //p.create("Strong together","Abs workout",11,11);
-       
-        
+        ResultSet rs = p.show();
+        while (rs.next()) {
+            System.out.println(rs.getString("planName"));
+        }
 
+        //p.create("Strong together","Abs workout",11,11);
 //        
 //        try{
 //            MySQLConnect.getMySQLConnection();
@@ -32,6 +34,5 @@ public class TestPlan {
 //        }catch(SQLException | ClassNotFoundException e){
 //            System.out.println("error");
 //        }
-        
     }
 }
