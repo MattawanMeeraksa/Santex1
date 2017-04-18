@@ -5,6 +5,7 @@
  */
 package project;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -85,7 +86,11 @@ public class AddList extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Reps");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jTextField1.setText("jTextField1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -207,15 +212,16 @@ public class AddList extends javax.swing.JFrame {
             int reps = Integer.parseInt(r);
             String s = jTextField4.getText();
             int set = Integer.parseInt(s);
-            String l  = jTextField5.getText();
+            String l = jTextField5.getText();
             int list = Integer.parseInt(l);
             try {
-                lp.create(listPlanName, description, reps, set, list);
+                lp.create(listPlanName, description, reps, set,list);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(AddList.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(AddList.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
             
             DetailList dl = new DetailList() ;
             dl.setVisible(true);
@@ -234,6 +240,11 @@ public class AddList extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
