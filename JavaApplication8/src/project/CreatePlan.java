@@ -25,9 +25,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-
 public class CreatePlan extends JFrame {
-    
+
     JButton createbtn;
     JButton cancelbtn;
     JLabel lblPName;
@@ -36,12 +35,13 @@ public class CreatePlan extends JFrame {
     JTextArea txtDescribe;
     JLabel lblTtDays;
     JTextField txtTtDays;
+    JButton backbtn;
+    JLabel createplbl;
     //JLabel lblDPW; //DPW : Days Per Week
     //JTextArea txtDPW;
-    
-    
+
     public CreatePlan() {
-        
+
         lblPName = new JLabel("Plan Name");
         txtPName = new JTextField(3);
         lblDescribe = new JLabel("Description");
@@ -52,16 +52,17 @@ public class CreatePlan extends JFrame {
         //txtDPW = new JTextArea();
         createbtn = new JButton("Create");
         cancelbtn = new JButton("Cancel");
+        backbtn = new JButton("Back");
+        backbtn.setBounds(129, 49, 99, 23);
+        createplbl = new JLabel("Create Plan");
         
         JPanel frame = new JPanel();
-        
-        
-        frame.setLayout(new GridLayout(4, 2, 20, 10));
+        frame.setLayout(new GridLayout(5, 2, 20, 10));
         setTitle("Create Plan");
-        
+        frame.add(createplbl); 
+        frame.add(backbtn);
         frame.add(lblPName);
         frame.add(txtPName);
-        
         frame.add(lblDescribe);
         frame.add(txtDescribe);
         frame.add(lblTtDays);
@@ -70,9 +71,9 @@ public class CreatePlan extends JFrame {
         //frame.add(txtDPW);
         frame.add(createbtn);
         frame.add(cancelbtn);
-        
+
         getContentPane().add(frame, BorderLayout.CENTER);
-        
+
         createbtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -85,7 +86,7 @@ public class CreatePlan extends JFrame {
                     //String DPW = txtDPW.getText();
                     //int daysPerWeek = Integer.parseInt(DPW);
                     try {
-                        p.create(planName,description,totalDays);
+                        p.create(planName, description, totalDays);
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(CreatePlan.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (SQLException ex) {
@@ -98,8 +99,7 @@ public class CreatePlan extends JFrame {
                     sp.setSize(400, 400);
                     sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     sp.setLocationRelativeTo(null);
-                    
-                    
+
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(CreatePlan.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
@@ -107,27 +107,46 @@ public class CreatePlan extends JFrame {
                 }
             }
         });
-        
+
         cancelbtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-            Calendargui frame = new Calendargui();
-            frame.pack();
-            frame.setSize(500, 350);
-            frame.setVisible(true);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setLocationRelativeTo(null);
-            setVisible(false);
+                Calendargui frame = new Calendargui();
+                frame.pack();
+                frame.setSize(500, 350);
+                frame.setVisible(true);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setLocationRelativeTo(null);
+                frame.setResizable(false);
+                setVisible(false);
             }
         });
+
+        backbtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    MyPlan cp = new MyPlan();
+                    cp.setSize(400, 400);
+                    cp.setVisible(true);
+                    cp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    setVisible(false);
+                    cp.setLocationRelativeTo(null);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(CreatePlan.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(CreatePlan.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        );
     }
-    
+
     public static void main(String[] args) {
         CreatePlan plan = new CreatePlan();
         plan.pack();
         plan.setSize(400, 400);
         plan.setVisible(true);
         plan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        plan.setLocationRelativeTo(null);      
+        plan.setLocationRelativeTo(null);
     }
 }

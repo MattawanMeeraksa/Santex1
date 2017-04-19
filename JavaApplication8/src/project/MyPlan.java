@@ -39,7 +39,7 @@ public class MyPlan extends JFrame implements ActionListener {
     private ArrayList<JButton> buttons3; //เก็บปุ่ม buttons3 เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้
     private ArrayList<JButton> buttons4; //เก็บปุ่ม buttons4 เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้
     private ArrayList<JButton> buttons5; //เก็บปุ่ม buttons4 เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้
-    private ArrayList<JButton> buttons6; //เก็บปุ่ม buttons4 เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้
+    private ArrayList<JLabel> buttons6; //เก็บปุ่ม buttons4 เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้
     private ArrayList<Integer> planId;
     private ArrayList<String> planName, descrip; //เก็บ planName เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้
     private ArrayList<String> totaldays, dayperweek; //เก็บ planName เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้
@@ -101,7 +101,7 @@ public class MyPlan extends JFrame implements ActionListener {
         return buttons5;
     }
 
-    public ArrayList<JButton> getButtons6() {
+    public ArrayList<JLabel> getButtons6() {
         return buttons6;
     }
 
@@ -156,7 +156,7 @@ public class MyPlan extends JFrame implements ActionListener {
         buttons3 = new ArrayList<JButton>();
         buttons4 = new ArrayList<JButton>();
         buttons5 = new ArrayList<JButton>();
-        buttons6 = new ArrayList<JButton>();
+        buttons6 = new ArrayList<JLabel>();
 
         planId = new ArrayList<Integer>();
         planName = new ArrayList<String>();
@@ -169,7 +169,7 @@ public class MyPlan extends JFrame implements ActionListener {
         JButton[] detailListBtn = new JButton[100];
         JButton[] addListBtn = new JButton[100];
         JButton[] startBtn = new JButton[100];
-        JButton[] blankBtn = new JButton[100];
+        JLabel[] blanklbl = new JLabel[100];
 
         JPanel topBack = new JPanel();
         topBack.setLayout(new GridLayout(1, l));
@@ -207,40 +207,40 @@ public class MyPlan extends JFrame implements ActionListener {
         JPanel btnLayer = new JPanel(new GridLayout(0, 2));
         rs = p.show();
         while (rs.next()) {
-            editBtn[i] = new JButton("Edit" + i); //กำหนดชื่อให้กับปุ่ม
+            editBtn[i] = new JButton("Edit"); //กำหนดชื่อให้กับปุ่ม
             editBtn[i].addActionListener(this); //เพิ่ม action ให้มันเวลาเรากดให้ไปทำที่ method ด้านล่าง
             btnLayer.add(editBtn[i]); //เพิ่มลงไปใน layer
             buttons1.add(editBtn[i]); //เก็บเพื่อรู้ว่ามีกี่ปุ่ม ไล่ไปเรื่อยๆ
             i++; //เพิ่มขึ้นเรื่อยๆทีละ 1
 
-            deleteBtn[j] = new JButton("Delete" + j);
+            deleteBtn[j] = new JButton("Delete");
             deleteBtn[j].addActionListener(this);
             btnLayer.add(deleteBtn[j]);
             buttons2.add(deleteBtn[j]);
             j++;
 
-            detailListBtn[k] = new JButton("Detail List" + k);
+            detailListBtn[k] = new JButton("Detail List");
             detailListBtn[k].addActionListener(this);
             btnLayer.add(detailListBtn[k]);
             buttons3.add(detailListBtn[k]);
             k++;
 
-            addListBtn[l] = new JButton("Add List" + l);
+            addListBtn[l] = new JButton("Add List");
             addListBtn[l].addActionListener(this);
             btnLayer.add(addListBtn[l]);
             buttons4.add(addListBtn[l]);
             l++;
 
-            startBtn[m] = new JButton("Start" + m);
+            startBtn[m] = new JButton("Start");
             startBtn[m].addActionListener(this);
             btnLayer.add(startBtn[m]);
             buttons5.add(startBtn[m]);
             m++;
 
             //เก็บเพื่อใหช่องมันพอดี ปุ่มว่าง
-            blankBtn[n] = new JButton(" ");
-            btnLayer.add(blankBtn[n]);
-            buttons6.add(blankBtn[n]);
+            blanklbl[n] = new JLabel(" ");
+            btnLayer.add(blanklbl[n]);
+            buttons6.add(blanklbl[n]);
             n++; 
         }
 
@@ -363,11 +363,11 @@ public class MyPlan extends JFrame implements ActionListener {
 
         try {
             MyPlan sp = new MyPlan();
-            sp.setSize(400, 400);
             sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             sp.setVisible(true);
             sp.setLocationRelativeTo(null);
             sp.pack();
+            sp.setResizable(false);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(MyPlan.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
