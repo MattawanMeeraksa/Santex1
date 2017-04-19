@@ -145,7 +145,6 @@ public class Plan {
                 nameDay = "The day that you input are more than 7 days or less than 1 day";
 
         }
-        
         Connection conn = MySQLConnect.getMySQLConnection();
         PreparedStatement pstm = conn.prepareStatement("update PLAN set nameDay = ?,dayperweek = ? where planID = ?");
         pstm.setString(1, nameDay);

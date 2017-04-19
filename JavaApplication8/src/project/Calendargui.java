@@ -44,6 +44,7 @@ public class Calendargui extends JFrame implements ActionListener {
     private String nameDay;
 
     public Calendargui(String nameDay) {
+        this();
         this.nameDay = nameDay;
 
     }
@@ -144,9 +145,10 @@ public class Calendargui extends JFrame implements ActionListener {
                             }
                         } else if (table.getValueAt(row, col) == null) {
                             textArea.setText("11" + getDayperweek());
-
+                            textArea.setText("" + i);
                         }
                     }
+
                 }
             }
         });

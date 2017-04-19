@@ -268,10 +268,14 @@ public class MyPlan extends JFrame implements ActionListener {
     //เป็น method เก็บ action ที่ออบเจกต์สามารถเรียกใช้ได้
     
     public void actionPerformed(ActionEvent e) {
-        //Statements s = Statements("select planStatus");
+
+        //ลูปของปุ่ม edit
+        
+
         //ลูปทำงานของปุ่ม edit
         for (int i = 0; i < buttons1.size(); i++) { //buttons1.size() จำนวนปุ่มทั้งหมดที่สร้าง
             if (e.getSource() == buttons1.get(i)) { //เช็คว่าปุ่มที่เรากด
+
                 System.out.println("edit");
                 System.out.println("Plan Id : " + planId.get(i));
                 System.out.println("Plan Name : " + planName.get(i));
