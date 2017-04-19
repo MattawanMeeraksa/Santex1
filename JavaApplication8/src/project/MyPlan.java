@@ -33,7 +33,7 @@ public class MyPlan extends JFrame implements ActionListener {
     private JTextArea txtDes;
     private JLabel lbldl; //dl = delete
     private JLabel lblMyP;
-    
+
     private ArrayList<JButton> buttons1; //เก็บปุ่ม buttons1 เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้ 
     private ArrayList<JButton> buttons2; //เก็บปุ่ม buttons2 เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้ 
     private ArrayList<JButton> buttons3; //เก็บปุ่ม buttons3 เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้
@@ -47,12 +47,11 @@ public class MyPlan extends JFrame implements ActionListener {
     public JButton getBackBtn() {
         return backBtn;
     }
-    
+
     public JLabel getLblMyP() {
         return lblMyP;
     }
 
- 
     public JButton getEditBtn() {
         return editBtn;
     }
@@ -184,22 +183,22 @@ public class MyPlan extends JFrame implements ActionListener {
         allTop.add(topLabel, BorderLayout.CENTER);
         add(allTop, BorderLayout.NORTH);
 
-        JPanel planLayer = new JPanel(new GridLayout(0, 1,0,10));
+        JPanel planLayer = new JPanel(new GridLayout(0, 1, 0, 10));
         Plan p = new Plan();
         ResultSet rs = p.show();
         while (rs.next()) {
 
             //เก็บ planId,planName,descrip,totaldays ในทุกๆช่องลงในตัวแปร planId ทีเป็นArrayList เพราะเราไม่รู้จำนวนที่แน่นอน
-            planId.add(rs.getInt("planID")); 
+            planId.add(rs.getInt("planID"));
             planName.add(rs.getString("planName"));
             descrip.add(rs.getString("descriptionPlan"));
             totaldays.add(rs.getString("totaldays"));
-                     
-            JTextArea all = new JTextArea(5,20);
-            all.append("Plan name: "+rs.getString("planName")+"\n"); //ต่อข้อความเพื่อไม่ให้มันทับกัน ให้มันต่อกันไป
-            all.append("Description: "+rs.getString("descriptionPlan")+"\n");
-            all.append("Total days: "+rs.getString("totaldays")+"\n");
-            all.append("Days per week: "+rs.getString("dayperweek")+"\n");
+
+            JTextArea all = new JTextArea(5, 20);
+            all.append("Plan name: " + rs.getString("planName") + "\n"); //ต่อข้อความเพื่อไม่ให้มันทับกัน ให้มันต่อกันไป
+            all.append("Description: " + rs.getString("descriptionPlan") + "\n");
+            all.append("Total days: " + rs.getString("totaldays") + "\n");
+            all.append("Days per week: " + rs.getString("dayperweek") + "\n");
             planLayer.add(all);
         }
 
@@ -238,10 +237,12 @@ public class MyPlan extends JFrame implements ActionListener {
             m++;
 
             //เก็บเพื่อใหช่องมันพอดี ปุ่มว่าง
+
             blanklbl[n] = new JLabel(" ");
             btnLayer.add(blanklbl[n]);
             buttons6.add(blanklbl[n]);
             n++; 
+
         }
 
         //เป็นการจัดรูปแบบของการแสดงผล
@@ -270,7 +271,6 @@ public class MyPlan extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         //ลูปของปุ่ม edit
-        
 
         //ลูปทำงานของปุ่ม edit
         for (int i = 0; i < buttons1.size(); i++) { //buttons1.size() จำนวนปุ่มทั้งหมดที่สร้าง
@@ -299,14 +299,14 @@ public class MyPlan extends JFrame implements ActionListener {
                         "Do you want delete plan?", //2.เป็นข้อความโชว์บนกล่อง message
                         "Delete Plan!!!", //3.title ของ message box
                         JOptionPane.YES_NO_CANCEL_OPTION, //4.ชนิดของ optionPane ว่าเป็น yes/no
-                        JOptionPane.QUESTION_MESSAGE, 
+                        JOptionPane.QUESTION_MESSAGE,
                         null, //ไม่ใช้ไอคอน do not use a custom Icon
                         options, //ชื่อของในแต่ละปุ่ม the titles of button ที่มี yes no
                         options[0]); //default button title
-                
+
                 // ถ้ากด yes จะทำให้ n มีค่าเป็น 0
                 if (n == 0) {
-                    try {                       
+                    try {
                         System.out.println("Deleted");
                         Plan p1 = new Plan();
                         try {
@@ -338,8 +338,48 @@ public class MyPlan extends JFrame implements ActionListener {
             }
 
         }
-        
+
         //ลูปของปุ่ม start
+        for (int i = 0; i < buttons3.size(); i++) {
+            if (e.getSource() == buttons3.get(i)) {
+                try {
+                    System.out.println("Detail");
+                    System.out.println("Plan ID = " +planId.get(i));
+                    DetailList dl = new DetailList(planId.get(i));
+                    dl.setVisible(true);
+                    dl.setSize(400, 400);
+                    System.out.println("List Plan created");
+                    setVisible(false);
+                    dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    dl.setLocationRelativeTo(null);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(MyPlan.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MyPlan.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+
+        for (int i = 0; i < buttons4.size(); i++) {
+            if (e.getSource() == buttons4.get(i)) {
+                try {
+                    System.out.println("Add List");
+                    System.out.println("Plan ID = " +planId.get(i));
+                    AddList ad = new AddList(planId.get(i));
+                    ad.setVisible(true);
+                    ad.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    setVisible(false);
+                    ad.setLocationRelativeTo(null);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(MyPlan.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MyPlan.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+
         for (int i = 0; i < buttons5.size(); i++) {
             if (e.getSource() == buttons5.get(i)) {
                 buttons5.get(i).setEnabled(false);

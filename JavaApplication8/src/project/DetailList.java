@@ -6,12 +6,7 @@
 package project;
 
 import com.sun.glass.ui.Cursor;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.LayoutManager;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -20,15 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
+import javax.swing.*;
 import static javax.swing.UIManager.getString;
 import static javax.xml.ws.Endpoint.create;
 
@@ -37,34 +24,36 @@ import static javax.xml.ws.Endpoint.create;
  * @author user
  */
 public class DetailList extends JFrame {
-    JButton back;
-    JLabel detail;
-    JButton delete;
-    JLabel del;
-
-    ArrayList<JButton> buttons1; //เก็บปุ่ม buttons1 เป็น arraylist 
-    ArrayList<JButton> buttons2; //เก็บปุ่ม buttons2 เป็น arraylist 
-    ArrayList<String> listPlanName,description,reps,set; //เก็บ ตัวแปร เป็น arraylist 
+    private JButton back;
+    private JLabel detail;
+    private JButton delete;
+    int planId = 0;
     
-    public DetailList() throws ClassNotFoundException, SQLException{
+
+    private ArrayList<JButton> buttons1; //เก็บปุ่ม buttons1 เป็น arraylist 
+    private ArrayList<JButton> buttons2; //เก็บปุ่ม buttons2 เป็น arraylist 
+    private ArrayList<String> listPlanName,description,reps,set; //เก็บ ตัวแปร เป็น arraylist 
+    
+    public DetailList(){
+        
+    }
+    
+    public DetailList(int planId) throws ClassNotFoundException, SQLException{
+        this.planId = planId ;
         ListPlan lp1 = new ListPlan();
         back = new JButton("<");
         detail = new JLabel("Detail List");
-        del = new JLabel("Delete");
+        
        
-        JPanel j1 = new JPanel(new GridLayout(1 ,1));
+        JPanel j1 = new JPanel(new BorderLayout());
         setTitle("Detail List");
-        JPanel j2 = new JPanel(new GridLayout(0, 2));
-        
-        ListPlan lp = new ListPlan();
-        ResultSet rs = lp.show();
-        
+       
         int i = 0;
         int j = 0;
         
         buttons1 = new ArrayList<JButton>();
         buttons2 = new ArrayList<JButton>();
-        delete = new JButton("Delete");
+       
         
         listPlanName = new ArrayList<String>();
         description = new ArrayList<String>();
@@ -74,36 +63,36 @@ public class DetailList extends JFrame {
         JButton[] editbtn = new JButton[100];
         JButton[] deletebtn = new JButton[100];
         
-        JPanel top = new JPanel();
+        JPanel top = new JPanel(new GridLayout(1, 1));
         top.add(back);
 
-        JPanel top2 = new JPanel();
+        JPanel top2 = new JPanel(new GridLayout(1, 1));
         top.add(detail);
         
-        JPanel alltop = new JPanel(new GridLayout(1, 1));
+        JPanel alltop = new JPanel();
         alltop.add(top, BorderLayout.WEST);
-        alltop.add(top2, BorderLayout.EAST);
-
+        alltop.add(top2, BorderLayout.CENTER);
         add(alltop, BorderLayout.NORTH);
 
+        JPanel j2 = new JPanel(new GridLayout(0, 1));
+        ListPlan lp = new ListPlan();
+        ResultSet rs = lp.show(planId);
         while (rs.next()) { //เพื่อเช็คว่า กดปุ่มของ List plan ใด
             listPlanName.add(rs.getString("listName"));
-            description.add(rs.getString("descriptionList"));
+            description.add(rs.getString("descriptionList")); 
             reps.add(rs.getString("reps"));
             set.add(rs.getString("set"));
-            j2.add(new JLabel("List Plan : "));
-            j2.add(new JLabel(rs.getString("listName")));
-            j2.add(new JLabel("Description : "));
-            j2.add(new JLabel(rs.getString("descriptionList")));
-            j2.add(new JLabel("Reps : "));
-            j2.add(new JLabel(rs.getString("reps")));
-            j2.add(new JLabel("Set : "));
-            j2.add(new JLabel(rs.getString("set")));
-           
             
+            j2.add(new JLabel("List Plan : "+rs.getString("listName")+"\n"));
+            j2.add(new JLabel("Description : "+rs.getString("descriptionList")+"\n"));
+            j2.add(new JLabel("Reps : "+rs.getString("reps")+"\n"));
+            j2.add(new JLabel("Set : "+rs.getString("set")+"\n"));
+            j2.add(new JLabel("----------------------------------------------------"));
+            
+                    
         }
-            JPanel j3 = new JPanel(new GridLayout(0,2));
-            rs = lp.show();
+            JPanel j3 = new JPanel(new GridLayout(0, 2));
+            rs = lp.show(planId);
             while (rs.next()) {
                 editbtn[i] = new JButton("Edit");
                 editbtn[i].addActionListener(new ActionListener(){
@@ -120,6 +109,7 @@ public class DetailList extends JFrame {
                             }
                         }
                     }
+
                 });
                 
                 j3.add(editbtn[i]);
@@ -148,7 +138,7 @@ public class DetailList extends JFrame {
                                             Logger.getLogger(DetailList.class.getName()).log(Level.SEVERE, null, ex);
                                         }
                                     }
-                                    DetailList dl = new DetailList();
+                                    DetailList dl = new DetailList(planId);
                                     dl.pack();
                                     dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                                     dl.setVisible(true);
@@ -171,24 +161,28 @@ public class DetailList extends JFrame {
             }
         
         j1.add(j2, BorderLayout.WEST);
-        j1.add(j3, BorderLayout.CENTER);
-        //     add(Bank1,BorderLayout.WEST);
+        j1.add(j3, BorderLayout.EAST);
         add(j1, BorderLayout.CENTER);
         
         back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                AddList ad = new AddList();
-                ad.setVisible(true);
-                ad.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                setVisible(false);
-                ad.setLocationRelativeTo(null);  
+                try {
+                    MyPlan mp = new MyPlan();
+                    mp.setVisible(true);
+                    mp.setSize(600, 600);
+                    mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    setVisible(false);  
+                    mp.setLocationRelativeTo(null);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(DetailList.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(DetailList.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         );
     }
-        
-    
-        
+       
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         DetailList dl = new DetailList();
         dl.pack();
@@ -196,7 +190,6 @@ public class DetailList extends JFrame {
         dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         dl.setVisible(true);
         dl.setLocationRelativeTo(null);
-        dl.setResizable(false);
+        
     }
-    
 }

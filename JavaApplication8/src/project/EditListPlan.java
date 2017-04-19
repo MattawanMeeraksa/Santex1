@@ -20,6 +20,7 @@ public class EditListPlan extends javax.swing.JFrame {
     private String newDescription;
     private int newReps;
     private int newSet;
+    private int planId = 0;
 
     EditListPlan(String listPlanName,String description,String reps,String set) {
         this();
@@ -36,6 +37,7 @@ public class EditListPlan extends javax.swing.JFrame {
     }
     
     EditListPlan() {
+        this.planId = planId;
         initComponents();
         setTitle("Edit");
         setResizable(false);
@@ -70,6 +72,14 @@ public class EditListPlan extends javax.swing.JFrame {
 
     public void setNewSet(int newSet) {
         this.newSet = newSet;
+    }
+
+    public void setPlanId(int planId) {
+        this.planId = planId;
+    }
+
+    public int getPlanId() {
+        return planId;
     }
     
   
@@ -250,7 +260,7 @@ public class EditListPlan extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {                                         
             ListPlan lp = new ListPlan();
-            ResultSet rs = lp.show();
+            ResultSet rs = lp.show(planId);
             lp.editListPlanName(newPlanName, jTextField1.getText());
             lp.editDescription(newDescription, jTextField2.getText());
             String r = jTextField3.getText();
@@ -274,7 +284,7 @@ public class EditListPlan extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            DetailList dl = new DetailList() ;
+            DetailList dl = new DetailList(planId) ;
             dl.setVisible(true);
             dl.setSize(400, 400);
             System.out.println("List Plan created");
