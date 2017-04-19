@@ -151,6 +151,7 @@ public class Plan {
         pstm.setString(1, nameDay);
         pstm.setInt(2, dayPerWeek);
         pstm.setInt(3, planId);
+        //pstm.setInt(4, 1);
         int rs = pstm.executeUpdate();
         System.out.println(rs);
         return "";

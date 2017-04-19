@@ -266,7 +266,9 @@ public class MyPlan extends JFrame implements ActionListener {
     }
 
     //เป็น method เก็บ action ที่ออบเจกต์สามารถเรียกใช้ได้
+    
     public void actionPerformed(ActionEvent e) {
+        //Statements s = Statements("select planStatus");
         //ลูปทำงานของปุ่ม edit
         for (int i = 0; i < buttons1.size(); i++) { //buttons1.size() จำนวนปุ่มทั้งหมดที่สร้าง
             if (e.getSource() == buttons1.get(i)) { //เช็คว่าปุ่มที่เรากด
@@ -336,6 +338,7 @@ public class MyPlan extends JFrame implements ActionListener {
         //ลูปของปุ่ม start
         for (int i = 0; i < buttons5.size(); i++) {
             if (e.getSource() == buttons5.get(i)) {
+                buttons5.get(i).setEnabled(false);
                 System.out.println("Start");
                 System.out.println("Plan Name : " + planName.get(i));
                 StartPlan stp = new StartPlan();
@@ -346,7 +349,7 @@ public class MyPlan extends JFrame implements ActionListener {
                 stp.setVisible(true);
                 stp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 stp.setLocationRelativeTo(null);
-                this.setVisible(false);
+                this.setVisible(true);
             }
 
         }

@@ -210,7 +210,7 @@ public class AddList extends javax.swing.JFrame {
             String l  = jTextField5.getText();
             int list = Integer.parseInt(l);
             try {
-                lp.create(listPlanName, description, reps, set, list);
+                lp.create(listPlanName, description, reps, set,list);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(AddList.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
