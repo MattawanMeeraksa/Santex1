@@ -34,9 +34,9 @@ public class ListPlan {
     }
             
             
-    public ResultSet show() throws ClassNotFoundException, SQLException {
+    public ResultSet show(int planId) throws ClassNotFoundException, SQLException {
         Connection conn = MySQLConnect.getMySQLConnection();
-        PreparedStatement pstm = conn.prepareStatement("select * from LIST");
+        PreparedStatement pstm = conn.prepareStatement("select * from LIST where list_planID = "+planId);
         ResultSet rs = pstm.executeQuery();
         /*while (rs.next()) {
             System.out.print("List plan : ");
@@ -68,7 +68,6 @@ public class ListPlan {
     }
      public void editListPlanName(String oldListPlanName,String newListPlanName) throws ClassNotFoundException, SQLException {
         Connection conn = MySQLConnect.getMySQLConnection();
-        this.show();
         PreparedStatement pstm = conn.prepareStatement("update LIST set listName='" + newListPlanName + "'where listName ='"
                                                         + oldListPlanName + "'");
         int rs = pstm.executeUpdate();
@@ -77,7 +76,6 @@ public class ListPlan {
     
     public void editDescription(String oldDescription,String newDescription) throws ClassNotFoundException, SQLException {
        Connection conn = MySQLConnect.getMySQLConnection();
-        this.show();
         PreparedStatement pstm = conn.prepareStatement("update LIST set descriptionList ='" + newDescription + "'where descriptionList  ='" 
                                                         + oldDescription+ "'");
         int rs = pstm.executeUpdate();
@@ -86,7 +84,6 @@ public class ListPlan {
     
     public void editReps(int oldReps, int newReps) throws ClassNotFoundException, SQLException {
        Connection conn = MySQLConnect.getMySQLConnection();
-        this.show();
         PreparedStatement pstm = conn.prepareStatement("update LIST set reps='" + newReps + "'where reps ='" 
                                                         + oldReps+ "'");
         int rs = pstm.executeUpdate();
@@ -95,7 +92,6 @@ public class ListPlan {
     
     public void editSet(int oldSet, int newSet) throws ClassNotFoundException, SQLException {
        Connection conn = MySQLConnect.getMySQLConnection();
-        this.show();
         PreparedStatement pstm = conn.prepareStatement("update LIST set `set`='" + newSet + "'where `set` ='" 
                                                         + oldSet+ "'");
         int rs = pstm.executeUpdate();

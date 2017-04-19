@@ -149,7 +149,7 @@ public class EditPlan1 extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     MyPlan mp = new MyPlan();
-                    //mp.setSize(400, 400);
+                    mp.setSize(600, 600);
                     mp.setVisible(true);
                     mp.setDefaultCloseOperation(mp.EXIT_ON_CLOSE);
                     setVisible(false);

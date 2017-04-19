@@ -27,17 +27,23 @@ public class DetailList extends JFrame {
     private JButton back;
     private JLabel detail;
     private JButton delete;
-    private JLabel del;
+    int planId = 0;
+    
 
     private ArrayList<JButton> buttons1; //เก็บปุ่ม buttons1 เป็น arraylist 
     private ArrayList<JButton> buttons2; //เก็บปุ่ม buttons2 เป็น arraylist 
     private ArrayList<String> listPlanName,description,reps,set; //เก็บ ตัวแปร เป็น arraylist 
     
-    public DetailList() throws ClassNotFoundException, SQLException{
+    public DetailList(){
+        
+    }
+    
+    public DetailList(int planId) throws ClassNotFoundException, SQLException{
+        this.planId = planId ;
         ListPlan lp1 = new ListPlan();
         back = new JButton("<");
         detail = new JLabel("Detail List");
-        del = new JLabel("Delete");
+        
        
         JPanel j1 = new JPanel(new BorderLayout());
         setTitle("Detail List");
@@ -47,7 +53,7 @@ public class DetailList extends JFrame {
         
         buttons1 = new ArrayList<JButton>();
         buttons2 = new ArrayList<JButton>();
-        delete = new JButton("Delete");
+       
         
         listPlanName = new ArrayList<String>();
         description = new ArrayList<String>();
@@ -70,10 +76,10 @@ public class DetailList extends JFrame {
 
         JPanel j2 = new JPanel(new GridLayout(0, 1));
         ListPlan lp = new ListPlan();
-        ResultSet rs = lp.show();
+        ResultSet rs = lp.show(planId);
         while (rs.next()) { //เพื่อเช็คว่า กดปุ่มของ List plan ใด
             listPlanName.add(rs.getString("listName"));
-            description.add(rs.getString("descriptionList"));
+            description.add(rs.getString("descriptionList")); 
             reps.add(rs.getString("reps"));
             set.add(rs.getString("set"));
             
@@ -83,9 +89,10 @@ public class DetailList extends JFrame {
             j2.add(new JLabel("Set : "+rs.getString("set")+"\n"));
             j2.add(new JLabel("----------------------------------------------------"));
             
+                    
         }
             JPanel j3 = new JPanel(new GridLayout(0, 2));
-            rs = lp.show();
+            rs = lp.show(planId);
             while (rs.next()) {
                 editbtn[i] = new JButton("Edit");
                 editbtn[i].addActionListener(new ActionListener(){
@@ -131,7 +138,7 @@ public class DetailList extends JFrame {
                                             Logger.getLogger(DetailList.class.getName()).log(Level.SEVERE, null, ex);
                                         }
                                     }
-                                    DetailList dl = new DetailList();
+                                    DetailList dl = new DetailList(planId);
                                     dl.pack();
                                     dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                                     dl.setVisible(true);
@@ -159,18 +166,23 @@ public class DetailList extends JFrame {
         
         back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                AddList ad = new AddList();
-                ad.setVisible(true);
-                ad.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                setVisible(false);
-                ad.setLocationRelativeTo(null);  
+                try {
+                    MyPlan mp = new MyPlan();
+                    mp.setVisible(true);
+                    mp.setSize(600, 600);
+                    mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    setVisible(false);  
+                    mp.setLocationRelativeTo(null);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(DetailList.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(DetailList.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         );
     }
-        
-    
-        
+       
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         DetailList dl = new DetailList();
         dl.pack();
@@ -180,5 +192,4 @@ public class DetailList extends JFrame {
         dl.setLocationRelativeTo(null);
         
     }
-    
 }

@@ -5,6 +5,8 @@
  */
 package project;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -16,12 +18,20 @@ import javax.swing.JFrame;
  * @author user
  */
 public class AddList extends javax.swing.JFrame {
-
+    int planId = 0 ;
     /**
      * Creates new form AddList
      */
     public AddList() {
         initComponents();
+        setTitle("Add List");
+        setResizable(false);
+    }
+    
+    public AddList(int planId) throws ClassNotFoundException, SQLException {
+        this.planId = planId ;
+        initComponents();
+        tt();
         setTitle("Add List");
         setResizable(false);
     }
@@ -109,6 +119,11 @@ public class AddList extends javax.swing.JFrame {
         jTextField3.setText("jTextField3");
 
         jTextField5.setText("jTextField5");
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -186,12 +201,13 @@ public class AddList extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            DetailList dl = new DetailList();
+            DetailList dl = new DetailList(planId);
             dl.setVisible(true);
             dl.setSize(400, 400);
             System.out.println("List Plan created");
             setVisible(false);
             dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            dl.setLocationRelativeTo(null); 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AddList.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -223,7 +239,7 @@ public class AddList extends javax.swing.JFrame {
             }
             
             
-            DetailList dl = new DetailList() ;
+            DetailList dl = new DetailList(planId) ;
             dl.setVisible(true);
             dl.setSize(400, 400);
             System.out.println("List Plan created");
@@ -243,6 +259,10 @@ public class AddList extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
 
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+       
+    }//GEN-LAST:event_jTextField5ActionPerformed
 
     
     /**
@@ -273,4 +293,19 @@ public class AddList extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
+    
+    public void tt() throws ClassNotFoundException, SQLException{
+        Connection conn = MySQLConnect.getMySQLConnection();
+        PreparedStatement pstm = conn.prepareStatement("SELECT dayperweek from PLAN where planID = "+planId);
+        ResultSet rs = pstm.executeQuery();
+        while(rs.next()){
+            for(int i = 1 ; i <= rs.getInt("dayperweek") ; i++){
+                jComboBox1.addItem(""+i);
+            }
+        }
+           
+        /*for(int i=1 ; i < rs.getInt()) ; i++){
+            jComboBox1.addItem(""+1);
+        }*/
+    }
 }
