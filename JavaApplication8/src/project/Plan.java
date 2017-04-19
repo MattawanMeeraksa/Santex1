@@ -27,7 +27,6 @@ public class Plan {
     public Plan() {
     }
 
-  
     public String start(int dayPerWeek, int planId) throws ClassNotFoundException, SQLException {
         this.dayPerWeek = dayPerWeek;
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -139,7 +138,7 @@ public class Plan {
                 }
                 break;
             case 7:
-                nameDay =  "Monday Tuesday Wednesday Thursday Friday Saturday Sunday";
+                nameDay = "Monday Tuesday Wednesday Thursday Friday Saturday Sunday";
                 break;
             default:
                 nameDay = "The day that you input are more than 7 days or less than 1 day";
@@ -153,6 +152,7 @@ public class Plan {
         //pstm.setInt(4, 1);
         int rs = pstm.executeUpdate();
         System.out.println(rs);
+        
         return "";
     }
 
@@ -175,6 +175,7 @@ public class Plan {
         pstm.setString(5, "null");
         int rs = pstm.executeUpdate();
         System.out.println(rs);
+        conn.close();
         return "";
     }
 
@@ -309,8 +310,8 @@ public class Plan {
             default:
                 nameDay = "The day that you input are more than 7 days or less than 1 day";
         }
-        PreparedStatement pstm = conn.prepareStatement("update PLAN set dayperweek ='" + newDayPerWeek + 
-                "'where planID ='" + PlanId + "'");
+        PreparedStatement pstm = conn.prepareStatement("update PLAN set dayperweek ='" + newDayPerWeek
+                + "'where planID ='" + PlanId + "'");
         int rs = pstm.executeUpdate();
         System.out.println(rs);
 
@@ -318,7 +319,7 @@ public class Plan {
 
     public void editTotalDay(int PlanId, int newDay) throws ClassNotFoundException, SQLException {
         Connection conn = MySQLConnect.getMySQLConnection();
-        PreparedStatement pstm = conn.prepareStatement("update PLAN set totaldays='" 
+        PreparedStatement pstm = conn.prepareStatement("update PLAN set totaldays='"
                 + newDay + "'where planID ='" + PlanId + "'");
         int rs = pstm.executeUpdate();
         System.out.println(rs);

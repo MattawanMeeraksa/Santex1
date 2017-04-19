@@ -101,7 +101,7 @@ public class Calendargui extends JFrame implements ActionListener {
         String[] columns = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
         model = new DefaultTableModel(null, columns);
         JTable table = new JTable(model);
-        JScrollPane pane = new JScrollPane(table);
+        JScrollPane pane = new JScrollPane(table); 
 
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -146,6 +146,8 @@ public class Calendargui extends JFrame implements ActionListener {
                         } else if (table.getValueAt(row, col) == null) {
                             textArea.setText("11" + getDayperweek());
                             textArea.setText("" + i);
+                        } else if (table.getValueAt(row, col) == null) {
+                            textArea.setText("");
                         }
                     }
 
