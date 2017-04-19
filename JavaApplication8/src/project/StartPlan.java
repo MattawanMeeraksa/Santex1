@@ -132,6 +132,7 @@ public class StartPlan extends JFrame {
         sp.setVisible(true);
         sp.setLocationRelativeTo(null);
     }
+    
 
     public int getPlanId() {
         return planId;
@@ -150,3 +151,4 @@ public class StartPlan extends JFrame {
     }
 
 }
+
