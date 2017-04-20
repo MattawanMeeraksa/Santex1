@@ -76,19 +76,19 @@ public class EditPlan1 extends JFrame {
         this.editDPW = editDPW;
     }
     
-    public EditPlan1(int planId, String planName,String description,String totaldays){
+    public EditPlan1(int planId, String planName,String description){
         this();
         this.planId = planId;
         editName=planName;
         editDes=description;
-        int Total=Integer.parseInt(totaldays);
-        edittotal=Total;
+//        int Total=Integer.parseInt(totaldays);
+//        edittotal=Total;
 
 
         //เอาข้อมูลที่เราต้องการแก้ไขใส่ลงไปในช่องต่างๆ
         txtPName.setText(this.editName);
         txtDescribe.setText(this.editDes);
-        txtTtDays.setText(this.edittotal+"");
+//        txtTtDays.setText(this.edittotal+"");
     }
 
 

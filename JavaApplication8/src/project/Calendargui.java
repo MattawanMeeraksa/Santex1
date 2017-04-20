@@ -42,6 +42,7 @@ public class Calendargui extends JFrame implements ActionListener {
     private JTextArea textArea;
     private int dayperweek;
     private String nameDay;
+    private JLabel lblToDoList;
 
     public Calendargui(String nameDay) {
         this();
@@ -72,6 +73,12 @@ public class Calendargui extends JFrame implements ActionListener {
     }
 
     public Calendargui() {
+        lblToDoList = new JLabel("To Do List");
+        
+        
+        JPanel upperLayer = new JPanel();
+        upperLayer.setLayout(new GridLayout(0, 1));
+        upperLayer.add(lblToDoList);
 
         label = new JLabel();
         label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -236,8 +243,8 @@ public class Calendargui extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         Calendargui frame = new Calendargui();
-        frame.pack();
         frame.setSize(500, 350);
+        frame.pack();
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);

@@ -1,7 +1,9 @@
 package project;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -42,7 +46,7 @@ public class MyPlan extends JFrame implements ActionListener {
     private ArrayList<JLabel> buttons6; //เก็บปุ่ม buttons4 เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้
     private ArrayList<Integer> planId;
     private ArrayList<String> planName, descrip; //เก็บ planName เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้
-    private ArrayList<String> totaldays, dayperweek; //เก็บ planName เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้
+    private ArrayList<String> dayperweek; //เก็บ planName เป็น arraylist เพราะไม่รู้จำนวนที่แน่นอนเลยเลือกเก็บเป็นแบบนี้
 
     public JButton getBackBtn() {
         return backBtn;
@@ -112,13 +116,13 @@ public class MyPlan extends JFrame implements ActionListener {
         return descrip;
     }
 
-    public ArrayList<String> getTotaldays() {
-        return totaldays;
-    }
-
-    public ArrayList<String> getDayperweek() {
-        return dayperweek;
-    }
+//    public ArrayList<String> getTotaldays() {
+//        return totaldays;
+//    }
+//
+//    public ArrayList<String> getDayperweek() {
+//        return dayperweek;
+//    }
 
     public MyPlan() throws ClassNotFoundException, SQLException {
 
@@ -132,6 +136,8 @@ public class MyPlan extends JFrame implements ActionListener {
 
         //ปุ่มด้านขวา
         editBtn = new JButton("Edit");
+   
+       // editBtn.setIcon(right);
         deleteBtn = new JButton("Delete");
         startBtn = new JButton("Start");
 
@@ -160,7 +166,7 @@ public class MyPlan extends JFrame implements ActionListener {
         planId = new ArrayList<Integer>();
         planName = new ArrayList<String>();
         descrip = new ArrayList<String>();
-        totaldays = new ArrayList<String>();
+        //totaldays = new ArrayList<String>();
         dayperweek = new ArrayList<String>();
 
         JButton[] editBtn = new JButton[100];
@@ -192,12 +198,12 @@ public class MyPlan extends JFrame implements ActionListener {
             planId.add(rs.getInt("planID"));
             planName.add(rs.getString("planName"));
             descrip.add(rs.getString("descriptionPlan"));
-            totaldays.add(rs.getString("totaldays"));
+//            totaldays.add(rs.getString("totaldays"));
 
             JTextArea all = new JTextArea(5, 20);
             all.append("Plan name: " + rs.getString("planName") + "\n"); //ต่อข้อความเพื่อไม่ให้มันทับกัน ให้มันต่อกันไป
             all.append("Description: " + rs.getString("descriptionPlan") + "\n");
-            all.append("Total days: " + rs.getString("totaldays") + "\n");
+//            all.append("Total days: " + rs.getString("totaldays") + "\n");
             all.append("Days per week: " + rs.getString("dayperweek") + "\n");
             planLayer.add(all);
         }
@@ -205,8 +211,9 @@ public class MyPlan extends JFrame implements ActionListener {
         //เก็บในฝั่งของปุ่มด้านขวา
         JPanel btnLayer = new JPanel(new GridLayout(0, 2));
         rs = p.show();
+        ImageIcon editIcon = new ImageIcon("icon.png"); //เพิ่มรูปไอคอน
         while (rs.next()) {
-            editBtn[i] = new JButton("Edit"); //กำหนดชื่อให้กับปุ่ม
+            editBtn[i] = new JButton(editIcon); //กำหนดรูปไอคอนให้ปุ่ม
             editBtn[i].addActionListener(this); //เพิ่ม action ให้มันเวลาเรากดให้ไปทำที่ method ด้านล่าง
             btnLayer.add(editBtn[i]); //เพิ่มลงไปใน layer
             buttons1.add(editBtn[i]); //เก็บเพื่อรู้ว่ามีกี่ปุ่ม ไล่ไปเรื่อยๆ
@@ -280,8 +287,8 @@ public class MyPlan extends JFrame implements ActionListener {
                 System.out.println("Plan Id : " + planId.get(i));
                 System.out.println("Plan Name : " + planName.get(i));
                 System.out.println("Description : " + descrip.get(i));
-                System.out.println("Total days : " + totaldays.get(i));
-                EditPlan1 eplan = new EditPlan1(planId.get(i), planName.get(i), descrip.get(i), totaldays.get(i));
+//                System.out.println("Total days : " + totaldays.get(i));
+                EditPlan1 eplan = new EditPlan1(planId.get(i), planName.get(i), descrip.get(i));
                 eplan.pack();
                 eplan.setSize(400, 400);
                 eplan.setVisible(true);
