@@ -129,7 +129,7 @@ public class EditPlan1 extends JFrame {
                         p.editDescription(planId, txtDescribe.getText());
                         String tTDays = txtTtDays.getText();
                         int totalDays = Integer.parseInt(tTDays);
-                        p.editTotalDay(planId, totalDays);
+                        //p.editTotalDay(planId, totalDays);
                         MyPlan mp = new MyPlan();
                         mp.setVisible(true);
                         mp.setDefaultCloseOperation(mp.EXIT_ON_CLOSE);

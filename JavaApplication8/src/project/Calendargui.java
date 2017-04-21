@@ -200,7 +200,7 @@ public class Calendargui extends JFrame implements ActionListener {
 
         b4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                CreatePlan cp = new CreatePlan();
+                CreatePlan1 cp = new CreatePlan1();
 
                 cp.setSize(400, 400);
                 cp.setVisible(true);
