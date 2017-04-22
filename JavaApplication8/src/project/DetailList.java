@@ -99,13 +99,19 @@ public class DetailList extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         for (int i = 0; i < buttons1.size(); i++) {
-                            if (e.getSource() == buttons1.get(i)) { // i ช่วยบอกว่ากำลังแก้ของแพลนไหนอยู่
+                            if (e.getSource() == buttons1.get(i)) { 
+                                try { // i ช่วยบอกว่ากำลังแก้ของแพลนไหนอยู่
                                 EditListPlan ep = new EditListPlan(listPlanName.get(i),description.get(i),reps.get(i),set.get(i));
                                 ep.setVisible(true);
                                 ep.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                                 ep.setLocationRelativeTo(null);
                                 ep.setResizable(false);
                                 setVisible(false);
+                                } catch (ClassNotFoundException ex) {
+                                    Logger.getLogger(DetailList.class.getName()).log(Level.SEVERE, null, ex);
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(DetailList.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                             }
                         }
                     }
@@ -150,8 +156,7 @@ public class DetailList extends JFrame {
                                 } catch (SQLException ex) {
                                     Logger.getLogger(DetailList.class.getName()).log(Level.SEVERE, null, ex);
                                 }
-                            }else
-                                System.out.println("Cancel");
+                            }
                         }
                     } 
                 });

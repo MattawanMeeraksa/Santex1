@@ -127,7 +127,6 @@ public class MyPlan extends JFrame implements ActionListener {
 //    public ArrayList<String> getDayperweek() {
 //        return dayperweek;
 //    }
-
     public MyPlan() throws ClassNotFoundException, SQLException {
 
         //Plan p1 = new Plan();
@@ -140,8 +139,8 @@ public class MyPlan extends JFrame implements ActionListener {
 
         //ปุ่มด้านขวา
         editBtn = new JButton("Edit");
-   
-       // editBtn.setIcon(right);
+
+        // editBtn.setIcon(right);
         deleteBtn = new JButton("Delete");
         startBtn = new JButton("Start");
 
@@ -249,11 +248,10 @@ public class MyPlan extends JFrame implements ActionListener {
             m++;
 
             //เก็บเพื่อใหช่องมันพอดี ปุ่มว่าง
-
             blanklbl[n] = new JLabel(" ");
             btnLayer.add(blanklbl[n]);
             buttons6.add(blanklbl[n]);
-            n++; 
+            n++;
 
         }
 
@@ -279,15 +277,13 @@ public class MyPlan extends JFrame implements ActionListener {
     }
 
     //เป็น method เก็บ action ที่ออบเจกต์สามารถเรียกใช้ได้
-    
     public void actionPerformed(ActionEvent e) {
 
         //ลูปของปุ่ม edit
-
         //ลูปทำงานของปุ่ม edit
         for (int i = 0; i < buttons1.size(); i++) { //buttons1.size() จำนวนปุ่มทั้งหมดที่สร้าง
             if (e.getSource() == buttons1.get(i)) { //เช็คว่าปุ่มที่เรากด
-                
+
                 System.out.println("edit");
                 System.out.println("Plan Id : " + planId.get(i));
                 System.out.println("Plan Name : " + planName.get(i));
@@ -355,7 +351,7 @@ public class MyPlan extends JFrame implements ActionListener {
             if (e.getSource() == buttons3.get(i)) {
                 try {
                     System.out.println("Detail");
-                    System.out.println("Plan ID = " +planId.get(i));
+                    System.out.println("Plan ID = " + planId.get(i));
                     DetailList dl = new DetailList(planId.get(i));
                     dl.setVisible(true);
                     dl.setSize(400, 400);
@@ -376,8 +372,9 @@ public class MyPlan extends JFrame implements ActionListener {
             if (e.getSource() == buttons4.get(i)) {
                 try {
                     System.out.println("Add List");
-                    System.out.println("Plan ID = " +planId.get(i));
+                    System.out.println("Plan ID = " + planId.get(i));
                     AddList ad = new AddList(planId.get(i));
+
                     ad.setVisible(true);
                     ad.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     setVisible(false);
