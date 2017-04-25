@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -216,6 +217,8 @@ public class MyPlan extends JFrame implements ActionListener {
         JPanel btnLayer = new JPanel(new GridLayout(0, 2));
         rs = p.show();
         ImageIcon editIcon = new ImageIcon("icon.png"); //เพิ่มรูปไอคอน
+        ImageIcon deleteIcon = new ImageIcon("rubbish-bin.png");
+        
         while (rs.next()) {
             editBtn[i] = new JButton(editIcon); //กำหนดรูปไอคอนให้ปุ่ม
             editBtn[i].addActionListener(this); //เพิ่ม action ให้มันเวลาเรากดให้ไปทำที่ method ด้านล่าง
@@ -223,7 +226,7 @@ public class MyPlan extends JFrame implements ActionListener {
             buttons1.add(editBtn[i]); //เก็บเพื่อรู้ว่ามีกี่ปุ่ม ไล่ไปเรื่อยๆ
             i++; //เพิ่มขึ้นเรื่อยๆทีละ 1
 
-            deleteBtn[j] = new JButton("Delete");
+            deleteBtn[j] = new JButton(deleteIcon);
             deleteBtn[j].addActionListener(this);
             btnLayer.add(deleteBtn[j]);
             buttons2.add(deleteBtn[j]);
@@ -273,7 +276,27 @@ public class MyPlan extends JFrame implements ActionListener {
             }
         }
         );
+    }
+    
+    public void mouseClicked(MouseEvent e){
+        
+        for (int i = 0; i < buttons1.size(); i++) { //buttons1.size() จำนวนปุ่มทั้งหมดที่สร้าง
+            if (e.getSource() == buttons1.get(i)) { //เช็คว่าปุ่มที่เรากด
 
+                System.out.println("edit");
+                System.out.println("Plan Id : " + planId.get(i));
+                System.out.println("Plan Name : " + planName.get(i));
+                System.out.println("Description : " + descrip.get(i));
+                EditPlan1 eplan = new EditPlan1(planId.get(i), planName.get(i), descrip.get(i));
+                eplan.pack();
+                eplan.setSize(400, 400);
+                eplan.setVisible(true);
+                eplan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                eplan.setLocationRelativeTo(null);
+                this.setVisible(false);
+            }
+
+        }
     }
 
     //เป็น method เก็บ action ที่ออบเจกต์สามารถเรียกใช้ได้
@@ -288,9 +311,8 @@ public class MyPlan extends JFrame implements ActionListener {
                 System.out.println("Plan Id : " + planId.get(i));
                 System.out.println("Plan Name : " + planName.get(i));
                 System.out.println("Description : " + descrip.get(i));
-                EditPlan1 eplan = new EditPlan1(planId.get(i), planName.get(i), descrip.get(i));
+                EditPlan eplan = new EditPlan();
                 eplan.pack();
-                eplan.setSize(400, 400);
                 eplan.setVisible(true);
                 eplan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 eplan.setLocationRelativeTo(null);
@@ -346,7 +368,6 @@ public class MyPlan extends JFrame implements ActionListener {
 
         }
 
-        //ลูปของปุ่ม start
         for (int i = 0; i < buttons3.size(); i++) {
             if (e.getSource() == buttons3.get(i)) {
                 try {
@@ -388,6 +409,7 @@ public class MyPlan extends JFrame implements ActionListener {
 
         }
 
+        //ลูปของปุ่ม start
         for (int i = 0; i < buttons5.size(); i++) {
             if (e.getSource() == buttons5.get(i)) {
                 buttons5.get(i).setEnabled(false);
@@ -406,6 +428,7 @@ public class MyPlan extends JFrame implements ActionListener {
 
         }
     }
+   
 
     public static void main(String[] args) {
 

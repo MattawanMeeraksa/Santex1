@@ -182,19 +182,15 @@ public class Calendargui extends JFrame implements ActionListener {
 
         b3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                try {
+                
                     System.out.println("Canceled");
-                    MyPlan mp = new MyPlan();
+                    MyPlan2 mp = new MyPlan2();
                     mp.setVisible(true);
                     setVisible(false);
                     mp.setSize(400, 400);
                     mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     mp.setLocationRelativeTo(null);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(StartPlan.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(StartPlan.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                
             }
         });
 
