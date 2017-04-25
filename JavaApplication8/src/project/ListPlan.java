@@ -62,7 +62,7 @@ public class ListPlan {
         pstm.setInt(4, set);
         pstm.setInt(5, list);
         int rs = pstm.executeUpdate();
-        System.out.println(rs);
+        //System.out.println(rs);
 
         return "";
     }
@@ -71,7 +71,7 @@ public class ListPlan {
         PreparedStatement pstm = conn.prepareStatement("update LIST set listName='" + newListPlanName + "'where listName ='"
                                                         + oldListPlanName + "'");
         int rs = pstm.executeUpdate();
-        System.out.println(rs);
+        //System.out.println(rs);
     }
     
     public void editDescription(String oldDescription,String newDescription) throws ClassNotFoundException, SQLException {
@@ -79,7 +79,7 @@ public class ListPlan {
         PreparedStatement pstm = conn.prepareStatement("update LIST set descriptionList ='" + newDescription + "'where descriptionList  ='" 
                                                         + oldDescription+ "'");
         int rs = pstm.executeUpdate();
-        System.out.println(rs);
+        //System.out.println(rs);
     }
     
     public void editReps(int oldReps, int newReps) throws ClassNotFoundException, SQLException {
@@ -87,7 +87,7 @@ public class ListPlan {
         PreparedStatement pstm = conn.prepareStatement("update LIST set reps='" + newReps + "'where reps ='" 
                                                         + oldReps+ "'");
         int rs = pstm.executeUpdate();
-        System.out.println(rs);
+        //System.out.println(rs);
     }
     
     public void editSet(int oldSet, int newSet) throws ClassNotFoundException, SQLException {
@@ -95,7 +95,7 @@ public class ListPlan {
         PreparedStatement pstm = conn.prepareStatement("update LIST set `set`='" + newSet + "'where `set` ='" 
                                                         + oldSet+ "'");
         int rs = pstm.executeUpdate();
-        System.out.println(rs);
+        //System.out.println(rs);
     }
 
     public void delete(String listPlanName) throws ClassNotFoundException, SQLException {
@@ -103,7 +103,7 @@ public class ListPlan {
         PreparedStatement pstm = conn.prepareStatement("delete from LIST where listName=?");
         pstm.setString(1, listPlanName);
         int rs = pstm.executeUpdate();
-        System.out.println(rs);
+        //System.out.println(rs);
     }
 
     public void setListPlanName(String listPlanName) {

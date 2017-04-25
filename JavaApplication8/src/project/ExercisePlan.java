@@ -68,7 +68,7 @@ public class ExercisePlan extends JFrame{
         createP.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                CreatePlan ep = new CreatePlan();
+                CreatePlan1 ep = new CreatePlan1();
                 ep.setVisible(true);
                 setVisible(false);
                 ep.setSize(400, 400);
