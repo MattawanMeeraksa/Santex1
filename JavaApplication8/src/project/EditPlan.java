@@ -21,6 +21,7 @@ import javax.swing.JTextField;
  * @author Administrator
  */
 public class EditPlan extends javax.swing.JFrame {
+
     Connection conn = null;
     PreparedStatement pstm = null;
     private String planName;
@@ -87,7 +88,7 @@ public class EditPlan extends javax.swing.JFrame {
         this.nameDay = nameDay;
     }
 
-    public EditPlan(int planId,String planName, String planDes, Date startDate, Date endDate, int dayPerWeek, String nameDay) {
+    public EditPlan(int planId, String planName, String planDes, Date startDate, Date endDate, int dayPerWeek, String nameDay) {
         this.planId = planId;
         this.planName = planName;
         this.planDes = planDes;
@@ -305,24 +306,16 @@ public class EditPlan extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDesKeyTyped
 
     private void savebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savebtnActionPerformed
-        System.out.println("kkjkj"+txtPName.getText());
-        System.out.println("kkjkj"+txtDes.getText());
-        System.out.println("kkjkj"+startDate);
-        System.out.println("kkjkj"+endDate);
-        
         try {
             if (txtPName.getText().equals("") || txtDes.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Your input is incorrect");
             } else {
-                String sql = "update PLAN SET planName = ? , descriptionPlan = ? , startDate = ? , endDate = ? where planID=" + planId ;
+                String sql = "update PLAN SET planName = ? , descriptionPlan = ? , startDate = ? , endDate = ? where planID=" + planId;
                 pstm = (PreparedStatement) conn.prepareStatement(sql);
                 pstm.setString(1, txtPName.getText());
-                
                 pstm.setString(2, txtDes.getText());
-                //pstm.setString(3, " ");
                 pstm.setDate(3, ((java.sql.Date) startDate));
                 pstm.setDate(4, ((java.sql.Date) endDate));
-               // pstm.setInt(5, 0);
                 pstm.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Plan created successfully");
                 MyPlan sp = new MyPlan();

@@ -14,6 +14,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -40,7 +41,6 @@ public class MyPlan2 extends javax.swing.JFrame {
     public void setPlanId(int planId) {
         this.planId = planId;
     }
-    
 
     public String getPlanName() {
         return planName;
@@ -89,9 +89,6 @@ public class MyPlan2 extends javax.swing.JFrame {
     public void setNameDay(String nameDay) {
         this.nameDay = nameDay;
     }
-    
-    
-    
 
     /**
      * Creates new form MyPlan2
@@ -262,7 +259,6 @@ public class MyPlan2 extends javax.swing.JFrame {
             pstm = (PreparedStatement) conn.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                //เก็บ planId,planName,descrip,totaldays ในทุกๆช่องลงในตัวแปร planId ทีเป็นArrayList เพราะเราไม่รู้จำนวนที่แน่นอน
                 Vector v = new Vector();
                 v.add(rs.getString("planName"));
                 v.add(rs.getString("descriptionPlan"));
@@ -303,11 +299,41 @@ public class MyPlan2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        // TODO add your handling code here:
+        try {
+            String sql = "delete from PLAN where planName=?";
+            pstm = (PreparedStatement) conn.prepareStatement(sql);
+            pstm.setString(1, planName);
+            pstm.executeUpdate();
+            Object[] options = {"Yes", "No"}; //เป็นปุ่มที่ให้เลือกว่าจะกดอะไร
+            int n = JOptionPane.showOptionDialog(deleteBtn, //1.เป็นชนิดของปุ่ม
+                    "Do you want delete plan?", //2.เป็นข้อความโชว์บนกล่อง message
+                    "Delete Plan!!!", //3.title ของ message box
+                    JOptionPane.YES_NO_CANCEL_OPTION, //4.ชนิดของ optionPane ว่าเป็น yes/no
+                    JOptionPane.QUESTION_MESSAGE,
+                    null, //ไม่ใช้ไอคอน do not use a custom Icon
+                    options, //ชื่อของในแต่ละปุ่ม the titles of button ที่มี yes no
+                    options[0]); //default button title
+            // ถ้ากด yes จะทำให้ n มีค่าเป็น 0
+            if (n == 0) {
+                //ให้มันแสดงเฉยๆว่าแพลนนั้นถูกลบออกไปแล้วแต่กดเลือกอะไรไม่ได้นอกจากแค่กด ok หรือปิดหน้าจอไป
+                JOptionPane.showMessageDialog(null, "Your plan is deleted");
+                MyPlan2 sp = new MyPlan2();
+                sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                sp.setVisible(true);
+                sp.setLocationRelativeTo(null);
+                setVisible(false);
+            } else {
+                System.out.println("Canceled");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-        EditPlan eplan = new EditPlan(getPlanId(),getPlanName(), getPlanDes(), getStartDate(), getEndDate(), getDayPerWeek(),getNameDay());
+        EditPlan eplan = new EditPlan(getPlanId(), getPlanName(), getPlanDes(),
+                 getStartDate(), getEndDate(), getDayPerWeek(), getNameDay());
         System.out.println(getPlanId());
         eplan.pack();
         eplan.setVisible(true);
@@ -330,16 +356,24 @@ public class MyPlan2 extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MyPlan2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MyPlan2.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MyPlan2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MyPlan2.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MyPlan2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MyPlan2.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MyPlan2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MyPlan2.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

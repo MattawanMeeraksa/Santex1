@@ -227,16 +227,13 @@ public class CreatePlan1 extends javax.swing.JFrame {
                 pstm.setInt(6, 0);
                 pstm.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Plan created successfully");
-                MyPlan sp = new MyPlan();
-                sp.pack();
+                MyPlan2 sp = new MyPlan2();
                 sp.setVisible(true);
                 setVisible(false);
                 sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 sp.setLocationRelativeTo(null);
             }
 
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CreatePlan1.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(CreatePlan1.class.getName()).log(Level.SEVERE, null, ex);
         }

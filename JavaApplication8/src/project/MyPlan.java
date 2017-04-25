@@ -218,7 +218,7 @@ public class MyPlan extends JFrame implements ActionListener {
         rs = p.show();
         ImageIcon editIcon = new ImageIcon("icon.png"); //เพิ่มรูปไอคอน
         ImageIcon deleteIcon = new ImageIcon("rubbish-bin.png");
-        
+
         while (rs.next()) {
             editBtn[i] = new JButton(editIcon); //กำหนดรูปไอคอนให้ปุ่ม
             editBtn[i].addActionListener(this); //เพิ่ม action ให้มันเวลาเรากดให้ไปทำที่ method ด้านล่าง
@@ -277,9 +277,9 @@ public class MyPlan extends JFrame implements ActionListener {
         }
         );
     }
-    
-    public void mouseClicked(MouseEvent e){
-        
+
+    public void mouseClicked(MouseEvent e) {
+
         for (int i = 0; i < buttons1.size(); i++) { //buttons1.size() จำนวนปุ่มทั้งหมดที่สร้าง
             if (e.getSource() == buttons1.get(i)) { //เช็คว่าปุ่มที่เรากด
 
@@ -318,7 +318,6 @@ public class MyPlan extends JFrame implements ActionListener {
                 eplan.setLocationRelativeTo(null);
                 this.setVisible(false);
             }
-
         }
         //ลูปของปุ่ม delete
         for (int i = 0; i < buttons2.size(); i++) {
@@ -353,19 +352,15 @@ public class MyPlan extends JFrame implements ActionListener {
                         sp.setVisible(true);
                         sp.setLocationRelativeTo(null);
                         setVisible(false);
-
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(MyPlan.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (SQLException ex) {
                         Logger.getLogger(MyPlan.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
                 } else {
                     System.out.println("Canceled");
                 }
-
             }
-
         }
 
         for (int i = 0; i < buttons3.size(); i++) {
@@ -428,10 +423,8 @@ public class MyPlan extends JFrame implements ActionListener {
 
         }
     }
-   
 
     public static void main(String[] args) {
-
         try {
             MyPlan sp = new MyPlan();
             sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -444,7 +437,6 @@ public class MyPlan extends JFrame implements ActionListener {
         } catch (SQLException ex) {
             Logger.getLogger(MyPlan.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public ArrayList<Integer> getPlanId() {
