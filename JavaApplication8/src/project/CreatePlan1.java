@@ -58,6 +58,36 @@ public class CreatePlan1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+<<<<<<< HEAD
+        jDayChooser1 = new com.toedter.calendar.JDayChooser();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jCalendar1 = new com.toedter.calendar.JCalendar();
+        jDayChooser2 = new com.toedter.calendar.JDayChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        dateChooserDialog1 = new datechooser.beans.DateChooserDialog();
+        jDateChooser3 = new com.toedter.calendar.JDateChooser();
+        dateChooserDialog2 = new datechooser.beans.DateChooserDialog();
+        dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
+        dateChooserPanel1 = new datechooser.beans.DateChooserPanel();
+        dateChooserDialog3 = new datechooser.beans.DateChooserDialog();
+        dateChooserDialog4 = new datechooser.beans.DateChooserDialog();
+        dateChooserPanel2 = new datechooser.beans.DateChooserPanel();
+        dateChooserDialog5 = new datechooser.beans.DateChooserDialog();
+        dateChooserCombo3 = new datechooser.beans.DateChooserCombo();
+        dateChooserCombo4 = new datechooser.beans.DateChooserCombo();
+        dateChooserCombo2 = new datechooser.beans.DateChooserCombo();
+        dateChooserDialog6 = new datechooser.beans.DateChooserDialog();
+        dateChooserDialog7 = new datechooser.beans.DateChooserDialog();
+        dateChooserDialog8 = new datechooser.beans.DateChooserDialog();
+        demoBundle1 = new datechooser.demo.locale.DemoBundle();
+        show1Components1 = new datechooser.demo.steps.Show1Components();
+        jPanel2 = new javax.swing.JPanel();
+        dateChooserCombo5 = new datechooser.beans.DateChooserCombo();
+        jDateChooser4 = new com.toedter.calendar.JDateChooser();
+        dateChooserCombo6 = new datechooser.beans.DateChooserCombo();
+        lblheadcreate = new javax.swing.JLabel();
+=======
+>>>>>>> c7051fded3f326c067f4ae301852fc52dc34c509
         jPanel1 = new javax.swing.JPanel();
         lblPName = new javax.swing.JLabel();
         lblDes = new javax.swing.JLabel();
@@ -66,11 +96,33 @@ public class CreatePlan1 extends javax.swing.JFrame {
         txtDes = new javax.swing.JTextArea();
         createbtn = new javax.swing.JButton();
         cancelbtn = new javax.swing.JButton();
+<<<<<<< HEAD
+        jScrollBar1 = new javax.swing.JScrollBar();
+        dateChooserCombo7 = new datechooser.beans.DateChooserCombo();
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(206, Short.MAX_VALUE)
+                .addComponent(dateChooserCombo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(dateChooserCombo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(113, Short.MAX_VALUE))
+        );
+=======
         lblheadcreate = new javax.swing.JLabel();
         lblStartDate = new javax.swing.JLabel();
         lblEndDate = new javax.swing.JLabel();
         startDateChoose = new com.toedter.calendar.JDateChooser();
         endDateChoose = new com.toedter.calendar.JDateChooser();
+>>>>>>> c7051fded3f326c067f4ae301852fc52dc34c509
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -146,6 +198,27 @@ public class CreatePlan1 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+<<<<<<< HEAD
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblPName)
+                                .addComponent(lblTtDays))
+                            .addComponent(lblDes))
+                        .addGap(260, 260, 260)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtPName, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                            .addComponent(txtTtDays, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(createbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)
+                        .addComponent(cancelbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(118, 118, 118)))
+                .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+=======
                         .addGap(45, 45, 45)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPName)
@@ -162,6 +235,7 @@ public class CreatePlan1 extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(lblheadcreate)))
                 .addContainerGap(40, Short.MAX_VALUE))
+>>>>>>> c7051fded3f326c067f4ae301852fc52dc34c509
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,6 +246,22 @@ public class CreatePlan1 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblPName)
                     .addComponent(txtPName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDes))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTtDays)
+                    .addComponent(txtTtDays, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(76, 76, 76)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(createbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+=======
                 .addGap(65, 65, 65)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,17 +286,41 @@ public class CreatePlan1 extends javax.swing.JFrame {
                             .addComponent(cancelbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(createbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(84, 84, 84))))
+>>>>>>> c7051fded3f326c067f4ae301852fc52dc34c509
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblheadcreate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dateChooserCombo7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblheadcreate)
+                    .addComponent(dateChooserCombo7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+=======
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> c7051fded3f326c067f4ae301852fc52dc34c509
         );
 
         pack();
@@ -316,15 +430,50 @@ public class CreatePlan1 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelbtn;
     private javax.swing.JButton createbtn;
+<<<<<<< HEAD
+    private datechooser.beans.DateChooserCombo dateChooserCombo1;
+    private datechooser.beans.DateChooserCombo dateChooserCombo2;
+    private datechooser.beans.DateChooserCombo dateChooserCombo3;
+    private datechooser.beans.DateChooserCombo dateChooserCombo4;
+    private datechooser.beans.DateChooserCombo dateChooserCombo5;
+    private datechooser.beans.DateChooserCombo dateChooserCombo6;
+    private datechooser.beans.DateChooserCombo dateChooserCombo7;
+    private datechooser.beans.DateChooserDialog dateChooserDialog1;
+    private datechooser.beans.DateChooserDialog dateChooserDialog2;
+    private datechooser.beans.DateChooserDialog dateChooserDialog3;
+    private datechooser.beans.DateChooserDialog dateChooserDialog4;
+    private datechooser.beans.DateChooserDialog dateChooserDialog5;
+    private datechooser.beans.DateChooserDialog dateChooserDialog6;
+    private datechooser.beans.DateChooserDialog dateChooserDialog7;
+    private datechooser.beans.DateChooserDialog dateChooserDialog8;
+    private datechooser.beans.DateChooserPanel dateChooserPanel1;
+    private datechooser.beans.DateChooserPanel dateChooserPanel2;
+    private datechooser.demo.locale.DemoBundle demoBundle1;
+    private com.toedter.calendar.JCalendar jCalendar1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser jDateChooser3;
+    private com.toedter.calendar.JDateChooser jDateChooser4;
+    private com.toedter.calendar.JDayChooser jDayChooser1;
+    private com.toedter.calendar.JDayChooser jDayChooser2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollBar jScrollBar1;
+=======
     private com.toedter.calendar.JDateChooser endDateChoose;
     private javax.swing.JPanel jPanel1;
+>>>>>>> c7051fded3f326c067f4ae301852fc52dc34c509
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDes;
     private javax.swing.JLabel lblEndDate;
     private javax.swing.JLabel lblPName;
     private javax.swing.JLabel lblStartDate;
     private javax.swing.JLabel lblheadcreate;
+<<<<<<< HEAD
+    private datechooser.demo.steps.Show1Components show1Components1;
+=======
     private com.toedter.calendar.JDateChooser startDateChoose;
+>>>>>>> c7051fded3f326c067f4ae301852fc52dc34c509
     private javax.swing.JTextArea txtDes;
     private javax.swing.JTextField txtPName;
     // End of variables declaration//GEN-END:variables
