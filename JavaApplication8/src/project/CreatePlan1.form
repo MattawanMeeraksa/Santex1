@@ -1,6 +1,83 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="com.toedter.calendar.JDayChooser" name="jDayChooser1">
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+    </Component>
+    <Component class="com.toedter.calendar.JCalendar" name="jCalendar1">
+    </Component>
+    <Component class="com.toedter.calendar.JDayChooser" name="jDayChooser2">
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser2">
+    </Component>
+    <Component class="datechooser.beans.DateChooserDialog" name="dateChooserDialog1">
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser3">
+    </Component>
+    <Component class="datechooser.beans.DateChooserDialog" name="dateChooserDialog2">
+    </Component>
+    <Component class="datechooser.beans.DateChooserCombo" name="dateChooserCombo1">
+    </Component>
+    <Component class="datechooser.beans.DateChooserPanel" name="dateChooserPanel1">
+    </Component>
+    <Component class="datechooser.beans.DateChooserDialog" name="dateChooserDialog3">
+    </Component>
+    <Component class="datechooser.beans.DateChooserDialog" name="dateChooserDialog4">
+    </Component>
+    <Component class="datechooser.beans.DateChooserPanel" name="dateChooserPanel2">
+    </Component>
+    <Component class="datechooser.beans.DateChooserDialog" name="dateChooserDialog5">
+    </Component>
+    <Component class="datechooser.beans.DateChooserCombo" name="dateChooserCombo3">
+    </Component>
+    <Component class="datechooser.beans.DateChooserCombo" name="dateChooserCombo4">
+    </Component>
+    <Component class="datechooser.beans.DateChooserCombo" name="dateChooserCombo2">
+    </Component>
+    <Component class="datechooser.beans.DateChooserDialog" name="dateChooserDialog6">
+    </Component>
+    <Component class="datechooser.beans.DateChooserDialog" name="dateChooserDialog7">
+    </Component>
+    <Component class="datechooser.beans.DateChooserDialog" name="dateChooserDialog8">
+    </Component>
+    <Component class="datechooser.demo.locale.DemoBundle" name="demoBundle1">
+    </Component>
+    <Component class="datechooser.demo.steps.Show1Components" name="show1Components1">
+    </Component>
+    <Container class="javax.swing.JPanel" name="jPanel2">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace pref="206" max="32767" attributes="0"/>
+                  <Component id="dateChooserCombo5" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                  <Component id="dateChooserCombo5" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="113" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="datechooser.beans.DateChooserCombo" name="dateChooserCombo5">
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser4">
+    </Component>
+    <Component class="datechooser.beans.DateChooserCombo" name="dateChooserCombo6">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -27,9 +104,11 @@
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel1" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="lblheadcreate" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="dateChooserCombo7" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -38,10 +117,14 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="lblheadcreate" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblheadcreate" min="-2" max="-2" attributes="0"/>
+                  <Component id="dateChooserCombo7" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel1" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -62,28 +145,31 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                          <Component id="createbtn" min="-2" pref="132" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                          <Component id="cancelbtn" min="-2" pref="138" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblPName" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTtDays" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <Component id="lblDes" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblPName" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblTtDays" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="260" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="txtPName" alignment="0" max="32767" attributes="0"/>
                               <Component id="jScrollPane1" alignment="0" pref="178" max="32767" attributes="0"/>
                               <Component id="txtTtDays" alignment="0" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace pref="10" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="createbtn" min="-2" pref="132" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                          <Component id="cancelbtn" min="-2" pref="138" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="33" max="32767" attributes="0"/>
                   <Component id="jScrollBar1" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -96,28 +182,22 @@
                       <Component id="lblPName" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtPName" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                          <Component id="lblDes" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblDes" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblTtDays" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtTtDays" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="createbtn" alignment="3" min="-2" pref="67" max="-2" attributes="0"/>
                       <Component id="cancelbtn" alignment="3" min="-2" pref="67" max="-2" attributes="0"/>
+                      <Component id="createbtn" alignment="3" min="-2" pref="67" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="54" max="32767" attributes="0"/>
+                  <EmptySpace min="44" max="32767" attributes="0"/>
               </Group>
               <Component id="jScrollBar1" max="32767" attributes="0"/>
           </Group>
@@ -193,5 +273,7 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="datechooser.beans.DateChooserCombo" name="dateChooserCombo7">
+    </Component>
   </SubComponents>
 </Form>

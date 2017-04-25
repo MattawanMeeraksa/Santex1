@@ -392,14 +392,14 @@ public class MyPlan extends JFrame implements ActionListener {
                 buttons5.get(i).setEnabled(false);
                 System.out.println("Start");
                 System.out.println("Plan Name : " + planName.get(i));
-                StartPlan stp = new StartPlan();
-                stp.setPlanId(planId.get(i));
-                stp.setPlanName(planName.get(i));
-                stp.pack();
-                stp.setSize(400, 400);
-                stp.setVisible(true);
-                stp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                stp.setLocationRelativeTo(null);
+                StartPlan1 stp1 = new StartPlan1();
+                stp1.setPlanId(planId.get(i));
+                stp1.setPlanName(planName.get(i));
+                stp1.pack();
+                stp1.setSize(400, 400);
+                stp1.setVisible(true);
+                stp1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                stp1.setLocationRelativeTo(null);
                 this.setVisible(true);
             }
 
