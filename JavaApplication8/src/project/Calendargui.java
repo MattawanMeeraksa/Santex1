@@ -187,7 +187,7 @@ public class Calendargui extends JFrame implements ActionListener {
                     MyPlan2 mp = new MyPlan2();
                     mp.setVisible(true);
                     setVisible(false);
-                    mp.setSize(400, 400);
+                   
                     mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     mp.setLocationRelativeTo(null);
                 

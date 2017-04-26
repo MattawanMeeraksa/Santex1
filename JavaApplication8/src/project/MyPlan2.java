@@ -14,6 +14,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -40,7 +41,6 @@ public class MyPlan2 extends javax.swing.JFrame {
     public void setPlanId(int planId) {
         this.planId = planId;
     }
-    
 
     public String getPlanName() {
         return planName;
@@ -89,9 +89,6 @@ public class MyPlan2 extends javax.swing.JFrame {
     public void setNameDay(String nameDay) {
         this.nameDay = nameDay;
     }
-    
-    
-    
 
     /**
      * Creates new form MyPlan2
@@ -131,9 +128,9 @@ public class MyPlan2 extends javax.swing.JFrame {
         lblStart = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lblDes = new javax.swing.JTextPane();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        addBtn = new javax.swing.JButton();
+        detailBtn = new javax.swing.JButton();
+        startBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
 
@@ -214,22 +211,22 @@ public class MyPlan2 extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(880, 170, 320, 60);
 
-        jButton1.setText("ADD");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addBtn.setText("ADD");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(50, 520, 140, 50);
+        getContentPane().add(addBtn);
+        addBtn.setBounds(50, 520, 140, 50);
 
-        jButton2.setText("DETEIL");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(270, 520, 120, 50);
+        detailBtn.setText("DETEIL");
+        getContentPane().add(detailBtn);
+        detailBtn.setBounds(270, 520, 120, 50);
 
-        jButton3.setText("START");
-        getContentPane().add(jButton3);
-        jButton3.setBounds(480, 520, 120, 50);
+        startBtn.setText("START");
+        getContentPane().add(startBtn);
+        startBtn.setBounds(480, 520, 120, 50);
 
         deleteBtn.setText("DELETE");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -298,16 +295,51 @@ public class MyPlan2 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_myPlanMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        AddList al = new AddList();
+        al.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_addBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        // TODO add your handling code here:
+        try {
+            String sql = "delete from PLAN where planName=?";
+            pstm = (PreparedStatement) conn.prepareStatement(sql);
+            pstm.setString(1, planName);
+            pstm.executeUpdate();
+            Object[] options = {"Yes", "No"}; //เป็นปุ่มที่ให้เลือกว่าจะกดอะไร
+            int n = JOptionPane.showOptionDialog(deleteBtn, //1.เป็นชนิดของปุ่ม
+                    "Do you want delete plan?", //2.เป็นข้อความโชว์บนกล่อง message
+                    "Delete Plan!!!", //3.title ของ message box
+                    JOptionPane.YES_NO_CANCEL_OPTION, //4.ชนิดของ optionPane ว่าเป็น yes/no
+                    JOptionPane.QUESTION_MESSAGE,
+                    null, //ไม่ใช้ไอคอน do not use a custom Icon
+                    options, //ชื่อของในแต่ละปุ่ม the titles of button ที่มี yes no
+                    options[0]); //default button title
+
+            // ถ้ากด yes จะทำให้ n มีค่าเป็น 0
+            if (n == 0) {
+
+                //ให้มันแสดงเฉยๆว่าแพลนนั้นถูกลบออกไปแล้วแต่กดเลือกอะไรไม่ได้นอกจากแค่กด ok หรือปิดหน้าจอไป
+                JOptionPane.showMessageDialog(null, "Your plan is deleted");
+                MyPlan2 sp = new MyPlan2();
+
+                sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                sp.setVisible(true);
+                sp.setLocationRelativeTo(null);
+                setVisible(false);
+
+            } else {
+                System.out.println("Canceled");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-        EditPlan eplan = new EditPlan(getPlanId(),getPlanName(), getPlanDes(), getStartDate(), getEndDate(), getDayPerWeek(),getNameDay());
+        EditPlan eplan = new EditPlan(getPlanId(), getPlanName(), getPlanDes(),
+                 getStartDate(), getEndDate(), getDayPerWeek(), getNameDay());
         System.out.println(getPlanId());
         eplan.pack();
         eplan.setVisible(true);
@@ -330,16 +362,24 @@ public class MyPlan2 extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MyPlan2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MyPlan2.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MyPlan2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MyPlan2.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MyPlan2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MyPlan2.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MyPlan2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MyPlan2.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -352,11 +392,10 @@ public class MyPlan2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addBtn;
     private javax.swing.JButton deleteBtn;
+    private javax.swing.JButton detailBtn;
     private javax.swing.JButton editBtn;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -367,6 +406,7 @@ public class MyPlan2 extends javax.swing.JFrame {
     private javax.swing.JLabel lblPName2;
     private javax.swing.JLabel lblStart;
     private javax.swing.JTable myPlan;
+    private javax.swing.JButton startBtn;
     private javax.swing.JLabel txtDPW;
     private javax.swing.JLabel txtDes;
     private javax.swing.JLabel txtEnd;
