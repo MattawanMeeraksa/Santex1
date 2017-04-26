@@ -415,7 +415,7 @@ public class MyPlan extends JFrame implements ActionListener {
                 buttons5.get(i).setEnabled(false);
                 System.out.println("Start");
                 System.out.println("Plan Name : " + planName.get(i));
-                StartPlan stp = new StartPlan();
+                StartPlan1 stp = new StartPlan1();
                 stp.setPlanId(planId.get(i));
                 stp.setPlanName(planName.get(i));
                 stp.pack();
