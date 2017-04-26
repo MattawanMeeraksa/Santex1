@@ -301,7 +301,7 @@ public class MyPlan2 extends javax.swing.JFrame {
     }//GEN-LAST:event_myPlanMouseClicked
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        AddList1 al = new AddList1(this, rootPaneCheckingEnabled);
+        AddList1 al = new AddList1(this, rootPaneCheckingEnabled,this);
         al.setVisible(true);
     }//GEN-LAST:event_addBtnActionPerformed
 
@@ -345,7 +345,6 @@ public class MyPlan2 extends javax.swing.JFrame {
         EditPlan eplan = new EditPlan(getPlanId(), getPlanName(), getPlanDes(),
                 getStartDate(), getEndDate(), getDayPerWeek(), getNameDay());
         System.out.println(getPlanId());
-
         eplan.setVisible(true);
         eplan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         eplan.setLocationRelativeTo(null);

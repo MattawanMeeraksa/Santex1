@@ -315,7 +315,6 @@ public class EditPlan extends javax.swing.JFrame {
                 pstm.setString(1, txtPName.getText());
 
                 pstm.setString(2, txtDes.getText());
-                //pstm.setString(3, " ");
                 pstm.setDate(3, ((java.sql.Date) startDate));
                 pstm.setDate(4, ((java.sql.Date) endDate));
                 // pstm.setInt(5, 0);
