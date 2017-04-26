@@ -34,9 +34,7 @@ public class DetailList extends JFrame {
     private ArrayList<JButton> buttons2; //เก็บปุ่ม buttons2 เป็น arraylist 
     private ArrayList<String> listPlanName,description,reps,set; //เก็บ ตัวแปร เป็น arraylist 
     
-    public DetailList(){
-        
-    }
+   
     
     public DetailList(int planId) throws ClassNotFoundException, SQLException{
         this.planId = planId ;
@@ -189,8 +187,9 @@ public class DetailList extends JFrame {
     }
        
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        DetailList dl = new DetailList();
-        dl.pack();
+        int a = 0;
+        DetailList dl = new DetailList(a);
+       
         dl.setSize(400, 400);
         dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         dl.setVisible(true);

@@ -94,8 +94,8 @@ public class MyPlan2 extends javax.swing.JFrame {
      * Creates new form MyPlan2
      */
     public MyPlan2() {
+        initComponents();
         try {
-            initComponents();
             conn = MySQLConnect.getMySQLConnection();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
@@ -103,7 +103,6 @@ public class MyPlan2 extends javax.swing.JFrame {
             Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -116,18 +115,18 @@ public class MyPlan2 extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         myPlan = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        txtPName = new javax.swing.JLabel();
-        txtDes = new javax.swing.JLabel();
-        txtDPW = new javax.swing.JLabel();
-        txtStart = new javax.swing.JLabel();
-        txtEnd = new javax.swing.JLabel();
-        lblEnd = new javax.swing.JLabel();
         lblPName = new javax.swing.JLabel();
-        lblPName2 = new javax.swing.JLabel();
+        lblDes = new javax.swing.JLabel();
         lblDPW = new javax.swing.JLabel();
         lblStart = new javax.swing.JLabel();
+        lblEnd = new javax.swing.JLabel();
+        txtEnd = new javax.swing.JLabel();
+        txtPName = new javax.swing.JLabel();
+        lblPName2 = new javax.swing.JLabel();
+        txtDPW = new javax.swing.JLabel();
+        txtStart = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lblDes = new javax.swing.JTextPane();
+        txtDes = new javax.swing.JTextPane();
         addBtn = new javax.swing.JButton();
         detailBtn = new javax.swing.JButton();
         startBtn = new javax.swing.JButton();
@@ -135,6 +134,7 @@ public class MyPlan2 extends javax.swing.JFrame {
         editBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1302, 615));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
@@ -170,43 +170,43 @@ public class MyPlan2 extends javax.swing.JFrame {
         jScrollPane2.setViewportView(myPlan);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(30, 123, 817, 356);
+        jScrollPane2.setBounds(30, 100, 817, 360);
 
         jLabel1.setText("My Plan");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(39, 26, 55, 20);
 
-        txtPName.setText("Plan Name");
-        getContentPane().add(txtPName);
-        txtPName.setBounds(870, 70, 76, 20);
-
-        txtDes.setText("Description");
-        getContentPane().add(txtDes);
-        txtDes.setBounds(870, 140, 79, 20);
-
-        txtDPW.setText("Day per Week");
-        getContentPane().add(txtDPW);
-        txtDPW.setBounds(870, 240, 98, 20);
-
-        txtStart.setText("Start Date");
-        getContentPane().add(txtStart);
-        txtStart.setBounds(870, 330, 70, 20);
-
-        txtEnd.setText("End Date");
-        getContentPane().add(txtEnd);
-        txtEnd.setBounds(870, 420, 64, 20);
-        getContentPane().add(lblEnd);
-        lblEnd.setBounds(890, 450, 330, 40);
+        lblPName.setText("Plan Name");
         getContentPane().add(lblPName);
-        lblPName.setBounds(880, 90, 330, 40);
+        lblPName.setBounds(870, 70, 76, 20);
+
+        lblDes.setText("Description");
+        getContentPane().add(lblDes);
+        lblDes.setBounds(870, 140, 79, 20);
+
+        lblDPW.setText("Day per Week");
+        getContentPane().add(lblDPW);
+        lblDPW.setBounds(870, 240, 98, 20);
+
+        lblStart.setText("Start Date");
+        getContentPane().add(lblStart);
+        lblStart.setBounds(870, 330, 70, 20);
+
+        lblEnd.setText("End Date");
+        getContentPane().add(lblEnd);
+        lblEnd.setBounds(870, 420, 64, 20);
+        getContentPane().add(txtEnd);
+        txtEnd.setBounds(890, 450, 330, 40);
+        getContentPane().add(txtPName);
+        txtPName.setBounds(880, 90, 330, 40);
         getContentPane().add(lblPName2);
         lblPName2.setBounds(880, 90, 330, 40);
-        getContentPane().add(lblDPW);
-        lblDPW.setBounds(890, 270, 330, 40);
-        getContentPane().add(lblStart);
-        lblStart.setBounds(890, 360, 330, 40);
+        getContentPane().add(txtDPW);
+        txtDPW.setBounds(890, 270, 330, 40);
+        getContentPane().add(txtStart);
+        txtStart.setBounds(890, 360, 330, 40);
 
-        jScrollPane1.setViewportView(lblDes);
+        jScrollPane1.setViewportView(txtDes);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(880, 170, 320, 60);
@@ -221,6 +221,11 @@ public class MyPlan2 extends javax.swing.JFrame {
         addBtn.setBounds(50, 520, 140, 50);
 
         detailBtn.setText("DETEIL");
+        detailBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                detailBtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(detailBtn);
         detailBtn.setBounds(270, 520, 120, 50);
 
@@ -246,7 +251,7 @@ public class MyPlan2 extends javax.swing.JFrame {
         getContentPane().add(editBtn);
         editBtn.setBounds(1140, 510, 120, 50);
 
-        setSize(new java.awt.Dimension(1324, 671));
+        pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -272,17 +277,17 @@ public class MyPlan2 extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void myPlanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_myPlanMouseClicked
-        lblPName.setText(myPlan.getValueAt(myPlan.getSelectedRow(), 0) + "");
-        lblDes.setText(myPlan.getValueAt(myPlan.getSelectedRow(), 1) + "");
+        txtPName.setText(myPlan.getValueAt(myPlan.getSelectedRow(), 0) + "");
+        txtDes.setText(myPlan.getValueAt(myPlan.getSelectedRow(), 1) + "");
         try {
             String sql = "select * from PLAN where planName=?";
             pstm = (PreparedStatement) conn.prepareStatement(sql);
             pstm.setString(1, myPlan.getValueAt(myPlan.getSelectedRow(), 0) + "");
             ResultSet rs = pstm.executeQuery();
             rs.next();
-            lblDPW.setText(rs.getInt("dayperweek") + "");
-            lblStart.setText(rs.getDate("startDate").toString());
-            lblEnd.setText(rs.getDate("endDate").toString());
+            txtDPW.setText(rs.getInt("dayperweek") + "");
+            txtStart.setText(rs.getDate("startDate").toString());
+            txtEnd.setText(rs.getDate("endDate").toString());
             setPlanName(rs.getString("planName"));
             setPlanDes(rs.getString("descriptionPlan"));
             setDayPerWeek(rs.getInt("dayperweek"));
@@ -296,9 +301,8 @@ public class MyPlan2 extends javax.swing.JFrame {
     }//GEN-LAST:event_myPlanMouseClicked
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        AddList al = new AddList();
+        AddList1 al = new AddList1(this, rootPaneCheckingEnabled);
         al.setVisible(true);
-        setVisible(false);
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
@@ -339,14 +343,22 @@ public class MyPlan2 extends javax.swing.JFrame {
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         EditPlan eplan = new EditPlan(getPlanId(), getPlanName(), getPlanDes(),
-                 getStartDate(), getEndDate(), getDayPerWeek(), getNameDay());
+                getStartDate(), getEndDate(), getDayPerWeek(), getNameDay());
         System.out.println(getPlanId());
-        eplan.pack();
+
         eplan.setVisible(true);
         eplan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         eplan.setLocationRelativeTo(null);
         this.setVisible(false);
     }//GEN-LAST:event_editBtnActionPerformed
+
+    private void detailBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailBtnActionPerformed
+        DetailList1 dl = new DetailList1(getPlanId());
+        System.out.println(getPlanId());
+        dl.setVisible(true);
+        setVisible(false);
+        dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }//GEN-LAST:event_detailBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -400,7 +412,7 @@ public class MyPlan2 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblDPW;
-    private javax.swing.JTextPane lblDes;
+    private javax.swing.JLabel lblDes;
     private javax.swing.JLabel lblEnd;
     private javax.swing.JLabel lblPName;
     private javax.swing.JLabel lblPName2;
@@ -408,7 +420,7 @@ public class MyPlan2 extends javax.swing.JFrame {
     private javax.swing.JTable myPlan;
     private javax.swing.JButton startBtn;
     private javax.swing.JLabel txtDPW;
-    private javax.swing.JLabel txtDes;
+    private javax.swing.JTextPane txtDes;
     private javax.swing.JLabel txtEnd;
     private javax.swing.JLabel txtPName;
     private javax.swing.JLabel txtStart;
