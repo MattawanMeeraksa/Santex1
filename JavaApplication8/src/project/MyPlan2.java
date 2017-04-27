@@ -417,7 +417,7 @@ public class MyPlan2 extends javax.swing.JFrame {
     }//GEN-LAST:event_detailBtnActionPerformed
 
     private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
-        StartPlan1 sp = new StartPlan1();
+        StartPlan1 sp = new StartPlan1(getPlanId());
         sp.setVisible(true);
         sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         sp.setLocationRelativeTo(null);

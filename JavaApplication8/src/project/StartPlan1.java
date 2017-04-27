@@ -23,8 +23,14 @@ public class StartPlan1 extends javax.swing.JFrame {
     private int planId;
     private String planName;
     public StartPlan1() {
-        initComponents();
+        //initComponents();
     }
+
+    public StartPlan1(int planId) {
+        initComponents();
+        this.planId = planId;
+    }
+    
 
     public int getPlanId() {
         return planId;
@@ -231,14 +237,14 @@ public class StartPlan1 extends javax.swing.JFrame {
     private void monCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monCheckActionPerformed
         // TODO add your handling code here:
         System.out.println("Monday");
-        Mon="Monday";
+        Mon="Monday ";
         DPW++;
     }//GEN-LAST:event_monCheckActionPerformed
 
     private void sunCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sunCheckActionPerformed
         // TODO add your handling code here:
         System.out.println("Sunday");
-        Sun = "Sunday";
+        Sun = "Sunday ";
         DPW++;
     }//GEN-LAST:event_sunCheckActionPerformed
 
@@ -247,6 +253,7 @@ public class StartPlan1 extends javax.swing.JFrame {
             // TODO add your handling code here:
             nameDay =""+Sun+Mon+Tues+Wedn+Thru+Fri+Sat;
             System.out.println("Started Plan " + getPlanName());
+            System.out.println("Plan Id "+getPlanId());
             Plan p = new Plan();
             ResultSet rs = p.show();
             p.start(DPW, getPlanId(),nameDay);
@@ -280,35 +287,35 @@ public class StartPlan1 extends javax.swing.JFrame {
     private void tuesCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tuesCheckActionPerformed
         // TODO add your handling code here:
         System.out.println("Tuesday");
-        Tues = "Tuesday";
+        Tues = "Tuesday ";
         DPW++;
     }//GEN-LAST:event_tuesCheckActionPerformed
 
     private void wedCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wedCheckActionPerformed
         // TODO add your handling code here:
         System.out.println("Wednesday");
-        Wedn = "Wednesday";
+        Wedn = "Wednesday ";
         DPW++;
     }//GEN-LAST:event_wedCheckActionPerformed
 
     private void thuCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thuCheckActionPerformed
         // TODO add your handling code here:
         System.out.println("Thrusday");
-        Thru = "Thrusday";
+        Thru = "Thrusday ";
         DPW++;
     }//GEN-LAST:event_thuCheckActionPerformed
 
     private void friCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friCheckActionPerformed
         // TODO add your handling code here:
         System.out.println("Friday");
-        Fri = "Friday";
+        Fri = "Friday ";
         DPW++;
     }//GEN-LAST:event_friCheckActionPerformed
 
     private void satCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satCheckActionPerformed
         // TODO add your handling code here:
         System.out.println("Saturday");
-        Sat = "Saturday";
+        Sat = "Saturday ";
         DPW++;
     }//GEN-LAST:event_satCheckActionPerformed
 
