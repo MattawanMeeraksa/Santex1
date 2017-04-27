@@ -9,17 +9,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
  * @author Administrator
  */
 public class AddList1 extends java.awt.Dialog {
+
     private static int planId = 0;
     MyPlan2 mp;
     Connection conn = null;
@@ -32,13 +37,11 @@ public class AddList1 extends java.awt.Dialog {
     public void setPlanId(int planId) {
         this.planId = planId;
     }
-    
-    
 
     /**
      * Creates new form AddList1
      */
-    public AddList1(java.awt.Frame parent, boolean modal, MyPlan2 mp,int planId) {
+    public AddList1(java.awt.Frame parent, boolean modal, MyPlan2 mp, int planId) {
         super(parent, modal);
         try {
             this.planId = planId;
@@ -48,7 +51,7 @@ public class AddList1 extends java.awt.Dialog {
             tt();
             txtListPlanId.setText(this.planId + "");
             txtListPlanId.setVisible(false);
-            
+
             System.out.println(mp.getPlanName());
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AddList1.class.getName()).log(Level.SEVERE, null, ex);
@@ -109,6 +112,17 @@ public class AddList1 extends java.awt.Dialog {
         txtReps.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRepsActionPerformed(evt);
+            }
+        });
+        txtReps.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRepsKeyTyped(evt);
+            }
+        });
+
+        txtSet.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSetKeyTyped(evt);
             }
         });
 
@@ -266,7 +280,7 @@ public class AddList1 extends java.awt.Dialog {
             String s = txtSet.getText();
             int set = Integer.parseInt(s);
             pstm.setString(5, txtListPlanId.getText());
-            pstm.setString(6, boxChooseDay.getSelectedItem()+"");
+            pstm.setString(6, boxChooseDay.getSelectedItem() + "");
             String l = txtListPlanId.getText();
             int listPlanId = Integer.parseInt(l);
             pstm.executeUpdate();
@@ -283,12 +297,26 @@ public class AddList1 extends java.awt.Dialog {
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void boxChooseDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxChooseDayActionPerformed
-        System.out.println(""+boxChooseDay.getSelectedItem());
+        System.out.println("" + boxChooseDay.getSelectedItem());
     }//GEN-LAST:event_boxChooseDayActionPerformed
 
     private void txtListPlanIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtListPlanIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtListPlanIdActionPerformed
+
+    private void txtRepsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRepsKeyTyped
+        MaskFormatter mask = null;
+        try {
+            mask = new MaskFormatter("##########");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        JFormattedTextField fmField = new JFormattedTextField(mask);
+    }//GEN-LAST:event_txtRepsKeyTyped
+
+    private void txtSetKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSetKeyTyped
+
+    }//GEN-LAST:event_txtSetKeyTyped
 
     /**
      * @param args the command line arguments
@@ -296,7 +324,7 @@ public class AddList1 extends java.awt.Dialog {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AddList1 dialog = new AddList1(new java.awt.Frame(), true, new MyPlan2(),planId);
+                AddList1 dialog = new AddList1(new java.awt.Frame(), true, new MyPlan2(), planId);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
@@ -314,10 +342,10 @@ public class AddList1 extends java.awt.Dialog {
         ResultSet rs = pstm.executeQuery();
         while (rs.next()) {
             String days = rs.getString("nameDay");
-            int start=0;
+            int start = 0;
             for (int i = 1; i <= rs.getInt("dayperweek"); i++) {
-                String eachDay=days.substring(start, days.indexOf(" ", start));
-                start=days.indexOf(" ", start)+1;
+                String eachDay = days.substring(start, days.indexOf(" ", start));
+                start = days.indexOf(" ", start) + 1;
                 boxChooseDay.addItem(eachDay);
             }
         }

@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,11 +20,14 @@ import javax.swing.JFrame;
  */
 public class EditListPlan extends javax.swing.JFrame {
 
-    private String newPlanName;
-    private String newDescription;
-    private int newReps;
-    private int newSet;
-    private int planId = 0;
+    Connection conn = null;
+    PreparedStatement pstm = null;
+    private String listPlanName;
+    private String listDescription;
+    private int set;
+    private int reps;
+    private int planId;
+    private int listID;
 
     private EditListPlan() {
         initComponents();
@@ -31,59 +35,80 @@ public class EditListPlan extends javax.swing.JFrame {
         setResizable(false);
     }
 
-    EditListPlan(int planId) {
+    public EditListPlan(int planId) {
         this.planId = planId;
-        initComponents();
-        setTitle("Edit");
-        setResizable(false);
+        try {
+            initComponents();
+            setTitle("Edit");
+            setResizable(false);
+            conn = MySQLConnect.getMySQLConnection();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditListPlan.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditListPlan.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    EditListPlan(String listPlanName, String description, String reps, String set) throws ClassNotFoundException, SQLException {
-        this();
-        newPlanName = listPlanName;
-        newDescription = description;
-        int r = Integer.parseInt(reps);
-        newReps = r;
-        int s = Integer.parseInt(set);
-        newSet = s;
-        jTextField1.setText(this.newPlanName);
-        jTextField2.setText(this.newDescription);
-        jTextField3.setText(this.newReps + "");
-        jTextField4.setText(this.newSet + "");
+    EditListPlan(int planId, String listPlanName, String listDescription, int reps, int set,int listID) throws ClassNotFoundException, SQLException {
+        this.planId = planId;
+        this.listPlanName = listPlanName;
+        this.listDescription = listDescription;
+        this.reps = reps;
+        this.set = set;
+        this.listID = listID;
+        try {
+            initComponents();
+            conn = MySQLConnect.getMySQLConnection();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditPlan.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditPlan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        txtLName.setText(listPlanName);
+        txtDes.setText(listDescription);
+        txtReps.setText(reps + "");
+        txtSet.setText(set + "");
     }
 
-    public String getNewPlanName() {
-        return newPlanName;
+    public String getListDescription() {
+        return listDescription;
     }
 
-    public String getNewDescription() {
-        return newDescription;
+    public void setListDescription(String listDescription) {
+        this.listDescription = listDescription;
     }
 
-    public int getNewReps() {
-        return newReps;
+    public String getListPlanName() {
+        return listPlanName;
     }
 
-    public int getNewSet() {
-        return newSet;
+    public void setListPlanName(String listPlanName) {
+        this.listPlanName = listPlanName;
     }
 
-    public void setNewPlanName(String newPlanName) {
-        this.newPlanName = newPlanName;
+    public int getSet() {
+        return set;
     }
 
-    public void setNewDescription(String newDescription) {
-        this.newDescription = newDescription;
+    public void setSet(int set) {
+        this.set = set;
     }
 
-    public void setNewReps(int newReps) {
-        this.newReps = newReps;
+    public int getReps() {
+        return reps;
     }
 
-    public void setNewSet(int newSet) {
-        this.newSet = newSet;
+    public void setReps(int reps) {
+        this.reps = reps;
     }
 
+    public int getPlanId() {
+        return planId;
+    }
+
+    public void setPlanId(int planId) {
+        this.planId = planId;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -94,77 +119,138 @@ public class EditListPlan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        lblSet = new javax.swing.JLabel();
+        txtDes = new javax.swing.JTextField();
+        txtReps = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        backBtn = new javax.swing.JButton();
+        txtSet = new javax.swing.JTextField();
+        lblLName = new javax.swing.JLabel();
+        lblDes = new javax.swing.JLabel();
+        lblReps = new javax.swing.JLabel();
+        txtLName = new javax.swing.JTextField();
+        saveBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Reps");
+        lblSet.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblSet.setText("Set");
 
-        jTextField1.setMinimumSize(new java.awt.Dimension(59, 20));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtDes.setMinimumSize(new java.awt.Dimension(59, 20));
+        txtDes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtDesActionPerformed(evt);
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Set");
-
-        jTextField2.setMinimumSize(new java.awt.Dimension(59, 20));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtReps.setMinimumSize(new java.awt.Dimension(59, 20));
+        txtReps.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Save");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jTextField3.setMinimumSize(new java.awt.Dimension(59, 20));
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtRepsActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Edit");
 
-        jButton2.setText("<");
-        jButton2.setPreferredSize(new java.awt.Dimension(41, 32));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        backBtn.setText("BACK");
+        backBtn.setPreferredSize(new java.awt.Dimension(41, 32));
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                backBtnActionPerformed(evt);
             }
         });
 
-        jTextField4.setMinimumSize(new java.awt.Dimension(59, 20));
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        txtSet.setMinimumSize(new java.awt.Dimension(59, 20));
+        txtSet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                txtSetActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("List name");
+        lblLName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblLName.setText("List name");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Description");
+        lblDes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblDes.setText("Description");
+
+        lblReps.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblReps.setText("Reps");
+
+        txtLName.setMinimumSize(new java.awt.Dimension(59, 20));
+        txtLName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLNameActionPerformed(evt);
+            }
+        });
+
+        saveBtn.setText("Save");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblLName))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtLName, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtDes, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDes)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(lblSet)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtSet, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(lblReps)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtReps, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 253, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblLName)
+                    .addComponent(txtLName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addComponent(lblDes)
+                .addGap(30, 30, 30)
+                .addComponent(txtDes, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblReps)
+                    .addComponent(txtReps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSet))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,117 +258,73 @@ public class EditListPlan extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1))
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(131, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(19, 19, 19))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(12, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtLNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLNameActionPerformed
         setResizable(false);
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtLNameActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesActionPerformed
         setResizable(false);
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtDesActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        System.out.println("listID"+listID);
         try {
-            ListPlan lp = new ListPlan();
-            ResultSet rs = lp.show(planId);
-            lp.editListPlanName(newPlanName, jTextField1.getText());
-            lp.editDescription(newDescription, jTextField2.getText());
-            String r = jTextField3.getText();
-            int reps = Integer.parseInt(r);
-            lp.editReps(newReps, reps);
-            String s = jTextField4.getText();
-            int set = Integer.parseInt(s);
-            lp.editSet(newSet, set);
+            String sql = "update LIST set ListName = ? , descriptionList = ? , reps = ? , `set` = ? where listID=" + listID;
+            pstm = (PreparedStatement) conn.prepareStatement(sql);
+            pstm.setString(1, txtLName.getText());
+            pstm.setString(2, txtDes.getText());
+            pstm.setString(3, txtReps.getText());
+            pstm.setString(4, txtSet.getText());
+            pstm.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Edit successfully");
+            DetailList1 dl = new DetailList1(planId);
+            dl.setVisible(true);
+            dl.setLocationRelativeTo(null);
+            dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.setVisible(false);
+//            MyPlan2 mp = new MyPlan2();
+//            mp.pack();
+//            mp.setVisible(true);
+//            setVisible(false);
+//            mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//            mp.setLocationRelativeTo(null);
 
-            MyPlan mp = new MyPlan();
-            mp.setVisible(true);
-            mp.setSize(600, 600);
-            setVisible(false);
-            mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            mp.setLocationRelativeTo(null); 
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EditListPlan.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(EditListPlan.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CreatePlan1.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            MyPlan mp = new MyPlan();
-            mp.setVisible(true);
-            mp.setSize(600, 600);
-            setVisible(false);
-            mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            mp.setLocationRelativeTo(null); 
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AddList.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(AddList.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_saveBtnActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        DetailList1 dl = new DetailList1(planId);
+            dl.setVisible(true);
+            dl.setLocationRelativeTo(null);
+            dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.setVisible(false);
+
+    }//GEN-LAST:event_backBtnActionPerformed
+
+    private void txtRepsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRepsActionPerformed
         setResizable(false);
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtRepsActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void txtSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSetActionPerformed
         setResizable(false);
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_txtSetActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,17 +340,18 @@ public class EditListPlan extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton backBtn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblDes;
+    private javax.swing.JLabel lblLName;
+    private javax.swing.JLabel lblReps;
+    private javax.swing.JLabel lblSet;
+    private javax.swing.JButton saveBtn;
+    private javax.swing.JTextField txtDes;
+    private javax.swing.JTextField txtLName;
+    private javax.swing.JTextField txtReps;
+    private javax.swing.JTextField txtSet;
     // End of variables declaration//GEN-END:variables
 
 }

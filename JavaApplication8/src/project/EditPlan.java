@@ -317,19 +317,20 @@ public class EditPlan extends javax.swing.JFrame {
                 pstm.setString(2, txtDes.getText());
                 pstm.setDate(3, ((java.sql.Date) startDate));
                 pstm.setDate(4, ((java.sql.Date) endDate));
-                // pstm.setInt(5, 0);
                 pstm.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Plan created successfully");
-                MyPlan sp = new MyPlan();
-                sp.pack();
-                sp.setVisible(true);
-                setVisible(false);
-                sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                sp.setLocationRelativeTo(null);
+//                MyPlan2 sp = new MyPlan2();
+//                sp.pack();
+//                sp.setVisible(true);
+//                setVisible(false);
+//                sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//                sp.setLocationRelativeTo(null);
+                
+                DetailList1 dl = new DetailList1(getPlanId());
+                System.out.println(getPlanId());
+                dl.setVisible(true);
             }
 
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CreatePlan1.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(CreatePlan1.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -175,9 +175,13 @@
         <Component class="javax.swing.JTextField" name="txtReps">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRepsActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtRepsKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtSet">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSetKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblday">
           <Properties>
