@@ -103,6 +103,7 @@ public class MyPlan2 extends javax.swing.JFrame {
             Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -134,14 +135,12 @@ public class MyPlan2 extends javax.swing.JFrame {
         editBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1302, 615));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
             }
         });
-        getContentPane().setLayout(null);
 
         myPlan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -169,47 +168,19 @@ public class MyPlan2 extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(myPlan);
 
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(30, 100, 817, 360);
-
         jLabel1.setText("My Plan");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(39, 26, 55, 20);
 
         lblPName.setText("Plan Name");
-        getContentPane().add(lblPName);
-        lblPName.setBounds(870, 70, 76, 20);
 
         lblDes.setText("Description");
-        getContentPane().add(lblDes);
-        lblDes.setBounds(870, 140, 79, 20);
 
         lblDPW.setText("Day per Week");
-        getContentPane().add(lblDPW);
-        lblDPW.setBounds(870, 240, 98, 20);
 
         lblStart.setText("Start Date");
-        getContentPane().add(lblStart);
-        lblStart.setBounds(870, 330, 70, 20);
 
         lblEnd.setText("End Date");
-        getContentPane().add(lblEnd);
-        lblEnd.setBounds(870, 420, 64, 20);
-        getContentPane().add(txtEnd);
-        txtEnd.setBounds(890, 450, 330, 40);
-        getContentPane().add(txtPName);
-        txtPName.setBounds(880, 90, 330, 40);
-        getContentPane().add(lblPName2);
-        lblPName2.setBounds(880, 90, 330, 40);
-        getContentPane().add(txtDPW);
-        txtDPW.setBounds(890, 270, 330, 40);
-        getContentPane().add(txtStart);
-        txtStart.setBounds(890, 360, 330, 40);
 
         jScrollPane1.setViewportView(txtDes);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(880, 170, 320, 60);
 
         addBtn.setText("ADD");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -217,8 +188,6 @@ public class MyPlan2 extends javax.swing.JFrame {
                 addBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(addBtn);
-        addBtn.setBounds(50, 520, 140, 50);
 
         detailBtn.setText("DETEIL");
         detailBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -226,12 +195,13 @@ public class MyPlan2 extends javax.swing.JFrame {
                 detailBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(detailBtn);
-        detailBtn.setBounds(270, 520, 120, 50);
 
         startBtn.setText("START");
-        getContentPane().add(startBtn);
-        startBtn.setBounds(480, 520, 120, 50);
+        startBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setText("DELETE");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -239,8 +209,6 @@ public class MyPlan2 extends javax.swing.JFrame {
                 deleteBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(deleteBtn);
-        deleteBtn.setBounds(910, 510, 120, 50);
 
         editBtn.setText("EDIT");
         editBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -248,8 +216,97 @@ public class MyPlan2 extends javax.swing.JFrame {
                 editBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(editBtn);
-        editBtn.setBounds(1140, 510, 120, 50);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jLabel1))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(870, 870, 870)
+                .addComponent(lblPName))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPName, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPName2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblDes)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblDPW)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(txtDPW, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblStart)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(txtStart, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblEnd)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(txtEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addComponent(detailBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90)
+                .addComponent(startBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(310, 310, 310)
+                .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110)
+                .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel1)
+                .addGap(24, 24, 24)
+                .addComponent(lblPName)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPName2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addComponent(lblDes)
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(lblDPW)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtDPW, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(lblStart)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtStart, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(lblEnd)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(detailBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(startBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+        );
 
         pack();
         setLocationRelativeTo(null);
@@ -301,7 +358,7 @@ public class MyPlan2 extends javax.swing.JFrame {
     }//GEN-LAST:event_myPlanMouseClicked
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        AddList1 al = new AddList1(this, rootPaneCheckingEnabled,this);
+        AddList1 al = new AddList1(this, rootPaneCheckingEnabled, this, getPlanId());
         al.setVisible(true);
     }//GEN-LAST:event_addBtnActionPerformed
 
@@ -358,6 +415,14 @@ public class MyPlan2 extends javax.swing.JFrame {
         setVisible(false);
         dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_detailBtnActionPerformed
+
+    private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
+        StartPlan1 sp = new StartPlan1(getPlanId());
+        sp.setVisible(true);
+        sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        sp.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_startBtnActionPerformed
 
     /**
      * @param args the command line arguments
