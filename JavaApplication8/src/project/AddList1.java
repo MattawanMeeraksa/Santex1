@@ -255,7 +255,7 @@ public class AddList1 extends java.awt.Dialog {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         try {
-            String sql = "insert into LIST(listName,descriptionList,reps,`set`,list_planID) values (?,?,?,?,?)";
+            String sql = "insert into LIST(listName,descriptionList,reps,`set`,list_planID,list_nameDay) values (?,?,?,?,?,?)";
             pstm = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
             pstm.setString(1, txtList.getText());
             pstm.setString(2, txtDes.getText());
@@ -266,6 +266,7 @@ public class AddList1 extends java.awt.Dialog {
             String s = txtSet.getText();
             int set = Integer.parseInt(s);
             pstm.setString(5, txtListPlanId.getText());
+            pstm.setString(6, boxChooseDay.getSelectedItem()+"");
             String l = txtListPlanId.getText();
             int listPlanId = Integer.parseInt(l);
             pstm.executeUpdate();
@@ -282,7 +283,7 @@ public class AddList1 extends java.awt.Dialog {
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void boxChooseDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxChooseDayActionPerformed
-        // TODO add your handling code here:
+        System.out.println(""+boxChooseDay.getSelectedItem());
     }//GEN-LAST:event_boxChooseDayActionPerformed
 
     private void txtListPlanIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtListPlanIdActionPerformed
