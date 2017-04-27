@@ -127,7 +127,7 @@ public class AddList1 extends java.awt.Dialog {
             }
         });
 
-        boxChooseDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        boxChooseDay.setModel(new javax.swing.DefaultComboBoxModel<>());
         boxChooseDay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxChooseDayActionPerformed(evt);
@@ -173,11 +173,12 @@ public class AddList1 extends java.awt.Dialog {
                                 .addComponent(saveBtn))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtDes, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtSet, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtReps, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(boxChooseDay, javax.swing.GroupLayout.Alignment.LEADING, 0, 183, Short.MAX_VALUE)
-                                    .addComponent(txtList, javax.swing.GroupLayout.Alignment.LEADING))))))
+                                    .addComponent(txtList, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtSet, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtReps, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))))))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -192,7 +193,7 @@ public class AddList1 extends java.awt.Dialog {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblday, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxChooseDay, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxChooseDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
@@ -207,7 +208,7 @@ public class AddList1 extends java.awt.Dialog {
                 .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSet)
-                    .addComponent(txtSet, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -307,16 +308,16 @@ public class AddList1 extends java.awt.Dialog {
 
     public void tt() throws ClassNotFoundException, SQLException {
         Connection conn = MySQLConnect.getMySQLConnection();
-        PreparedStatement pstm = conn.prepareStatement("SELECT nameDay from PLAN where planID = " + planId);
+        System.out.println("selecting..");
+        PreparedStatement pstm = conn.prepareStatement("SELECT nameDay,dayperweek from PLAN where planID = " + planId);
         ResultSet rs = pstm.executeQuery();
         while (rs.next()) {
             String days = rs.getString("nameDay");
-            System.out.println("All Day = "+days);
-            int positionWhiteSpace=0;
+            int start=0;
             for (int i = 1; i <= rs.getInt("dayperweek"); i++) {
-                String eachDay=null;
-                
-                boxChooseDay.addItem();
+                String eachDay=days.substring(start, days.indexOf(" ", start));
+                start=days.indexOf(" ", start)+1;
+                boxChooseDay.addItem(eachDay);
             }
         }
     }
