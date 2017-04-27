@@ -307,11 +307,16 @@ public class AddList1 extends java.awt.Dialog {
 
     public void tt() throws ClassNotFoundException, SQLException {
         Connection conn = MySQLConnect.getMySQLConnection();
-        PreparedStatement pstm = conn.prepareStatement("SELECT dayperweek from PLAN where planID = " + planId);
+        PreparedStatement pstm = conn.prepareStatement("SELECT nameDay from PLAN where planID = " + planId);
         ResultSet rs = pstm.executeQuery();
         while (rs.next()) {
+            String days = rs.getString("nameDay");
+            System.out.println("All Day = "+days);
+            int positionWhiteSpace=0;
             for (int i = 1; i <= rs.getInt("dayperweek"); i++) {
-                boxChooseDay.addItem("" + i);
+                String eachDay=null;
+                
+                boxChooseDay.addItem();
             }
         }
     }

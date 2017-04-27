@@ -342,12 +342,12 @@ public class MyPlan2 extends javax.swing.JFrame {
             pstm.setString(1, myPlan.getValueAt(myPlan.getSelectedRow(), 0) + "");
             ResultSet rs = pstm.executeQuery();
             rs.next();
-            txtDPW.setText(rs.getInt("dayperweek") + "");
+            txtDPW.setText(rs.getString("nameDay") + "");
             txtStart.setText(rs.getDate("startDate").toString());
             txtEnd.setText(rs.getDate("endDate").toString());
             setPlanName(rs.getString("planName"));
             setPlanDes(rs.getString("descriptionPlan"));
-            setDayPerWeek(rs.getInt("dayperweek"));
+//            setDayPerWeek(rs.getInt("dayperweek"));
             setNameDay(rs.getString("nameDay"));
             setStartDate(rs.getDate("startDate"));
             setEndDate(rs.getDate("endDate"));
