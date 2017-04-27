@@ -54,23 +54,23 @@ public class StartPlan1 extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         TextTop = new javax.swing.JPanel();
-        TestHow = new javax.swing.JLabel();
+        txtHow = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        monCheck = new javax.swing.JCheckBox();
+        tuesCheck = new javax.swing.JCheckBox();
+        sunCheck = new javax.swing.JCheckBox();
+        satCheck = new javax.swing.JCheckBox();
+        wedCheck = new javax.swing.JCheckBox();
+        thuCheck = new javax.swing.JCheckBox();
+        friCheck = new javax.swing.JCheckBox();
+        startBtn = new javax.swing.JButton();
+        cancelBtn = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        TestHow.setText("How many days per week");
+        txtHow.setText("How many days per week");
 
         javax.swing.GroupLayout TextTopLayout = new javax.swing.GroupLayout(TextTop);
         TextTop.setLayout(TextTopLayout);
@@ -78,77 +78,77 @@ public class StartPlan1 extends javax.swing.JFrame {
             TextTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TextTopLayout.createSequentialGroup()
                 .addGap(138, 138, 138)
-                .addComponent(TestHow)
+                .addComponent(txtHow)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         TextTopLayout.setVerticalGroup(
             TextTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TextTopLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(TestHow, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtHow, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jCheckBox1.setText("Monday");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        monCheck.setText("Monday");
+        monCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                monCheckActionPerformed(evt);
             }
         });
 
-        jCheckBox2.setText("Tuesday");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        tuesCheck.setText("Tuesday");
+        tuesCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                tuesCheckActionPerformed(evt);
             }
         });
 
-        jCheckBox3.setText("Sunday");
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+        sunCheck.setText("Sunday");
+        sunCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
+                sunCheckActionPerformed(evt);
             }
         });
 
-        jCheckBox4.setText("Saturday");
-        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+        satCheck.setText("Saturday");
+        satCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox4ActionPerformed(evt);
+                satCheckActionPerformed(evt);
             }
         });
 
-        jCheckBox5.setText("Wednesday");
-        jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
+        wedCheck.setText("Wednesday");
+        wedCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox5ActionPerformed(evt);
+                wedCheckActionPerformed(evt);
             }
         });
 
-        jCheckBox6.setText("Thrusday");
-        jCheckBox6.addActionListener(new java.awt.event.ActionListener() {
+        thuCheck.setText("Thrusday");
+        thuCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox6ActionPerformed(evt);
+                thuCheckActionPerformed(evt);
             }
         });
 
-        jCheckBox7.setText("Friday");
-        jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
+        friCheck.setText("Friday");
+        friCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox7ActionPerformed(evt);
+                friCheckActionPerformed(evt);
             }
         });
 
-        jButton1.setText("START");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        startBtn.setText("START");
+        startBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                startBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("CANCLE");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        cancelBtn.setText("CANCEL");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                cancelBtnActionPerformed(evt);
             }
         });
 
@@ -159,17 +159,17 @@ public class StartPlan1 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox5)
-                    .addComponent(jCheckBox6)
-                    .addComponent(jCheckBox7)
-                    .addComponent(jCheckBox4))
+                    .addComponent(monCheck)
+                    .addComponent(sunCheck)
+                    .addComponent(tuesCheck)
+                    .addComponent(wedCheck)
+                    .addComponent(thuCheck)
+                    .addComponent(friCheck)
+                    .addComponent(satCheck))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cancelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(startBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(34, 34, 34))
         );
         jPanel1Layout.setVerticalGroup(
@@ -177,24 +177,24 @@ public class StartPlan1 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jCheckBox3)
+                        .addComponent(sunCheck)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox1)
+                        .addComponent(monCheck)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox2)
+                        .addComponent(tuesCheck)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox5)
+                        .addComponent(wedCheck)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox6)
+                        .addComponent(thuCheck)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox7)
+                        .addComponent(friCheck)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox4))
+                        .addComponent(satCheck))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)
+                        .addComponent(startBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(cancelBtn)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -228,21 +228,21 @@ public class StartPlan1 extends javax.swing.JFrame {
     String Fri ="";
     String Sat ="";
     int DPW = 0;
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void monCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monCheckActionPerformed
         // TODO add your handling code here:
         System.out.println("Monday");
         Mon="Monday";
         DPW++;
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_monCheckActionPerformed
 
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+    private void sunCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sunCheckActionPerformed
         // TODO add your handling code here:
         System.out.println("Sunday");
         Sun = "Sunday";
         DPW++;
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
+    }//GEN-LAST:event_sunCheckActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
         try {
             // TODO add your handling code here:
             nameDay =""+Sun+Mon+Tues+Wedn+Thru+Fri+Sat;
@@ -267,46 +267,50 @@ public class StartPlan1 extends javax.swing.JFrame {
             Logger.getLogger(StartPlan1.class.getName()).log(Level.SEVERE, null, ex);
         }
        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_startBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        MyPlan2 mp = new MyPlan2();
+        mp.setVisible(true);
+        mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mp.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_cancelBtnActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    private void tuesCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tuesCheckActionPerformed
         // TODO add your handling code here:
         System.out.println("Tuesday");
         Tues = "Tuesday";
         DPW++;
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_tuesCheckActionPerformed
 
-    private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
+    private void wedCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wedCheckActionPerformed
         // TODO add your handling code here:
         System.out.println("Wednesday");
         Wedn = "Wednesday";
         DPW++;
-    }//GEN-LAST:event_jCheckBox5ActionPerformed
+    }//GEN-LAST:event_wedCheckActionPerformed
 
-    private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
+    private void thuCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thuCheckActionPerformed
         // TODO add your handling code here:
         System.out.println("Thrusday");
         Thru = "Thrusday";
         DPW++;
-    }//GEN-LAST:event_jCheckBox6ActionPerformed
+    }//GEN-LAST:event_thuCheckActionPerformed
 
-    private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
+    private void friCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friCheckActionPerformed
         // TODO add your handling code here:
         System.out.println("Friday");
         Fri = "Friday";
         DPW++;
-    }//GEN-LAST:event_jCheckBox7ActionPerformed
+    }//GEN-LAST:event_friCheckActionPerformed
 
-    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
+    private void satCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satCheckActionPerformed
         // TODO add your handling code here:
         System.out.println("Saturday");
         Sat = "Saturday";
         DPW++;
-    }//GEN-LAST:event_jCheckBox4ActionPerformed
+    }//GEN-LAST:event_satCheckActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,18 +349,18 @@ public class StartPlan1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel TestHow;
     private javax.swing.JPanel TextTop;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
+    private javax.swing.JButton cancelBtn;
+    private javax.swing.JCheckBox friCheck;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JCheckBox monCheck;
+    private javax.swing.JCheckBox satCheck;
+    private javax.swing.JButton startBtn;
+    private javax.swing.JCheckBox sunCheck;
+    private javax.swing.JCheckBox thuCheck;
+    private javax.swing.JCheckBox tuesCheck;
+    private javax.swing.JLabel txtHow;
+    private javax.swing.JCheckBox wedCheck;
     // End of variables declaration//GEN-END:variables
 }
