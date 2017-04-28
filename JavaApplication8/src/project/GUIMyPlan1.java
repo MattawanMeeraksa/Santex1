@@ -418,7 +418,7 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
         Connection conn = MySQLConnect.getMySQLConnection();
         System.out.println("selecting..");
         StartPlan1 sp1 = new StartPlan1();
-        PreparedStatement pstm = conn.prepareStatement("SELECT startDate,endDate from PLAN where planID = 47" );
+        PreparedStatement pstm = conn.prepareStatement("SELECT startDate,endDate from PLAN where planID =" );
         ResultSet rs = pstm.executeQuery();
         Date st;
         Date end;
