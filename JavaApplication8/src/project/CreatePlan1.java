@@ -248,9 +248,8 @@ public class CreatePlan1 extends javax.swing.JFrame {
 
     private void cancelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbtnActionPerformed
         // TODO add your handling code here:
-        Calendargui frame = new Calendargui();
+        GUIMyPlan1 frame = new GUIMyPlan1();
         frame.pack();
-        frame.setSize(500, 400);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);

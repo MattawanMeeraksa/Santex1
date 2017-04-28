@@ -261,7 +261,7 @@ public class StartPlan1 extends javax.swing.JFrame {
             mp.pack();
             mp.setVisible(false);
             mp.setDefaultCloseOperation(mp.EXIT_ON_CLOSE);
-            Calendargui frame = new Calendargui(DPW);
+            GUIMyPlan1 frame = new GUIMyPlan1();
             frame.pack();
             frame.setSize(500, 350);
             frame.setVisible(true);
