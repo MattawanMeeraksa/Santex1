@@ -28,6 +28,7 @@ public class EditListPlan extends javax.swing.JFrame {
     private int reps;
     private int planId;
     private int listID;
+    private String nameDay;
 
     private EditListPlan() {
         initComponents();
@@ -49,14 +50,16 @@ public class EditListPlan extends javax.swing.JFrame {
         }
     }
 
-    EditListPlan(int planId, String listPlanName, String listDescription, int reps, int set,int listID) throws ClassNotFoundException, SQLException {
+    EditListPlan(int planId, String listPlanName, String listDescription, int reps, int set, int listID, String nameDay) throws ClassNotFoundException, SQLException {
         this.planId = planId;
         this.listPlanName = listPlanName;
         this.listDescription = listDescription;
         this.reps = reps;
         this.set = set;
         this.listID = listID;
+        this.nameDay=nameDay;
         try {
+            tt();
             initComponents();
             conn = MySQLConnect.getMySQLConnection();
         } catch (ClassNotFoundException ex) {
@@ -68,6 +71,8 @@ public class EditListPlan extends javax.swing.JFrame {
         txtDes.setText(listDescription);
         txtReps.setText(reps + "");
         txtSet.setText(set + "");
+        //boxChooseDay
+        
     }
 
     public String getListDescription() {
@@ -131,10 +136,15 @@ public class EditListPlan extends javax.swing.JFrame {
         lblReps = new javax.swing.JLabel();
         txtLName = new javax.swing.JTextField();
         saveBtn = new javax.swing.JButton();
+        lblDay = new javax.swing.JLabel();
+        boxChooseDay = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblSet.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+
+        lblSet.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        lblSet.setForeground(new java.awt.Color(255, 255, 255));
         lblSet.setText("Set");
 
         txtDes.setMinimumSize(new java.awt.Dimension(59, 20));
@@ -151,9 +161,12 @@ public class EditListPlan extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Edit");
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Edit List Plan");
 
+        backBtn.setBackground(new java.awt.Color(255, 255, 255));
+        backBtn.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         backBtn.setText("BACK");
         backBtn.setPreferredSize(new java.awt.Dimension(41, 32));
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -169,13 +182,16 @@ public class EditListPlan extends javax.swing.JFrame {
             }
         });
 
-        lblLName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblLName.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        lblLName.setForeground(new java.awt.Color(255, 255, 255));
         lblLName.setText("List name");
 
-        lblDes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblDes.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        lblDes.setForeground(new java.awt.Color(255, 255, 255));
         lblDes.setText("Description");
 
-        lblReps.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblReps.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        lblReps.setForeground(new java.awt.Color(255, 255, 255));
         lblReps.setText("Reps");
 
         txtLName.setMinimumSize(new java.awt.Dimension(59, 20));
@@ -185,10 +201,23 @@ public class EditListPlan extends javax.swing.JFrame {
             }
         });
 
-        saveBtn.setText("Save");
+        saveBtn.setBackground(new java.awt.Color(255, 255, 255));
+        saveBtn.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        saveBtn.setText("SAVE");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveBtnActionPerformed(evt);
+            }
+        });
+
+        lblDay.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        lblDay.setForeground(new java.awt.Color(255, 255, 255));
+        lblDay.setText("Day");
+
+        boxChooseDay.setModel(new javax.swing.DefaultComboBoxModel<>());
+        boxChooseDay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxChooseDayActionPerformed(evt);
             }
         });
 
@@ -197,91 +226,87 @@ public class EditListPlan extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(91, 91, 91))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblSet)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtSet, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(274, 274, 274))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblLName))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtLName, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(txtDes, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDes)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(lblSet)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtSet, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(lblReps)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtReps, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 253, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                            .addComponent(lblDes)
+                            .addComponent(lblLName)
+                            .addComponent(lblDay))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtReps, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtLName, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                                .addComponent(txtDes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(boxChooseDay, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(96, 96, 96))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblLName)
                     .addComponent(txtLName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addComponent(lblDes)
-                .addGap(30, 30, 30)
-                .addComponent(txtDes, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addGap(38, 38, 38)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDay)
+                    .addComponent(boxChooseDay, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblDes)
+                        .addGap(122, 122, 122))
+                    .addComponent(txtDes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblReps)
                     .addComponent(txtReps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSet))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addComponent(lblSet)
+                    .addComponent(txtSet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(69, 69, 69))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtLNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLNameActionPerformed
-        setResizable(false);
-    }//GEN-LAST:event_txtLNameActionPerformed
-
-    private void txtDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesActionPerformed
-        setResizable(false);
-    }//GEN-LAST:event_txtDesActionPerformed
-
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        System.out.println("listID"+listID);
+        System.out.println("listID" + listID);
         try {
             String sql = "update LIST set ListName = ? , descriptionList = ? , reps = ? , `set` = ? where listID=" + listID;
             pstm = (PreparedStatement) conn.prepareStatement(sql);
@@ -296,36 +321,58 @@ public class EditListPlan extends javax.swing.JFrame {
             dl.setLocationRelativeTo(null);
             dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.setVisible(false);
-//            MyPlan2 mp = new MyPlan2();
-//            mp.pack();
-//            mp.setVisible(true);
-//            setVisible(false);
-//            mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//            mp.setLocationRelativeTo(null);
 
         } catch (SQLException ex) {
             Logger.getLogger(CreatePlan1.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void txtLNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLNameActionPerformed
+        setResizable(false);
+    }//GEN-LAST:event_txtLNameActionPerformed
+
+    private void txtSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSetActionPerformed
+        setResizable(false);
+    }//GEN-LAST:event_txtSetActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         DetailList1 dl = new DetailList1(planId);
-            dl.setVisible(true);
-            dl.setLocationRelativeTo(null);
-            dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            this.setVisible(false);
-
+        dl.setVisible(true);
+        dl.setLocationRelativeTo(null);
+        dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(false);
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void txtRepsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRepsActionPerformed
         setResizable(false);
     }//GEN-LAST:event_txtRepsActionPerformed
 
-    private void txtSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSetActionPerformed
+    private void txtDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesActionPerformed
         setResizable(false);
-    }//GEN-LAST:event_txtSetActionPerformed
+    }//GEN-LAST:event_txtDesActionPerformed
 
+    private void boxChooseDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxChooseDayActionPerformed
+        System.out.println("" + boxChooseDay.getSelectedItem());
+    }//GEN-LAST:event_boxChooseDayActionPerformed
+    
+    public void tt() throws ClassNotFoundException, SQLException {
+        Connection conn = MySQLConnect.getMySQLConnection();
+        System.out.println("selecting..");
+        PreparedStatement pstm = conn.prepareStatement("SELECT nameDay,dayperweek from PLAN where planID = " + planId);
+        ResultSet rs = pstm.executeQuery();
+        while (rs.next()) {
+            String days = rs.getString("nameDay");
+            System.out.println(""+rs.getString("nameDay"));
+            System.out.println(""+rs.getInt("dayperweek"));
+            int start = 0;
+            for (int i = 1; i <= rs.getInt("dayperweek"); i++) {
+                String eachDay = days.substring(start, days.indexOf(" ", start));
+                start = days.indexOf(" ", start) + 1;
+                boxChooseDay.addItem(eachDay);
+            }
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -341,8 +388,10 @@ public class EditListPlan extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
+    private javax.swing.JComboBox<String> boxChooseDay;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblDay;
     private javax.swing.JLabel lblDes;
     private javax.swing.JLabel lblLName;
     private javax.swing.JLabel lblReps;
