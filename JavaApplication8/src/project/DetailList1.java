@@ -44,8 +44,6 @@ public class DetailList1 extends javax.swing.JFrame {
         this.nameDay = nameDay;
     }
     
-    
-
     public int getList_planId() {
         return list_planId;
     }
@@ -442,7 +440,6 @@ public class DetailList1 extends javax.swing.JFrame {
 
             // ถ้ากด yes จะทำให้ n มีค่าเป็น 0
             if (n == 0) {
-
                 //ให้มันแสดงเฉยๆว่าแพลนนั้นถูกลบออกไปแล้วแต่กดเลือกอะไรไม่ได้นอกจากแค่กด ok หรือปิดหน้าจอไป
                 JOptionPane.showMessageDialog(null, "Your list is deleted");
                 MyPlan2 sp = new MyPlan2();
@@ -451,7 +448,6 @@ public class DetailList1 extends javax.swing.JFrame {
                 sp.setVisible(true);
                 sp.setLocationRelativeTo(null);
                 setVisible(false);
-
             } else {
                 System.out.println("Canceled");
             }
@@ -493,8 +489,7 @@ public class DetailList1 extends javax.swing.JFrame {
                 System.out.println("reps = " + rs.getInt("reps"));
                 txtReps.setText(rs.getInt("reps") + "");
                 txtSet.setText(rs.getInt("set") + "");
-                
-                
+                  
                 setnameDay(rs.getString("list_nameDay"));
                 setDay(rs.getString("list_nameDay"));
                 setListPlanName(rs.getString("listName"));
@@ -511,7 +506,6 @@ public class DetailList1 extends javax.swing.JFrame {
             System.out.println("");
         }
     }//GEN-LAST:event_planListTableMouseClicked
-
     /**
      * @param args the command line arguments
      */
