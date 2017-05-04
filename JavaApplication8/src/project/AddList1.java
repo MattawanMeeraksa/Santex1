@@ -81,11 +81,11 @@ public class AddList1 extends java.awt.Dialog {
         lblSet = new javax.swing.JLabel();
         boxChooseDay = new javax.swing.JComboBox<>();
         txtListPlanId = new javax.swing.JTextField();
-        saveBtn = new javax.swing.JLabel();
-        lblsave = new javax.swing.JLabel();
-        cancelBtn = new javax.swing.JLabel();
-        lblcancel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        saveBtn = new javax.swing.JButton();
+        lblsave = new javax.swing.JLabel();
+        cancelBtn1 = new javax.swing.JButton();
+        lblcancel = new javax.swing.JLabel();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -95,7 +95,7 @@ public class AddList1 extends java.awt.Dialog {
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
-        addList.setFont(new java.awt.Font("Century Gothic", 0, 32)); // NOI18N
+        addList.setFont(new java.awt.Font("Century Gothic", 1, 32)); // NOI18N
         addList.setForeground(new java.awt.Color(255, 255, 255));
         addList.setText("Add List Plan");
 
@@ -119,11 +119,11 @@ public class AddList1 extends java.awt.Dialog {
             }
         });
 
-        try{
-            txtReps = new JFormattedTextField(new MaskFormatter("##"));
-        }catch(java.text.ParseException e){
-            e.printStackTrace();
-        }
+        txtReps.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtRepsFocusLost(evt);
+            }
+        });
         txtReps.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRepsActionPerformed(evt);
@@ -135,11 +135,16 @@ public class AddList1 extends java.awt.Dialog {
             }
         });
 
-        try{
-            txtSet = new JFormattedTextField(new MaskFormatter("##"));
-        }catch(java.text.ParseException e){
-            e.printStackTrace();
-        }
+        txtSet.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSetFocusLost(evt);
+            }
+        });
+        txtSet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSetActionPerformed(evt);
+            }
+        });
         txtSet.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtSetKeyTyped(evt);
@@ -171,29 +176,41 @@ public class AddList1 extends java.awt.Dialog {
             }
         });
 
-        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/save.png"))); // NOI18N
-        saveBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                saveBtnMouseClicked(evt);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/clipboard (1).png"))); // NOI18N
+
+        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/diskette.png"))); // NOI18N
+        saveBtn.setContentAreaFilled(false);
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
             }
         });
 
         lblsave.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         lblsave.setForeground(new java.awt.Color(255, 255, 255));
-        lblsave.setText("Save");
-
-        cancelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/multiply.png"))); // NOI18N
-        cancelBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblsave.setText(" Save ");
+        lblsave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cancelBtnMouseClicked(evt);
+                lblsaveMouseClicked(evt);
+            }
+        });
+
+        cancelBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/file (4).png"))); // NOI18N
+        cancelBtn1.setContentAreaFilled(false);
+        cancelBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtn1ActionPerformed(evt);
             }
         });
 
         lblcancel.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         lblcancel.setForeground(new java.awt.Color(255, 255, 255));
         lblcancel.setText("Cancel");
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/add.png"))); // NOI18N
+        lblcancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblcancelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -207,7 +224,7 @@ public class AddList1 extends java.awt.Dialog {
                     .addComponent(lblReps)
                     .addComponent(lblSet, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDes))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(txtList)
@@ -221,34 +238,36 @@ public class AddList1 extends java.awt.Dialog {
                         .addComponent(txtDes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(81, 81, 81))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addList, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(110, 110, 110)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(saveBtn)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(lblsave)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cancelBtn)
-                    .addComponent(lblcancel))
-                .addGap(140, 140, 140))
+                        .addGap(101, 101, 101)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblsave)
+                                .addGap(13, 13, 13))
+                            .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(194, 194, 194)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cancelBtn1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblcancel, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addList, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(addList)
-                        .addGap(9, 9, 9)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(addList)))
+                .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,17 +289,17 @@ public class AddList1 extends java.awt.Dialog {
                     .addComponent(txtSet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSet)
                     .addComponent(txtListPlanId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(66, 66, 66)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(82, 82, 82)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cancelBtn)
+                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblcancel))
+                        .addComponent(lblsave, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(saveBtn)
+                        .addComponent(cancelBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblsave)))
-                .addGap(37, 37, 37))
+                        .addComponent(lblcancel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -314,7 +333,7 @@ public class AddList1 extends java.awt.Dialog {
     }//GEN-LAST:event_txtDesActionPerformed
 
     private void txtRepsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRepsActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtRepsActionPerformed
 
     private void boxChooseDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxChooseDayActionPerformed
@@ -326,6 +345,7 @@ public class AddList1 extends java.awt.Dialog {
     }//GEN-LAST:event_txtListPlanIdActionPerformed
 
     private void txtRepsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRepsKeyTyped
+
         
     }//GEN-LAST:event_txtRepsKeyTyped
 
@@ -333,7 +353,46 @@ public class AddList1 extends java.awt.Dialog {
 
     }//GEN-LAST:event_txtSetKeyTyped
 
-    private void saveBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBtnMouseClicked
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+         try {
+            String sql = "insert into LIST(listName,descriptionList,reps,`set`,list_planID,list_nameDay) values (?,?,?,?,?,?)";
+            pstm = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+            pstm.setString(1, txtList.getText());
+            pstm.setString(2, txtDes.getText());
+            pstm.setString(3, txtReps.getText());
+            String r = txtReps.getText();
+            int reps = Integer.parseInt(r);
+            pstm.setString(4, txtSet.getText());
+            String s = txtSet.getText();
+            int set = Integer.parseInt(s);
+            pstm.setString(5, txtListPlanId.getText());
+            pstm.setString(6, boxChooseDay.getSelectedItem() + "");
+            String l = txtListPlanId.getText();
+            int listPlanId = Integer.parseInt(l);
+            pstm.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Add list successfully");
+            MyPlan2 frame = new MyPlan2();
+            frame.setVisible(true);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setLocationRelativeTo(null);
+            frame.setResizable(false);
+            setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddList1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void cancelBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtn1ActionPerformed
+        MyPlan2 mp = new MyPlan2();
+        mp.pack();
+        mp.setVisible(true);
+        mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mp.setLocationRelativeTo(null);
+        mp.setResizable(false);
+        setVisible(false);
+    }//GEN-LAST:event_cancelBtn1ActionPerformed
+
+    private void lblsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsaveMouseClicked
         try {
             String sql = "insert into LIST(listName,descriptionList,reps,`set`,list_planID,list_nameDay) values (?,?,?,?,?,?)";
             pstm = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
@@ -360,9 +419,9 @@ public class AddList1 extends java.awt.Dialog {
         } catch (SQLException ex) {
             Logger.getLogger(AddList1.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_saveBtnMouseClicked
+    }//GEN-LAST:event_lblsaveMouseClicked
 
-    private void cancelBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelBtnMouseClicked
+    private void lblcancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblcancelMouseClicked
         MyPlan2 mp = new MyPlan2();
         mp.pack();
         mp.setVisible(true);
@@ -370,7 +429,29 @@ public class AddList1 extends java.awt.Dialog {
         mp.setLocationRelativeTo(null);
         mp.setResizable(false);
         setVisible(false);
-    }//GEN-LAST:event_cancelBtnMouseClicked
+    }//GEN-LAST:event_lblcancelMouseClicked
+
+    private void txtSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSetActionPerformed
+      
+    }//GEN-LAST:event_txtSetActionPerformed
+
+    private void txtRepsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRepsFocusLost
+        int txt ;
+        try{
+            txt = Integer.parseInt(txtReps.getText());
+        }catch(NumberFormatException ex){
+            txtReps.setText("");
+        }
+    }//GEN-LAST:event_txtRepsFocusLost
+
+    private void txtSetFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSetFocusLost
+        int txt ;
+        try{
+            txt = Integer.parseInt(txtSet.getText());
+        }catch(NumberFormatException ex){
+            txtSet.setText("");
+        }
+    }//GEN-LAST:event_txtSetFocusLost
 
     /**
      * @param args the command line arguments
@@ -408,7 +489,7 @@ public class AddList1 extends java.awt.Dialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addList;
     private javax.swing.JComboBox<String> boxChooseDay;
-    private javax.swing.JLabel cancelBtn;
+    private javax.swing.JButton cancelBtn1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblDes;
@@ -418,7 +499,7 @@ public class AddList1 extends java.awt.Dialog {
     private javax.swing.JLabel lblcancel;
     private javax.swing.JLabel lblday;
     private javax.swing.JLabel lblsave;
-    private javax.swing.JLabel saveBtn;
+    private javax.swing.JButton saveBtn;
     private javax.swing.JTextField txtDes;
     private javax.swing.JTextField txtList;
     private javax.swing.JTextField txtListPlanId;

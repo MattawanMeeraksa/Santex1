@@ -57,22 +57,24 @@ public class EditListPlan extends javax.swing.JFrame {
         this.reps = reps;
         this.set = set;
         this.listID = listID;
-        this.nameDay=nameDay;
+        this.nameDay = nameDay;
         try {
             tt();
             initComponents();
             conn = MySQLConnect.getMySQLConnection();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EditPlan.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         } catch (SQLException ex) {
-            Logger.getLogger(EditPlan.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
+        } catch (NullPointerException ex) {
+            System.out.println(ex.getMessage());
         }
         txtLName.setText(listPlanName);
         txtDes.setText(listDescription);
         txtReps.setText(reps + "");
         txtSet.setText(set + "");
         //boxChooseDay
-        
+
     }
 
     public String getListDescription() {
@@ -354,7 +356,7 @@ public class EditListPlan extends javax.swing.JFrame {
     private void boxChooseDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxChooseDayActionPerformed
         System.out.println("" + boxChooseDay.getSelectedItem());
     }//GEN-LAST:event_boxChooseDayActionPerformed
-    
+s
     public void tt() throws ClassNotFoundException, SQLException {
         Connection conn = MySQLConnect.getMySQLConnection();
         System.out.println("selecting..");
@@ -362,17 +364,18 @@ public class EditListPlan extends javax.swing.JFrame {
         ResultSet rs = pstm.executeQuery();
         while (rs.next()) {
             String days = rs.getString("nameDay");
-            System.out.println(""+rs.getString("nameDay"));
-            System.out.println(""+rs.getInt("dayperweek"));
+            System.out.println("" + rs.getString("nameDay"));
+            System.out.println("" + rs.getInt("dayperweek"));
             int start = 0;
             for (int i = 1; i <= rs.getInt("dayperweek"); i++) {
                 String eachDay = days.substring(start, days.indexOf(" ", start));
                 start = days.indexOf(" ", start) + 1;
                 boxChooseDay.addItem(eachDay);
+
             }
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */

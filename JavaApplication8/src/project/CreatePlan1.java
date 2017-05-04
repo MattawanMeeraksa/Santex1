@@ -23,21 +23,93 @@ public class CreatePlan1 extends javax.swing.JFrame {
 
     Connection conn = null;
     PreparedStatement pstm = null;
+    private String nameDay = "";
+    private String Sun = "";
+    private String Mon = "";
+    private String Tues = "";
+    private String Wedn = "";
+    private String Thru = "";
+    private String Fri = "";
+    private String Sat = "";
+    private int DPW = 0;
 
-//    JTextField txtPName;
-//    JTextArea txtDes;
-//    JTextField txtTtDays;
-//    JLabel lblheadcreate;
-//    JPanel jPanel1;
-//    JLabel lblPName;
-//    JLabel lblDes;
-//    JLabel lblTtDays;
-//    JButton createbtn;
-//    JButton cancelbtn;
-//    JScrollPane jScrollPane1;
+    
+    
+    public String getNameDay() {
+        return nameDay;
+    }
+
+    public void setNameDay(String nameDay) {
+        this.nameDay = nameDay;
+    }
+
+    public String getSun() {
+        return Sun;
+    }
+
+    public void setSun(String Sun) {
+        this.Sun = Sun;
+    }
+
+    public String getMon() {
+        return Mon;
+    }
+
+    public void setMon(String Mon) {
+        this.Mon = Mon;
+    }
+
+    public String getTues() {
+        return Tues;
+    }
+
+    public void setTues(String Tues) {
+        this.Tues = Tues;
+    }
+
+    public String getWedn() {
+        return Wedn;
+    }
+
+    public void setWedn(String Wedn) {
+        this.Wedn = Wedn;
+    }
+
+    public String getThru() {
+        return Thru;
+    }
+
+    public void setThru(String Thru) {
+        this.Thru = Thru;
+    }
+
+    public String getFri() {
+        return Fri;
+    }
+
+    public void setFri(String Fri) {
+        this.Fri = Fri;
+    }
+
+    public String getSat() {
+        return Sat;
+    }
+
+    public void setSat(String Sat) {
+        this.Sat = Sat;
+    }
+
+    public int getDPW() {
+        return DPW;
+    }
+
     /**
      * Creates new form CreatePlan1
      */
+    public void setDPW(int DPW) {
+        this.DPW = DPW;
+    }
+
     public CreatePlan1() {
         try {
             initComponents();
@@ -70,10 +142,18 @@ public class CreatePlan1 extends javax.swing.JFrame {
         startDateChoose = new com.toedter.calendar.JDateChooser();
         endDateChoose = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
-        saveBtn = new javax.swing.JLabel();
-        Cancel = new javax.swing.JLabel();
-        lblback = new javax.swing.JLabel();
+        lblcancel = new javax.swing.JLabel();
         lblsave = new javax.swing.JLabel();
+        saveBtn = new javax.swing.JButton();
+        cancelBtn = new javax.swing.JButton();
+        sunCheck = new javax.swing.JCheckBox();
+        monCheck = new javax.swing.JCheckBox();
+        tuesCheck = new javax.swing.JCheckBox();
+        wedCheck = new javax.swing.JCheckBox();
+        thuCheck = new javax.swing.JCheckBox();
+        friCheck = new javax.swing.JCheckBox();
+        satCheck = new javax.swing.JCheckBox();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -109,7 +189,7 @@ public class CreatePlan1 extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(txtDes);
 
-        lblheadcreate.setFont(new java.awt.Font("Century Gothic", 0, 32)); // NOI18N
+        lblheadcreate.setFont(new java.awt.Font("Century Gothic", 1, 32)); // NOI18N
         lblheadcreate.setForeground(new java.awt.Color(255, 255, 255));
         lblheadcreate.setText("Create Plan");
 
@@ -125,114 +205,227 @@ public class CreatePlan1 extends javax.swing.JFrame {
 
         endDateChoose.setDateFormatString("yyyy-MM-dd");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/file.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/clipboard (1).png"))); // NOI18N
 
-        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/save.png"))); // NOI18N
-        saveBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblcancel.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        lblcancel.setForeground(new java.awt.Color(255, 255, 255));
+        lblcancel.setText("Cancel");
+        lblcancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                saveBtnMouseClicked(evt);
+                lblcancelMouseClicked(evt);
             }
         });
-
-        Cancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/multiply.png"))); // NOI18N
-        Cancel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CancelMouseClicked(evt);
-            }
-        });
-
-        lblback.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
-        lblback.setForeground(new java.awt.Color(255, 255, 255));
-        lblback.setText("Cancel");
 
         lblsave.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         lblsave.setForeground(new java.awt.Color(255, 255, 255));
-        lblsave.setText("Save");
+        lblsave.setText(" Save ");
+        lblsave.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblsaveMouseClicked(evt);
+            }
+        });
+
+        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/diskette.png"))); // NOI18N
+        saveBtn.setContentAreaFilled(false);
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
+
+        cancelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/file (4).png"))); // NOI18N
+        cancelBtn.setContentAreaFilled(false);
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
+
+        sunCheck.setBackground(new java.awt.Color(51, 51, 51));
+        sunCheck.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        sunCheck.setForeground(new java.awt.Color(255, 255, 255));
+        sunCheck.setText("Sun");
+        sunCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sunCheckActionPerformed(evt);
+            }
+        });
+
+        monCheck.setBackground(new java.awt.Color(51, 51, 51));
+        monCheck.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        monCheck.setForeground(new java.awt.Color(255, 255, 255));
+        monCheck.setText("Mon");
+        monCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                monCheckActionPerformed(evt);
+            }
+        });
+
+        tuesCheck.setBackground(new java.awt.Color(51, 51, 51));
+        tuesCheck.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        tuesCheck.setForeground(new java.awt.Color(255, 255, 255));
+        tuesCheck.setText("Tue");
+        tuesCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tuesCheckActionPerformed(evt);
+            }
+        });
+
+        wedCheck.setBackground(new java.awt.Color(51, 51, 51));
+        wedCheck.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        wedCheck.setForeground(new java.awt.Color(255, 255, 255));
+        wedCheck.setText("Wed");
+        wedCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wedCheckActionPerformed(evt);
+            }
+        });
+
+        thuCheck.setBackground(new java.awt.Color(51, 51, 51));
+        thuCheck.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        thuCheck.setForeground(new java.awt.Color(255, 255, 255));
+        thuCheck.setText("Thu");
+        thuCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                thuCheckActionPerformed(evt);
+            }
+        });
+
+        friCheck.setBackground(new java.awt.Color(51, 51, 51));
+        friCheck.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        friCheck.setForeground(new java.awt.Color(255, 255, 255));
+        friCheck.setText("Fri");
+        friCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                friCheckActionPerformed(evt);
+            }
+        });
+
+        satCheck.setBackground(new java.awt.Color(51, 51, 51));
+        satCheck.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        satCheck.setForeground(new java.awt.Color(255, 255, 255));
+        satCheck.setText("Sat");
+        satCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                satCheckActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("How many days per week?");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(lblsave))
+                    .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(174, 174, 174)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblcancel)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(170, 170, 170))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPName)
-                            .addComponent(lblDes)
-                            .addComponent(lblStartDate)
-                            .addComponent(lblEndDate))
-                        .addGap(85, 85, 85)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
-                            .addComponent(txtPName, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
-                            .addComponent(startDateChoose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(endDateChoose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblPName)
+                                    .addComponent(lblDes)
+                                    .addComponent(lblStartDate)
+                                    .addComponent(lblEndDate))
+                                .addGap(85, 85, 85)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(endDateChoose, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                                    .addComponent(txtPName)
+                                    .addComponent(startDateChoose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel2)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(sunCheck)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(monCheck)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tuesCheck)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(wedCheck)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(thuCheck)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(friCheck)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(satCheck))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addGap(25, 25, 25)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblheadcreate)))
-                .addContainerGap(80, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(lblsave)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(saveBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Cancel)
-                    .addComponent(lblback))
-                .addGap(144, 144, 144))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addGap(10, 10, 10)
                         .addComponent(lblheadcreate)))
-                .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPName)
-                            .addComponent(txtPName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(63, 63, 63)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDes))
-                        .addGap(60, 60, 60)
-                        .addComponent(lblStartDate))
-                    .addComponent(startDateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPName)
+                    .addComponent(txtPName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(63, 63, 63)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDes))
+                .addGap(42, 42, 42)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(startDateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStartDate))
+                .addGap(56, 56, 56)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblEndDate)
                     .addComponent(endDateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
+                .addComponent(jLabel2)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(satCheck)
+                    .addComponent(sunCheck)
+                    .addComponent(monCheck)
+                    .addComponent(tuesCheck)
+                    .addComponent(wedCheck)
+                    .addComponent(thuCheck)
+                    .addComponent(friCheck))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(saveBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblsave))
+                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(lblcancel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Cancel)
+                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblback)))
-                .addGap(37, 37, 37))
+                        .addComponent(lblsave, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,54 +436,152 @@ public class CreatePlan1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPNameKeyTyped
-        
+
     }//GEN-LAST:event_txtPNameKeyTyped
 
     private void txtDesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDesKeyTyped
-        
+
     }//GEN-LAST:event_txtDesKeyTyped
 
     private void txtPNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPNameActionPerformed
 
-    private void saveBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBtnMouseClicked
-       try {
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        try {
             if (txtPName.getText().equals("") || txtDes.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Your input is incorrect");
             } else {
+                nameDay = "" + Sun + Mon + Tues + Wedn + Thru + Fri + Sat;
                 String sql = "insert into PLAN (planName,descriptionPlan,nameDay, startDate,endDate,dayperweek) values (?,?,?,?,?,?)";
                 pstm = (PreparedStatement) conn.prepareStatement(sql);
                 pstm.setString(1, txtPName.getText());
                 pstm.setString(2, txtDes.getText());
-                pstm.setString(3, " ");
+                pstm.setString(3, nameDay);
                 pstm.setString(4, ((JTextField) startDateChoose.getDateEditor().getUiComponent()).getText());
                 pstm.setString(5, ((JTextField) endDateChoose.getDateEditor().getUiComponent()).getText());
-                pstm.setInt(6, 0);
+                pstm.setInt(6, DPW);
                 pstm.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Plan created successfully");
                 MyPlan2 sp = new MyPlan2();
-               
+
                 sp.setVisible(true);
                 setVisible(false);
                 sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 sp.setLocationRelativeTo(null);
             }
 
-        }  catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(CreatePlan1.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_saveBtnMouseClicked
+    }//GEN-LAST:event_saveBtnActionPerformed
 
-    private void CancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelMouseClicked
-         GUIMyPlan1 frame = new GUIMyPlan1();
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        GUIMyPlan1 frame = new GUIMyPlan1();
         frame.pack();
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         setVisible(false);
-    }//GEN-LAST:event_CancelMouseClicked
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void lblsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsaveMouseClicked
+        try {
+            if (txtPName.getText().equals("") || txtDes.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Your input is incorrect");
+            } else {
+                System.out.println(""+nameDay);
+                System.out.println("1111");
+                nameDay = "" + Sun + Mon + Tues + Wedn + Thru + Fri + Sat;
+                String sql = "insert into PLAN (planName,descriptionPlan,nameDay, startDate,endDate,dayperweek) values (?,?,?,?,?,?)";
+                pstm = (PreparedStatement) conn.prepareStatement(sql);
+                pstm.setString(1, txtPName.getText());
+                pstm.setString(2, txtDes.getText());
+                pstm.setString(3, nameDay);
+                pstm.setString(4, ((JTextField) startDateChoose.getDateEditor().getUiComponent()).getText());
+                pstm.setString(5, ((JTextField) endDateChoose.getDateEditor().getUiComponent()).getText());
+                pstm.setInt(6, DPW);
+                pstm.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Plan created successfully");
+                MyPlan2 sp = new MyPlan2();
+
+                sp.setVisible(true);
+                setVisible(false);
+                sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                sp.setLocationRelativeTo(null);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CreatePlan1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_lblsaveMouseClicked
+
+    private void lblcancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblcancelMouseClicked
+        GUIMyPlan1 frame = new GUIMyPlan1();
+        frame.pack();
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        setVisible(false);
+    }//GEN-LAST:event_lblcancelMouseClicked
+
+    private void sunCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sunCheckActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Sunday");
+        Sun = "Sunday ";
+        setSun(Sun);
+        DPW++;
+    }//GEN-LAST:event_sunCheckActionPerformed
+
+    private void monCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monCheckActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Monday");
+        Mon = "Monday ";
+        setMon(Mon);
+        DPW++;
+    }//GEN-LAST:event_monCheckActionPerformed
+
+    private void tuesCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tuesCheckActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Tuesday");
+        Tues = "Tuesday ";
+        setTues(Tues);
+        DPW++;
+    }//GEN-LAST:event_tuesCheckActionPerformed
+
+    private void wedCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wedCheckActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Wednesday");
+        Wedn = "Wednesday ";
+        setWedn(Wedn);
+        DPW++;
+    }//GEN-LAST:event_wedCheckActionPerformed
+
+    private void thuCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thuCheckActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Thrusday");
+        Thru = "Thrusday ";
+        setThru(Thru);
+        DPW++;
+    }//GEN-LAST:event_thuCheckActionPerformed
+
+    private void friCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friCheckActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Friday");
+        Fri = "Friday ";
+        setFri(Fri);
+        DPW++;
+    }//GEN-LAST:event_friCheckActionPerformed
+
+    private void satCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satCheckActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Saturday");
+        Sat = "Saturday ";
+        setSat(Sat);
+        DPW++;
+    }//GEN-LAST:event_satCheckActionPerformed
 
     /**
      * @param args the command line arguments
@@ -336,21 +627,29 @@ public class CreatePlan1 extends javax.swing.JFrame {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Cancel;
+    private javax.swing.JButton cancelBtn;
     private com.toedter.calendar.JDateChooser endDateChoose;
+    private javax.swing.JCheckBox friCheck;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDes;
     private javax.swing.JLabel lblEndDate;
     private javax.swing.JLabel lblPName;
     private javax.swing.JLabel lblStartDate;
-    private javax.swing.JLabel lblback;
+    private javax.swing.JLabel lblcancel;
     private javax.swing.JLabel lblheadcreate;
     private javax.swing.JLabel lblsave;
-    private javax.swing.JLabel saveBtn;
+    private javax.swing.JCheckBox monCheck;
+    private javax.swing.JCheckBox satCheck;
+    private javax.swing.JButton saveBtn;
     private com.toedter.calendar.JDateChooser startDateChoose;
+    private javax.swing.JCheckBox sunCheck;
+    private javax.swing.JCheckBox thuCheck;
+    private javax.swing.JCheckBox tuesCheck;
     private javax.swing.JTextArea txtDes;
     private javax.swing.JTextField txtPName;
+    private javax.swing.JCheckBox wedCheck;
     // End of variables declaration//GEN-END:variables
 }

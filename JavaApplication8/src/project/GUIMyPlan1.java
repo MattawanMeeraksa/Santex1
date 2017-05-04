@@ -24,6 +24,7 @@ import javax.swing.JFrame;
  */
 public class GUIMyPlan1 extends javax.swing.JFrame {
 
+    PreparedStatement pstm = null;
     /**
      * Creates new form GUIHome
      *
@@ -33,6 +34,7 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
 
     public GUIMyPlan1() {
         initComponents();
+
     }
 
     public Date getSt() {
@@ -86,17 +88,22 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         Left = new javax.swing.JPanel();
         txtSantex = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        homeBtn = new javax.swing.JButton();
+        myplanBtn = new javax.swing.JButton();
+        createBtn = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         Right = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         Calendar = new com.toedter.calendar.JCalendar();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        actToday = new javax.swing.JTextArea();
         jPanel5 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtDay = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -170,65 +177,107 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
         jLabel5.setText("jLabel5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1031, 592));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
         Left.setBackground(new java.awt.Color(51, 51, 51));
 
-        txtSantex.setFont(new java.awt.Font("Vladimir Script", 0, 48)); // NOI18N
+        txtSantex.setFont(new java.awt.Font("Century Gothic", 1, 45)); // NOI18N
         txtSantex.setForeground(new java.awt.Color(255, 255, 255));
-        txtSantex.setText("Santex `");
+        txtSantex.setText("SANTEX");
 
-        jButton4.setBackground(new java.awt.Color(102, 102, 102));
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("HOME");
-
-        jButton5.setBackground(new java.awt.Color(102, 102, 102));
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("MY PLAN");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        homeBtn.setBackground(new java.awt.Color(102, 102, 102));
+        homeBtn.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        homeBtn.setForeground(new java.awt.Color(255, 255, 255));
+        homeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/wall-calendar.png"))); // NOI18N
+        homeBtn.setText("   HOME  ");
+        homeBtn.setContentAreaFilled(false);
+        homeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                homeBtnActionPerformed(evt);
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(102, 102, 102));
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("CREATE PLAN");
+        myplanBtn.setBackground(new java.awt.Color(102, 102, 102));
+        myplanBtn.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        myplanBtn.setForeground(new java.awt.Color(255, 255, 255));
+        myplanBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/office-material.png"))); // NOI18N
+        myplanBtn.setText("  MY PLAN ");
+        myplanBtn.setContentAreaFilled(false);
+        myplanBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                myplanBtnActionPerformed(evt);
+            }
+        });
+
+        createBtn.setBackground(new java.awt.Color(102, 102, 102));
+        createBtn.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        createBtn.setForeground(new java.awt.Color(255, 255, 255));
+        createBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/archive.png"))); // NOI18N
+        createBtn.setText("CREATE PLAN");
+        createBtn.setContentAreaFilled(false);
+        createBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/exercise (1).png"))); // NOI18N
 
         javax.swing.GroupLayout LeftLayout = new javax.swing.GroupLayout(Left);
         Left.setLayout(LeftLayout);
         LeftLayout.setHorizontalGroup(
             LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LeftLayout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
+            .addGroup(LeftLayout.createSequentialGroup()
                 .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtSantex, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                        .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addGroup(LeftLayout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(myplanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(homeBtn)
+                            .addComponent(createBtn)))
+                    .addGroup(LeftLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(txtSantex, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6)))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         LeftLayout.setVerticalGroup(
             LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LeftLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(txtSantex, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(LeftLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(txtSantex, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6))
+                .addGap(62, 62, 62)
+                .addComponent(homeBtn)
+                .addGap(39, 39, 39)
+                .addComponent(myplanBtn)
+                .addGap(46, 46, 46)
+                .addComponent(createBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Right.setBackground(new java.awt.Color(51, 51, 51));
 
+        javax.swing.GroupLayout RightLayout = new javax.swing.GroupLayout(Right);
+        Right.setLayout(RightLayout);
+        RightLayout.setHorizontalGroup(
+            RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 805, Short.MAX_VALUE)
+        );
+        RightLayout.setVerticalGroup(
+            RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 649, Short.MAX_VALUE)
+        );
+
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
 
-        Calendar.setDecorationBordersVisible(true);
+        Calendar.setBackground(new java.awt.Color(51, 51, 51));
         Calendar.setFont(new java.awt.Font("Yu Gothic Light", 0, 12)); // NOI18N
         Calendar.setTodayButtonText("");
         Calendar.setTodayButtonVisible(true);
@@ -247,92 +296,114 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(Calendar, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(Calendar, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                .addGap(59, 59, 59))
-        );
+        actToday.setColumns(20);
+        actToday.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        actToday.setRows(5);
+        jScrollPane3.setViewportView(actToday);
 
         jPanel5.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/notepad.png"))); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 32)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("To do list");
+        jLabel1.setAutoscrolls(true);
+
+        txtDay.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        txtDay.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 366, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addContainerGap())
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(51, 51, 51));
 
-        jLabel1.setFont(new java.awt.Font("Sitka Text", 0, 28)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("To do list");
-        jLabel1.setAutoscrolls(true);
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 28)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Activity Today");
 
-        txtDay.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/gym.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(58, 58, 58))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jLabel3.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Activity Today");
-
-        javax.swing.GroupLayout RightLayout = new javax.swing.GroupLayout(Right);
-        Right.setLayout(RightLayout);
-        RightLayout.setHorizontalGroup(
-            RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightLayout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel3)
+                        .addGap(11, 11, 11))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
-        RightLayout.setVerticalGroup(
-            RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RightLayout.createSequentialGroup()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(RightLayout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Calendar, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(216, 216, 216))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Calendar, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -341,76 +412,125 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(Left, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Right, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(1, 1, 1)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Right, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Left, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Right, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Left, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Right, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1031, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        pack();
+        setBounds(0, 0, 1660, 669);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-
-    }//GEN-LAST:event_jButton5ActionPerformed
-
     private void CalendarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CalendarPropertyChange
-//        System.out.println("KKKKK");
-//        System.out.println(""+Calendar.getCalendar().getTime());
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
-        String toDay = sdf.format(date);
-        String nottoDay = sdf.format(Calendar.getCalendar().getTime());
 
-//        
-//        System.out.println(""+nottoDay);
-//        System.out.println(""+toDay);
-//        System.out.println(""+dateFormat.format(Calendar.getCalendar().getTime()));
-//        System.out.println(""+dateFormat.format(date));
-        if (dateFormat.format(Calendar.getCalendar().getTime()).equals(dateFormat.format(date))) {
-            System.out.println("Today");
-            txtDay.setText(dateFormat.format(date));
-        } else if (toDay.equals(nottoDay)) {
-            System.out.println("" + toDay);
-        } else {
+        try {
+            //        System.out.println("KKKKK");
+            //        System.out.println(""+Calendar.getCalendar().getTime());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("EEEE"); //ไวใช้บอกวันว่าจันทร์หรืออังคารหรือ...
+            String toDay = sdf.format(date);
+            String selectedDay = sdf.format(Calendar.getCalendar().getTime());
+            Connection conn = MySQLConnect.getMySQLConnection();
+            String sql = "SELECT LIST.* FROM LIST INNER JOIN PLAN ON LIST.list_planID = PLAN.planID WHERE startDate<=? AND endDate>=? AND list_nameDay =?";
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, dateFormat.format(Calendar.getCalendar().getTime()));
+            pstm.setString(2, dateFormat.format(Calendar.getCalendar().getTime()));
+            pstm.setString(3, selectedDay);
+            String d = "";
+            ResultSet rs = pstm.executeQuery();
+            actToday.setText("");
+            while (rs.next()) {
 
+                System.out.println("rs.next");
+                //actToday.append();
+                actToday.append("List Name : " + rs.getString("listname") + "\n");
+
+            }
+
+            if (dateFormat.format(Calendar.getCalendar().getTime()).equals(dateFormat.format(date))) {
+                System.out.println("Today = " + date);
+                System.out.println("Not Today = " + selectedDay);
+
+                //System.out.println("");
+                txtDay.setText(dateFormat.format(date));
+            } /*else if (toDay.equals(nottoDay)) {
+                System.out.println("" + toDay);
+             */ else {
+                txtDay.setText(dateFormat.format(Calendar.getCalendar().getTime()));
+            }
+            conn.close();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GUIMyPlan1.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(GUIMyPlan1.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-
+        //        System.out.println(""+nottoDay);
+        //        System.out.println(""+toDay);
+        //        System.out.println(""+dateFormat.format(Calendar.getCalendar().getTime()));
+        //        System.out.println(""+dateFormat.format(date));
     }//GEN-LAST:event_CalendarPropertyChange
 
     private void CalendarAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_CalendarAncestorAdded
 
-//            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//            Date date = new Date();
-//            SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
-//            String toDay2 = sdf.format(date);
-//            String nottoDay = sdf.format(Calendar.getCalendar().getTime());
-//            System.out.println(""+nottoDay);
-//            System.out.println(""+Calendar.getCalendar().getTime());
+        //            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        //            Date date = new Date();
+        //            SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+        //            String toDay2 = sdf.format(date);
+        //            String nottoDay = sdf.format(Calendar.getCalendar().getTime());
+        //            System.out.println(""+nottoDay);
+        //            System.out.println(""+Calendar.getCalendar().getTime());
         //System.out.println(""+toDay);
-//        System.out.println(""+dateFormat.format(Calendar.getCalendar().getTime()));
-//        System.out.println(""+toDay2);
-//        System.out.println(""+date);
-//        System.out.println(""+sdf.format(date));
-
+        //        System.out.println(""+dateFormat.format(Calendar.getCalendar().getTime()));
+        //        System.out.println(""+toDay2);
+        //        System.out.println(""+date);
+        //        System.out.println(""+sdf.format(date));
     }//GEN-LAST:event_CalendarAncestorAdded
+
+    private void myplanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myplanBtnActionPerformed
+        MyPlan2 mp = new MyPlan2();
+        mp.setVisible(true);
+        mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mp.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_myplanBtnActionPerformed
+
+    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_homeBtnActionPerformed
+
+    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
+        CreatePlan1 cp = new CreatePlan1();
+        cp.setVisible(true);
+        cp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        cp.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_createBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -467,7 +587,7 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GUIMyPlan1().setVisible(true);
-              
+
             }
         });
     }
@@ -476,14 +596,14 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
     private com.toedter.calendar.JCalendar Calendar;
     private javax.swing.JPanel Left;
     private javax.swing.JPanel Right;
+    private javax.swing.JTextArea actToday;
     private javax.swing.JCheckBox activity1;
     private javax.swing.JCheckBox activity2;
+    private javax.swing.JButton createBtn;
+    private javax.swing.JButton homeBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JInternalFrame jInternalFrame2;
@@ -492,6 +612,9 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -499,6 +622,8 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton myplanBtn;
     private javax.swing.JTextPane showToDoList;
     private javax.swing.JLabel txtDay;
     private javax.swing.JLabel txtSantex;

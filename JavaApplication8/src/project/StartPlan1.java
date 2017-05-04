@@ -10,6 +10,9 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  *
@@ -22,6 +25,7 @@ public class StartPlan1 extends javax.swing.JFrame {
      */
     private int planId;
     private String planName;
+
     public StartPlan1() {
         //initComponents();
     }
@@ -30,7 +34,6 @@ public class StartPlan1 extends javax.swing.JFrame {
         initComponents();
         this.planId = planId;
     }
-    
 
     public int getPlanId() {
         return planId;
@@ -48,7 +51,6 @@ public class StartPlan1 extends javax.swing.JFrame {
         this.planName = planName;
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -61,6 +63,7 @@ public class StartPlan1 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         TextTop = new javax.swing.JPanel();
         txtHow = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         monCheck = new javax.swing.JCheckBox();
         tuesCheck = new javax.swing.JCheckBox();
@@ -78,31 +81,40 @@ public class StartPlan1 extends javax.swing.JFrame {
 
         TextTop.setBackground(new java.awt.Color(51, 51, 51));
 
-        txtHow.setFont(new java.awt.Font("Century Gothic", 0, 30)); // NOI18N
+        txtHow.setFont(new java.awt.Font("Century Gothic", 1, 30)); // NOI18N
         txtHow.setForeground(new java.awt.Color(255, 255, 255));
-        txtHow.setText("How many days per week?");
+        txtHow.setText("How many days per week? ");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/wall-calendar (3).png"))); // NOI18N
 
         javax.swing.GroupLayout TextTopLayout = new javax.swing.GroupLayout(TextTop);
         TextTop.setLayout(TextTopLayout);
         TextTopLayout.setHorizontalGroup(
             TextTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TextTopLayout.createSequentialGroup()
-                .addGap(76, 76, 76)
+                .addGap(157, 157, 157)
                 .addComponent(txtHow, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addGap(1, 1, 1)
+                .addComponent(jLabel2)
+                .addContainerGap(144, Short.MAX_VALUE))
         );
         TextTopLayout.setVerticalGroup(
             TextTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TextTopLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TextTopLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtHow, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
         monCheck.setBackground(new java.awt.Color(102, 102, 102));
         monCheck.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        monCheck.setForeground(new java.awt.Color(255, 255, 255));
         monCheck.setText("Monday");
         monCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,6 +124,7 @@ public class StartPlan1 extends javax.swing.JFrame {
 
         tuesCheck.setBackground(new java.awt.Color(102, 102, 102));
         tuesCheck.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        tuesCheck.setForeground(new java.awt.Color(255, 255, 255));
         tuesCheck.setText("Tuesday");
         tuesCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +134,7 @@ public class StartPlan1 extends javax.swing.JFrame {
 
         sunCheck.setBackground(new java.awt.Color(102, 102, 102));
         sunCheck.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        sunCheck.setForeground(new java.awt.Color(255, 255, 255));
         sunCheck.setText("Sunday");
         sunCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,6 +144,7 @@ public class StartPlan1 extends javax.swing.JFrame {
 
         satCheck.setBackground(new java.awt.Color(102, 102, 102));
         satCheck.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        satCheck.setForeground(new java.awt.Color(255, 255, 255));
         satCheck.setText("Saturday");
         satCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,6 +154,7 @@ public class StartPlan1 extends javax.swing.JFrame {
 
         wedCheck.setBackground(new java.awt.Color(102, 102, 102));
         wedCheck.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        wedCheck.setForeground(new java.awt.Color(255, 255, 255));
         wedCheck.setText("Wednesday");
         wedCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,6 +164,7 @@ public class StartPlan1 extends javax.swing.JFrame {
 
         thuCheck.setBackground(new java.awt.Color(102, 102, 102));
         thuCheck.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        thuCheck.setForeground(new java.awt.Color(255, 255, 255));
         thuCheck.setText("Thrusday");
         thuCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +174,7 @@ public class StartPlan1 extends javax.swing.JFrame {
 
         friCheck.setBackground(new java.awt.Color(102, 102, 102));
         friCheck.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        friCheck.setForeground(new java.awt.Color(255, 255, 255));
         friCheck.setText("Friday");
         friCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,14 +182,22 @@ public class StartPlan1 extends javax.swing.JFrame {
             }
         });
 
-        startBtn.setText("START");
+        startBtn.setFont(new java.awt.Font("Century Gothic", 1, 22)); // NOI18N
+        startBtn.setForeground(new java.awt.Color(255, 255, 255));
+        startBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/diskette.png"))); // NOI18N
+        startBtn.setText("  SAVE  ");
+        startBtn.setContentAreaFilled(false);
         startBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startBtnActionPerformed(evt);
             }
         });
 
-        cancelBtn.setText("CANCEL");
+        cancelBtn.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        cancelBtn.setForeground(new java.awt.Color(255, 255, 255));
+        cancelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/file (4).png"))); // NOI18N
+        cancelBtn.setText(" CANCEL");
+        cancelBtn.setContentAreaFilled(false);
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelBtnActionPerformed(evt);
@@ -187,48 +213,46 @@ public class StartPlan1 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(sunCheck)
-                            .addComponent(thuCheck)
-                            .addComponent(friCheck)
                             .addComponent(satCheck)
-                            .addComponent(wedCheck)
-                            .addComponent(monCheck))
+                            .addComponent(thuCheck)
+                            .addComponent(friCheck))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(tuesCheck)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(wedCheck)
+                            .addComponent(tuesCheck)
+                            .addComponent(sunCheck)
+                            .addComponent(monCheck))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cancelBtn)
-                        .addGap(124, 124, 124))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(startBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(141, 141, 141))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(startBtn)
+                            .addComponent(cancelBtn))
+                        .addGap(90, 90, 90))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(sunCheck)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(monCheck))
+                        .addComponent(startBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(startBtn)))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cancelBtn)
-                    .addComponent(tuesCheck))
+                        .addComponent(sunCheck)
+                        .addGap(18, 18, 18)
+                        .addComponent(monCheck)
+                        .addGap(18, 18, 18)
+                        .addComponent(tuesCheck)
+                        .addGap(18, 18, 18)
+                        .addComponent(wedCheck)))
                 .addGap(18, 18, 18)
-                .addComponent(wedCheck)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(thuCheck)
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addComponent(friCheck)
-                .addGap(39, 39, 39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(satCheck)
-                .addGap(49, 49, 49))
+                .addGap(206, 206, 206))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -242,25 +266,26 @@ public class StartPlan1 extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(TextTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(115, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    String nameDay="";
-    String Sun ="";
-    String Mon ="";
-    String Tues ="";
-    String Wedn ="";
-    String Thru ="";
-    String Fri ="";
-    String Sat ="";
+    String nameDay = "";
+    String Sun = "";
+    String Mon = "";
+    String Tues = "";
+    String Wedn = "";
+    String Thru = "";
+    String Fri = "";
+    String Sat = "";
     int DPW = 0;
     private void monCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monCheckActionPerformed
         // TODO add your handling code here:
         System.out.println("Monday");
-        Mon="Monday ";
+        Mon = "Monday ";
         DPW++;
     }//GEN-LAST:event_monCheckActionPerformed
 
@@ -270,42 +295,6 @@ public class StartPlan1 extends javax.swing.JFrame {
         Sun = "Sunday ";
         DPW++;
     }//GEN-LAST:event_sunCheckActionPerformed
-
-    private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
-        try {
-            // TODO add your handling code here:
-            nameDay =""+Sun+Mon+Tues+Wedn+Thru+Fri+Sat;
-            System.out.println("Started Plan " + getPlanName());
-            System.out.println("Plan Id "+getPlanId());
-            Plan p = new Plan();
-            ResultSet rs = p.show();
-            p.start(DPW, getPlanId(),nameDay);
-            MyPlan mp = new MyPlan();
-            mp.pack();
-            mp.setVisible(false);
-            mp.setDefaultCloseOperation(mp.EXIT_ON_CLOSE);
-            GUIMyPlan1 frame = new GUIMyPlan1();
-            frame.pack();
-            frame.setSize(500, 350);
-            frame.setVisible(true);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setLocationRelativeTo(null);
-            setVisible(false);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(StartPlan1.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(StartPlan1.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-    }//GEN-LAST:event_startBtnActionPerformed
-
-    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
-        MyPlan2 mp = new MyPlan2();
-        mp.setVisible(true);
-        mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mp.setLocationRelativeTo(null);
-        this.setVisible(false);
-    }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void tuesCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tuesCheckActionPerformed
         // TODO add your handling code here:
@@ -342,6 +331,41 @@ public class StartPlan1 extends javax.swing.JFrame {
         DPW++;
     }//GEN-LAST:event_satCheckActionPerformed
 
+    private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
+        try {
+            // TODO add your handling code here:
+            nameDay = "" + Sun + Mon + Tues + Wedn + Thru + Fri + Sat;
+            System.out.println("Started Plan " + getPlanName());
+            System.out.println("Plan Id " + getPlanId());
+            Plan p = new Plan();
+            ResultSet rs = p.show();
+            p.start(DPW, getPlanId(), nameDay);
+            MyPlan mp = new MyPlan();
+            mp.pack();
+            mp.setVisible(false);
+            mp.setDefaultCloseOperation(mp.EXIT_ON_CLOSE);
+            GUIMyPlan1 frame = new GUIMyPlan1();
+            frame.pack();
+            frame.setSize(500, 350);
+            frame.setVisible(true);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setLocationRelativeTo(null);
+            setVisible(false);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(StartPlan1.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(StartPlan1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_startBtnActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        MyPlan2 mp = new MyPlan2();
+        mp.setVisible(true);
+        mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mp.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -369,7 +393,7 @@ public class StartPlan1 extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -383,6 +407,7 @@ public class StartPlan1 extends javax.swing.JFrame {
     private javax.swing.JButton cancelBtn;
     private javax.swing.JCheckBox friCheck;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JCheckBox monCheck;
     private javax.swing.JCheckBox satCheck;
