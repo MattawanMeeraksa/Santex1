@@ -147,8 +147,6 @@ public class DetailList1 extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        planListTable = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         txtListPlan = new javax.swing.JLabel();
         lblListPlan = new javax.swing.JLabel();
@@ -167,8 +165,11 @@ public class DetailList1 extends javax.swing.JFrame {
         lblback = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        planListTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1343, 750));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -181,34 +182,6 @@ public class DetailList1 extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 30)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Detail List");
-
-        planListTable.setFont(new java.awt.Font("Yu Gothic Light", 0, 15)); // NOI18N
-        planListTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Day", "List Plan Name", "Description"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        planListTable.setPreferredSize(new java.awt.Dimension(817, 360));
-        planListTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                planListTableMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(planListTable);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createCompoundBorder(), null));
@@ -239,7 +212,7 @@ public class DetailList1 extends javax.swing.JFrame {
         txtDes.setFont(new java.awt.Font("Yu Gothic Light", 1, 17)); // NOI18N
 
         lbledit.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
-        lbledit.setText(" Edit");
+        lbledit.setText("EDIT");
         lbledit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbleditMouseClicked(evt);
@@ -247,7 +220,7 @@ public class DetailList1 extends javax.swing.JFrame {
         });
 
         lbldelete.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
-        lbldelete.setText("Delete ");
+        lbldelete.setText("DELETE");
         lbldelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbldeleteMouseClicked(evt);
@@ -288,13 +261,14 @@ public class DetailList1 extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(txtReps, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtDes, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(69, 69, 69)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addGap(69, 69, 69)
+                        .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(87, 87, 87)
                         .addComponent(lbledit, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,7 +314,7 @@ public class DetailList1 extends javax.swing.JFrame {
 
         lblback.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         lblback.setForeground(new java.awt.Color(255, 255, 255));
-        lblback.setText("Back");
+        lblback.setText("BACK");
         lblback.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblbackMouseClicked(evt);
@@ -357,6 +331,25 @@ public class DetailList1 extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/contract (1).png"))); // NOI18N
 
+        planListTable.setFont(new java.awt.Font("Yu Gothic", 0, 15)); // NOI18N
+        planListTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Name day", "List Plan Name", "Description"
+            }
+        ));
+        planListTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                planListTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(planListTable);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -364,54 +357,48 @@ public class DetailList1 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addComponent(lblback))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(169, 169, 169)
+                                .addGap(10, 10, 10)
+                                .addComponent(lblback)))
+                        .addGap(229, 229, 229)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 825, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(56, 56, 56)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 803, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblback, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(47, 47, 47)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(46, 46, 46))
+                            .addComponent(jLabel6)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addGap(54, 54, 54)))))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(12, 12, 12))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblback, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1343, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -426,7 +413,7 @@ public class DetailList1 extends javax.swing.JFrame {
             //ถ้าค่าเปลี่ยนก็อัพเดทอัตโนมัติ
             model = (DefaultTableModel) planListTable.getModel();
             model.setRowCount(0); //บอกว่าแถวแรกของตารางเป็น 0
-            String sql = "select * from LIST where list_planID=?";
+            String sql = "SELECT listName, list_nameDay,descriptionList FROM LIST WHERE list_planID= ?";
             pstm = (PreparedStatement) conn.prepareStatement(sql);
             pstm.setInt(1, planId);
             ResultSet rs = pstm.executeQuery();
@@ -480,12 +467,12 @@ public class DetailList1 extends javax.swing.JFrame {
             if (n == 0) {
                 //ให้มันแสดงเฉยๆว่าแพลนนั้นถูกลบออกไปแล้วแต่กดเลือกอะไรไม่ได้นอกจากแค่กด ok หรือปิดหน้าจอไป
                 JOptionPane.showMessageDialog(null, "Your list is deleted");
-                MyPlan2 sp = new MyPlan2();
-
-                sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                sp.setVisible(true);
-                sp.setLocationRelativeTo(null);
-                setVisible(false);
+                ///MyPlan2 sp = new MyPlan2();
+                repaint();
+                //               sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//                sp.setVisible(true);
+//                sp.setLocationRelativeTo(null);
+//                setVisible(false);
             } else {
                 System.out.println("Canceled");
             }
@@ -496,7 +483,7 @@ public class DetailList1 extends javax.swing.JFrame {
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         try {
-            EditListPlan ep = new EditListPlan(getPlanId(), getListPlanName(), getListDes(), getReps(), getSet(), getListID(), getNameDay());
+            EditListPlan ep = new EditListPlan(getPlanId(), getListPlanName(), getListDes(), getReps(), getSet(), getListID());
             System.out.println(getPlanId());
             System.out.println(getNameDay());
             ep.setVisible(true);
@@ -512,7 +499,7 @@ public class DetailList1 extends javax.swing.JFrame {
 
     private void lbleditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbleditMouseClicked
         try {
-            EditListPlan ep = new EditListPlan(getPlanId(), getListPlanName(), getListDes(), getReps(), getSet(), getListID(), getNameDay());
+            EditListPlan ep = new EditListPlan(getPlanId(), getListPlanName(), getListDes(), getReps(), getSet(), getListID());
             System.out.println(getPlanId());
             System.out.println(getNameDay());
             ep.setVisible(true);
@@ -525,44 +512,6 @@ public class DetailList1 extends javax.swing.JFrame {
             Logger.getLogger(DetailList1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_lbleditMouseClicked
-
-    private void planListTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_planListTableMouseClicked
-        txtDay.setText(planListTable.getValueAt(planListTable.getSelectedRow(), 0) + "");
-        txtListPlan.setText(planListTable.getValueAt(planListTable.getSelectedRow(), 1) + "");
-        txtDes.setText(planListTable.getValueAt(planListTable.getSelectedRow(), 2) + "");
-        try {
-            String sql = "select * from LIST where listName=?";
-            pstm = (PreparedStatement) conn.prepareStatement(sql);
-            pstm.setString(1, planListTable.getValueAt(planListTable.getSelectedRow(), 1) + "");
-            ResultSet rs = pstm.executeQuery();
-            System.out.println("query..");
-            while (rs.next()) {
-                txtDay.setText(rs.getString("list_nameDay"));
-                txtListPlan.setText(rs.getString("listName"));
-                txtDes.setText(rs.getString("descriptionList"));
-                System.out.println("reps = " + rs.getInt("reps"));
-                txtReps.setText(rs.getInt("reps") + "");
-                txtSet.setText(rs.getInt("set") + "");
-
-                setnameDay(rs.getString("list_nameDay"));
-                setDay(rs.getString("list_nameDay"));
-                setListPlanName(rs.getString("listName"));
-                setListDes(rs.getString("descriptionList"));
-                setReps(rs.getInt("reps"));
-                setSet(rs.getInt("set"));
-                setListID(rs.getInt("listID"));
-            }
-            System.out.println("end result set");
-            if (!rs.next()) {
-                System.out.println(" ");
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            System.out.println("");
-        }
-    }//GEN-LAST:event_planListTableMouseClicked
 
     private void lbldeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbldeleteMouseClicked
         try {
@@ -598,6 +547,44 @@ public class DetailList1 extends javax.swing.JFrame {
             Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_lbldeleteMouseClicked
+
+    private void planListTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_planListTableMouseClicked
+        txtDay.setText(planListTable.getValueAt(planListTable.getSelectedRow(), 0) + "");
+        txtListPlan.setText(planListTable.getValueAt(planListTable.getSelectedRow(), 1) + "");
+        txtDes.setText(planListTable.getValueAt(planListTable.getSelectedRow(), 2) + "");
+        try {
+            String sql = "select * from LIST where listName=?";
+            pstm = (PreparedStatement) conn.prepareStatement(sql);
+            pstm.setString(1, planListTable.getValueAt(planListTable.getSelectedRow(), 1)+"");
+            ResultSet rs = pstm.executeQuery();
+            System.out.println("query..");
+            while (rs.next()) {
+                txtDay.setText(rs.getString("list_nameDay"));
+                txtListPlan.setText(rs.getString("listName"));
+                txtDes.setText(rs.getString("descriptionList"));
+                System.out.println("reps = " + rs.getInt("reps"));
+                txtReps.setText(rs.getInt("reps") + "");
+                txtSet.setText(rs.getInt("set") + "");
+
+                setnameDay(rs.getString("list_nameDay"));
+                setDay(rs.getString("list_nameDay"));
+                setListPlanName(rs.getString("listName"));
+                setListDes(rs.getString("descriptionList"));
+                setReps(rs.getInt("reps"));
+                setSet(rs.getInt("set"));
+                setListID(rs.getInt("listID"));
+            }
+            System.out.println("end result set");
+            if (!rs.next()) {
+                System.out.println(" ");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }//GEN-LAST:event_planListTableMouseClicked
     /**
      * @param args the command line arguments
      */

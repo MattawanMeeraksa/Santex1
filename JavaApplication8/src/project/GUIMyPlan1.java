@@ -12,19 +12,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Administrator
  */
 public class GUIMyPlan1 extends javax.swing.JFrame {
-
+    Connection conn = null;
     PreparedStatement pstm = null;
+    ArrayList<String> listName =  new ArrayList<String>();
+    
     /**
      * Creates new form GUIHome
      *
@@ -88,15 +94,12 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         Left = new javax.swing.JPanel();
         txtSantex = new javax.swing.JLabel();
-        homeBtn = new javax.swing.JButton();
         myplanBtn = new javax.swing.JButton();
         createBtn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         Right = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         Calendar = new com.toedter.calendar.JCalendar();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        actToday = new javax.swing.JTextArea();
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -104,6 +107,12 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        scrollPaneCheckList = new javax.swing.JScrollPane();
+        bigpanelCheckList = new javax.swing.JPanel();
+        scrollActToday = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        actToday = new javax.swing.JTextArea();
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -180,24 +189,13 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1031, 592));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Left.setBackground(new java.awt.Color(51, 51, 51));
 
         txtSantex.setFont(new java.awt.Font("Century Gothic", 1, 45)); // NOI18N
         txtSantex.setForeground(new java.awt.Color(255, 255, 255));
         txtSantex.setText("SANTEX");
-
-        homeBtn.setBackground(new java.awt.Color(102, 102, 102));
-        homeBtn.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
-        homeBtn.setForeground(new java.awt.Color(255, 255, 255));
-        homeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/wall-calendar.png"))); // NOI18N
-        homeBtn.setText("   HOME  ");
-        homeBtn.setContentAreaFilled(false);
-        homeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeBtnActionPerformed(evt);
-            }
-        });
 
         myplanBtn.setBackground(new java.awt.Color(102, 102, 102));
         myplanBtn.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
@@ -235,7 +233,6 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
                         .addGap(56, 56, 56)
                         .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(myplanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(homeBtn)
                             .addComponent(createBtn)))
                     .addGroup(LeftLayout.createSequentialGroup()
                         .addGap(40, 40, 40)
@@ -253,14 +250,14 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addComponent(txtSantex, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel6))
-                .addGap(62, 62, 62)
-                .addComponent(homeBtn)
-                .addGap(39, 39, 39)
+                .addGap(72, 72, 72)
                 .addComponent(myplanBtn)
-                .addGap(46, 46, 46)
+                .addGap(49, 49, 49)
                 .addComponent(createBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel1.add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 726));
 
         Right.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -275,7 +272,10 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
             .addGap(0, 649, Short.MAX_VALUE)
         );
 
+        jPanel1.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(1667, 77, -1, -1));
+
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Calendar.setBackground(new java.awt.Color(51, 51, 51));
         Calendar.setFont(new java.awt.Font("Yu Gothic Light", 0, 12)); // NOI18N
@@ -295,11 +295,7 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
                 CalendarPropertyChange(evt);
             }
         });
-
-        actToday.setColumns(20);
-        actToday.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
-        actToday.setRows(5);
-        jScrollPane3.setViewportView(actToday);
+        jPanel4.add(Calendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 147, 684, 414));
 
         jPanel5.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -340,6 +336,8 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 27, -1, -1));
+
         jPanel6.setBackground(new java.awt.Color(51, 51, 51));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 28)); // NOI18N
@@ -361,73 +359,38 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel3)
-                        .addGap(11, 11, 11))
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap())
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel3)
+                .addGap(11, 11, 11))
+            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Calendar, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(216, 216, 216))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Calendar, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(53, Short.MAX_VALUE))
-        );
+        jPanel4.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(955, 27, 301, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(Left, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Right, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Left, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Right, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 28)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/check-box.png"))); // NOI18N
+        jLabel10.setText("Check List");
+        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(818, 380, 217, -1));
+
+        bigpanelCheckList.setBackground(new java.awt.Color(51, 51, 51));
+        bigpanelCheckList.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        scrollPaneCheckList.setViewportView(bigpanelCheckList);
+
+        jPanel4.add(scrollPaneCheckList, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 460, 480, 240));
+
+        actToday.setEditable(false);
+        actToday.setColumns(20);
+        actToday.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        actToday.setRows(5);
+        jScrollPane3.setViewportView(actToday);
+
+        scrollActToday.setViewportView(jScrollPane3);
+
+        jPanel4.add(scrollActToday, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 100, 490, 250));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -437,16 +400,44 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setBounds(0, 0, 1660, 669);
+        setBounds(0, 0, 1712, 782);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CalendarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CalendarPropertyChange
+    public void LoopCheckList(){
+        int y =10;
+        JPanel[] smallCheckListPanel = new JPanel[listName.size()];
+        JCheckBox[] checkList = new JCheckBox[listName.size()];
+        JLabel[] labelCheckList = new JLabel[listName.size()];
+        for (int i = 0; i < listName.size(); i++) {
+            smallCheckListPanel[i] = new JPanel();
+            checkList[i] = new JCheckBox();
+            labelCheckList[i] = new JLabel();
+            smallCheckListPanel[i].setBackground(new java.awt.Color(51, 51, 51));
+        smallCheckListPanel[i].setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        labelCheckList[i].setBackground(new java.awt.Color(51, 51, 51));
+        labelCheckList[i].setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        labelCheckList[i].setForeground(new java.awt.Color(255, 255, 255));
+        labelCheckList[i].setText(listName.get(i));
+        smallCheckListPanel[i].add(labelCheckList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 18, -1, -1));
+
+        checkList[i].setBackground(new java.awt.Color(51, 51, 51));
+        checkList[i].setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        checkList[i].setForeground(new java.awt.Color(255, 255, 255));
+        checkList[i].setText("Done");
+        smallCheckListPanel[i].add(checkList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
+
+        bigpanelCheckList.add(smallCheckListPanel[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(15, y, 440, -1));
+        y+=35;
+        jPanel4.add(bigpanelCheckList, new org.netbeans.lib.awtextra.AbsoluteConstraints(775, 464, 481, 240));
+        }
+        scrollPaneCheckList.setViewportView(bigpanelCheckList);
+    }
+    private void CalendarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CalendarPropertyChange
+        
         try {
             //        System.out.println("KKKKK");
             //        System.out.println(""+Calendar.getCalendar().getTime());
@@ -464,23 +455,24 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
             String d = "";
             ResultSet rs = pstm.executeQuery();
             actToday.setText("");
+           // txtList.setText("");
             while (rs.next()) {
 
                 System.out.println("rs.next");
                 //actToday.append();
-                actToday.append("List Name : " + rs.getString("listname") + "\n");
-
+                actToday.append("Exercise : " + rs.getString("listname") + "\n");
+                listName.add(rs.getString("listname"));
+                actToday.append("   -reps : " + rs.getInt("reps") + "\n");
+                actToday.append("   - set : " + rs.getInt("set") + "\n");
+                //txtList.setText(rs.getString("listName"));
+                LoopCheckList();
             }
 
             if (dateFormat.format(Calendar.getCalendar().getTime()).equals(dateFormat.format(date))) {
                 System.out.println("Today = " + date);
                 System.out.println("Not Today = " + selectedDay);
-
-                //System.out.println("");
                 txtDay.setText(dateFormat.format(date));
-            } /*else if (toDay.equals(nottoDay)) {
-                System.out.println("" + toDay);
-             */ else {
+            } else {
                 txtDay.setText(dateFormat.format(Calendar.getCalendar().getTime()));
             }
             conn.close();
@@ -519,10 +511,6 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
         mp.setLocationRelativeTo(null);
         this.setVisible(false);
     }//GEN-LAST:event_myplanBtnActionPerformed
-
-    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_homeBtnActionPerformed
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         CreatePlan1 cp = new CreatePlan1();
@@ -599,8 +587,8 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
     private javax.swing.JTextArea actToday;
     private javax.swing.JCheckBox activity1;
     private javax.swing.JCheckBox activity2;
+    private javax.swing.JPanel bigpanelCheckList;
     private javax.swing.JButton createBtn;
-    private javax.swing.JButton homeBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -608,6 +596,7 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JInternalFrame jInternalFrame2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -624,6 +613,8 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton myplanBtn;
+    private javax.swing.JScrollPane scrollActToday;
+    private javax.swing.JScrollPane scrollPaneCheckList;
     private javax.swing.JTextPane showToDoList;
     private javax.swing.JLabel txtDay;
     private javax.swing.JLabel txtSantex;

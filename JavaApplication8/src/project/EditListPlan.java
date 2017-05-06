@@ -50,16 +50,16 @@ public class EditListPlan extends javax.swing.JFrame {
         }
     }
 
-    EditListPlan(int planId, String listPlanName, String listDescription, int reps, int set, int listID, String nameDay) throws ClassNotFoundException, SQLException {
+    EditListPlan(int planId, String listPlanName, String listDescription, int reps, int set, int listID) throws ClassNotFoundException, SQLException {
         this.planId = planId;
         this.listPlanName = listPlanName;
         this.listDescription = listDescription;
         this.reps = reps;
         this.set = set;
         this.listID = listID;
-        this.nameDay = nameDay;
+        //this.nameDay = nameDay;
         try {
-            tt();
+           // tt();
             initComponents();
             conn = MySQLConnect.getMySQLConnection();
         } catch (ClassNotFoundException ex) {
@@ -73,6 +73,7 @@ public class EditListPlan extends javax.swing.JFrame {
         txtDes.setText(listDescription);
         txtReps.setText(reps + "");
         txtSet.setText(set + "");
+       
         //boxChooseDay
 
     }
@@ -138,8 +139,6 @@ public class EditListPlan extends javax.swing.JFrame {
         lblReps = new javax.swing.JLabel();
         txtLName = new javax.swing.JTextField();
         saveBtn = new javax.swing.JButton();
-        lblDay = new javax.swing.JLabel();
-        boxChooseDay = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -212,17 +211,6 @@ public class EditListPlan extends javax.swing.JFrame {
             }
         });
 
-        lblDay.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
-        lblDay.setForeground(new java.awt.Color(255, 255, 255));
-        lblDay.setText("Day");
-
-        boxChooseDay.setModel(new javax.swing.DefaultComboBoxModel<>());
-        boxChooseDay.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxChooseDayActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -249,15 +237,12 @@ public class EditListPlan extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblReps)
                             .addComponent(lblDes)
-                            .addComponent(lblLName)
-                            .addComponent(lblDay))
+                            .addComponent(lblLName))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtReps, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtLName, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
-                                .addComponent(txtDes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(boxChooseDay, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtLName, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                            .addComponent(txtDes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtReps, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(96, 96, 96))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -269,24 +254,21 @@ public class EditListPlan extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLName)
                     .addComponent(txtLName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDay)
-                    .addComponent(boxChooseDay, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGap(74, 74, 74)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblDes)
-                        .addGap(122, 122, 122))
+                        .addGap(67, 67, 67))
                     .addComponent(txtDes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblReps)
                     .addComponent(txtReps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSet)
                     .addComponent(txtSet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                .addGap(64, 64, 64)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -353,28 +335,24 @@ public class EditListPlan extends javax.swing.JFrame {
         setResizable(false);
     }//GEN-LAST:event_txtDesActionPerformed
 
-    private void boxChooseDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxChooseDayActionPerformed
-        System.out.println("" + boxChooseDay.getSelectedItem());
-    }//GEN-LAST:event_boxChooseDayActionPerformed
-s
-    public void tt() throws ClassNotFoundException, SQLException {
-        Connection conn = MySQLConnect.getMySQLConnection();
-        System.out.println("selecting..");
-        PreparedStatement pstm = conn.prepareStatement("SELECT nameDay,dayperweek from PLAN where planID = " + planId);
-        ResultSet rs = pstm.executeQuery();
-        while (rs.next()) {
-            String days = rs.getString("nameDay");
-            System.out.println("" + rs.getString("nameDay"));
-            System.out.println("" + rs.getInt("dayperweek"));
-            int start = 0;
-            for (int i = 1; i <= rs.getInt("dayperweek"); i++) {
-                String eachDay = days.substring(start, days.indexOf(" ", start));
-                start = days.indexOf(" ", start) + 1;
-                boxChooseDay.addItem(eachDay);
+//    public void tt() throws ClassNotFoundException, SQLException {
+//        Connection conn = MySQLConnect.getMySQLConnection();
+//        System.out.println("selecting..");
+//        PreparedStatement pstm = conn.prepareStatement("SELECT nameDay,dayperweek from PLAN where planID = " + planId);
+//        ResultSet rs = pstm.executeQuery();
+//        while (rs.next()) {
+//            String days = rs.getString("nameDay");
+//            System.out.println("" + rs.getString("nameDay"));
+//            System.out.println("" + rs.getInt("dayperweek"));
+//            int start = 0;
+//            for (int i = 1; i <= rs.getInt("dayperweek"); i++) {
+//                String eachDay = days.substring(start, days.indexOf(" ", start));
+//                start = days.indexOf(" ", start) + 1;
+                //boxChooseDay.addItem(eachDay);
 
-            }
-        }
-    }
+//            }
+ //       }
+    //}
 
     /**
      * @param args the command line arguments
@@ -391,10 +369,8 @@ s
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
-    private javax.swing.JComboBox<String> boxChooseDay;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblDay;
     private javax.swing.JLabel lblDes;
     private javax.swing.JLabel lblLName;
     private javax.swing.JLabel lblReps;

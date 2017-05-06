@@ -169,6 +169,7 @@ public class CreatePlan1 extends javax.swing.JFrame {
         lblDes.setForeground(new java.awt.Color(255, 255, 255));
         lblDes.setText("Description");
 
+        txtPName.setEditable(false);
         txtPName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPNameActionPerformed(evt);
@@ -180,6 +181,7 @@ public class CreatePlan1 extends javax.swing.JFrame {
             }
         });
 
+        txtDes.setEditable(false);
         txtDes.setColumns(20);
         txtDes.setRows(5);
         txtDes.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -209,7 +211,7 @@ public class CreatePlan1 extends javax.swing.JFrame {
 
         lblcancel.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         lblcancel.setForeground(new java.awt.Color(255, 255, 255));
-        lblcancel.setText("Cancel");
+        lblcancel.setText("CANCEL");
         lblcancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblcancelMouseClicked(evt);
@@ -218,7 +220,7 @@ public class CreatePlan1 extends javax.swing.JFrame {
 
         lblsave.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         lblsave.setForeground(new java.awt.Color(255, 255, 255));
-        lblsave.setText(" Save ");
+        lblsave.setText(" SAVE ");
         lblsave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblsaveMouseClicked(evt);

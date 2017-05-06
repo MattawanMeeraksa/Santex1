@@ -69,16 +69,12 @@
                               <Component id="lblReps" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblDes" min="-2" max="-2" attributes="0"/>
                               <Component id="lblLName" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblDay" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="69" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtReps" min="-2" pref="60" max="-2" attributes="0"/>
-                                  <Component id="txtLName" pref="238" max="32767" attributes="0"/>
-                                  <Component id="txtDes" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="boxChooseDay" min="-2" pref="238" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtLName" pref="238" max="32767" attributes="0"/>
+                              <Component id="txtDes" max="32767" attributes="0"/>
+                              <Component id="txtReps" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
                       </Group>
@@ -96,29 +92,25 @@
                       <Component id="lblLName" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtLName" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblDay" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="boxChooseDay" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="lblDes" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                       </Group>
                       <Component id="txtDes" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace pref="58" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblReps" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtReps" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblSet" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtSet" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="saveBtn" alignment="3" min="-2" pref="67" max="-2" attributes="0"/>
                       <Component id="backBtn" alignment="3" min="-2" pref="67" max="-2" attributes="0"/>
@@ -254,31 +246,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveBtnActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblDay">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Century Gothic" size="20" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Day"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="boxChooseDay">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;()" type="code"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boxChooseDayActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="EditListPlan_boxChooseDay"/>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
