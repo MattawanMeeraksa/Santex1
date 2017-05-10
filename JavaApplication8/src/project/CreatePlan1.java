@@ -5,7 +5,7 @@
  */
 package project;
 
-import com.mysql.jdbc.PreparedStatement;
+import java.sql.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.*;
@@ -456,7 +456,7 @@ public class CreatePlan1 extends javax.swing.JFrame {
             } else {
                 nameDay = "" + Sun + Mon + Tues + Wedn + Thru + Fri + Sat;
                 String sql = "insert into PLAN (planName,descriptionPlan,nameDay, startDate,endDate,dayperweek) values (?,?,?,?,?,?)";
-                pstm = (PreparedStatement) conn.prepareStatement(sql);
+                PreparedStatement pstm = conn.prepareStatement(sql);
                 pstm.setString(1, txtPName.getText());
                 pstm.setString(2, txtDes.getText());
                 pstm.setString(3, nameDay);
@@ -497,7 +497,7 @@ public class CreatePlan1 extends javax.swing.JFrame {
                 System.out.println("1111");
                 nameDay = "" + Sun + Mon + Tues + Wedn + Thru + Fri + Sat;
                 String sql = "insert into PLAN (planName,descriptionPlan,nameDay, startDate,endDate,dayperweek) values (?,?,?,?,?,?)";
-                pstm = (PreparedStatement) conn.prepareStatement(sql);
+                PreparedStatement pstm = conn.prepareStatement(sql);
                 pstm.setString(1, txtPName.getText());
                 pstm.setString(2, txtDes.getText());
                 pstm.setString(3, nameDay);

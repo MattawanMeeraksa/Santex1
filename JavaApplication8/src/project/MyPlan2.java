@@ -5,7 +5,8 @@
  */
 package project;
 
-import com.mysql.jdbc.PreparedStatement;
+//import com.mysql.jdbc.PreparedStatement;
+import java.sql.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -557,7 +558,7 @@ public class MyPlan2 extends javax.swing.JFrame {
             model = (DefaultTableModel) myPlan.getModel();
             model.setRowCount(0); //บอกว่าแถวแรกของตารางเป็น 0
             String sql = "select * from PLAN";
-            pstm1 = (PreparedStatement) conn.prepareStatement(sql);
+            PreparedStatement pstm1 = conn.prepareStatement(sql);
             ResultSet rs = pstm1.executeQuery();
             while (rs.next()) {
                 //เก็บ planId,planName,descrip,totaldays ในทุกๆช่องลงในตัวแปร planId ทีเป็นArrayList เพราะเราไม่รู้จำนวนที่แน่นอน
@@ -577,7 +578,7 @@ public class MyPlan2 extends javax.swing.JFrame {
         txtDes.setText(myPlan.getValueAt(myPlan.getSelectedRow(), 1) + "");
         try {
             String sql = "select * from PLAN where planName=?";
-            pstm1 = (PreparedStatement) conn.prepareStatement(sql);
+            PreparedStatement pstm1 = conn.prepareStatement(sql);
             pstm1.setString(1, myPlan.getValueAt(myPlan.getSelectedRow(), 0) + "");
             ResultSet rs = pstm1.executeQuery();
             while (rs.next()) {
@@ -585,18 +586,17 @@ public class MyPlan2 extends javax.swing.JFrame {
                 txtStart.setText(rs.getDate("startDate").toString());
                 txtEnd.setText(rs.getDate("endDate").toString());
                 txtPName.setText(rs.getString("planName"));
-                 if (rs.getInt("planStatus") == 1) {
+                if (rs.getInt("planStatus") == 1) {
                     txtStatusPlan.setText("Starting");
                     txtStatusPlan.setForeground(new java.awt.Color(51, 255, 51));
                 } else if (rs.getInt("listStatus") == 0) {
                     txtStatusPlan.setText("Not start");
                     txtStatusPlan.setForeground(new java.awt.Color(255, 0, 0));
-                }
-                else if(rs.getInt("listStatus") == 2) {
+                } else if (rs.getInt("listStatus") == 2) {
                     txtStatusPlan.setText("Finished");
-                    txtStatusPlan.setForeground(new java.awt.Color(32,21,93));  
+                    txtStatusPlan.setForeground(new java.awt.Color(32, 21, 93));
                 }
-                
+
                 setPlanStatus(rs.getInt("planStatus"));
                 setPlanName(rs.getString("planName"));
                 setPlanDes(rs.getString("descriptionPlan"));
@@ -625,10 +625,10 @@ public class MyPlan2 extends javax.swing.JFrame {
         System.out.println("planId " + planId);
         try {
             String sql = "delete from LIST where list_planID =" + planId;
-            pstm1 = (PreparedStatement) conn.prepareStatement(sql);
+            PreparedStatement pstm1 = conn.prepareStatement(sql);
             pstm1.executeUpdate();
             String sql2 = "delete from PLAN where planId=" + planId;
-            pstm2 = (PreparedStatement) conn.prepareStatement(sql2);
+            PreparedStatement pstm2 = conn.prepareStatement(sql2);
             pstm2.executeUpdate();
             Object[] options = {"Yes", "No"}; //เป็นปุ่มที่ให้เลือกว่าจะกดอะไร
             int n = JOptionPane.showOptionDialog(deleteBtn, //1.เป็นชนิดของปุ่ม
@@ -690,7 +690,7 @@ public class MyPlan2 extends javax.swing.JFrame {
         } else if (getPlanStatus() == 0) {
             try {
                 String sql = "UPDATE PLAN SET planStatus = ? WHERE planID = " + planId;
-                pstm1 = (PreparedStatement) conn.prepareStatement(sql);
+                PreparedStatement pstm1 = conn.prepareStatement(sql);
                 pstm1.setInt(1, 1);
                 int rs = pstm1.executeUpdate();
             } catch (SQLException ex) {
@@ -724,10 +724,10 @@ public class MyPlan2 extends javax.swing.JFrame {
         System.out.println("planId " + planId);
         try {
             String sql = "delete from LIST where list_planID =" + planId;
-            pstm1 = (PreparedStatement) conn.prepareStatement(sql);
+            PreparedStatement pstm1 = conn.prepareStatement(sql);
             pstm1.executeUpdate();
             String sql2 = "delete from PLAN where planId=" + planId;
-            pstm2 = (PreparedStatement) conn.prepareStatement(sql2);
+            PreparedStatement pstm2 = conn.prepareStatement(sql2);
             pstm2.executeUpdate();
             Object[] options = {"Yes", "No"}; //เป็นปุ่มที่ให้เลือกว่าจะกดอะไร
             int n = JOptionPane.showOptionDialog(deleteBtn, //1.เป็นชนิดของปุ่ม

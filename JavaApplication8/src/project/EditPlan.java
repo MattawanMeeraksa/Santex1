@@ -177,7 +177,7 @@ public class EditPlan extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(txtDes);
 
-        lblheadcreate.setFont(new java.awt.Font("Century Gothic", 0, 32)); // NOI18N
+        lblheadcreate.setFont(new java.awt.Font("Century Gothic", 1, 32)); // NOI18N
         lblheadcreate.setForeground(new java.awt.Color(255, 255, 255));
         lblheadcreate.setText("Edit Plan");
 
@@ -200,7 +200,7 @@ public class EditPlan extends javax.swing.JFrame {
 
         lblback.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         lblback.setForeground(new java.awt.Color(255, 255, 255));
-        lblback.setText("Back");
+        lblback.setText("BACK");
 
         saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/save.png"))); // NOI18N
         saveBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -211,7 +211,7 @@ public class EditPlan extends javax.swing.JFrame {
 
         lblsave.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         lblsave.setForeground(new java.awt.Color(255, 255, 255));
-        lblsave.setText("Save");
+        lblsave.setText("SAVE");
 
         backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/multiply.png"))); // NOI18N
         backBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -342,7 +342,7 @@ public class EditPlan extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Your input is incorrect");
             } else {
                 String sql = "update PLAN SET planName = ? , descriptionPlan = ? , startDate = ? , endDate = ? where planID=" + planId;
-                pstm = (PreparedStatement) conn.prepareStatement(sql);
+                PreparedStatement pstm = conn.prepareStatement(sql);
                 pstm.setString(1, txtPName.getText());
 
                 pstm.setString(2, txtDes.getText());

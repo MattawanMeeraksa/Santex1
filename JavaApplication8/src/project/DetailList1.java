@@ -5,7 +5,7 @@
  */
 package project;
 
-import com.mysql.jdbc.PreparedStatement;
+import java.sql.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -346,7 +346,7 @@ public class DetailList1 extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/contract (1).png"))); // NOI18N
 
-        planListTable.setFont(new java.awt.Font("Yu Gothic", 0, 15)); // NOI18N
+        planListTable.setFont(new java.awt.Font("Yu Gothic Light", 0, 15)); // NOI18N
         planListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -407,7 +407,7 @@ public class DetailList1 extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(218, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 759, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -430,7 +430,7 @@ public class DetailList1 extends javax.swing.JFrame {
             model = (DefaultTableModel) planListTable.getModel();
             model.setRowCount(0); //บอกว่าแถวแรกของตารางเป็น 0
             String sql = "SELECT listName, list_nameDay,descriptionList FROM LIST WHERE list_planID= ?";
-            pstm = (PreparedStatement) conn.prepareStatement(sql);
+            PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setInt(1, planId);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
@@ -466,7 +466,7 @@ public class DetailList1 extends javax.swing.JFrame {
         try {
             System.out.println("" + listID);
             String sql = "delete from LIST where listName=? and listID=" + listID;
-            pstm = (PreparedStatement) conn.prepareStatement(sql);
+            PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, listPlanName);
             pstm.executeUpdate();
             Object[] options = {"Yes", "No"}; //เป็นปุ่มที่ให้เลือกว่าจะกดอะไร
@@ -533,7 +533,7 @@ public class DetailList1 extends javax.swing.JFrame {
         try {
             System.out.println("" + listID);
             String sql = "delete from LIST where listName=? and listID=" + listID;
-            pstm = (PreparedStatement) conn.prepareStatement(sql);
+            PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, listPlanName);
             pstm.executeUpdate();
             Object[] options = {"Yes", "No"}; //เป็นปุ่มที่ให้เลือกว่าจะกดอะไร
@@ -570,7 +570,7 @@ public class DetailList1 extends javax.swing.JFrame {
         txtDes.setText(planListTable.getValueAt(planListTable.getSelectedRow(), 2) + "");
         try {
             String sql = "select * from LIST where listName=?";
-            pstm = (PreparedStatement) conn.prepareStatement(sql);
+            PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, planListTable.getValueAt(planListTable.getSelectedRow(), 1) + "");
             ResultSet rs = pstm.executeQuery();
             System.out.println("query..");

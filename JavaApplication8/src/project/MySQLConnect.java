@@ -14,7 +14,10 @@ import java.sql.SQLException;
  * @author Administrator
  */
 public class MySQLConnect {
-     public static Connection getMySQLConnection()
+
+    private static Connection conn;
+
+    public static Connection getMySQLConnection()
             throws ClassNotFoundException, SQLException {
 
         String hostName = "54.187.59.174";
@@ -22,21 +25,24 @@ public class MySQLConnect {
         String dbPort = "3306";
         String userName = "itangx";
         String password = "password";
-        
+
         return getMySQLConnection(hostName, dbName, dbPort, userName, password);
     }
 
     public static Connection getMySQLConnection(String hostName, String dbName,
             String dbPort, String userName, String password) throws SQLException,
             ClassNotFoundException {
-        
+
         Class.forName("com.mysql.jdbc.Driver");
 
-        String connectionURL = "jdbc:mysql://" + hostName + ":"+ dbPort +"/" + dbName+"?useSSL=false";
+        String connectionURL = "jdbc:mysql://" + hostName + ":" + dbPort + "/" + dbName + "?useSSL=false";
 
-        Connection conn = DriverManager.getConnection(connectionURL, userName,
-                password);
+        conn = DriverManager.getConnection(connectionURL, userName, password);
         return conn;
-    }   
-}
+    }
 
+    public static Connection getConn() {
+        return conn;
+    }
+
+}

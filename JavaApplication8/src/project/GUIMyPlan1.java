@@ -7,6 +7,7 @@ package project;
 
 import com.toedter.calendar.JCalendar;
 import java.sql.Connection;
+import java.sql.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,16 +22,19 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
  * @author Administrator
  */
 public class GUIMyPlan1 extends javax.swing.JFrame {
+
     Connection conn = null;
-    PreparedStatement pstm = null;
-    ArrayList<String> listName =  new ArrayList<String>();
-    
+ 
+    ArrayList<String> listName = new ArrayList<String>();
+    JPanel[] smallCheckListPanel;
+
     /**
      * Creates new form GUIHome
      *
@@ -39,7 +43,13 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
     private Date end;
 
     public GUIMyPlan1() {
-        initComponents();
+        try {
+            smallCheckListPanel = new JPanel[0];
+            initComponents();
+            conn = MySQLConnect.getMySQLConnection();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
@@ -97,7 +107,6 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
         myplanBtn = new javax.swing.JButton();
         createBtn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        Right = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         Calendar = new com.toedter.calendar.JCalendar();
         jPanel5 = new javax.swing.JPanel();
@@ -113,6 +122,7 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
         scrollActToday = new javax.swing.JScrollPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         actToday = new javax.swing.JTextArea();
+        refreshBtn = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -259,21 +269,6 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
 
         jPanel1.add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 726));
 
-        Right.setBackground(new java.awt.Color(51, 51, 51));
-
-        javax.swing.GroupLayout RightLayout = new javax.swing.GroupLayout(Right);
-        Right.setLayout(RightLayout);
-        RightLayout.setHorizontalGroup(
-            RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 805, Short.MAX_VALUE)
-        );
-        RightLayout.setVerticalGroup(
-            RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 649, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(1667, 77, -1, -1));
-
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -372,7 +367,7 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/check-box.png"))); // NOI18N
         jLabel10.setText("Check List");
-        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(818, 380, 217, -1));
+        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 380, 217, -1));
 
         bigpanelCheckList.setBackground(new java.awt.Color(51, 51, 51));
         bigpanelCheckList.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -390,6 +385,18 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
 
         jPanel4.add(scrollActToday, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 100, 490, 250));
 
+        refreshBtn.setBackground(new java.awt.Color(255, 255, 255));
+        refreshBtn.setFont(new java.awt.Font("Century Gothic", 1, 22)); // NOI18N
+        refreshBtn.setForeground(new java.awt.Color(255, 255, 255));
+        refreshBtn.setText("Refresh");
+        refreshBtn.setContentAreaFilled(false);
+        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBtnActionPerformed(evt);
+            }
+        });
+        jPanel4.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1131, 390, -1, 50));
+
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -406,38 +413,65 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
         setBounds(0, 0, 1712, 782);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void LoopCheckList(){
-        int y =10;
-        JPanel[] smallCheckListPanel = new JPanel[listName.size()];
+    public void loopCheckList() {
+        bigpanelCheckList.removeAll();
+        int y = 10;
+//        remove(bigpanelCheckList);
+//        bigpanelCheckList.removeAll();
+//        for (int i = 0; i < smallCheckListPanel.length; i++) {
+//            
+//            System.out.println(smallCheckListPanel[i].toString());
+//            bigpanelCheckList.remove(smallCheckListPanel[i]);
+//            System.out.println(smallCheckListPanel[i].toString());
+//        }
+//        System.out.println("hello");
+//        bigpanelCheckList.removeAll();
+        bigpanelCheckList.repaint();
+        bigpanelCheckList.revalidate(); //
+        smallCheckListPanel = new JPanel[listName.size()];
         JCheckBox[] checkList = new JCheckBox[listName.size()];
         JLabel[] labelCheckList = new JLabel[listName.size()];
+
         for (int i = 0; i < listName.size(); i++) {
             smallCheckListPanel[i] = new JPanel();
             checkList[i] = new JCheckBox();
             labelCheckList[i] = new JLabel();
             smallCheckListPanel[i].setBackground(new java.awt.Color(51, 51, 51));
-        smallCheckListPanel[i].setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+            smallCheckListPanel[i].setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+            labelCheckList[i].setBackground(new java.awt.Color(51, 51, 51));
+            labelCheckList[i].setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+            labelCheckList[i].setForeground(new java.awt.Color(255, 255, 255));
+            labelCheckList[i].setText(listName.get(i));
 
-        labelCheckList[i].setBackground(new java.awt.Color(51, 51, 51));
-        labelCheckList[i].setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        labelCheckList[i].setForeground(new java.awt.Color(255, 255, 255));
-        labelCheckList[i].setText(listName.get(i));
-        smallCheckListPanel[i].add(labelCheckList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 18, -1, -1));
+            smallCheckListPanel[i].add(labelCheckList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 18, -1, -1));
 
-        checkList[i].setBackground(new java.awt.Color(51, 51, 51));
-        checkList[i].setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
-        checkList[i].setForeground(new java.awt.Color(255, 255, 255));
-        checkList[i].setText("Done");
-        smallCheckListPanel[i].add(checkList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
+            checkList[i].setBackground(new java.awt.Color(51, 51, 51));
+            checkList[i].setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+            checkList[i].setForeground(new java.awt.Color(255, 255, 255));
+            checkList[i].setText("Done");
 
-        bigpanelCheckList.add(smallCheckListPanel[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(15, y, 440, -1));
-        y+=35;
-        jPanel4.add(bigpanelCheckList, new org.netbeans.lib.awtextra.AbsoluteConstraints(775, 464, 481, 240));
+            smallCheckListPanel[i].add(checkList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
+
+            bigpanelCheckList.add(smallCheckListPanel[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(15, y, 440, -1));
+            y += 35;
+            jPanel4.add(bigpanelCheckList, new org.netbeans.lib.awtextra.AbsoluteConstraints(775, 464, 481, 240));
         }
+        scrollPaneCheckList.getViewport().removeAll();
+//        scrollPaneCheckList.get
+//        scrollPaneCheckList = new JScrollPane();
         scrollPaneCheckList.setViewportView(bigpanelCheckList);
+        bigpanelCheckList.repaint();
+        bigpanelCheckList.revalidate(); //
+
+    }
+
+    public void clear() {
+        for (int i = 0; i < listName.size(); i++) {
+            bigpanelCheckList.remove(smallCheckListPanel[i]);
+            bigpanelCheckList.repaint();
+        }
     }
     private void CalendarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CalendarPropertyChange
-        
         try {
             //        System.out.println("KKKKK");
             //        System.out.println(""+Calendar.getCalendar().getTime());
@@ -446,16 +480,16 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
             SimpleDateFormat sdf = new SimpleDateFormat("EEEE"); //ไวใช้บอกวันว่าจันทร์หรืออังคารหรือ...
             String toDay = sdf.format(date);
             String selectedDay = sdf.format(Calendar.getCalendar().getTime());
-            Connection conn = MySQLConnect.getMySQLConnection();
+//            Connection conn = MySQLConnect.getMySQLConnection();
             String sql = "SELECT LIST.* FROM LIST INNER JOIN PLAN ON LIST.list_planID = PLAN.planID WHERE startDate<=? AND endDate>=? AND list_nameDay =?";
-            pstm = conn.prepareStatement(sql);
+            PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, dateFormat.format(Calendar.getCalendar().getTime()));
             pstm.setString(2, dateFormat.format(Calendar.getCalendar().getTime()));
             pstm.setString(3, selectedDay);
             String d = "";
             ResultSet rs = pstm.executeQuery();
             actToday.setText("");
-           // txtList.setText("");
+            // txtList.setText("");
             while (rs.next()) {
 
                 System.out.println("rs.next");
@@ -465,20 +499,18 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
                 actToday.append("   -reps : " + rs.getInt("reps") + "\n");
                 actToday.append("   - set : " + rs.getInt("set") + "\n");
                 //txtList.setText(rs.getString("listName"));
-                LoopCheckList();
+
             }
+            loopCheckList();
+            listName.clear();
 
             if (dateFormat.format(Calendar.getCalendar().getTime()).equals(dateFormat.format(date))) {
-                System.out.println("Today = " + date);
-                System.out.println("Not Today = " + selectedDay);
                 txtDay.setText(dateFormat.format(date));
             } else {
                 txtDay.setText(dateFormat.format(Calendar.getCalendar().getTime()));
             }
             conn.close();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(GUIMyPlan1.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        }  catch (SQLException ex) {
             Logger.getLogger(GUIMyPlan1.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -520,11 +552,15 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_createBtnActionPerformed
 
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+        repaint();
+    }//GEN-LAST:event_refreshBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public void tt() throws ClassNotFoundException, SQLException {
-        Connection conn = MySQLConnect.getMySQLConnection();
+       // Connection conn = MySQLConnect.getMySQLConnection();
         System.out.println("selecting..");
         StartPlan1 sp1 = new StartPlan1();
         PreparedStatement pstm = conn.prepareStatement("SELECT startDate,endDate from PLAN where planID =");
@@ -583,7 +619,6 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JCalendar Calendar;
     private javax.swing.JPanel Left;
-    private javax.swing.JPanel Right;
     private javax.swing.JTextArea actToday;
     private javax.swing.JCheckBox activity1;
     private javax.swing.JCheckBox activity2;
@@ -613,6 +648,7 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton myplanBtn;
+    private javax.swing.JButton refreshBtn;
     private javax.swing.JScrollPane scrollActToday;
     private javax.swing.JScrollPane scrollPaneCheckList;
     private javax.swing.JTextPane showToDoList;

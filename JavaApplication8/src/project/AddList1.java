@@ -356,7 +356,7 @@ public class AddList1 extends java.awt.Dialog {
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
          try {
             String sql = "insert into LIST(listName,descriptionList,reps,`set`,list_planID,list_nameDay) values (?,?,?,?,?,?)";
-            pstm = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+            PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, txtList.getText());
             pstm.setString(2, txtDes.getText());
             pstm.setString(3, txtReps.getText());
@@ -395,7 +395,7 @@ public class AddList1 extends java.awt.Dialog {
     private void lblsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsaveMouseClicked
         try {
             String sql = "insert into LIST(listName,descriptionList,reps,`set`,list_planID,list_nameDay) values (?,?,?,?,?,?)";
-            pstm = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+            PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, txtList.getText());
             pstm.setString(2, txtDes.getText());
             pstm.setString(3, txtReps.getText());
@@ -471,7 +471,7 @@ public class AddList1 extends java.awt.Dialog {
     }
 
     public void tt() throws ClassNotFoundException, SQLException {
-        Connection conn = MySQLConnect.getMySQLConnection();
+        //Connection conn = MySQLConnect.getMySQLConnection();
         System.out.println("selecting..");
         PreparedStatement pstm = conn.prepareStatement("SELECT nameDay,dayperweek from PLAN where planID = " + planId);
         ResultSet rs = pstm.executeQuery();
