@@ -6,11 +6,13 @@
 package project;
 
 //import com.mysql.jdbc.PreparedStatement;
+import java.awt.Color;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -257,7 +259,7 @@ public class MyPlan2 extends javax.swing.JFrame {
             }
         });
 
-        editBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/writer.png"))); // NOI18N
+        editBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/writer.png"))); // NOI18N
         editBtn.setContentAreaFilled(false);
         editBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,7 +267,7 @@ public class MyPlan2 extends javax.swing.JFrame {
             }
         });
 
-        deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/remove.png"))); // NOI18N
+        deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/remove.png"))); // NOI18N
         deleteBtn.setContentAreaFilled(false);
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -394,7 +396,7 @@ public class MyPlan2 extends javax.swing.JFrame {
             }
         });
 
-        addListBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/file (2).png"))); // NOI18N
+        addListBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/file (2).png"))); // NOI18N
         addListBtn.setContentAreaFilled(false);
         addListBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -402,7 +404,7 @@ public class MyPlan2 extends javax.swing.JFrame {
             }
         });
 
-        detailListBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/contract (1).png"))); // NOI18N
+        detailListBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/contract (1).png"))); // NOI18N
         detailListBtn.setContentAreaFilled(false);
         detailListBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -410,9 +412,9 @@ public class MyPlan2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/strategy (2).png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/strategy (2).png"))); // NOI18N
 
-        startBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/muscles (1).png"))); // NOI18N
+        startBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/muscles (1).png"))); // NOI18N
         startBtn.setContentAreaFilled(false);
         startBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -423,7 +425,7 @@ public class MyPlan2 extends javax.swing.JFrame {
         homeBtn.setBackground(new java.awt.Color(102, 102, 102));
         homeBtn.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         homeBtn.setForeground(new java.awt.Color(255, 255, 255));
-        homeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/wall-calendar.png"))); // NOI18N
+        homeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/wall-calendar.png"))); // NOI18N
         homeBtn.setContentAreaFilled(false);
         homeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -438,7 +440,7 @@ public class MyPlan2 extends javax.swing.JFrame {
         createBtn.setBackground(new java.awt.Color(102, 102, 102));
         createBtn.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         createBtn.setForeground(new java.awt.Color(255, 255, 255));
-        createBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/archive.png"))); // NOI18N
+        createBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/archive.png"))); // NOI18N
         createBtn.setContentAreaFilled(false);
         createBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -574,6 +576,7 @@ public class MyPlan2 extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void myPlanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_myPlanMouseClicked
+        System.out.println("Clicked MyPlan");
         txtPName.setText(myPlan.getValueAt(myPlan.getSelectedRow(), 0) + "");
         txtDes.setText(myPlan.getValueAt(myPlan.getSelectedRow(), 1) + "");
         try {
@@ -589,10 +592,16 @@ public class MyPlan2 extends javax.swing.JFrame {
                 if (rs.getInt("planStatus") == 1) {
                     txtStatusPlan.setText("Starting");
                     txtStatusPlan.setForeground(new java.awt.Color(51, 255, 51));
-                } else if (rs.getInt("listStatus") == 0) {
+                    lblAdd.setForeground(Color.red);
+                    lblDetail.setForeground(Color.red);
+                    lblstart.setForeground(Color.red);
+                } else if (rs.getInt("planStatus") == 0) {
                     txtStatusPlan.setText("Not start");
                     txtStatusPlan.setForeground(new java.awt.Color(255, 0, 0));
-                } else if (rs.getInt("listStatus") == 2) {
+                    lblAdd.setForeground(new java.awt.Color(255, 255, 255));
+                    lblDetail.setForeground(new java.awt.Color(255, 255, 255));
+                    lblstart.setForeground(new java.awt.Color(255, 255, 255));
+                } else if (rs.getInt("planStatus") == 2) {
                     txtStatusPlan.setText("Finished");
                     txtStatusPlan.setForeground(new java.awt.Color(32, 21, 93));
                 }
@@ -611,6 +620,7 @@ public class MyPlan2 extends javax.swing.JFrame {
     }//GEN-LAST:event_myPlanMouseClicked
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        System.out.println("Clicked Edit button");
         EditPlan eplan = new EditPlan(getPlanId(), getPlanName(), getPlanDes(),
                 getStartDate(), getEndDate(), getDayPerWeek(), getNameDay());
         System.out.println(getPlanId());
@@ -621,15 +631,11 @@ public class MyPlan2 extends javax.swing.JFrame {
     }//GEN-LAST:event_editBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        System.out.println("Clicked delete");
         System.out.println("list_planID " + list_planID);
         System.out.println("planId " + planId);
         try {
-            String sql = "delete from LIST where list_planID =" + planId;
-            PreparedStatement pstm1 = conn.prepareStatement(sql);
-            pstm1.executeUpdate();
-            String sql2 = "delete from PLAN where planId=" + planId;
-            PreparedStatement pstm2 = conn.prepareStatement(sql2);
-            pstm2.executeUpdate();
+
             Object[] options = {"Yes", "No"}; //เป็นปุ่มที่ให้เลือกว่าจะกดอะไร
             int n = JOptionPane.showOptionDialog(deleteBtn, //1.เป็นชนิดของปุ่ม
                     "Do you want delete plan?", //2.เป็นข้อความโชว์บนกล่อง message
@@ -639,11 +645,19 @@ public class MyPlan2 extends javax.swing.JFrame {
                     null, //ไม่ใช้ไอคอน do not use a custom Icon
                     options, //ชื่อของในแต่ละปุ่ม the titles of button ที่มี yes no
                     options[0]); //default button title
+           
 
             // ถ้ากด yes จะทำให้ n มีค่าเป็น 0
             if (n == 0) {
+                String sql = "delete from LIST where list_planID =" + planId;
+                PreparedStatement pstm1 = conn.prepareStatement(sql);
+                pstm1.executeUpdate();
+                String sql2 = "delete from PLAN where planId=" + planId;
+                PreparedStatement pstm2 = conn.prepareStatement(sql2);
+                pstm2.executeUpdate();
                 //ให้มันแสดงเฉยๆว่าแพลนนั้นถูกลบออกไปแล้วแต่กดเลือกอะไรไม่ได้นอกจากแค่กด ok หรือปิดหน้าจอไป
                 JOptionPane.showMessageDialog(null, "Your plan is deleted");
+                
                 repaint();
             } else {
                 System.out.println("Canceled");
@@ -654,36 +668,64 @@ public class MyPlan2 extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void addListBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addListBtnActionPerformed
-        AddList1 al = new AddList1(this, rootPaneCheckingEnabled, this, getPlanId());
-        al.setVisible(true);
+        if (getPlanStatus() == 1) {
+            System.out.println("No");
+            showMessageDialog(null, "Your plan is starting!!");
+        } else if (getPlanStatus() == 0) {
+            System.out.println("Clicked Addlist button");
+
+            AddList1 al = new AddList1(this, rootPaneCheckingEnabled, this, getPlanId());
+            al.setVisible(true);
+        }
     }//GEN-LAST:event_addListBtnActionPerformed
 
     private void detailListBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailListBtnActionPerformed
-        DetailList1 dl = new DetailList1(getPlanId());
-        EditListPlan edlp = new EditListPlan(getPlanId());
-        System.out.println(getPlanId());
-        dl.setVisible(true);
-        this.setVisible(false);
-        dl.setLocationRelativeTo(null);
-        dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        if (getPlanStatus() == 1) {
+//            System.out.println("No");
+//            showMessageDialog(null, "Your plan is starting!!");
+//        } else if (getPlanStatus() == 0) {
+            System.out.println("Clicked DetailList button");
+            DetailList1 dl = new DetailList1(getPlanId());
+            EditListPlan edlp = new EditListPlan(getPlanId());
+            System.out.println(getPlanId());
+            dl.setVisible(true);
+            this.setVisible(false);
+            dl.setLocationRelativeTo(null);
+            dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //}
+
     }//GEN-LAST:event_detailListBtnActionPerformed
 
     private void lblAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAddMouseClicked
-        AddList1 al = new AddList1(this, rootPaneCheckingEnabled, this, getPlanId());
-        al.setVisible(true);
+        if (getPlanStatus() == 1) {
+            System.out.println("No");
+            showMessageDialog(null, "Your plan is starting!!");
+        } else if (getPlanStatus() == 0) {
+            System.out.println("Clicked Addlist button");
+            AddList1 al = new AddList1(this, rootPaneCheckingEnabled, this, getPlanId());
+            al.setVisible(true);
+        }
     }//GEN-LAST:event_lblAddMouseClicked
 
     private void lblDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDetailMouseClicked
-        DetailList1 dl = new DetailList1(getPlanId());
-        EditListPlan edlp = new EditListPlan(getPlanId());
-        System.out.println(getPlanId());
-        dl.setVisible(true);
-        this.setVisible(false);
-        dl.setLocationRelativeTo(null);
-        dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        if (getPlanStatus() == 1) {
+            System.out.println("No");
+            showMessageDialog(null, "Your plan is starting!!");
+        } else if (getPlanStatus() == 0) {
+            System.out.println("Clicked DetailList button");
+
+            DetailList1 dl = new DetailList1(getPlanId());
+            EditListPlan edlp = new EditListPlan(getPlanId());
+            System.out.println(getPlanId());
+            dl.setVisible(true);
+            this.setVisible(false);
+            dl.setLocationRelativeTo(null);
+            dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        }
     }//GEN-LAST:event_lblDetailMouseClicked
 
     private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
+        System.out.println("Clicked Start Button");
         if (getPlanStatus() == 1) {
             System.out.println("No");
             showMessageDialog(null, "Your plan is starting!!");
@@ -701,34 +743,46 @@ public class MyPlan2 extends javax.swing.JFrame {
     }//GEN-LAST:event_startBtnActionPerformed
 
     private void lblstartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblstartMouseClicked
-        StartPlan1 sp = new StartPlan1(getPlanId());
-        sp.setVisible(true);
-        sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        sp.setLocationRelativeTo(null);
-        this.setVisible(false);
+        System.out.println("Clicked Start Button");
+        if (getPlanStatus() == 1) {
+            System.out.println("No");
+            showMessageDialog(null, "Your plan is starting!!");
+        } else if (getPlanStatus() == 0) {
+            try {
+                String sql = "UPDATE PLAN SET planStatus = ? WHERE planID = " + planId;
+                PreparedStatement pstm1 = conn.prepareStatement(sql);
+                pstm1.setInt(1, 1);
+                int rs = pstm1.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
     }//GEN-LAST:event_lblstartMouseClicked
 
     private void lbleditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbleditMouseClicked
-        EditPlan eplan = new EditPlan(getPlanId(), getPlanName(), getPlanDes(),
-                getStartDate(), getEndDate(), getDayPerWeek(), getNameDay());
-        System.out.println(getPlanId());
-        eplan.setVisible(true);
-        eplan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        eplan.setLocationRelativeTo(null);
-        this.setVisible(false);
+        if (getPlanStatus() == 1) {
+            System.out.println("No");
+            showMessageDialog(null, "Your plan is starting!!");
+        } else if (getPlanStatus() == 0) {
+            System.out.println("Clicked Edit");
+
+            EditPlan eplan = new EditPlan(getPlanId(), getPlanName(), getPlanDes(),
+                    getStartDate(), getEndDate(), getDayPerWeek(), getNameDay());
+            System.out.println(getPlanId());
+            eplan.setVisible(true);
+            eplan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            eplan.setLocationRelativeTo(null);
+            this.setVisible(false);
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_lbleditMouseClicked
 
     private void lbldeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbldeleteMouseClicked
+        System.out.println("Clicked Delete");
         System.out.println("list_planID " + list_planID);
         System.out.println("planId " + planId);
         try {
-            String sql = "delete from LIST where list_planID =" + planId;
-            PreparedStatement pstm1 = conn.prepareStatement(sql);
-            pstm1.executeUpdate();
-            String sql2 = "delete from PLAN where planId=" + planId;
-            PreparedStatement pstm2 = conn.prepareStatement(sql2);
-            pstm2.executeUpdate();
             Object[] options = {"Yes", "No"}; //เป็นปุ่มที่ให้เลือกว่าจะกดอะไร
             int n = JOptionPane.showOptionDialog(deleteBtn, //1.เป็นชนิดของปุ่ม
                     "Do you want delete plan?", //2.เป็นข้อความโชว์บนกล่อง message
@@ -737,30 +791,30 @@ public class MyPlan2 extends javax.swing.JFrame {
                     JOptionPane.QUESTION_MESSAGE,
                     null, //ไม่ใช้ไอคอน do not use a custom Icon
                     options, //ชื่อของในแต่ละปุ่ม the titles of button ที่มี yes no
-                    options[0]); //default button title
+                    options[0]); //default button title 
+            setLocationRelativeTo(null);
 
             // ถ้ากด yes จะทำให้ n มีค่าเป็น 0
             if (n == 0) {
-
+                String sql = "delete from LIST where list_planID =" + planId;
+                PreparedStatement pstm1 = conn.prepareStatement(sql);
+                pstm1.executeUpdate();
+                String sql2 = "delete from PLAN where planId=" + planId;
+                PreparedStatement pstm2 = conn.prepareStatement(sql2);
+                pstm2.executeUpdate();
                 //ให้มันแสดงเฉยๆว่าแพลนนั้นถูกลบออกไปแล้วแต่กดเลือกอะไรไม่ได้นอกจากแค่กด ok หรือปิดหน้าจอไป
                 JOptionPane.showMessageDialog(null, "Your plan is deleted");
-                //MyPlan2 sp = new MyPlan2();
                 repaint();
-//                sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//                sp.setVisible(true);
-//                sp.setLocationRelativeTo(null);
-//                setVisible(false);
-
             } else {
                 System.out.println("Canceled");
             }
         } catch (SQLException ex) {
             Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
         }
-        // TODO add your handling code here:
     }//GEN-LAST:event_lbldeleteMouseClicked
 
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+        System.out.println("Clicked Home button");
         GUIMyPlan1 gmp = new GUIMyPlan1();
         gmp.setVisible(true);
         gmp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -769,6 +823,7 @@ public class MyPlan2 extends javax.swing.JFrame {
     }//GEN-LAST:event_homeBtnActionPerformed
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
+        System.out.println("Clicked Create");
         CreatePlan1 cp = new CreatePlan1();
         cp.setVisible(true);
         cp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

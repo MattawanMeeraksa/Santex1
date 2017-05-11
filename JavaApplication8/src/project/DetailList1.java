@@ -228,7 +228,7 @@ public class DetailList1 extends javax.swing.JFrame {
             }
         });
 
-        editBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/writer.png"))); // NOI18N
+        editBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/writer.png"))); // NOI18N
         editBtn.setContentAreaFilled(false);
         editBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -236,7 +236,7 @@ public class DetailList1 extends javax.swing.JFrame {
             }
         });
 
-        deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/remove.png"))); // NOI18N
+        deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/remove.png"))); // NOI18N
         deleteBtn.setContentAreaFilled(false);
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -336,7 +336,7 @@ public class DetailList1 extends javax.swing.JFrame {
             }
         });
 
-        backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/left-arrow (2).png"))); // NOI18N
+        backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/left-arrow (2).png"))); // NOI18N
         backBtn.setContentAreaFilled(false);
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -344,7 +344,7 @@ public class DetailList1 extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/contract (1).png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/contract (1).png"))); // NOI18N
 
         planListTable.setFont(new java.awt.Font("Yu Gothic Light", 0, 15)); // NOI18N
         planListTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -447,6 +447,7 @@ public class DetailList1 extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        System.out.println("Clicked Back Button");
         MyPlan2 mp = new MyPlan2();
         mp.setVisible(true);
         mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -455,6 +456,7 @@ public class DetailList1 extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void lblbackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblbackMouseClicked
+        System.out.println("Clicked Back Button");
         MyPlan2 mp = new MyPlan2();
         mp.setVisible(true);
         mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -463,6 +465,7 @@ public class DetailList1 extends javax.swing.JFrame {
     }//GEN-LAST:event_lblbackMouseClicked
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        System.out.println("Clicked Delete Button");
         try {
             System.out.println("" + listID);
             String sql = "delete from LIST where listName=? and listID=" + listID;
@@ -478,17 +481,11 @@ public class DetailList1 extends javax.swing.JFrame {
                     null, //ไม่ใช้ไอคอน do not use a custom Icon
                     options, //ชื่อของในแต่ละปุ่ม the titles of button ที่มี yes no
                     options[0]); //default button title
-
             // ถ้ากด yes จะทำให้ n มีค่าเป็น 0
             if (n == 0) {
                 //ให้มันแสดงเฉยๆว่าแพลนนั้นถูกลบออกไปแล้วแต่กดเลือกอะไรไม่ได้นอกจากแค่กด ok หรือปิดหน้าจอไป
                 JOptionPane.showMessageDialog(null, "Your list is deleted");
-                ///MyPlan2 sp = new MyPlan2();
                 repaint();
-                //               sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//                sp.setVisible(true);
-//                sp.setLocationRelativeTo(null);
-//                setVisible(false);
             } else {
                 System.out.println("Canceled");
             }
@@ -498,6 +495,7 @@ public class DetailList1 extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        System.out.println("Clicked Edit Button");
         try {
             EditListPlan ep = new EditListPlan(getPlanId(), getListPlanName(), getListDes(), getReps(), getSet(), getListID());
             System.out.println(getPlanId());
@@ -514,6 +512,7 @@ public class DetailList1 extends javax.swing.JFrame {
     }//GEN-LAST:event_editBtnActionPerformed
 
     private void lbleditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbleditMouseClicked
+        System.out.println("Clicked Edit Button");
         try {
             EditListPlan ep = new EditListPlan(getPlanId(), getListPlanName(), getListDes(), getReps(), getSet(), getListID());
             System.out.println(getPlanId());
@@ -530,6 +529,7 @@ public class DetailList1 extends javax.swing.JFrame {
     }//GEN-LAST:event_lbleditMouseClicked
 
     private void lbldeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbldeleteMouseClicked
+        System.out.println("Clicked Delete Button");
         try {
             System.out.println("" + listID);
             String sql = "delete from LIST where listName=? and listID=" + listID;
@@ -565,6 +565,7 @@ public class DetailList1 extends javax.swing.JFrame {
     }//GEN-LAST:event_lbldeleteMouseClicked
 
     private void planListTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_planListTableMouseClicked
+        System.out.println("Clicked PlanListTable");
         txtDay.setText(planListTable.getValueAt(planListTable.getSelectedRow(), 0) + "");
         txtListPlan.setText(planListTable.getValueAt(planListTable.getSelectedRow(), 1) + "");
         txtDes.setText(planListTable.getValueAt(planListTable.getSelectedRow(), 2) + "");

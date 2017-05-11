@@ -424,7 +424,7 @@
             <Component class="javax.swing.JButton" name="editBtn">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/project/writer.png"/>
+                  <Image iconType="3" name="/Santex/image/writer.png"/>
                 </Property>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
               </Properties>
@@ -435,7 +435,7 @@
             <Component class="javax.swing.JButton" name="deleteBtn">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/project/remove.png"/>
+                  <Image iconType="3" name="/Santex/image/remove.png"/>
                 </Property>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
               </Properties>
@@ -516,7 +516,7 @@
         <Component class="javax.swing.JButton" name="addListBtn">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/project/file (2).png"/>
+              <Image iconType="3" name="/Santex/image/file (2).png"/>
             </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
@@ -527,7 +527,7 @@
         <Component class="javax.swing.JButton" name="detailListBtn">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/project/contract (1).png"/>
+              <Image iconType="3" name="/Santex/image/contract (1).png"/>
             </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
@@ -538,14 +538,14 @@
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/project/strategy (2).png"/>
+              <Image iconType="3" name="/Santex/image/strategy (2).png"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="startBtn">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/project/muscles (1).png"/>
+              <Image iconType="3" name="/Santex/image/muscles (1).png"/>
             </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
@@ -565,7 +565,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/project/wall-calendar.png"/>
+              <Image iconType="3" name="/Santex/image/wall-calendar.png"/>
             </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
@@ -596,7 +596,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/project/archive.png"/>
+              <Image iconType="3" name="/Santex/image/archive.png"/>
             </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>

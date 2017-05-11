@@ -267,7 +267,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/project/office-material.png"/>
+                  <Image iconType="3" name="/Santex/image/office-material.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="  MY PLAN "/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -288,7 +288,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/project/archive.png"/>
+                  <Image iconType="3" name="/Santex/image/archive.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="CREATE PLAN"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -300,7 +300,7 @@
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/project/exercise (1).png"/>
+                  <Image iconType="3" name="/Santex/image/exercise (1).png"/>
                 </Property>
               </Properties>
             </Component>
@@ -391,7 +391,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel7">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/project/notepad.png"/>
+                      <Image iconType="3" name="/Santex/image/notepad (1).png"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -469,7 +469,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/project/gym.png"/>
+                      <Image iconType="3" name="/Santex/image/gym.png"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -484,7 +484,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/project/check-box.png"/>
+                  <Image iconType="3" name="/Santex/image/check-box.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Check List"/>
               </Properties>

@@ -176,9 +176,9 @@ public class AddList1 extends java.awt.Dialog {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/clipboard (1).png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/clipboard (1).png"))); // NOI18N
 
-        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/diskette.png"))); // NOI18N
+        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/diskette.png"))); // NOI18N
         saveBtn.setContentAreaFilled(false);
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,14 +188,14 @@ public class AddList1 extends java.awt.Dialog {
 
         lblsave.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         lblsave.setForeground(new java.awt.Color(255, 255, 255));
-        lblsave.setText(" Save ");
+        lblsave.setText(" SAVE ");
         lblsave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblsaveMouseClicked(evt);
             }
         });
 
-        cancelBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/file (4).png"))); // NOI18N
+        cancelBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/file (4).png"))); // NOI18N
         cancelBtn1.setContentAreaFilled(false);
         cancelBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,7 +205,7 @@ public class AddList1 extends java.awt.Dialog {
 
         lblcancel.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         lblcancel.setForeground(new java.awt.Color(255, 255, 255));
-        lblcancel.setText("Cancel");
+        lblcancel.setText("CANCEL");
         lblcancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblcancelMouseClicked(evt);
@@ -354,7 +354,8 @@ public class AddList1 extends java.awt.Dialog {
     }//GEN-LAST:event_txtSetKeyTyped
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-         try {
+         System.out.println("Clicked Save button"); 
+        try {
             String sql = "insert into LIST(listName,descriptionList,reps,`set`,list_planID,list_nameDay) values (?,?,?,?,?,?)";
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, txtList.getText());
@@ -383,8 +384,8 @@ public class AddList1 extends java.awt.Dialog {
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void cancelBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtn1ActionPerformed
+        System.out.println("Clicked Cancel button");
         MyPlan2 mp = new MyPlan2();
-        mp.pack();
         mp.setVisible(true);
         mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mp.setLocationRelativeTo(null);
@@ -393,6 +394,7 @@ public class AddList1 extends java.awt.Dialog {
     }//GEN-LAST:event_cancelBtn1ActionPerformed
 
     private void lblsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsaveMouseClicked
+         System.out.println("Clicked Save button");
         try {
             String sql = "insert into LIST(listName,descriptionList,reps,`set`,list_planID,list_nameDay) values (?,?,?,?,?,?)";
             PreparedStatement pstm = conn.prepareStatement(sql);
@@ -422,8 +424,8 @@ public class AddList1 extends java.awt.Dialog {
     }//GEN-LAST:event_lblsaveMouseClicked
 
     private void lblcancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblcancelMouseClicked
+        System.out.println("Clicked Cancel button");
         MyPlan2 mp = new MyPlan2();
-        mp.pack();
         mp.setVisible(true);
         mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mp.setLocationRelativeTo(null);
@@ -478,7 +480,7 @@ public class AddList1 extends java.awt.Dialog {
         while (rs.next()) {
             String days = rs.getString("nameDay");
             int start = 0;
-            for (int i = 1; i <= rs.getInt("dayperweek"); i++) {
+            for (int i = 0; i < rs.getInt("dayperweek"); i++) {
                 String eachDay = days.substring(start, days.indexOf(" ", start));
                 start = days.indexOf(" ", start) + 1;
                 boxChooseDay.addItem(eachDay);

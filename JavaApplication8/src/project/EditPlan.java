@@ -144,11 +144,11 @@ public class EditPlan extends javax.swing.JFrame {
         lblEndDate = new javax.swing.JLabel();
         startDateChoose = new com.toedter.calendar.JDateChooser();
         endDateChoose = new com.toedter.calendar.JDateChooser();
-        lblback = new javax.swing.JLabel();
-        saveBtn = new javax.swing.JLabel();
-        lblsave = new javax.swing.JLabel();
-        backBtn = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        cancelBtn = new javax.swing.JButton();
+        lblcancel = new javax.swing.JLabel();
+        saveBtn = new javax.swing.JButton();
+        lblsave1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -198,29 +198,41 @@ public class EditPlan extends javax.swing.JFrame {
 
         endDateChoose.setDateFormatString("yyyy-MM-dd");
 
-        lblback.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
-        lblback.setForeground(new java.awt.Color(255, 255, 255));
-        lblback.setText("BACK");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/edit5.png"))); // NOI18N
 
-        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/save.png"))); // NOI18N
-        saveBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                saveBtnMouseClicked(evt);
+        cancelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/file (4).png"))); // NOI18N
+        cancelBtn.setContentAreaFilled(false);
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
             }
         });
 
-        lblsave.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
-        lblsave.setForeground(new java.awt.Color(255, 255, 255));
-        lblsave.setText("SAVE");
-
-        backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/multiply.png"))); // NOI18N
-        backBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblcancel.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        lblcancel.setForeground(new java.awt.Color(255, 255, 255));
+        lblcancel.setText("CANCEL ");
+        lblcancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                backBtnMouseClicked(evt);
+                lblcancelMouseClicked(evt);
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/edit1.png"))); // NOI18N
+        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/diskette.png"))); // NOI18N
+        saveBtn.setContentAreaFilled(false);
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
+
+        lblsave1.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        lblsave1.setForeground(new java.awt.Color(255, 255, 255));
+        lblsave1.setText("SAVE");
+        lblsave1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblsave1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -233,10 +245,11 @@ public class EditPlan extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(lblDes)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(lblEndDate)
-                            .addGap(14, 14, 14)))
-                    .addComponent(lblStartDate))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblStartDate)
+                                .addComponent(lblEndDate))
+                            .addGap(7, 7, 7))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(txtPName, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,36 +257,38 @@ public class EditPlan extends javax.swing.JFrame {
                     .addComponent(endDateChoose, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(80, 80, 80))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(106, 106, 106)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(saveBtn)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(lblsave)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(backBtn)
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblheadcreate, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(lblback)))
-                .addGap(150, 150, 150))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblheadcreate, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(92, 92, 92)
+                                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(110, 110, 110)
+                                .addComponent(lblsave1)))
+                        .addGap(194, 194, 194)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblcancel)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(9, 9, 9)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(lblheadcreate, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(46, 46, 46)
+                        .addComponent(lblheadcreate)
+                        .addGap(11, 11, 11)))
+                .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPName)
                     .addComponent(txtPName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -291,22 +306,24 @@ public class EditPlan extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(endDateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEndDate))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(saveBtn)
-                    .addComponent(backBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblsave)
-                    .addComponent(lblback))
-                .addGap(28, 28, 28))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblsave1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblcancel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(34, 34, 34))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,8 +353,26 @@ public class EditPlan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lblEndDateMouseClicked
 
-    private void saveBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBtnMouseClicked
-         try {
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        MyPlan2 frame = new MyPlan2();
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        setVisible(false);
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void lblcancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblcancelMouseClicked
+        MyPlan2 frame = new MyPlan2();
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        setVisible(false);
+    }//GEN-LAST:event_lblcancelMouseClicked
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        try {
             if (txtPName.getText().equals("") || txtDes.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Your input is incorrect");
             } else {
@@ -358,16 +393,31 @@ public class EditPlan extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(CreatePlan1.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_saveBtnMouseClicked
+    }//GEN-LAST:event_saveBtnActionPerformed
 
-    private void backBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseClicked
-       MyPlan2 frame = new MyPlan2();
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
-        setVisible(false);
-    }//GEN-LAST:event_backBtnMouseClicked
+    private void lblsave1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsave1MouseClicked
+        try {
+            if (txtPName.getText().equals("") || txtDes.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Your input is incorrect");
+            } else {
+                String sql = "update PLAN SET planName = ? , descriptionPlan = ? , startDate = ? , endDate = ? where planID=" + planId;
+                PreparedStatement pstm = conn.prepareStatement(sql);
+                pstm.setString(1, txtPName.getText());
+
+                pstm.setString(2, txtDes.getText());
+                pstm.setDate(3, ((java.sql.Date) startDate));
+                pstm.setDate(4, ((java.sql.Date) endDate));
+                pstm.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Plan created successfully");
+                DetailList1 dl = new DetailList1(getPlanId());
+                System.out.println(getPlanId());
+                dl.setVisible(true);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CreatePlan1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_lblsave1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -405,7 +455,7 @@ public class EditPlan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel backBtn;
+    private javax.swing.JButton cancelBtn;
     private com.toedter.calendar.JDateChooser endDateChoose;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
@@ -414,10 +464,10 @@ public class EditPlan extends javax.swing.JFrame {
     private javax.swing.JLabel lblEndDate;
     private javax.swing.JLabel lblPName;
     private javax.swing.JLabel lblStartDate;
-    private javax.swing.JLabel lblback;
+    private javax.swing.JLabel lblcancel;
     private javax.swing.JLabel lblheadcreate;
-    private javax.swing.JLabel lblsave;
-    private javax.swing.JLabel saveBtn;
+    private javax.swing.JLabel lblsave1;
+    private javax.swing.JButton saveBtn;
     private com.toedter.calendar.JDateChooser startDateChoose;
     private javax.swing.JTextArea txtDes;
     private javax.swing.JTextField txtPName;
