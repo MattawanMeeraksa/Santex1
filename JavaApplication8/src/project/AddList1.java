@@ -44,6 +44,7 @@ public class AddList1 extends java.awt.Dialog {
     public AddList1(java.awt.Frame parent, boolean modal, MyPlan2 mp, int planId) {
         super(parent, modal);
         try {
+
             this.planId = planId;
             initComponents();
             this.mp = mp;
@@ -86,6 +87,8 @@ public class AddList1 extends java.awt.Dialog {
         lblsave = new javax.swing.JLabel();
         cancelBtn1 = new javax.swing.JButton();
         lblcancel = new javax.swing.JLabel();
+        noti1 = new javax.swing.JLabel();
+        noti2 = new javax.swing.JLabel();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -107,47 +110,15 @@ public class AddList1 extends java.awt.Dialog {
         lblReps.setForeground(new java.awt.Color(255, 255, 255));
         lblReps.setText("Reps");
 
-        txtList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtListActionPerformed(evt);
-            }
-        });
-
-        txtDes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDesActionPerformed(evt);
-            }
-        });
-
         txtReps.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtRepsFocusLost(evt);
-            }
-        });
-        txtReps.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRepsActionPerformed(evt);
-            }
-        });
-        txtReps.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtRepsKeyTyped(evt);
             }
         });
 
         txtSet.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtSetFocusLost(evt);
-            }
-        });
-        txtSet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSetActionPerformed(evt);
-            }
-        });
-        txtSet.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtSetKeyTyped(evt);
             }
         });
 
@@ -164,17 +135,6 @@ public class AddList1 extends java.awt.Dialog {
         lblSet.setText("Set");
 
         boxChooseDay.setModel(new javax.swing.DefaultComboBoxModel<>());
-        boxChooseDay.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxChooseDayActionPerformed(evt);
-            }
-        });
-
-        txtListPlanId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtListPlanIdActionPerformed(evt);
-            }
-        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/clipboard (1).png"))); // NOI18N
 
@@ -212,31 +172,20 @@ public class AddList1 extends java.awt.Dialog {
             }
         });
 
+        noti1.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        noti1.setVisible(false);
+        noti1.setForeground(new java.awt.Color(255, 0, 0));
+        noti1.setText("*(number > 0)");
+
+        noti2.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        noti2.setVisible(false);
+        noti2.setForeground(new java.awt.Color(255, 0, 0));
+        noti2.setText("*(number > 0)");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblday, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblList)
-                    .addComponent(lblReps)
-                    .addComponent(lblSet, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDes))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtList)
-                        .addComponent(boxChooseDay, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtReps, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(txtSet, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtListPlanId, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(txtDes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(81, 81, 81))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -256,6 +205,33 @@ public class AddList1 extends java.awt.Dialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addList, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtListPlanId, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblday, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblList)
+                    .addComponent(lblReps)
+                    .addComponent(lblSet, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDes))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtList)
+                        .addComponent(boxChooseDay, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtReps, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(noti1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtSet, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(noti2))
+                    .addComponent(txtDes, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(81, 81, 81))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,13 +259,16 @@ public class AddList1 extends java.awt.Dialog {
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblReps)
-                    .addComponent(txtReps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtReps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(noti1))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSet)
-                    .addComponent(txtListPlanId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(82, 82, 82)
+                    .addComponent(noti2))
+                .addGap(37, 37, 37)
+                .addComponent(txtListPlanId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -324,63 +303,40 @@ public class AddList1 extends java.awt.Dialog {
         dispose();
     }//GEN-LAST:event_closeDialog
 
-    private void txtListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtListActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtListActionPerformed
-
-    private void txtDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDesActionPerformed
-
-    private void txtRepsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRepsActionPerformed
-        
-    }//GEN-LAST:event_txtRepsActionPerformed
-
-    private void boxChooseDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxChooseDayActionPerformed
-        System.out.println("" + boxChooseDay.getSelectedItem());
-    }//GEN-LAST:event_boxChooseDayActionPerformed
-
-    private void txtListPlanIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtListPlanIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtListPlanIdActionPerformed
-
-    private void txtRepsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRepsKeyTyped
-
-        
-    }//GEN-LAST:event_txtRepsKeyTyped
-
-    private void txtSetKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSetKeyTyped
-
-    }//GEN-LAST:event_txtSetKeyTyped
-
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-         System.out.println("Clicked Save button"); 
+        System.out.println("Clicked Save button");
         try {
-            String sql = "insert into LIST(listName,descriptionList,reps,`set`,list_planID,list_nameDay) values (?,?,?,?,?,?)";
-            PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.setString(1, txtList.getText());
-            pstm.setString(2, txtDes.getText());
-            pstm.setString(3, txtReps.getText());
-            String r = txtReps.getText();
-            int reps = Integer.parseInt(r);
-            pstm.setString(4, txtSet.getText());
-            String s = txtSet.getText();
-            int set = Integer.parseInt(s);
-            pstm.setString(5, txtListPlanId.getText());
-            pstm.setString(6, boxChooseDay.getSelectedItem() + "");
-            String l = txtListPlanId.getText();
-            int listPlanId = Integer.parseInt(l);
-            pstm.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Add list successfully");
-            MyPlan2 frame = new MyPlan2();
-            frame.setVisible(true);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setLocationRelativeTo(null);
-            frame.setResizable(false);
-            setVisible(false);
+            if (txtList.getText().equals("") || txtDes.getText().equals("") || txtReps.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Your input is incorrect");
+            } else {
+                String sql = "insert into LIST(listName,descriptionList,reps,`set`,list_planID,list_nameDay) values (?,?,?,?,?,?)";
+                PreparedStatement pstm = conn.prepareStatement(sql);
+                pstm.setString(1, txtList.getText());
+                pstm.setString(2, txtDes.getText());
+                pstm.setString(3, txtReps.getText());
+                String r = txtReps.getText();
+                int reps = Integer.parseInt(r);
+                pstm.setString(4, txtSet.getText());
+                String s = txtSet.getText();
+                int set = Integer.parseInt(s);
+                pstm.setString(5, txtListPlanId.getText());
+                pstm.setString(6, boxChooseDay.getSelectedItem() + "");
+                String l = txtListPlanId.getText();
+                int listPlanId = Integer.parseInt(l);
+                pstm.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Add list successfully");
+                MyPlan2 frame = new MyPlan2();
+                frame.setVisible(true);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setLocationRelativeTo(null);
+                frame.setResizable(false);
+                setVisible(false);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(AddList1.class.getName()).log(Level.SEVERE, null, ex);
+
         }
+
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void cancelBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtn1ActionPerformed
@@ -394,7 +350,7 @@ public class AddList1 extends java.awt.Dialog {
     }//GEN-LAST:event_cancelBtn1ActionPerformed
 
     private void lblsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsaveMouseClicked
-         System.out.println("Clicked Save button");
+        System.out.println("Clicked Save button");
         try {
             String sql = "insert into LIST(listName,descriptionList,reps,`set`,list_planID,list_nameDay) values (?,?,?,?,?,?)";
             PreparedStatement pstm = conn.prepareStatement(sql);
@@ -433,25 +389,43 @@ public class AddList1 extends java.awt.Dialog {
         setVisible(false);
     }//GEN-LAST:event_lblcancelMouseClicked
 
-    private void txtSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSetActionPerformed
-      
-    }//GEN-LAST:event_txtSetActionPerformed
-
     private void txtRepsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRepsFocusLost
-        int txt ;
-        try{
+        int txt;
+        try {
             txt = Integer.parseInt(txtReps.getText());
-        }catch(NumberFormatException ex){
+            if (txt == 0) {
+                txtReps.setText("");
+                noti1.setVisible(true);
+            }else if(txt > 0 && txt <=100){
+                noti1.setVisible(false);
+            }else {
+                noti1.setVisible(true);
+                txtReps.setText("");
+            }
+        } catch (NumberFormatException ex) {
             txtReps.setText("");
+            noti1.setVisible(true);
+            //noti1.setVisible(true);
         }
     }//GEN-LAST:event_txtRepsFocusLost
 
     private void txtSetFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSetFocusLost
-        int txt ;
-        try{
+        int txt;
+        try {
             txt = Integer.parseInt(txtSet.getText());
-        }catch(NumberFormatException ex){
+            if (txt == 0) {
+                txtSet.setText("");
+                noti2.setVisible(true);
+            }else if(txt > 0 && txt <=100){
+                noti2.setVisible(false);
+            }else {
+                noti2.setVisible(true);
+                txtSet.setText("");
+            }
+        } catch (NumberFormatException ex) {
             txtSet.setText("");
+            noti2.setVisible(true);
+            //noti1.setVisible(true);
         }
     }//GEN-LAST:event_txtSetFocusLost
 
@@ -459,8 +433,10 @@ public class AddList1 extends java.awt.Dialog {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+
                 AddList1 dialog = new AddList1(new java.awt.Frame(), true, new MyPlan2(), planId);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -501,6 +477,8 @@ public class AddList1 extends java.awt.Dialog {
     private javax.swing.JLabel lblcancel;
     private javax.swing.JLabel lblday;
     private javax.swing.JLabel lblsave;
+    private javax.swing.JLabel noti1;
+    private javax.swing.JLabel noti2;
     private javax.swing.JButton saveBtn;
     private javax.swing.JTextField txtDes;
     private javax.swing.JTextField txtList;

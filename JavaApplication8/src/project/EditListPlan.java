@@ -29,6 +29,7 @@ public class EditListPlan extends javax.swing.JFrame {
     private int planId;
     private int listID;
     private String nameDay;
+   
 
     private EditListPlan() {
         initComponents();

@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -35,6 +36,15 @@ public class DetailList1 extends javax.swing.JFrame {
     private String day;
     private int list_planId;
     private String nameDay;
+    private int planStatus;
+
+    public int getPlanStatus() {
+        return planStatus;
+    }
+
+    public void setPlanStatus(int planStatus) {
+        this.planStatus = planStatus;
+    }
 
     public String getNameDay() {
         return nameDay;
@@ -124,14 +134,20 @@ public class DetailList1 extends javax.swing.JFrame {
         try {
             conn = MySQLConnect.getMySQLConnection();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DetailList1.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         } catch (SQLException ex) {
-            Logger.getLogger(DetailList1.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
     }
 
-    public DetailList1(int planId) {
+    public DetailList1(int planId, int planStatus) {
         this();
+        this.planId = planId;
+        this.planStatus = planStatus;
+
+    }
+
+    public DetailList1(int planId) {
         this.planId = planId;
 
     }
@@ -495,36 +511,44 @@ public class DetailList1 extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-        System.out.println("Clicked Edit Button");
-        try {
-            EditListPlan ep = new EditListPlan(getPlanId(), getListPlanName(), getListDes(), getReps(), getSet(), getListID());
-            System.out.println(getPlanId());
-            System.out.println(getNameDay());
-            ep.setVisible(true);
-            ep.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            ep.setLocationRelativeTo(null);
-            this.setVisible(false);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DetailList1.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(DetailList1.class.getName()).log(Level.SEVERE, null, ex);
+        if (getPlanStatus() == 1) {
+            showMessageDialog(null, "Your plan is starting!!");
+            lbledit.setEnabled(false);
+        } else if (getPlanStatus() == 0) {
+            try {
+                lbledit.setEnabled(true);
+                EditListPlan ep = new EditListPlan(getPlanId(), getListPlanName(), getListDes(), getReps(), getSet(), getListID());
+                System.out.println(getPlanId());
+                System.out.println(getNameDay());
+                ep.setVisible(true);
+                ep.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                ep.setLocationRelativeTo(null);
+                this.setVisible(false);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(DetailList1.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(DetailList1.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_editBtnActionPerformed
 
     private void lbleditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbleditMouseClicked
-        System.out.println("Clicked Edit Button");
-        try {
-            EditListPlan ep = new EditListPlan(getPlanId(), getListPlanName(), getListDes(), getReps(), getSet(), getListID());
-            System.out.println(getPlanId());
-            System.out.println(getNameDay());
-            ep.setVisible(true);
-            ep.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            ep.setLocationRelativeTo(null);
-            this.setVisible(false);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DetailList1.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(DetailList1.class.getName()).log(Level.SEVERE, null, ex);
+        if (getPlanStatus() == 1) {
+            showMessageDialog(null, "Your plan is starting!!");
+        } else if (getPlanStatus() == 0) {
+            try {
+                EditListPlan ep = new EditListPlan(getPlanId(), getListPlanName(), getListDes(), getReps(), getSet(), getListID());
+                System.out.println(getPlanId());
+                System.out.println(getNameDay());
+                ep.setVisible(true);
+                ep.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                ep.setLocationRelativeTo(null);
+                this.setVisible(false);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(DetailList1.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(DetailList1.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_lbleditMouseClicked
 
@@ -582,18 +606,18 @@ public class DetailList1 extends javax.swing.JFrame {
                 System.out.println("reps = " + rs.getInt("reps"));
                 txtReps.setText(rs.getInt("reps") + "");
                 txtSet.setText(rs.getInt("set") + "");
-                if (rs.getInt("listStatus") == 1) {
-                    txtStatusList.setText("Starting");
-                    txtStatusList.setForeground(new java.awt.Color(51, 255, 51));
-                } else if (rs.getInt("listStatus") == 0) {
-                    txtStatusList.setText("Not start");
-                    txtStatusList.setForeground(new java.awt.Color(255, 0, 0));
-                }
-                else if(rs.getInt("listStatus") == 2) {
-                    txtStatusList.setText("Finished");
-                    txtStatusList.setForeground(new java.awt.Color(32,21,93));  
-                }
-                
+//                if (rs.getInt("listStatus") == 1) {
+//                    txtStatusList.setText("Starting");
+//                    txtStatusList.setForeground(new java.awt.Color(51, 255, 51));
+//                } else if (rs.getInt("listStatus") == 0) {
+//                    txtStatusList.setText("Not start");
+//                    txtStatusList.setForeground(new java.awt.Color(255, 0, 0));
+//                }
+//                else if(rs.getInt("listStatus") == 2) {
+//                    txtStatusList.setText("Finished");
+//                    txtStatusList.setForeground(new java.awt.Color(32,21,93));  
+//                }
+
                 setnameDay(rs.getString("list_nameDay"));
                 setDay(rs.getString("list_nameDay"));
                 setListPlanName(rs.getString("listName"));

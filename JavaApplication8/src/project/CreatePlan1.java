@@ -32,13 +32,6 @@ public class CreatePlan1 extends javax.swing.JFrame {
     private String Fri = "";
     private String Sat = "";
     private int DPWALL = 0;
-    private int DPW1 = 0;
-    private int DPW2 = 0;
-    private int DPW3 = 0;
-    private int DPW4 = 0;
-    private int DPW5 = 0;
-    private int DPW6 = 0;
-    private int DPW7 = 0;
 
     public String getNameDay() {
         return nameDay;
@@ -175,24 +168,8 @@ public class CreatePlan1 extends javax.swing.JFrame {
         lblDes.setForeground(new java.awt.Color(255, 255, 255));
         lblDes.setText("Description");
 
-        txtPName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPNameActionPerformed(evt);
-            }
-        });
-        txtPName.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPNameKeyTyped(evt);
-            }
-        });
-
         txtDes.setColumns(20);
         txtDes.setRows(5);
-        txtDes.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDesKeyTyped(evt);
-            }
-        });
         jScrollPane1.setViewportView(txtDes);
 
         lblheadcreate.setFont(new java.awt.Font("Century Gothic", 1, 32)); // NOI18N
@@ -419,7 +396,6 @@ public class CreatePlan1 extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(19, 19, 19)))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(satCheck)
                     .addComponent(sunCheck)
@@ -454,18 +430,6 @@ public class CreatePlan1 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtPNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPNameKeyTyped
-
-    }//GEN-LAST:event_txtPNameKeyTyped
-
-    private void txtDesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDesKeyTyped
-
-    }//GEN-LAST:event_txtDesKeyTyped
-
-    private void txtPNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPNameActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         System.out.println("Clicked Save button");

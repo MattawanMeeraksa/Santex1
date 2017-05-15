@@ -43,33 +43,6 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblday" min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="lblList" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblReps" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblSet" min="-2" pref="47" max="-2" attributes="0"/>
-                      <Component id="lblDes" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="108" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtList" max="32767" attributes="0"/>
-                          <Component id="boxChooseDay" min="-2" pref="238" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="txtReps" min="-2" pref="60" max="-2" attributes="0"/>
-                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtSet" min="-2" pref="60" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="txtListPlanId" min="-2" pref="38" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="txtDes" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-              </Group>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -95,6 +68,40 @@
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="txtListPlanId" min="-2" pref="38" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblday" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="lblList" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblReps" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblSet" min="-2" pref="47" max="-2" attributes="0"/>
+                      <Component id="lblDes" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="108" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtList" max="32767" attributes="0"/>
+                          <Component id="boxChooseDay" min="-2" pref="238" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="txtReps" min="-2" pref="60" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="noti1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="txtSet" min="-2" pref="60" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="noti2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="txtDes" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -132,14 +139,17 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblReps" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtReps" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="noti1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtSet" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblSet" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtListPlanId" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="noti2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                  <Component id="txtListPlanId" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="saveBtn" min="-2" pref="64" max="-2" attributes="0"/>
@@ -192,27 +202,17 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtList">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtListActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDes">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDesActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtReps">
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtRepsFocusLost"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRepsActionPerformed"/>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtRepsKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtSet">
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtSetFocusLost"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSetActionPerformed"/>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSetKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblday">
@@ -254,18 +254,12 @@
               <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;()" type="code"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boxChooseDayActionPerformed"/>
-          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="AddList1_boxChooseDay"/>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="txtListPlanId">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtListPlanIdActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
@@ -323,6 +317,28 @@
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblcancelMouseClicked"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="noti1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor" postCode="noti1.setVisible(false);">
+              <Font name="Century Gothic" size="20" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="*(number &gt; 0)"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="noti2">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor" postCode="noti2.setVisible(false);">
+              <Font name="Century Gothic" size="20" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="*(number &gt; 0)"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
