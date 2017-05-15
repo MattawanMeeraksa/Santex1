@@ -479,8 +479,6 @@ public class CreatePlan1 extends javax.swing.JFrame {
             if (txtPName.getText().equals("") || txtDes.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Your input is incorrect");
             } else {
-                System.out.println("" + nameDay);
-                System.out.println("1111");
                 nameDay = "" + Sun + Mon + Tues + Wedn + Thru + Fri + Sat;
                 String sql = "insert into PLAN (planName,descriptionPlan,nameDay, startDate,endDate,dayperweek) values (?,?,?,?,?,?)";
                 PreparedStatement pstm = conn.prepareStatement(sql);
@@ -508,7 +506,6 @@ public class CreatePlan1 extends javax.swing.JFrame {
     private void lblcancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblcancelMouseClicked
         System.out.println("Clicked Cancel button");
         GUIMyPlan1 frame = new GUIMyPlan1();
-
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
@@ -522,95 +519,89 @@ public class CreatePlan1 extends javax.swing.JFrame {
             Sun = "Sunday ";
             setSun(Sun);
             DPWALL++;
-        }else if (sunCheck.isSelected() == false){
-            System.out.println("Not Selected Sunday"); 
+        } else if (sunCheck.isSelected() == false) {
+            System.out.println("Not Selected Sunday");
             Sun = "";
-            DPWALL=0;
+            DPWALL = 0;
         }
 
     }//GEN-LAST:event_sunCheckActionPerformed
 
     private void monCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monCheckActionPerformed
-        // TODO add your handling code here:
         if (monCheck.isSelected() == true) {
             System.out.println("Selected Monday");
             Mon = "Monday ";
             setMon(Mon);
             DPWALL++;
-        }else if (monCheck.isSelected() == false){
+        } else if (monCheck.isSelected() == false) {
             System.out.println("Not Selected Monday");
             Mon = "";
-            DPWALL=0;
+            DPWALL = 0;
         }
     }//GEN-LAST:event_monCheckActionPerformed
 
     private void tuesCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tuesCheckActionPerformed
-        // TODO add your handling code here:
         if (tuesCheck.isSelected() == true) {
             System.out.println("Selected Tuesday");
             Tues = "Tuesday ";
             setTues(Tues);
             DPWALL++;
-        }else if (tuesCheck.isSelected() == false){
+        } else if (tuesCheck.isSelected() == false) {
             System.out.println("Not Selected Tuesday");
             Tues = "";
-            DPWALL=0;
+            DPWALL = 0;
         }
     }//GEN-LAST:event_tuesCheckActionPerformed
 
     private void wedCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wedCheckActionPerformed
-        // TODO add your handling code here:
         if (wedCheck.isSelected() == true) {
             System.out.println("Selected Wednesday");
             Wedn = "Wednesday ";
             setWedn(Wedn);
             DPWALL++;
-        }else if (tuesCheck.isSelected() == false){
+        } else if (tuesCheck.isSelected() == false) {
             System.out.println("Not Selected Wednesday");
             Wedn = "";
-            DPWALL=0;
+            DPWALL = 0;
         }
     }//GEN-LAST:event_wedCheckActionPerformed
 
     private void thuCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thuCheckActionPerformed
-        // TODO add your handling code here:
         if (thuCheck.isSelected() == true) {
             System.out.println("Selected Thursday");
             Thru = "Thursday ";
             setThru(Thru);
             DPWALL++;
-        }else if (tuesCheck.isSelected() == false){
+        } else if (tuesCheck.isSelected() == false) {
             System.out.println("Not Selected Thursday");
             Thru = "";
-            DPWALL=0;
+            DPWALL = 0;
         }
     }//GEN-LAST:event_thuCheckActionPerformed
 
     private void friCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friCheckActionPerformed
-        // TODO add your handling code here:
         if (friCheck.isSelected() == true) {
             System.out.println("Selected Friday");
             Fri = "Friday ";
             setFri(Fri);
             DPWALL++;
-        }else if (friCheck.isSelected() == false){
+        } else if (friCheck.isSelected() == false) {
             System.out.println("Not Selected Friday");
             Fri = "";
-            DPWALL=0;
+            DPWALL = 0;
         }
     }//GEN-LAST:event_friCheckActionPerformed
 
     private void satCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satCheckActionPerformed
-        // TODO add your handling code here:
         if (satCheck.isSelected() == true) {
             System.out.println("Selected Saturday");
             Sat = "Saturday ";
             setSat(Sat);
             DPWALL++;
-        }else if (satCheck.isSelected() == false){
+        } else if (satCheck.isSelected() == false) {
             System.out.println("Not Selected Saturday");
             Sat = "";
-            DPWALL=0;
+            DPWALL = 0;
         }
     }//GEN-LAST:event_satCheckActionPerformed
 
