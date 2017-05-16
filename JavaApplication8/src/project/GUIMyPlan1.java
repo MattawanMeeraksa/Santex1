@@ -24,6 +24,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import org.netbeans.lib.awtextra.AbsoluteConstraints;
 
 /**
  *
@@ -282,12 +283,12 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
         Calendar.setTodayButtonText("");
         Calendar.setTodayButtonVisible(true);
         Calendar.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 CalendarAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         Calendar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -456,11 +457,13 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
             System.out.println("" + dayCar);
 
             if (toDay2.equals(dayCar)) {
-                smallCheckListPanel[i].add(labelCheckList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 18, -1, -1));
+                smallCheckListPanel[i].add(labelCheckList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 15, -1, -1));
                 checkList[i].setBackground(new java.awt.Color(51, 51, 51));
                 checkList[i].setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
                 checkList[i].setForeground(Color.green);
                 checkList[i].setText("Done");
+//                checkList[i].setEnabled(true);
+//                labelCheckList[i].setEnabled(true);
                 labelCheckList[i].setForeground(Color.green);
                 checkList[i].updateUI();
                 if (checkList[i].isSelected() == true) {
@@ -470,13 +473,15 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
                 }
 
             } else {
-                smallCheckListPanel[i].add(labelCheckList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 18, -1, -1));
+                smallCheckListPanel[i].add(labelCheckList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 15, -1, -1));
+                
                 checkList[i].setBackground(new java.awt.Color(51, 51, 51));
                 checkList[i].setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
                 checkList[i].setForeground(new java.awt.Color(255, 255, 255));
                 checkList[i].setText("Done");
                 checkList[i].setEnabled(false);
                 checkList[i].setForeground(Color.red);
+                labelCheckList[i].setEnabled(true);
                 labelCheckList[i].setForeground(Color.red);
             }
 
