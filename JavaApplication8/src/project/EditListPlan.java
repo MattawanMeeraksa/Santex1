@@ -60,7 +60,7 @@ public class EditListPlan extends javax.swing.JFrame {
         this.listID = listID;
         //this.nameDay = nameDay;
         try {
-           // tt();
+          
             initComponents();
             conn = MySQLConnect.getMySQLConnection();
         } catch (ClassNotFoundException ex) {
@@ -143,6 +143,8 @@ public class EditListPlan extends javax.swing.JFrame {
         lblcancel = new javax.swing.JLabel();
         saveBtn = new javax.swing.JButton();
         lblsave = new javax.swing.JLabel();
+        noti1 = new javax.swing.JLabel();
+        noti2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -152,6 +154,7 @@ public class EditListPlan extends javax.swing.JFrame {
         lblSet.setForeground(new java.awt.Color(255, 255, 255));
         lblSet.setText("Set");
 
+        txtDes.setFont(new java.awt.Font("Yu Gothic", 0, 15)); // NOI18N
         txtDes.setMinimumSize(new java.awt.Dimension(59, 20));
         txtDes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,10 +162,11 @@ public class EditListPlan extends javax.swing.JFrame {
             }
         });
 
+        txtReps.setFont(new java.awt.Font("Yu Gothic", 0, 15)); // NOI18N
         txtReps.setMinimumSize(new java.awt.Dimension(59, 20));
-        txtReps.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRepsActionPerformed(evt);
+        txtReps.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtRepsFocusLost(evt);
             }
         });
 
@@ -170,10 +174,11 @@ public class EditListPlan extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Edit List Plan");
 
+        txtSet.setFont(new java.awt.Font("Yu Gothic", 0, 15)); // NOI18N
         txtSet.setMinimumSize(new java.awt.Dimension(59, 20));
-        txtSet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSetActionPerformed(evt);
+        txtSet.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSetFocusLost(evt);
             }
         });
 
@@ -189,6 +194,7 @@ public class EditListPlan extends javax.swing.JFrame {
         lblReps.setForeground(new java.awt.Color(255, 255, 255));
         lblReps.setText("Reps");
 
+        txtLName.setFont(new java.awt.Font("Yu Gothic", 0, 15)); // NOI18N
         txtLName.setMinimumSize(new java.awt.Dimension(59, 20));
         txtLName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,6 +238,14 @@ public class EditListPlan extends javax.swing.JFrame {
             }
         });
 
+        noti1.setFont(new java.awt.Font("Century Gothic", 0, 15)); // NOI18N
+        noti1.setForeground(new java.awt.Color(255, 0, 0));
+        noti1.setText("*please enter number between 1 to 100");
+
+        noti2.setFont(new java.awt.Font("Century Gothic", 0, 15)); // NOI18N
+        noti2.setForeground(new java.awt.Color(255, 0, 0));
+        noti2.setText("*please enter number between 1 to 100");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -251,11 +265,12 @@ public class EditListPlan extends javax.swing.JFrame {
                         .addComponent(lblsave)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblcancel)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)))
-                .addGap(115, 115, 115))
+                        .addGap(124, 124, 124))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblcancel)
+                        .addGap(115, 115, 115))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,6 +295,12 @@ public class EditListPlan extends javax.swing.JFrame {
                             .addComponent(txtSet, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtReps, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(256, 256, 256))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(noti1)
+                    .addComponent(noti2))
+                .addGap(63, 63, 63))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,7 +321,9 @@ public class EditListPlan extends javax.swing.JFrame {
                         .addComponent(txtDes, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(62, 62, 62)
                         .addComponent(txtReps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(noti1)
+                        .addGap(25, 25, 25)
                         .addComponent(txtSet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblLName)
@@ -310,7 +333,9 @@ public class EditListPlan extends javax.swing.JFrame {
                         .addComponent(lblReps)
                         .addGap(52, 52, 52)
                         .addComponent(lblSet)))
-                .addGap(79, 79, 79)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(noti2)
+                .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -320,7 +345,7 @@ public class EditListPlan extends javax.swing.JFrame {
                         .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblcancel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -340,14 +365,6 @@ public class EditListPlan extends javax.swing.JFrame {
     private void txtLNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLNameActionPerformed
         setResizable(false);
     }//GEN-LAST:event_txtLNameActionPerformed
-
-    private void txtSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSetActionPerformed
-        setResizable(false);
-    }//GEN-LAST:event_txtSetActionPerformed
-
-    private void txtRepsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRepsActionPerformed
-        setResizable(false);
-    }//GEN-LAST:event_txtRepsActionPerformed
 
     private void txtDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesActionPerformed
         setResizable(false);
@@ -413,6 +430,46 @@ public class EditListPlan extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lblsaveMouseClicked
 
+    private void txtRepsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRepsFocusLost
+         int txt;
+        try {
+            txt = Integer.parseInt(txtReps.getText());
+            if (txt == 0) {
+                txtReps.setText("");
+                noti1.setVisible(true);
+            }else if(txt > 0 && txt <=100){
+                noti1.setVisible(false);
+            }else {
+                noti1.setVisible(true);
+                txtReps.setText("");
+            }
+        } catch (NumberFormatException ex) {
+            txtReps.setText("");
+            noti1.setVisible(true);
+            //noti1.setVisible(true);
+        }
+    }//GEN-LAST:event_txtRepsFocusLost
+
+    private void txtSetFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSetFocusLost
+        int txt;
+        try {
+            txt = Integer.parseInt(txtSet.getText());
+            if (txt == 0) {
+                txtSet.setText("");
+                noti2.setVisible(true);
+            }else if(txt > 0 && txt <=100){
+                noti2.setVisible(false);
+            }else {
+                noti2.setVisible(true);
+                txtSet.setText("");
+            }
+        } catch (NumberFormatException ex) {
+            txtSet.setText("");
+            noti2.setVisible(true);
+            //noti1.setVisible(true);
+        }
+    }//GEN-LAST:event_txtSetFocusLost
+
 //    public void tt() throws ClassNotFoundException, SQLException {
 //        Connection conn = MySQLConnect.getMySQLConnection();
 //        System.out.println("selecting..");
@@ -455,6 +512,8 @@ public class EditListPlan extends javax.swing.JFrame {
     private javax.swing.JLabel lblSet;
     private javax.swing.JLabel lblcancel;
     private javax.swing.JLabel lblsave;
+    private javax.swing.JLabel noti1;
+    private javax.swing.JLabel noti2;
     private javax.swing.JLabel photolbl;
     private javax.swing.JButton saveBtn;
     private javax.swing.JTextField txtDes;

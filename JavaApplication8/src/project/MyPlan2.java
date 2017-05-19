@@ -6,11 +6,14 @@
 package project;
 
 //import com.mysql.jdbc.PreparedStatement;
+import com.toedter.calendar.JCalendar;
 import java.awt.Color;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Vector;
@@ -27,10 +30,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MyPlan2 extends javax.swing.JFrame {
 
-    DefaultTableModel model;
-    Connection conn = null;
-    PreparedStatement pstm1 = null;
-    PreparedStatement pstm2 = null;
+    private DefaultTableModel model;
+    private Connection conn = null;
+    private PreparedStatement pstm1 = null;
+    private PreparedStatement pstm2 = null;
     private String planName;
     private String planDes;
     private Date startDate;
@@ -38,7 +41,6 @@ public class MyPlan2 extends javax.swing.JFrame {
     private int dayPerWeek;
     private String nameDay;
     private int planId;
-    private int listId;
     private int list_planID;
     private int planStatus;
 
@@ -92,14 +94,6 @@ public class MyPlan2 extends javax.swing.JFrame {
 
     public Date getEndDate() {
         return endDate;
-    }
-
-    public int getListId() {
-        return listId;
-    }
-
-    public void setListId(int listId) {
-        this.listId = listId;
     }
 
     public void setEndDate(Date endDate) {
@@ -571,10 +565,15 @@ public class MyPlan2 extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         try {
             //ถ้าค่าเปลี่ยนก็อัพเดทอัตโนมัติ
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
             model = (DefaultTableModel) myPlan.getModel();
             model.setRowCount(0); //บอกว่าแถวแรกของตารางเป็น 0
-            String sql = "select * from PLAN";
-            PreparedStatement pstm1 = conn.prepareStatement(sql);
+            String sql = "select * from PLAN WHERE endDate>=?";
+            pstm1 = conn.prepareStatement(sql);
+            pstm1.setString(1, dateFormat.format(date.getTime()));
+
             ResultSet rs = pstm1.executeQuery();
             while (rs.next()) {
                 //เก็บ planId,planName,descrip,totaldays ในทุกๆช่องลงในตัวแปร planId ทีเป็นArrayList เพราะเราไม่รู้จำนวนที่แน่นอน
@@ -595,7 +594,7 @@ public class MyPlan2 extends javax.swing.JFrame {
         txtDes.setText(myPlan.getValueAt(myPlan.getSelectedRow(), 1) + "");
         try {
             String sql = "select * from PLAN where planName=?";
-            PreparedStatement pstm1 = conn.prepareStatement(sql);
+            pstm1 = conn.prepareStatement(sql);
             pstm1.setString(1, myPlan.getValueAt(myPlan.getSelectedRow(), 0) + "");
             ResultSet rs = pstm1.executeQuery();
             while (rs.next()) {
@@ -616,7 +615,6 @@ public class MyPlan2 extends javax.swing.JFrame {
                     lblDetail.setEnabled(true);
                     lblstart.setEnabled(true);
                 }
-
                 setPlanStatus(rs.getInt("planStatus"));
                 setPlanName(rs.getString("planName"));
                 setPlanDes(rs.getString("descriptionPlan"));
@@ -646,7 +644,6 @@ public class MyPlan2 extends javax.swing.JFrame {
         System.out.println("list_planID " + list_planID);
         System.out.println("planId " + planId);
         try {
-
             Object[] options = {"Yes", "No"}; //เป็นปุ่มที่ให้เลือกว่าจะกดอะไร
             int n = JOptionPane.showOptionDialog(deleteBtn, //1.เป็นชนิดของปุ่ม
                     "Do you want delete plan?", //2.เป็นข้อความโชว์บนกล่อง message
@@ -656,14 +653,13 @@ public class MyPlan2 extends javax.swing.JFrame {
                     null, //ไม่ใช้ไอคอน do not use a custom Icon
                     options, //ชื่อของในแต่ละปุ่ม the titles of button ที่มี yes no
                     options[0]); //default button title
-
             // ถ้ากด yes จะทำให้ n มีค่าเป็น 0
             if (n == 0) {
                 String sql = "delete from LIST where list_planID =" + planId;
-                PreparedStatement pstm1 = conn.prepareStatement(sql);
+                pstm1 = conn.prepareStatement(sql);
                 pstm1.executeUpdate();
                 String sql2 = "delete from PLAN where planId=" + planId;
-                PreparedStatement pstm2 = conn.prepareStatement(sql2);
+                pstm2 = conn.prepareStatement(sql2);
                 pstm2.executeUpdate();
                 //ให้มันแสดงเฉยๆว่าแพลนนั้นถูกลบออกไปแล้วแต่กดเลือกอะไรไม่ได้นอกจากแค่กด ok หรือปิดหน้าจอไป
                 JOptionPane.showMessageDialog(null, "Your plan is deleted");
@@ -684,7 +680,7 @@ public class MyPlan2 extends javax.swing.JFrame {
         } else if (getPlanStatus() == 0) {
             System.out.println("Clicked Addlist button");
 
-            AddList1 al = new AddList1(this, rootPaneCheckingEnabled, this, getPlanId());
+            AddList1 al = new AddList1(this, rootPaneCheckingEnabled, this, getPlanId(),getStartDate(),getEndDate());
             al.setVisible(true);
         }
     }//GEN-LAST:event_addListBtnActionPerformed
@@ -693,20 +689,20 @@ public class MyPlan2 extends javax.swing.JFrame {
         if (getPlanStatus() == 1) {
 //            System.out.println("No");
             showMessageDialog(null, "Your plan is starting!!");
-            DetailList1 dl = new DetailList1(getPlanId(),getPlanStatus());
+            DetailList1 dl = new DetailList1(getPlanId(), getPlanStatus());
             EditListPlan edlp = new EditListPlan(getPlanId());
             System.out.println(getPlanId());
             dl.setVisible(true);
             dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             dl.setLocationRelativeTo(null);
-            this.setVisible(false);
+            setVisible(false);
         } else if (getPlanStatus() == 0) {
             System.out.println("Clicked DetailList button");
-            DetailList1 dl = new DetailList1(getPlanId(),getPlanStatus());
+            DetailList1 dl = new DetailList1(getPlanId(), getPlanStatus());
             EditListPlan edlp = new EditListPlan(getPlanId());
             System.out.println(getPlanId());
             dl.setVisible(true);
-            this.setVisible(false);
+            setVisible(false);
             dl.setLocationRelativeTo(null);
             dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
@@ -719,7 +715,7 @@ public class MyPlan2 extends javax.swing.JFrame {
             showMessageDialog(null, "Your plan is starting!!");
         } else if (getPlanStatus() == 0) {
             System.out.println("Clicked Addlist button");
-            AddList1 al = new AddList1(this, rootPaneCheckingEnabled, this, getPlanId());
+            AddList1 al = new AddList1(this, rootPaneCheckingEnabled, this, getPlanId(),getStartDate(),getEndDate());
             al.setVisible(true);
         }
     }//GEN-LAST:event_lblAddMouseClicked
@@ -728,7 +724,7 @@ public class MyPlan2 extends javax.swing.JFrame {
         if (getPlanStatus() == 1) {
 //            System.out.println("No");
             showMessageDialog(null, "Your plan is starting!!");
-            DetailList1 dl = new DetailList1(getPlanId(),getPlanStatus());
+            DetailList1 dl = new DetailList1(getPlanId(), getPlanStatus());
             EditListPlan edlp = new EditListPlan(getPlanId());
             System.out.println(getPlanId());
             dl.setVisible(true);
@@ -737,7 +733,7 @@ public class MyPlan2 extends javax.swing.JFrame {
             this.setVisible(false);
         } else if (getPlanStatus() == 0) {
             System.out.println("Clicked DetailList button");
-            DetailList1 dl = new DetailList1(getPlanId(),getPlanStatus());
+            DetailList1 dl = new DetailList1(getPlanId(), getPlanStatus());
             EditListPlan edlp = new EditListPlan(getPlanId());
             System.out.println(getPlanId());
             dl.setVisible(true);
@@ -751,9 +747,9 @@ public class MyPlan2 extends javax.swing.JFrame {
         int result = 0;
         try {
             String sql = "update PLAN set planStatus = 1 where planID = ?";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, id);
-            result = ps.executeUpdate();
+            pstm1 = conn.prepareStatement(sql);
+            pstm1.setInt(1, id);
+            result = pstm1.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(GUIMyPlan1.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -768,14 +764,6 @@ public class MyPlan2 extends javax.swing.JFrame {
         } else if (getPlanStatus() == 0) {
             updateStatusPlan(getPlanId());
         }
-//                String sql = "UPDATE PLAN SET planStatus = ? WHERE planID = " + planId;
-//                PreparedStatement pstm1 = conn.prepareStatement(sql);
-//                pstm1.setInt(1, 1);
-//                int rs = pstm1.executeUpdate();
-//            } catch (SQLException ex) {
-//                Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-
 
     }//GEN-LAST:event_startBtnActionPerformed
 
@@ -787,7 +775,7 @@ public class MyPlan2 extends javax.swing.JFrame {
         } else if (getPlanStatus() == 0) {
             try {
                 String sql = "UPDATE PLAN SET planStatus = ? WHERE planID = " + planId;
-                PreparedStatement pstm1 = conn.prepareStatement(sql);
+                pstm1 = conn.prepareStatement(sql);
                 pstm1.setInt(1, 1);
                 int rs = pstm1.executeUpdate();
             } catch (SQLException ex) {
@@ -834,10 +822,10 @@ public class MyPlan2 extends javax.swing.JFrame {
             // ถ้ากด yes จะทำให้ n มีค่าเป็น 0
             if (n == 0) {
                 String sql = "delete from LIST where list_planID =" + planId;
-                PreparedStatement pstm1 = conn.prepareStatement(sql);
+                pstm1 = conn.prepareStatement(sql);
                 pstm1.executeUpdate();
                 String sql2 = "delete from PLAN where planId=" + planId;
-                PreparedStatement pstm2 = conn.prepareStatement(sql2);
+                pstm2 = conn.prepareStatement(sql2);
                 pstm2.executeUpdate();
                 //ให้มันแสดงเฉยๆว่าแพลนนั้นถูกลบออกไปแล้วแต่กดเลือกอะไรไม่ได้นอกจากแค่กด ok หรือปิดหน้าจอไป
                 JOptionPane.showMessageDialog(null, "Your plan is deleted");

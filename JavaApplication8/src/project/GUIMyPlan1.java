@@ -13,8 +13,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -32,20 +34,21 @@ import org.netbeans.lib.awtextra.AbsoluteConstraints;
  */
 public class GUIMyPlan1 extends javax.swing.JFrame {
 
-    Connection conn = null;
-
-    ArrayList<String> listName = new ArrayList<String>();
-    ArrayList<Integer> listId = new ArrayList<Integer>();
-    ArrayList<Integer> tmp_listId = new ArrayList<Integer>();
-    ArrayList<String> tmp_listName = new ArrayList<String>();
-    JPanel[] smallCheckListPanel;
-    ArrayList<Integer> selectedList = new ArrayList<Integer>();
-    JCheckBox[] checkList;
-    /**
-     * Creates new form GUIHome
-     *
-     */
-    private Date st;
+    private Connection conn = null;
+    private PreparedStatement pstm = null;
+    private ArrayList<ToDoList> listName = new ArrayList<ToDoList>();
+    private ArrayList<String> listName1 = new ArrayList<String>();
+    private ArrayList<Integer> listId = new ArrayList<Integer>();
+    private ArrayList<Integer> tmp_listId = new ArrayList<Integer>();
+    private ArrayList<ToDoList> tmp_listName = new ArrayList<ToDoList>();
+    private JPanel[] smallCheckListPanel;
+    private ArrayList<Integer> selectedList = new ArrayList<Integer>();
+    private JCheckBox[] checkList;
+    private int[] checkedBox;
+    private JLabel[] labelCheckList;
+    private int planID;
+    private String thisDay;
+    private Date start;
     private Date end;
 
     public GUIMyPlan1() {
@@ -59,12 +62,20 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
 
     }
 
-    public Date getSt() {
-        return st;
+    public int getPlanID() {
+        return planID;
     }
 
-    public void setSt(Date st) {
-        this.st = st;
+    public void setPlanID(int planID) {
+        this.planID = planID;
+    }
+
+    public Date getStart() {
+        return start;
+    }
+
+    public void setStart(Date start) {
+        this.start = start;
     }
 
     public Date getEnd() {
@@ -81,6 +92,14 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
 
     public void setCalendar(JCalendar Calendar) {
         this.Calendar = Calendar;
+    }
+
+    public String getThisDay() {
+        return thisDay;
+    }
+
+    public void setThisDay(String thisDay) {
+        this.thisDay = thisDay;
     }
 
     /**
@@ -409,141 +428,178 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1700, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setBounds(0, 0, 1712, 782);
+        setBounds(0, 0, 1722, 782);
     }// </editor-fold>//GEN-END:initComponents
 
     public void loopCheckList() {
         bigpanelCheckList.removeAll();
         int y = 10;
-//        remove(bigpanelCheckList);
-//        bigpanelCheckList.removeAll();
-//        for (int i = 0; i < smallCheckListPanel.length; i++) {
-//            
-//            System.out.println(smallCheckListPanel[i].toString());
-//            bigpanelCheckList.remove(smallCheckListPanel[i]);
-//            System.out.println(smallCheckListPanel[i].toString());
-//        }
-//        System.out.println("hello");
-//        bigpanelCheckList.removeAll();
         bigpanelCheckList.repaint();
-        bigpanelCheckList.revalidate(); //
+        bigpanelCheckList.revalidate();
         smallCheckListPanel = new JPanel[listName.size()];
         checkList = new JCheckBox[listName.size()];
-        JLabel[] labelCheckList = new JLabel[listName.size()];
+        labelCheckList = new JLabel[listName.size()];
+        JLabel[] status = new JLabel[listName.size()];
 
         for (int i = 0; i < listName.size(); i++) {
-            smallCheckListPanel[i] = new JPanel();
-            checkList[i] = new JCheckBox();
-            labelCheckList[i] = new JLabel();
-            smallCheckListPanel[i].setBackground(new java.awt.Color(51, 51, 51));
-            smallCheckListPanel[i].setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-            labelCheckList[i].setBackground(new java.awt.Color(51, 51, 51));
-            labelCheckList[i].setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-            labelCheckList[i].setForeground(new java.awt.Color(255, 255, 255));
-            labelCheckList[i].setText(listName.get(i));
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
-            String toDay2 = dateFormat.format(date);
-            System.out.println("" + toDay2);
-            String dayCar = dateFormat.format(Calendar.getCalendar().getTime());
-            System.out.println("" + dayCar);
+            try {
+                //if(ckStatus(listName.get(i).getId())){
+                int count = i;
+                smallCheckListPanel[i] = new JPanel();
+                checkList[i] = new JCheckBox();
+                checkList[i].addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        checkListActionPerformed(evt, count);
+                    }
+                });
+                labelCheckList[i] = new JLabel();
+                status[i] = new JLabel();
+                smallCheckListPanel[i].setBackground(new java.awt.Color(51, 51, 51));
+                smallCheckListPanel[i].setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+                labelCheckList[i].setBackground(new java.awt.Color(51, 51, 51));
+                labelCheckList[i].setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+                labelCheckList[i].setForeground(new java.awt.Color(255, 255, 255));
+                labelCheckList[i].setText(listName.get(i).getName());
 
-            if (toDay2.equals(dayCar)) {
-                smallCheckListPanel[i].add(labelCheckList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 15, -1, -1));
-                checkList[i].setBackground(new java.awt.Color(51, 51, 51));
-                checkList[i].setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
-                checkList[i].setForeground(Color.green);
-                checkList[i].setText("Done");
-//                checkList[i].setEnabled(true);
-//                labelCheckList[i].setEnabled(true);
-                labelCheckList[i].setForeground(Color.green);
-                checkList[i].updateUI();
-                if (checkList[i].isSelected() == true) {
-                    System.out.println("Selected Done");
-                } else if (checkList[i].isSelected() == false) {
-                    System.out.println("None Selected Done");
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+                String toDay2 = dateFormat.format(date);
+                String dayCar = dateFormat.format(Calendar.getCalendar().getTime());
+                System.out.println(toDay2);
+                System.out.println("dateDone = " + listName.get(i).getDateDone());
+                if (listName.get(i).getStatus() == 1 && listName.get(i).getDateDone() != null) {
+                    smallCheckListPanel[i].add(labelCheckList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 14, -1, -1));
+                    checkList[i].setBackground(new java.awt.Color(51, 51, 51));
+                    checkList[i].setFont(new java.awt.Font("Century Gothic", 1, 20));
+                    labelCheckList[i].setForeground(new java.awt.Color(153, 255, 51));
+                    checkList[i].setForeground(new java.awt.Color(153, 255, 51));
+                    checkList[i].setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+                    checkList[i].setText("Done");
+                    checkList[i].setEnabled(false);
+
+                } else if (toDay2.equals(dayCar)) {
+                    smallCheckListPanel[i].add(labelCheckList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 14, -1, -1));
+                    checkList[i].setBackground(new java.awt.Color(51, 51, 51));
+                    checkList[i].setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+                    checkList[i].setForeground(Color.YELLOW);
+                    checkList[i].setText("Done");
+                    labelCheckList[i].setForeground(Color.YELLOW);
+                } else {
+                    if (listName.get(i).getDays().equalsIgnoreCase(getThisDay()) && toDay2.equals(dayCar) && listName.get(i).getStatus() == 1) {
+                        checkList[i].setVisible(false);
+                        bigpanelCheckList.remove(i);
+                        bigpanelCheckList.repaint();
+                        bigpanelCheckList.revalidate();
+                    } else {
+                        smallCheckListPanel[i].add(labelCheckList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 14, -1, -1));
+                        checkList[i].setBackground(new java.awt.Color(51, 51, 51));
+                        checkList[i].setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+                        checkList[i].setForeground(new java.awt.Color(255, 255, 255));
+                        checkList[i].setText("Done");
+                        checkList[i].setEnabled(false);
+                        checkList[i].setForeground(Color.red);
+                        labelCheckList[i].setEnabled(true);
+                        labelCheckList[i].setForeground(Color.red);
+                    }
                 }
-
-            } else {
-                smallCheckListPanel[i].add(labelCheckList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 15, -1, -1));
-                
-                checkList[i].setBackground(new java.awt.Color(51, 51, 51));
-                checkList[i].setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
-                checkList[i].setForeground(new java.awt.Color(255, 255, 255));
-                checkList[i].setText("Done");
-                checkList[i].setEnabled(false);
-                checkList[i].setForeground(Color.red);
-                labelCheckList[i].setEnabled(true);
-                labelCheckList[i].setForeground(Color.red);
+                smallCheckListPanel[i].add(checkList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
+                bigpanelCheckList.add(status[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
+                bigpanelCheckList.add(smallCheckListPanel[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(15, y, 440, -1));
+                y += 35;
+                jPanel4.add(bigpanelCheckList, new org.netbeans.lib.awtextra.AbsoluteConstraints(775, 464, 481, 240));
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
             }
-
-            smallCheckListPanel[i].add(checkList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
-
-            bigpanelCheckList.add(smallCheckListPanel[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(15, y, 440, -1));
-            y += 35;
-
-            jPanel4.add(bigpanelCheckList, new org.netbeans.lib.awtextra.AbsoluteConstraints(775, 464, 481, 240));
         }
         scrollPaneCheckList.getViewport().removeAll();
-//        scrollPaneCheckList.get
-//        scrollPaneCheckList = new JScrollPane();
         scrollPaneCheckList.setViewportView(bigpanelCheckList);
         bigpanelCheckList.repaint();
         bigpanelCheckList.revalidate(); //
 
     }
 
-    public void clear() {
-        for (int i = 0; i < listName.size(); i++) {
-            bigpanelCheckList.remove(smallCheckListPanel[i]);
-            bigpanelCheckList.repaint();
+    public void checkListActionPerformed(java.awt.event.ActionEvent evt, int count) {
+
+        if (checkList[count].isSelected() == true) {
+            //listName.get(count).setCk(true);
+
+            System.out.println("" + listId);
+            System.out.println("Check list " + (count + 1) + " is selected");
+
+        } else if (checkList[count].isSelected() == false) {
+            System.out.println("Check list " + (count + 1) + " is not selected");
+//               statusListDone[count]=false;
         }
     }
+
     private void CalendarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CalendarPropertyChange
+
+        String sql = null;
         listName.clear();
         listId.clear();
         try {
-            //        System.out.println("KKKKK");
-            //        System.out.println(""+Calendar.getCalendar().getTime());
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("EEEE"); //ไวใช้บอกวันว่าจันทร์หรืออังคารหรือ...
             String toDay = sdf.format(date);
             String selectedDay = sdf.format(Calendar.getCalendar().getTime());
-//            Connection conn = MySQLConnect.getMySQLConnection();
-            String sql = "SELECT LIST.* FROM LIST INNER JOIN PLAN ON LIST.list_planID = PLAN.planID WHERE startDate<=? AND endDate>=? AND list_nameDay =?";
-            PreparedStatement pstm = conn.prepareStatement(sql);
+            setThisDay(toDay);
+            sql = "SELECT * FROM LIST INNER JOIN PLAN ON LIST.list_planID = PLAN.planID "
+                    + "WHERE startDate<=? AND endDate>=? AND list_nameDay =?";
+            Date dateToday = dateFormat.parse(dateFormat.format(date));
+            if (Calendar.getCalendar().getTime().before(dateToday)) {
+                System.out.println("before this day");
+            }
+            pstm = conn.prepareStatement(sql); //INNER JOIN STATUSLIST ON LIST.listID = STATUSLIST.list_ID
             pstm.setString(1, dateFormat.format(Calendar.getCalendar().getTime()));
             pstm.setString(2, dateFormat.format(Calendar.getCalendar().getTime()));
             pstm.setString(3, selectedDay);
             String d = "";
+
             ResultSet rs = pstm.executeQuery();
             actToday.setText("");
-            // txtList.setText("");
+            int rsCount = 0;
             while (rs.next()) {
 
-                System.out.println("rs.next");
                 //actToday.append();
                 actToday.append("Exercise : " + rs.getString("listname") + "\n");
-                listName.add(rs.getString("listname"));
+                System.out.println("Exercise : " + rs.getString("listname"));
+                listName1.add(rs.getString("listName"));
+                listName.add(new ToDoList(rs.getInt("listID"), rs.getString("listName"), rs.getString("list_nameDay")));
                 listId.add(rs.getInt("listID"));
-                actToday.append("   -reps : " + rs.getInt("reps") + "\n");
-                actToday.append("   - set : " + rs.getInt("set") + "\n");
-                //txtList.setText(rs.getString("listName"));
+                System.out.println("listId = " + rs.getInt("listID"));
+                String sqlStatus = "SELECT * FROM STATUSLIST WHERE list_id=" + rs.getInt("listID")
+                        + " AND listDate='" + dateFormat.format(Calendar.getCalendar().getTime()) + "'";
+                Statement s = conn.createStatement();
+                ResultSet rsStatus = s.executeQuery(sqlStatus);
+                while (rsStatus.next()) {
+                    listName.get(rsCount).setDateDone(rsStatus.getTimestamp("listDate"));
+                    listName.get(rsCount).setStatus(rsStatus.getInt("statusDone"));
+                    listName.get(rsCount).setStatusId(rsStatus.getInt("statusId"));
+                }
+                System.out.println("listId from object = " + listName.get(rsCount).getId());
 
+                Date dateSelectday = dateFormat.parse(dateFormat.format(Calendar.getCalendar().getTime()));
+                System.out.println("time dateSelectday = " + dateSelectday);
+                if (!dateSelectday.equals(listName.get(rsCount).getDateDone())) {
+                    System.out.println("not equal!");
+                    listName.get(rsCount).setDateDone(null);
+                }
+                actToday.append("   - reps : " + rs.getInt("reps") + "\n");
+                actToday.append("   - set : " + rs.getInt("set") + "\n");
+                rsCount++;
             }
             tmp_listName = listName;
             tmp_listId = listId;
             loopCheckList();
-            
 
             if (dateFormat.format(Calendar.getCalendar().getTime()).equals(dateFormat.format(date))) {
                 txtDay.setText(dateFormat.format(date));
@@ -551,29 +607,16 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
                 txtDay.setText(dateFormat.format(Calendar.getCalendar().getTime()));
             }
         } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println(ex.getMessage());
+        } catch (ParseException ex) {
             Logger.getLogger(GUIMyPlan1.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        //        System.out.println(""+nottoDay);
-        //        System.out.println(""+toDay);
-        //        System.out.println(""+dateFormat.format(Calendar.getCalendar().getTime()));
-        //        System.out.println(""+dateFormat.format(date));
     }//GEN-LAST:event_CalendarPropertyChange
 
     private void CalendarAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_CalendarAncestorAdded
 
-        //            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        //            Date date = new Date();
-        //            SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
-        //            String toDay2 = sdf.format(date);
-        //            String nottoDay = sdf.format(Calendar.getCalendar().getTime());
-        //            System.out.println(""+nottoDay);
-        //            System.out.println(""+Calendar.getCalendar().getTime());
-        //          System.out.println(""+toDay);
-        //        System.out.println(""+dateFormat.format(Calendar.getCalendar().getTime()));
-        //        System.out.println(""+toDay2);
-        //        System.out.println(""+date);
-        //        System.out.println(""+sdf.format(date));
+
     }//GEN-LAST:event_CalendarAncestorAdded
 
     private void myplanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myplanBtnActionPerformed
@@ -593,47 +636,73 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
-        
-        ArrayList<String> list = this.tmp_listName;
-        for(int i = 0;i < list.size();i++){
-            if(this.checkList[i].isSelected()){
-                updateListStatus(this.tmp_listId.get(i));
+        ArrayList<ToDoList> list = this.listName;
+        for (int i = 0; i < list.size(); i++) {
+            if (this.checkList[i].isSelected()) {
+                updateListStatus(list.get(i).getId(), i);
+                checkList[i].setEnabled(false);
+            } else {
             }
             this.checkList[i].setSelected(false);
         }
         repaint();
     }//GEN-LAST:event_refreshBtnActionPerformed
 
-    public boolean updateListStatus(int id){
+    public boolean updateListStatus(int id, int i) {
         int result = 0;
         try {
-            String sql = "update LIST set listStatus = 1 where listID = ?";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, id);
-            result = ps.executeUpdate();
+            System.out.println(listName.size());
+            if (checkList[i].isSelected() == true) {
+                System.out.println("BEFORE UPDATE");
+                String sql = "INSERT INTO STATUSLIST (statusDone, list_ID, listDate) VALUES (?, ?, ?)";
+                pstm = conn.prepareStatement(sql);
+                pstm.setInt(1, 1);
+                pstm.setInt(2, id);
+                System.out.println("BEFORE UPDATE EXE  1");
+                java.sql.Date myDate2 = new java.sql.Date(Calendar.getDate().getTime());
+                pstm.setDate(3, myDate2);
+                System.out.println("BEFORE UPDATE EXE  2");
+                result = pstm.executeUpdate();
+                System.out.println("UPDATE LAEW");
+                checkList[i].setForeground(new java.awt.Color(153, 255, 51));
+                labelCheckList[i].setForeground(new java.awt.Color(153, 255, 51));
+                bigpanelCheckList.repaint();
+                bigpanelCheckList.revalidate();
+            }
+            if (checkList[i].isSelected() == false) {
+                System.out.println("Check list " + (i + 1) + " is not selected");
+                String sql = "INSERT INTO STATUSLIST (statusDone, list_ID, listDate) VALUES (?, ?, ?)";
+                pstm = conn.prepareStatement(sql);
+                pstm.setInt(1, 0);
+                pstm.setInt(2, id);
+                java.sql.Date myDate2 = new java.sql.Date(Calendar.getDate().getTime());
+                pstm.setDate(3, myDate2);
+                result = pstm.executeUpdate();
+            }
         } catch (SQLException ex) {
-            Logger.getLogger(GUIMyPlan1.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
         return result > 0;
     }
+
     /**
      * @param args the command line arguments
      */
-    public void tt() throws ClassNotFoundException, SQLException {
+    public void chooseDayFromComboBox() throws ClassNotFoundException, SQLException {
         // Connection conn = MySQLConnect.getMySQLConnection();
         System.out.println("selecting..");
-        PreparedStatement pstm = conn.prepareStatement("SELECT startDate,endDate from PLAN where planID =");
+        pstm = conn.prepareStatement("SELECT startDate,endDate from PLAN where planID =");
         ResultSet rs = pstm.executeQuery();
         Date st;
         Date end;
         while (rs.next()) {
             st = rs.getDate("startDate");
             end = rs.getDate("endDate");
-            System.out.println("" + st);
-            System.out.println("" + end);
-            this.st = st;
+//            System.out.println("" + st);
+//            System.out.println("" + end);
+            this.start = start;
             this.end = end;
-            Calendar.setDate(st);
+            Calendar.setDate(start);
         }
     }
 

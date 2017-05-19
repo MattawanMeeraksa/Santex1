@@ -24,14 +24,14 @@ public class CreatePlan1 extends javax.swing.JFrame {
     Connection conn = null;
     PreparedStatement pstm = null;
     private String nameDay = "";
-    private String Sun = "";
-    private String Mon = "";
-    private String Tues = "";
-    private String Wedn = "";
-    private String Thru = "";
-    private String Fri = "";
-    private String Sat = "";
-    private int DPWALL = 0;
+    private String sun = "";
+    private String mon = "";
+    private String tues = "";
+    private String wedn = "";
+    private String thru = "";
+    private String fri = "";
+    private String sat = "";
+    private int dpwAll = 0;
 
     public String getNameDay() {
         return nameDay;
@@ -42,70 +42,70 @@ public class CreatePlan1 extends javax.swing.JFrame {
     }
 
     public String getSun() {
-        return Sun;
+        return sun;
     }
 
-    public void setSun(String Sun) {
-        this.Sun = Sun;
+    public void setSun(String sun) {
+        this.sun = sun;
     }
 
     public String getMon() {
-        return Mon;
+        return mon;
     }
 
-    public void setMon(String Mon) {
-        this.Mon = Mon;
+    public void setMon(String mon) {
+        this.mon = mon;
     }
 
     public String getTues() {
-        return Tues;
+        return tues;
     }
 
-    public void setTues(String Tues) {
-        this.Tues = Tues;
+    public void setTues(String tues) {
+        this.tues = tues;
     }
 
     public String getWedn() {
-        return Wedn;
+        return wedn;
     }
 
-    public void setWedn(String Wedn) {
-        this.Wedn = Wedn;
+    public void setWedn(String wedn) {
+        this.wedn = wedn;
     }
 
     public String getThru() {
-        return Thru;
+        return thru;
     }
 
-    public void setThru(String Thru) {
-        this.Thru = Thru;
+    public void setThru(String thru) {
+        this.thru = thru;
     }
 
     public String getFri() {
-        return Fri;
+        return fri;
     }
 
-    public void setFri(String Fri) {
-        this.Fri = Fri;
+    public void setFri(String fri) {
+        this.fri = fri;
     }
 
     public String getSat() {
-        return Sat;
+        return sat;
     }
 
-    public void setSat(String Sat) {
-        this.Sat = Sat;
+    public void setSat(String sat) {
+        this.sat = sat;
     }
 
     public int getDPW() {
-        return DPWALL;
+        return dpwAll;
     }
 
     /**
      * Creates new form CreatePlan1
      */
-    public void setDPW(int DPW) {
-        this.DPWALL = DPW;
+    public void setDPW(int dpw) {
+        this.dpwAll = dpw;
     }
 
     public CreatePlan1() {
@@ -168,7 +168,10 @@ public class CreatePlan1 extends javax.swing.JFrame {
         lblDes.setForeground(new java.awt.Color(255, 255, 255));
         lblDes.setText("Description");
 
+        txtPName.setFont(new java.awt.Font("Yu Gothic", 0, 15)); // NOI18N
+
         txtDes.setColumns(20);
+        txtDes.setFont(new java.awt.Font("Yu Gothic", 0, 15)); // NOI18N
         txtDes.setRows(5);
         jScrollPane1.setViewportView(txtDes);
 
@@ -317,33 +320,31 @@ public class CreatePlan1 extends javax.swing.JFrame {
                     .addComponent(lblcancel, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(170, 170, 170))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(66, 66, 66)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPName)
                             .addComponent(lblDes)
                             .addComponent(lblStartDate)
                             .addComponent(lblEndDate))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                        .addGap(92, 92, 92)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(endDateChoose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1)
-                            .addComponent(txtPName)
-                            .addComponent(startDateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(89, Short.MAX_VALUE))
+                            .addComponent(endDateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPName, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(startDateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
                         .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblheadcreate)
-                .addContainerGap(313, Short.MAX_VALUE))
+                .addContainerGap(344, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(sunCheck)
@@ -359,7 +360,7 @@ public class CreatePlan1 extends javax.swing.JFrame {
                 .addComponent(friCheck)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(satCheck)
-                .addGap(40, 40, 40))
+                .addGap(67, 67, 67))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -371,12 +372,12 @@ public class CreatePlan1 extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(lblheadcreate)))
                 .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblPName)
                         .addGap(65, 65, 65)
                         .addComponent(lblDes)
-                        .addGap(112, 112, 112)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblStartDate)
                         .addGap(56, 56, 56)
                         .addComponent(lblEndDate))
@@ -390,13 +391,13 @@ public class CreatePlan1 extends javax.swing.JFrame {
                         .addComponent(endDateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
+                        .addGap(63, 63, 63)
                         .addComponent(jLabel2)
-                        .addGap(36, 36, 36))
+                        .addGap(41, 41, 41))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
-                        .addGap(28, 28, 28)))
+                        .addGap(27, 27, 27)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(satCheck)
                     .addComponent(friCheck)
@@ -405,7 +406,7 @@ public class CreatePlan1 extends javax.swing.JFrame {
                     .addComponent(tuesCheck)
                     .addComponent(monCheck)
                     .addComponent(sunCheck))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -438,15 +439,17 @@ public class CreatePlan1 extends javax.swing.JFrame {
             if (txtPName.getText().equals("") || txtDes.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Your input is incorrect");
             } else {
-                nameDay = "" + Sun + Mon + Tues + Wedn + Thru + Fri + Sat;
-                String sql = "insert into PLAN (planName,descriptionPlan,nameDay, startDate,endDate,dayperweek) values (?,?,?,?,?,?)";
-                PreparedStatement pstm = conn.prepareStatement(sql);
+                nameDay = "" + sun + mon + tues + wedn + thru + fri + sat;
+                String sql = "insert into PLAN(planName,descriptionPlan,nameDay, startDate,endDate,dayperweek) values (?,?,?,?,?,?)";
+                pstm = conn.prepareStatement(sql);
                 pstm.setString(1, txtPName.getText());
                 pstm.setString(2, txtDes.getText());
                 pstm.setString(3, nameDay);
-                pstm.setString(4, ((JTextField) startDateChoose.getDateEditor().getUiComponent()).getText());
-                pstm.setString(5, ((JTextField) endDateChoose.getDateEditor().getUiComponent()).getText());
-                pstm.setInt(6, DPWALL);
+                java.sql.Date myDate = new java.sql.Date(startDateChoose.getDate().getTime());
+                pstm.setDate(4, myDate);
+                java.sql.Date myDate2 = new java.sql.Date(endDateChoose.getDate().getTime());
+                pstm.setDate(5, myDate2);
+                pstm.setInt(6, dpwAll);
                 pstm.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Plan created successfully");
                 MyPlan2 sp = new MyPlan2();
@@ -458,7 +461,7 @@ public class CreatePlan1 extends javax.swing.JFrame {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(CreatePlan1.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 
@@ -479,15 +482,15 @@ public class CreatePlan1 extends javax.swing.JFrame {
             if (txtPName.getText().equals("") || txtDes.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Your input is incorrect");
             } else {
-                nameDay = "" + Sun + Mon + Tues + Wedn + Thru + Fri + Sat;
+                nameDay = "" + sun + mon + tues + wedn + thru + fri + sat;
                 String sql = "insert into PLAN (planName,descriptionPlan,nameDay, startDate,endDate,dayperweek) values (?,?,?,?,?,?)";
-                PreparedStatement pstm = conn.prepareStatement(sql);
+                pstm = conn.prepareStatement(sql);
                 pstm.setString(1, txtPName.getText());
                 pstm.setString(2, txtDes.getText());
                 pstm.setString(3, nameDay);
                 pstm.setString(4, ((JTextField) startDateChoose.getDateEditor().getUiComponent()).getText());
                 pstm.setString(5, ((JTextField) endDateChoose.getDateEditor().getUiComponent()).getText());
-                pstm.setInt(6, DPWALL);
+                pstm.setInt(6, dpwAll);
                 pstm.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Plan created successfully");
                 MyPlan2 sp = new MyPlan2();
@@ -499,7 +502,7 @@ public class CreatePlan1 extends javax.swing.JFrame {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(CreatePlan1.class.getName()).log(Level.SEVERE, null, ex);
+             System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_lblsaveMouseClicked
 
@@ -516,13 +519,13 @@ public class CreatePlan1 extends javax.swing.JFrame {
     private void sunCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sunCheckActionPerformed
         if (sunCheck.isSelected() == true) {
             System.out.println("Selected Sunday");
-            Sun = "Sunday ";
-            setSun(Sun);
-            DPWALL++;
+            sun = "Sunday ";
+            setSun(sun);
+            dpwAll++;
         } else if (sunCheck.isSelected() == false) {
             System.out.println("Not Selected Sunday");
-            Sun = "";
-            DPWALL = 0;
+            sun = "";
+            dpwAll = 0;
         }
 
     }//GEN-LAST:event_sunCheckActionPerformed
@@ -530,78 +533,78 @@ public class CreatePlan1 extends javax.swing.JFrame {
     private void monCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monCheckActionPerformed
         if (monCheck.isSelected() == true) {
             System.out.println("Selected Monday");
-            Mon = "Monday ";
-            setMon(Mon);
-            DPWALL++;
+            mon = "Monday ";
+            setMon(mon);
+            dpwAll++;
         } else if (monCheck.isSelected() == false) {
             System.out.println("Not Selected Monday");
-            Mon = "";
-            DPWALL = 0;
+            mon = "";
+            dpwAll = 0;
         }
     }//GEN-LAST:event_monCheckActionPerformed
 
     private void tuesCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tuesCheckActionPerformed
         if (tuesCheck.isSelected() == true) {
             System.out.println("Selected Tuesday");
-            Tues = "Tuesday ";
-            setTues(Tues);
-            DPWALL++;
+            tues = "Tuesday ";
+            setTues(tues);
+            dpwAll++;
         } else if (tuesCheck.isSelected() == false) {
             System.out.println("Not Selected Tuesday");
-            Tues = "";
-            DPWALL = 0;
+            tues = "";
+            dpwAll = 0;
         }
     }//GEN-LAST:event_tuesCheckActionPerformed
 
     private void wedCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wedCheckActionPerformed
         if (wedCheck.isSelected() == true) {
             System.out.println("Selected Wednesday");
-            Wedn = "Wednesday ";
-            setWedn(Wedn);
-            DPWALL++;
+            wedn = "Wednesday ";
+            setWedn(wedn);
+            dpwAll++;
         } else if (tuesCheck.isSelected() == false) {
             System.out.println("Not Selected Wednesday");
-            Wedn = "";
-            DPWALL = 0;
+            wedn = "";
+            dpwAll = 0;
         }
     }//GEN-LAST:event_wedCheckActionPerformed
 
     private void thuCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thuCheckActionPerformed
         if (thuCheck.isSelected() == true) {
             System.out.println("Selected Thursday");
-            Thru = "Thursday ";
-            setThru(Thru);
-            DPWALL++;
+            thru = "Thursday ";
+            setThru(thru);
+            dpwAll++;
         } else if (tuesCheck.isSelected() == false) {
             System.out.println("Not Selected Thursday");
-            Thru = "";
-            DPWALL = 0;
+            thru = "";
+            dpwAll = 0;
         }
     }//GEN-LAST:event_thuCheckActionPerformed
 
     private void friCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friCheckActionPerformed
         if (friCheck.isSelected() == true) {
             System.out.println("Selected Friday");
-            Fri = "Friday ";
-            setFri(Fri);
-            DPWALL++;
+            fri = "Friday ";
+            setFri(fri);
+            dpwAll++;
         } else if (friCheck.isSelected() == false) {
             System.out.println("Not Selected Friday");
-            Fri = "";
-            DPWALL = 0;
+            fri = "";
+            dpwAll = 0;
         }
     }//GEN-LAST:event_friCheckActionPerformed
 
     private void satCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satCheckActionPerformed
         if (satCheck.isSelected() == true) {
             System.out.println("Selected Saturday");
-            Sat = "Saturday ";
-            setSat(Sat);
-            DPWALL++;
+            sat = "Saturday ";
+            setSat(sat);
+            dpwAll++;
         } else if (satCheck.isSelected() == false) {
             System.out.println("Not Selected Saturday");
-            Sat = "";
-            DPWALL = 0;
+            sat = "";
+            dpwAll = 0;
         }
     }//GEN-LAST:event_satCheckActionPerformed
 

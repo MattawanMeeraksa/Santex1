@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -25,10 +27,21 @@ import javax.swing.text.MaskFormatter;
  */
 public class AddList1 extends java.awt.Dialog {
 
-    private static int planId = 0;
+    private int planId = 0;
+    private Date startDate;
+    private Date endDate;
     MyPlan2 mp;
     Connection conn = null;
     PreparedStatement pstm = null;
+    private int day;
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
 
     public int getPlanId() {
         return planId;
@@ -36,20 +49,23 @@ public class AddList1 extends java.awt.Dialog {
 
     public void setPlanId(int planId) {
         this.planId = planId;
+
     }
 
     /**
      * Creates new form AddList1
      */
-    public AddList1(java.awt.Frame parent, boolean modal, MyPlan2 mp, int planId) {
+    public AddList1(java.awt.Frame parent, boolean modal, MyPlan2 mp, int planId, Date startDate, Date endDate) {
         super(parent, modal);
         try {
 
             this.planId = planId;
+            this.startDate = startDate;
+            this.endDate = endDate;
             initComponents();
             this.mp = mp;
             conn = MySQLConnect.getMySQLConnection();
-            tt();
+            chooseDayFromComboBox();
             txtListPlanId.setText(this.planId + "");
             txtListPlanId.setVisible(false);
 
@@ -58,6 +74,7 @@ public class AddList1 extends java.awt.Dialog {
             Logger.getLogger(AddList1.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(AddList1.class.getName()).log(Level.SEVERE, null, ex);
+
         }
     }
 
@@ -327,13 +344,71 @@ public class AddList1 extends java.awt.Dialog {
     }//GEN-LAST:event_closeDialog
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        System.out.println("Clicked Save button");
         try {
-            if (txtList.getText().equals("") || txtDes.getText().equals("") || txtReps.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Your input is incorrect");
-            } else {
-                String sql = "insert into LIST(listName,descriptionList,reps,`set`,list_planID,list_nameDay) values (?,?,?,?,?,?)";
-                PreparedStatement pstm = conn.prepareStatement(sql);
+            Connection conn = MySQLConnect.getMySQLConnection();
+            System.out.println("Clicked Save button");
+
+            try {
+                if (txtList.getText().equals("") || txtDes.getText().equals("") || txtReps.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Your input is incorrect");
+                } else {
+                    String sqlList = "insert into LIST(listName,descriptionList,reps,`set`,list_planID,list_nameDay)"
+                            + " values (?,?,?,?,?,?)";
+                    pstm = conn.prepareStatement(sqlList);
+                    pstm.setString(1, txtList.getText());
+                    pstm.setString(2, txtDes.getText());
+                    pstm.setString(3, txtReps.getText());
+                    String r = txtReps.getText();
+                    int reps = Integer.parseInt(r);
+                    pstm.setString(4, txtSet.getText());
+                    String s = txtSet.getText();
+                    int set = Integer.parseInt(s);
+                    pstm.setString(5, txtListPlanId.getText());
+                    pstm.setString(6, boxChooseDay.getSelectedItem() + "");
+                    String l = txtListPlanId.getText();
+                    int listPlanId = Integer.parseInt(l);
+                    pstm.executeUpdate();
+                    JOptionPane.showMessageDialog(null, "Add list successfully");
+                    MyPlan2 frame = new MyPlan2();
+                    frame.setVisible(true);
+                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    frame.setLocationRelativeTo(null);
+                    frame.setResizable(false);
+                    setVisible(false);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(AddList1.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                conn.close();
+            }
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddList1.class.getName()).log(Level.SEVERE, null, ex);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AddList1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void cancelBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtn1ActionPerformed
+        System.out.println("Clicked Cancel button");
+        MyPlan2 mp = new MyPlan2();
+        mp.setVisible(true);
+        mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mp.setLocationRelativeTo(null);
+        mp.setResizable(false);
+        setVisible(false);
+    }//GEN-LAST:event_cancelBtn1ActionPerformed
+
+    private void lblsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsaveMouseClicked
+        try {                                     
+            Connection conn = MySQLConnect.getMySQLConnection();
+            System.out.println("Clicked Save button");
+            try {
+                String sql = "insert into LIST(listName,descriptionList,reps,`set`,list_planID,list_nameDay)"
+                        + " values (?,?,?,?,?,?)";
+                pstm = conn.prepareStatement(sql);
                 pstm.setString(1, txtList.getText());
                 pstm.setString(2, txtDes.getText());
                 pstm.setString(3, txtReps.getText());
@@ -354,51 +429,19 @@ public class AddList1 extends java.awt.Dialog {
                 frame.setLocationRelativeTo(null);
                 frame.setResizable(false);
                 setVisible(false);
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
             }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddList1.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(AddList1.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
-
-    }//GEN-LAST:event_saveBtnActionPerformed
-
-    private void cancelBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtn1ActionPerformed
-        System.out.println("Clicked Cancel button");
-        MyPlan2 mp = new MyPlan2();
-        mp.setVisible(true);
-        mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mp.setLocationRelativeTo(null);
-        mp.setResizable(false);
-        setVisible(false);
-    }//GEN-LAST:event_cancelBtn1ActionPerformed
-
-    private void lblsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsaveMouseClicked
-        System.out.println("Clicked Save button");
-        try {
-            String sql = "insert into LIST(listName,descriptionList,reps,`set`,list_planID,list_nameDay) values (?,?,?,?,?,?)";
-            PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.setString(1, txtList.getText());
-            pstm.setString(2, txtDes.getText());
-            pstm.setString(3, txtReps.getText());
-            String r = txtReps.getText();
-            int reps = Integer.parseInt(r);
-            pstm.setString(4, txtSet.getText());
-            String s = txtSet.getText();
-            int set = Integer.parseInt(s);
-            pstm.setString(5, txtListPlanId.getText());
-            pstm.setString(6, boxChooseDay.getSelectedItem() + "");
-            String l = txtListPlanId.getText();
-            int listPlanId = Integer.parseInt(l);
-            pstm.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Add list successfully");
-            MyPlan2 frame = new MyPlan2();
-            frame.setVisible(true);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setLocationRelativeTo(null);
-            frame.setResizable(false);
-            setVisible(false);
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+        }finally{
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(AddList1.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_lblsaveMouseClicked
 
@@ -419,9 +462,9 @@ public class AddList1 extends java.awt.Dialog {
             if (txt == 0) {
                 txtReps.setText("");
                 noti1.setVisible(true);
-            }else if(txt > 0 && txt <=100){
+            } else if (txt > 0 && txt <= 100) {
                 noti1.setVisible(false);
-            }else {
+            } else {
                 noti1.setVisible(true);
                 txtReps.setText("");
             }
@@ -439,9 +482,9 @@ public class AddList1 extends java.awt.Dialog {
             if (txt == 0) {
                 txtSet.setText("");
                 noti2.setVisible(true);
-            }else if(txt > 0 && txt <=100){
+            } else if (txt > 0 && txt <= 100) {
                 noti2.setVisible(false);
-            }else {
+            } else {
                 noti2.setVisible(true);
                 txtSet.setText("");
             }
@@ -460,21 +503,21 @@ public class AddList1 extends java.awt.Dialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 
-                AddList1 dialog = new AddList1(new java.awt.Frame(), true, new MyPlan2(), planId);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+//                AddList1 dialog = new AddList1(new java.awt.Frame(), true, new MyPlan2(), planId,startDate,endDate);
+//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//                    public void windowClosing(java.awt.event.WindowEvent e) {
+//                        System.exit(0);
+//                    }
+//                });
+//                dialog.setVisible(true);
             }
         });
     }
 
-    public void tt() throws ClassNotFoundException, SQLException {
+    public void chooseDayFromComboBox() throws ClassNotFoundException, SQLException {
         //Connection conn = MySQLConnect.getMySQLConnection();
         System.out.println("selecting..");
-        PreparedStatement pstm = conn.prepareStatement("SELECT nameDay,dayperweek from PLAN where planID = " + planId);
+        pstm = conn.prepareStatement("SELECT nameDay,dayperweek from PLAN where planID = " + planId);
         ResultSet rs = pstm.executeQuery();
         while (rs.next()) {
             String days = rs.getString("nameDay");

@@ -173,13 +173,12 @@ public class DetailList1 extends javax.swing.JFrame {
         txtReps = new javax.swing.JLabel();
         txtSet = new javax.swing.JLabel();
         lblSet = new javax.swing.JLabel();
-        txtDes = new javax.swing.JLabel();
         lbledit = new javax.swing.JLabel();
         lbldelete = new javax.swing.JLabel();
         editBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
-        lblStatusList = new javax.swing.JLabel();
-        txtStatusList = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtDes = new javax.swing.JLabel();
         lblback = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -226,8 +225,6 @@ public class DetailList1 extends javax.swing.JFrame {
         lblSet.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         lblSet.setText("Set");
 
-        txtDes.setFont(new java.awt.Font("Yu Gothic Light", 1, 17)); // NOI18N
-
         lbledit.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         lbledit.setText("EDIT");
         lbledit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -260,10 +257,8 @@ public class DetailList1 extends javax.swing.JFrame {
             }
         });
 
-        lblStatusList.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
-        lblStatusList.setText("Status List");
-
-        txtStatusList.setFont(new java.awt.Font("Yu Gothic Light", 1, 17)); // NOI18N
+        txtDes.setFont(new java.awt.Font("Yu Gothic Light", 1, 17)); // NOI18N
+        jScrollPane2.setViewportView(txtDes);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -276,7 +271,7 @@ public class DetailList1 extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(lbledit, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -284,29 +279,24 @@ public class DetailList1 extends javax.swing.JFrame {
                         .addComponent(lbldelete)))
                 .addGap(69, 69, 69))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtSet, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(lblStatusList)
-                            .addGap(48, 48, 48)
-                            .addComponent(txtStatusList, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(lblListPlan)
-                        .addComponent(lblSet)
-                        .addComponent(lblDay)
-                        .addComponent(lblReps)
-                        .addComponent(jLabel2)
-                        .addComponent(txtDay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
-                        .addComponent(txtListPlan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtDes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtReps, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtSet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblListPlan)
+                    .addComponent(lblSet)
+                    .addComponent(lblDay)
+                    .addComponent(lblReps)
+                    .addComponent(jLabel2)
+                    .addComponent(txtDay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtListPlan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtReps, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(42, 42, 42)
                 .addComponent(lblDay)
                 .addGap(18, 18, 18)
                 .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -316,9 +306,9 @@ public class DetailList1 extends javax.swing.JFrame {
                 .addComponent(txtListPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addGap(20, 20, 20)
-                .addComponent(txtDes, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblReps)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtReps, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -326,11 +316,7 @@ public class DetailList1 extends javax.swing.JFrame {
                 .addComponent(lblSet)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtSet, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblStatusList)
-                    .addComponent(txtStatusList, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70)
+                .addGap(105, 105, 105)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(editBtn)
@@ -373,7 +359,15 @@ public class DetailList1 extends javax.swing.JFrame {
             new String [] {
                 "Name day", "List Plan Name", "Description"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         planListTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 planListTableMouseClicked(evt);
@@ -422,7 +416,7 @@ public class DetailList1 extends javax.swing.JFrame {
                         .addComponent(lblback, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 759, Short.MAX_VALUE)
         );
 
@@ -446,7 +440,7 @@ public class DetailList1 extends javax.swing.JFrame {
             model = (DefaultTableModel) planListTable.getModel();
             model.setRowCount(0); //บอกว่าแถวแรกของตารางเป็น 0
             String sql = "SELECT listName, list_nameDay,descriptionList FROM LIST WHERE list_planID= ?";
-            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm = conn.prepareStatement(sql);
             pstm.setInt(1, planId);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
@@ -557,7 +551,7 @@ public class DetailList1 extends javax.swing.JFrame {
         try {
             System.out.println("" + listID);
             String sql = "delete from LIST where listName=? and listID=" + listID;
-            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm = conn.prepareStatement(sql);
             pstm.setString(1, listPlanName);
             pstm.executeUpdate();
             Object[] options = {"Yes", "No"}; //เป็นปุ่มที่ให้เลือกว่าจะกดอะไร
@@ -595,7 +589,7 @@ public class DetailList1 extends javax.swing.JFrame {
         txtDes.setText(planListTable.getValueAt(planListTable.getSelectedRow(), 2) + "");
         try {
             String sql = "select * from LIST where listName=?";
-            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm = conn.prepareStatement(sql);
             pstm.setString(1, planListTable.getValueAt(planListTable.getSelectedRow(), 1) + "");
             ResultSet rs = pstm.executeQuery();
             System.out.println("query..");
@@ -682,11 +676,11 @@ public class DetailList1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblDay;
     private javax.swing.JLabel lblListPlan;
     private javax.swing.JLabel lblReps;
     private javax.swing.JLabel lblSet;
-    private javax.swing.JLabel lblStatusList;
     private javax.swing.JLabel lblback;
     private javax.swing.JLabel lbldelete;
     private javax.swing.JLabel lbledit;
@@ -696,6 +690,5 @@ public class DetailList1 extends javax.swing.JFrame {
     private javax.swing.JLabel txtListPlan;
     private javax.swing.JLabel txtReps;
     private javax.swing.JLabel txtSet;
-    private javax.swing.JLabel txtStatusList;
     // End of variables declaration//GEN-END:variables
 }
