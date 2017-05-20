@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
  *
  * @author Administrator
  */
-public class CreatePlan1 extends javax.swing.JFrame {
+public class CreatePlan extends javax.swing.JFrame {
 
     Connection conn = null;
     PreparedStatement pstm = null;
@@ -102,20 +102,20 @@ public class CreatePlan1 extends javax.swing.JFrame {
     }
 
     /**
-     * Creates new form CreatePlan1
+     * Creates new form CreatePlan
      */
     public void setDPW(int dpw) {
         this.dpwAll = dpw;
     }
 
-    public CreatePlan1() {
+    public CreatePlan() {
         try {
             initComponents();
             conn = MySQLConnect.getMySQLConnection();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CreatePlan1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CreatePlan.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(CreatePlan1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CreatePlan.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -169,10 +169,20 @@ public class CreatePlan1 extends javax.swing.JFrame {
         lblDes.setText("Description");
 
         txtPName.setFont(new java.awt.Font("Yu Gothic", 0, 15)); // NOI18N
+        txtPName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPNameFocusLost(evt);
+            }
+        });
 
         txtDes.setColumns(20);
         txtDes.setFont(new java.awt.Font("Yu Gothic", 0, 15)); // NOI18N
         txtDes.setRows(5);
+        txtDes.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDesFocusLost(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtDes);
 
         lblheadcreate.setFont(new java.awt.Font("Century Gothic", 1, 32)); // NOI18N
@@ -432,8 +442,7 @@ public class CreatePlan1 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+    public void createMyPlan() {
         System.out.println("Clicked Save button");
         try {
             if (txtPName.getText().equals("") || txtDes.getText().equals("")) {
@@ -452,71 +461,31 @@ public class CreatePlan1 extends javax.swing.JFrame {
                 pstm.setInt(6, dpwAll);
                 pstm.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Plan created successfully");
-                MyPlan2 sp = new MyPlan2();
-
-                sp.setVisible(true);
+                MyPlan mp = new MyPlan();
+                mp.setVisible(true);
                 setVisible(false);
-                sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                sp.setLocationRelativeTo(null);
+                mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                mp.setLocationRelativeTo(null);
             }
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-    }//GEN-LAST:event_saveBtnActionPerformed
+    }
 
-    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+    public void backToHome() {
         System.out.println("Clicked Cancel button");
-        GUIMyPlan1 frame = new GUIMyPlan1();
-        frame.pack();
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
+        Home h = new Home();
+        h.pack();
+        h.setVisible(true);
+        h.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        h.setLocationRelativeTo(null);
+        h.setResizable(false);
         setVisible(false);
-    }//GEN-LAST:event_cancelBtnActionPerformed
+    }
 
-    private void lblsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsaveMouseClicked
-        System.out.println("Clicked Save button");
-        try {
-            if (txtPName.getText().equals("") || txtDes.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Your input is incorrect");
-            } else {
-                nameDay = "" + sun + mon + tues + wedn + thru + fri + sat;
-                String sql = "insert into PLAN (planName,descriptionPlan,nameDay, startDate,endDate,dayperweek) values (?,?,?,?,?,?)";
-                pstm = conn.prepareStatement(sql);
-                pstm.setString(1, txtPName.getText());
-                pstm.setString(2, txtDes.getText());
-                pstm.setString(3, nameDay);
-                pstm.setString(4, ((JTextField) startDateChoose.getDateEditor().getUiComponent()).getText());
-                pstm.setString(5, ((JTextField) endDateChoose.getDateEditor().getUiComponent()).getText());
-                pstm.setInt(6, dpwAll);
-                pstm.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Plan created successfully");
-                MyPlan2 sp = new MyPlan2();
-
-                sp.setVisible(true);
-                setVisible(false);
-                sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                sp.setLocationRelativeTo(null);
-            }
-
-        } catch (SQLException ex) {
-             System.out.println(ex.getMessage());
-        }
-    }//GEN-LAST:event_lblsaveMouseClicked
-
-    private void lblcancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblcancelMouseClicked
-        System.out.println("Clicked Cancel button");
-        GUIMyPlan1 frame = new GUIMyPlan1();
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
-        setVisible(false);
-    }//GEN-LAST:event_lblcancelMouseClicked
-
-    private void sunCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sunCheckActionPerformed
+    public void chooseDay() {
+        //Sunday
         if (sunCheck.isSelected() == true) {
             System.out.println("Selected Sunday");
             sun = "Sunday ";
@@ -527,10 +496,7 @@ public class CreatePlan1 extends javax.swing.JFrame {
             sun = "";
             dpwAll = 0;
         }
-
-    }//GEN-LAST:event_sunCheckActionPerformed
-
-    private void monCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monCheckActionPerformed
+        //Monday
         if (monCheck.isSelected() == true) {
             System.out.println("Selected Monday");
             mon = "Monday ";
@@ -541,9 +507,7 @@ public class CreatePlan1 extends javax.swing.JFrame {
             mon = "";
             dpwAll = 0;
         }
-    }//GEN-LAST:event_monCheckActionPerformed
-
-    private void tuesCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tuesCheckActionPerformed
+        //Tuesday
         if (tuesCheck.isSelected() == true) {
             System.out.println("Selected Tuesday");
             tues = "Tuesday ";
@@ -554,9 +518,7 @@ public class CreatePlan1 extends javax.swing.JFrame {
             tues = "";
             dpwAll = 0;
         }
-    }//GEN-LAST:event_tuesCheckActionPerformed
-
-    private void wedCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wedCheckActionPerformed
+        //Wednesday
         if (wedCheck.isSelected() == true) {
             System.out.println("Selected Wednesday");
             wedn = "Wednesday ";
@@ -567,9 +529,7 @@ public class CreatePlan1 extends javax.swing.JFrame {
             wedn = "";
             dpwAll = 0;
         }
-    }//GEN-LAST:event_wedCheckActionPerformed
-
-    private void thuCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thuCheckActionPerformed
+        //Thursday
         if (thuCheck.isSelected() == true) {
             System.out.println("Selected Thursday");
             thru = "Thursday ";
@@ -580,9 +540,7 @@ public class CreatePlan1 extends javax.swing.JFrame {
             thru = "";
             dpwAll = 0;
         }
-    }//GEN-LAST:event_thuCheckActionPerformed
-
-    private void friCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friCheckActionPerformed
+        //Friday
         if (friCheck.isSelected() == true) {
             System.out.println("Selected Friday");
             fri = "Friday ";
@@ -593,9 +551,8 @@ public class CreatePlan1 extends javax.swing.JFrame {
             fri = "";
             dpwAll = 0;
         }
-    }//GEN-LAST:event_friCheckActionPerformed
 
-    private void satCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satCheckActionPerformed
+        //Saturday
         if (satCheck.isSelected() == true) {
             System.out.println("Selected Saturday");
             sat = "Saturday ";
@@ -606,7 +563,71 @@ public class CreatePlan1 extends javax.swing.JFrame {
             sat = "";
             dpwAll = 0;
         }
+    }
+
+    public void checkUserInputPlanName() {
+        if (!(Pattern.matches("^[a-zA-Z0-9 ]+$", txtPName.getText()))) {
+            txtPName.setText("");
+        }
+    }
+
+    public void checkUserInputPlanDescription() {
+        if (!(Pattern.matches("^[a-zA-Z0-9 ]+$", txtDes.getText()))) {
+            txtDes.setText("");
+        }
+    }
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        createMyPlan();
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        backToHome();
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void lblsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsaveMouseClicked
+        createMyPlan();
+    }//GEN-LAST:event_lblsaveMouseClicked
+
+    private void lblcancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblcancelMouseClicked
+        backToHome();
+    }//GEN-LAST:event_lblcancelMouseClicked
+
+    private void sunCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sunCheckActionPerformed
+        chooseDay();
+    }//GEN-LAST:event_sunCheckActionPerformed
+
+    private void monCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monCheckActionPerformed
+        chooseDay();
+    }//GEN-LAST:event_monCheckActionPerformed
+
+    private void tuesCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tuesCheckActionPerformed
+        chooseDay();
+    }//GEN-LAST:event_tuesCheckActionPerformed
+
+    private void wedCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wedCheckActionPerformed
+        chooseDay();
+    }//GEN-LAST:event_wedCheckActionPerformed
+
+    private void thuCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thuCheckActionPerformed
+        chooseDay();
+    }//GEN-LAST:event_thuCheckActionPerformed
+
+    private void friCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friCheckActionPerformed
+        chooseDay();
+    }//GEN-LAST:event_friCheckActionPerformed
+
+    private void satCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satCheckActionPerformed
+        chooseDay();
     }//GEN-LAST:event_satCheckActionPerformed
+
+    private void txtPNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPNameFocusLost
+        checkUserInputPlanName();
+    }//GEN-LAST:event_txtPNameFocusLost
+
+    private void txtDesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDesFocusLost
+        checkUserInputPlanDescription();
+    }//GEN-LAST:event_txtDesFocusLost
 
     /**
      * @param args the command line arguments
@@ -626,27 +647,28 @@ public class CreatePlan1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreatePlan1.class
+            java.util.logging.Logger.getLogger(CreatePlan.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreatePlan1.class
+            java.util.logging.Logger.getLogger(CreatePlan.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreatePlan1.class
+            java.util.logging.Logger.getLogger(CreatePlan.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreatePlan1.class
+            java.util.logging.Logger.getLogger(CreatePlan.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreatePlan1().setVisible(true);
+                new CreatePlan().setVisible(true);
             }
         });
 

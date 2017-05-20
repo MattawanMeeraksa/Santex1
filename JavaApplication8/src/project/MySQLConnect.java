@@ -20,7 +20,7 @@ public class MySQLConnect {
     public static Connection getMySQLConnection()
             throws ClassNotFoundException, SQLException {
 
-        String hostName = "54.187.59.174";
+        String hostName = "10.4.56.28";
         String dbName = "ExercisePlan";
         String dbPort = "3306";
         String userName = "itangx";

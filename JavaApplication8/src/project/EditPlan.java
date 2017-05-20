@@ -96,14 +96,7 @@ public class EditPlan extends javax.swing.JFrame {
         this.endDate = endDate;
         this.dayPerWeek = dayPerWeek;
         this.nameDay = nameDay;
-        try {
-            initComponents();
-            conn = MySQLConnect.getMySQLConnection();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EditPlan.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(EditPlan.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        initComponents();
         txtPName.setText(planName);
         txtDes.setText(planDes);
         startDateChoose.setDate(startDate);
@@ -162,19 +155,8 @@ public class EditPlan extends javax.swing.JFrame {
         lblDes.setForeground(new java.awt.Color(255, 255, 255));
         lblDes.setText("Description");
 
-        txtPName.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPNameKeyTyped(evt);
-            }
-        });
-
         txtDes.setColumns(20);
         txtDes.setRows(5);
-        txtDes.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDesKeyTyped(evt);
-            }
-        });
         jScrollPane1.setViewportView(txtDes);
 
         lblheadcreate.setFont(new java.awt.Font("Century Gothic", 1, 32)); // NOI18N
@@ -188,11 +170,6 @@ public class EditPlan extends javax.swing.JFrame {
         lblEndDate.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         lblEndDate.setForeground(new java.awt.Color(255, 255, 255));
         lblEndDate.setText("End Date");
-        lblEndDate.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblEndDateMouseClicked(evt);
-            }
-        });
 
         startDateChoose.setDateFormatString("yyyy-MM-dd");
 
@@ -333,90 +310,51 @@ public class EditPlan extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPNameKeyTyped
-        if (txtPName.getText().length() > 0) {
-            if (!(Pattern.matches("^[a-zA-Z_ ]+$", txtPName.getText()))) {
-                JOptionPane.showMessageDialog(null, "Please enter a valid character", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_txtPNameKeyTyped
-
-    private void txtDesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDesKeyTyped
-        if (txtPName.getText().length() > 0) {
-            if (!(Pattern.matches("^[a-zA-Z_ ]+$", txtDes.getText()))) {
-                JOptionPane.showMessageDialog(null, "Please enter a valid character", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_txtDesKeyTyped
-
-    private void lblEndDateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEndDateMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblEndDateMouseClicked
-
-    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
-        MyPlan2 frame = new MyPlan2();
+    public void backToMyPlan() {
+        MyPlan frame = new MyPlan();
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         setVisible(false);
+    }
+    
+    public void saveToUpdateEditPlan(){
+         try {
+
+             if (txtPName.getText().equals("") || txtDes.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Your input is incorrect");
+            } else {
+                String sql = "update PLAN SET planName = ? , descriptionPlan = ? , startDate = ? , endDate = ? where planID=" + planId;
+                PreparedStatement pstm = conn.prepareStatement(sql);
+                pstm.setString(1, txtPName.getText());
+                pstm.setString(2, txtDes.getText());
+                pstm.setDate(3, ((java.sql.Date) startDate));
+                pstm.setDate(4, ((java.sql.Date) endDate));
+                pstm.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Plan created successfully");
+                DetailList dl = new DetailList(getPlanId());
+                System.out.println(getPlanId());
+                dl.setVisible(true);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } 
+    }
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        backToMyPlan();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void lblcancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblcancelMouseClicked
-        MyPlan2 frame = new MyPlan2();
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
-        setVisible(false);
+        backToMyPlan();
     }//GEN-LAST:event_lblcancelMouseClicked
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        try {
-            if (txtPName.getText().equals("") || txtDes.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Your input is incorrect");
-            } else {
-                String sql = "update PLAN SET planName = ? , descriptionPlan = ? , startDate = ? , endDate = ? where planID=" + planId;
-                PreparedStatement pstm = conn.prepareStatement(sql);
-                pstm.setString(1, txtPName.getText());
-
-                pstm.setString(2, txtDes.getText());
-                pstm.setDate(3, ((java.sql.Date) startDate));
-                pstm.setDate(4, ((java.sql.Date) endDate));
-                pstm.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Plan created successfully");
-                DetailList1 dl = new DetailList1(getPlanId());
-                System.out.println(getPlanId());
-                dl.setVisible(true);
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(CreatePlan1.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       saveToUpdateEditPlan();
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void lblsave1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsave1MouseClicked
-        try {
-            if (txtPName.getText().equals("") || txtDes.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Your input is incorrect");
-            } else {
-                String sql = "update PLAN SET planName = ? , descriptionPlan = ? , startDate = ? , endDate = ? where planID=" + planId;
-                PreparedStatement pstm = conn.prepareStatement(sql);
-                pstm.setString(1, txtPName.getText());
-
-                pstm.setString(2, txtDes.getText());
-                pstm.setDate(3, ((java.sql.Date) startDate));
-                pstm.setDate(4, ((java.sql.Date) endDate));
-                pstm.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Plan created successfully");
-                DetailList1 dl = new DetailList1(getPlanId());
-                System.out.println(getPlanId());
-                dl.setVisible(true);
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(CreatePlan1.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       saveToUpdateEditPlan();
     }//GEN-LAST:event_lblsave1MouseClicked
 
     /**

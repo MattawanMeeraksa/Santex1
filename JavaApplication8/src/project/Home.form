@@ -334,7 +334,6 @@
                 <Property name="todayButtonVisible" type="boolean" value="true"/>
               </Properties>
               <Events>
-                <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="CalendarAncestorAdded"/>
                 <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="CalendarPropertyChange"/>
               </Events>
               <Constraints>

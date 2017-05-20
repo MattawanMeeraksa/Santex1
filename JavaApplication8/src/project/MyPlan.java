@@ -28,12 +28,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Administrator
  */
-public class MyPlan2 extends javax.swing.JFrame {
+public class MyPlan extends javax.swing.JFrame {
 
-    private DefaultTableModel model;
-    private Connection conn = null;
-    private PreparedStatement pstm1 = null;
-    private PreparedStatement pstm2 = null;
+    DefaultTableModel model;
+    Connection conn = null;
+    PreparedStatement pstm1 = null;
+    PreparedStatement pstm2 = null;
     private String planName;
     private String planDes;
     private Date startDate;
@@ -119,14 +119,14 @@ public class MyPlan2 extends javax.swing.JFrame {
     /**
      * Creates new form MyPlan2
      */
-    public MyPlan2() {
-        initComponents();
+    public MyPlan() {
         try {
+            initComponents();
             conn = MySQLConnect.getMySQLConnection();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         } catch (SQLException ex) {
-            Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
 
@@ -464,45 +464,41 @@ public class MyPlan2 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGap(14, 14, 14)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblcreate)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(32, 32, 32)
+                                    .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addGap(14, 14, 14)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblcreate)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGap(32, 32, 32)
-                                            .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                            .addComponent(addListBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(41, 41, 41)))
-                                    .addGap(83, 83, 83)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblDetail)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGap(38, 38, 38)
-                                            .addComponent(detailListBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(94, 94, 94)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblstart)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGap(11, 11, 11)
-                                            .addComponent(startBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(234, 234, 234)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)))
+                                    .addComponent(addListBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(41, 41, 41)))
+                            .addGap(83, 83, 83)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblDetail)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(38, 38, 38)
+                                    .addComponent(detailListBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(94, 94, 94)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblstart)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(11, 11, 11)
+                                    .addComponent(startBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(234, 234, 234)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -562,9 +558,8 @@ public class MyPlan2 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+    public void showMyPlanTable() {
         try {
-            //ถ้าค่าเปลี่ยนก็อัพเดทอัตโนมัติ
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
@@ -584,15 +579,16 @@ public class MyPlan2 extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_formWindowActivated
+            ex.printStackTrace();
 
-    private void myPlanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_myPlanMouseClicked
-        System.out.println("Clicked MyPlan");
-        txtPName.setText(myPlan.getValueAt(myPlan.getSelectedRow(), 0) + "");
-        txtDes.setText(myPlan.getValueAt(myPlan.getSelectedRow(), 1) + "");
+        }
+    }
+
+    public void clickMyPlanTable() {
         try {
+            System.out.println("Clicked MyPlan");
+            txtPName.setText(myPlan.getValueAt(myPlan.getSelectedRow(), 0) + "");
+            txtDes.setText(myPlan.getValueAt(myPlan.getSelectedRow(), 1) + "");
             String sql = "select * from PLAN where planName=?";
             pstm1 = conn.prepareStatement(sql);
             pstm1.setString(1, myPlan.getValueAt(myPlan.getSelectedRow(), 0) + "");
@@ -606,7 +602,7 @@ public class MyPlan2 extends javax.swing.JFrame {
                     txtStatusPlan.setText("Starting");
                     txtStatusPlan.setForeground(new java.awt.Color(51, 255, 51));
                     lblAdd.setEnabled(false);
-                    lblDetail.setEnabled(false);
+//                    lblDetail.setEnabled(false);
                     lblstart.setEnabled(false);
                 } else if (rs.getInt("planStatus") == 0) {
                     txtStatusPlan.setText("Not start");
@@ -614,6 +610,8 @@ public class MyPlan2 extends javax.swing.JFrame {
                     lblAdd.setEnabled(true);
                     lblDetail.setEnabled(true);
                     lblstart.setEnabled(true);
+                } else if (rs.getInt("planStatus") == 2) {
+
                 }
                 setPlanStatus(rs.getInt("planStatus"));
                 setPlanName(rs.getString("planName"));
@@ -624,174 +622,15 @@ public class MyPlan2 extends javax.swing.JFrame {
                 setPlanId(rs.getInt("planId"));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
-    }//GEN-LAST:event_myPlanMouseClicked
-
-    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-        System.out.println("Clicked Edit button");
-        EditPlan eplan = new EditPlan(getPlanId(), getPlanName(), getPlanDes(),
-                getStartDate(), getEndDate(), getDayPerWeek(), getNameDay());
-        System.out.println(getPlanId());
-        eplan.setVisible(true);
-        eplan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        eplan.setLocationRelativeTo(null);
-        this.setVisible(false);
-    }//GEN-LAST:event_editBtnActionPerformed
-
-    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        System.out.println("Clicked delete");
-        System.out.println("list_planID " + list_planID);
-        System.out.println("planId " + planId);
-        try {
-            Object[] options = {"Yes", "No"}; //เป็นปุ่มที่ให้เลือกว่าจะกดอะไร
-            int n = JOptionPane.showOptionDialog(deleteBtn, //1.เป็นชนิดของปุ่ม
-                    "Do you want delete plan?", //2.เป็นข้อความโชว์บนกล่อง message
-                    "Delete Plan!!!", //3.title ของ message box
-                    JOptionPane.YES_NO_CANCEL_OPTION, //4.ชนิดของ optionPane ว่าเป็น yes/no
-                    JOptionPane.QUESTION_MESSAGE,
-                    null, //ไม่ใช้ไอคอน do not use a custom Icon
-                    options, //ชื่อของในแต่ละปุ่ม the titles of button ที่มี yes no
-                    options[0]); //default button title
-            // ถ้ากด yes จะทำให้ n มีค่าเป็น 0
-            if (n == 0) {
-                String sql = "delete from LIST where list_planID =" + planId;
-                pstm1 = conn.prepareStatement(sql);
-                pstm1.executeUpdate();
-                String sql2 = "delete from PLAN where planId=" + planId;
-                pstm2 = conn.prepareStatement(sql2);
-                pstm2.executeUpdate();
-                //ให้มันแสดงเฉยๆว่าแพลนนั้นถูกลบออกไปแล้วแต่กดเลือกอะไรไม่ได้นอกจากแค่กด ok หรือปิดหน้าจอไป
-                JOptionPane.showMessageDialog(null, "Your plan is deleted");
-
-                repaint();
-            } else {
-                System.out.println("Canceled");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_deleteBtnActionPerformed
-
-    private void addListBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addListBtnActionPerformed
-        if (getPlanStatus() == 1) {
-            System.out.println("No");
-            showMessageDialog(null, "Your plan is starting!!");
-        } else if (getPlanStatus() == 0) {
-            System.out.println("Clicked Addlist button");
-
-            AddList1 al = new AddList1(this, rootPaneCheckingEnabled, this, getPlanId(),getStartDate(),getEndDate());
-            al.setVisible(true);
-        }
-    }//GEN-LAST:event_addListBtnActionPerformed
-
-    private void detailListBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailListBtnActionPerformed
-        if (getPlanStatus() == 1) {
-//            System.out.println("No");
-            showMessageDialog(null, "Your plan is starting!!");
-            DetailList1 dl = new DetailList1(getPlanId(), getPlanStatus());
-            EditListPlan edlp = new EditListPlan(getPlanId());
-            System.out.println(getPlanId());
-            dl.setVisible(true);
-            dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            dl.setLocationRelativeTo(null);
-            setVisible(false);
-        } else if (getPlanStatus() == 0) {
-            System.out.println("Clicked DetailList button");
-            DetailList1 dl = new DetailList1(getPlanId(), getPlanStatus());
-            EditListPlan edlp = new EditListPlan(getPlanId());
-            System.out.println(getPlanId());
-            dl.setVisible(true);
-            setVisible(false);
-            dl.setLocationRelativeTo(null);
-            dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        }
-
-    }//GEN-LAST:event_detailListBtnActionPerformed
-
-    private void lblAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAddMouseClicked
-        if (getPlanStatus() == 1) {
-            System.out.println("No");
-            showMessageDialog(null, "Your plan is starting!!");
-        } else if (getPlanStatus() == 0) {
-            System.out.println("Clicked Addlist button");
-            AddList1 al = new AddList1(this, rootPaneCheckingEnabled, this, getPlanId(),getStartDate(),getEndDate());
-            al.setVisible(true);
-        }
-    }//GEN-LAST:event_lblAddMouseClicked
-
-    private void lblDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDetailMouseClicked
-        if (getPlanStatus() == 1) {
-//            System.out.println("No");
-            showMessageDialog(null, "Your plan is starting!!");
-            DetailList1 dl = new DetailList1(getPlanId(), getPlanStatus());
-            EditListPlan edlp = new EditListPlan(getPlanId());
-            System.out.println(getPlanId());
-            dl.setVisible(true);
-            dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            dl.setLocationRelativeTo(null);
-            this.setVisible(false);
-        } else if (getPlanStatus() == 0) {
-            System.out.println("Clicked DetailList button");
-            DetailList1 dl = new DetailList1(getPlanId(), getPlanStatus());
-            EditListPlan edlp = new EditListPlan(getPlanId());
-            System.out.println(getPlanId());
-            dl.setVisible(true);
-            this.setVisible(false);
-            dl.setLocationRelativeTo(null);
-            dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        }
-    }//GEN-LAST:event_lblDetailMouseClicked
-
-    public boolean updateStatusPlan(int id) {
-        int result = 0;
-        try {
-            String sql = "update PLAN set planStatus = 1 where planID = ?";
-            pstm1 = conn.prepareStatement(sql);
-            pstm1.setInt(1, id);
-            result = pstm1.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(GUIMyPlan1.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return result > 0;
     }
 
-    private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
-        System.out.println("Clicked Start Button");
-        if (getPlanStatus() == 1) {
-            System.out.println("No");
-            showMessageDialog(null, "Your plan is starting!!");
-        } else if (getPlanStatus() == 0) {
-            updateStatusPlan(getPlanId());
-        }
-
-    }//GEN-LAST:event_startBtnActionPerformed
-
-    private void lblstartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblstartMouseClicked
-        System.out.println("Clicked Start Button");
-        if (getPlanStatus() == 1) {
-            System.out.println("No");
-            showMessageDialog(null, "Your plan is starting!!");
-        } else if (getPlanStatus() == 0) {
-            try {
-                String sql = "UPDATE PLAN SET planStatus = ? WHERE planID = " + planId;
-                pstm1 = conn.prepareStatement(sql);
-                pstm1.setInt(1, 1);
-                int rs = pstm1.executeUpdate();
-            } catch (SQLException ex) {
-                Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-    }//GEN-LAST:event_lblstartMouseClicked
-
-    private void lbleditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbleditMouseClicked
-        if (getPlanStatus() == 1) {
-            System.out.println("No");
-            showMessageDialog(null, "Your plan is starting!!");
-        } else if (getPlanStatus() == 0) {
-            System.out.println("Clicked Edit");
-
+    public void editMyPlan() {
+        if (getPlanId() == 0) {
+            JOptionPane.showMessageDialog(null, "Pleas choose Plan");
+        } else {
+            System.out.println("Clicked Edit button");
             EditPlan eplan = new EditPlan(getPlanId(), getPlanName(), getPlanDes(),
                     getStartDate(), getEndDate(), getDayPerWeek(), getNameDay());
             System.out.println(getPlanId());
@@ -800,60 +639,211 @@ public class MyPlan2 extends javax.swing.JFrame {
             eplan.setLocationRelativeTo(null);
             this.setVisible(false);
         }
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lbleditMouseClicked
+    }
 
-    private void lbldeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbldeleteMouseClicked
-        System.out.println("Clicked Delete");
-        System.out.println("list_planID " + list_planID);
-        System.out.println("planId " + planId);
+    public void deleteMyPlan() {
         try {
-            Object[] options = {"Yes", "No"}; //เป็นปุ่มที่ให้เลือกว่าจะกดอะไร
-            int n = JOptionPane.showOptionDialog(deleteBtn, //1.เป็นชนิดของปุ่ม
-                    "Do you want delete plan?", //2.เป็นข้อความโชว์บนกล่อง message
-                    "Delete Plan!!!", //3.title ของ message box
-                    JOptionPane.YES_NO_CANCEL_OPTION, //4.ชนิดของ optionPane ว่าเป็น yes/no
-                    JOptionPane.QUESTION_MESSAGE,
-                    null, //ไม่ใช้ไอคอน do not use a custom Icon
-                    options, //ชื่อของในแต่ละปุ่ม the titles of button ที่มี yes no
-                    options[0]); //default button title 
-            setLocationRelativeTo(null);
-
-            // ถ้ากด yes จะทำให้ n มีค่าเป็น 0
-            if (n == 0) {
-                String sql = "delete from LIST where list_planID =" + planId;
-                pstm1 = conn.prepareStatement(sql);
-                pstm1.executeUpdate();
-                String sql2 = "delete from PLAN where planId=" + planId;
-                pstm2 = conn.prepareStatement(sql2);
-                pstm2.executeUpdate();
-                //ให้มันแสดงเฉยๆว่าแพลนนั้นถูกลบออกไปแล้วแต่กดเลือกอะไรไม่ได้นอกจากแค่กด ok หรือปิดหน้าจอไป
-                JOptionPane.showMessageDialog(null, "Your plan is deleted");
-                repaint();
+            if (getPlanId() == 0) {
+                JOptionPane.showMessageDialog(null, "Pleas choose Plan");
             } else {
-                System.out.println("Canceled");
+                System.out.println("Clicked delete");
+                System.out.println("list_planID " + list_planID);
+                System.out.println("planId " + planId);
+                Object[] options = {"Yes", "No"}; //เป็นปุ่มที่ให้เลือกว่าจะกดอะไร
+                int n = JOptionPane.showOptionDialog(deleteBtn, //1.เป็นชนิดของปุ่ม
+                        "Do you want delete plan?", //2.เป็นข้อความโชว์บนกล่อง message
+                        "Delete Plan!!!", //3.title ของ message box
+                        JOptionPane.YES_NO_CANCEL_OPTION, //4.ชนิดของ optionPane ว่าเป็น yes/no
+                        JOptionPane.QUESTION_MESSAGE,
+                        null, //ไม่ใช้ไอคอน do not use a custom Icon
+                        options, //ชื่อของในแต่ละปุ่ม the titles of button ที่มี yes no
+                        options[0]); //default button title
+                // ถ้ากด yes จะทำให้ n มีค่าเป็น 0
+                if (n == 0) {
+                    String sql = "delete from LIST where list_planID =" + planId;
+                    pstm1 = conn.prepareStatement(sql);
+                    pstm1.executeUpdate();
+                    String sql2 = "delete from PLAN where planId=" + planId;
+                    pstm2 = conn.prepareStatement(sql2);
+                    pstm2.executeUpdate();
+                    //ให้มันแสดงเฉยๆว่าแพลนนั้นถูกลบออกไปแล้วแต่กดเลือกอะไรไม่ได้นอกจากแค่กด ok หรือปิดหน้าจอไป
+                    JOptionPane.showMessageDialog(null, "Your plan is deleted");
+
+                    repaint();
+                } else {
+                    System.out.println("Canceled");
+                }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
-    }//GEN-LAST:event_lbldeleteMouseClicked
+    }
 
-    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+    public void addAddListToDetailOfMyPlan() {
+        if (getPlanStatus() == 1) {
+            System.out.println("No");
+            showMessageDialog(null, "Your plan is starting!!");
+        } else if (getPlanStatus() == 0) {
+            if (getPlanId() == 0) {
+                JOptionPane.showMessageDialog(null, "Pleas choose Plan");
+            } else {
+                System.out.println("Clicked Addlist button");
+                System.out.println("" + getPlanId());
+                AddList al = new AddList(this, rootPaneCheckingEnabled, this, getPlanId(), getStartDate(), getEndDate());
+                al.setVisible(true);
+            }
+        }
+    }
+
+    private void clickToDetailList() {
+        if (getPlanStatus() == 1) {
+            showMessageDialog(null, "Your plan is starting!!");
+            DetailList dl = new DetailList(getPlanId(), getPlanStatus());
+            EditListPlan edlp = new EditListPlan(getPlanId());
+            System.out.println(getPlanId());
+            dl.setVisible(true);
+            dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            dl.setLocationRelativeTo(null);
+            setVisible(false);
+        } else if (getPlanStatus() == 0) {
+            if (getPlanId() == 0) {
+                JOptionPane.showMessageDialog(null, "Pleas choose Plan");
+            } else {
+                System.out.println("Clicked DetailList button");
+                DetailList dl = new DetailList(getPlanId(), getPlanStatus());
+                EditListPlan edlp = new EditListPlan(getPlanId());
+                System.out.println(getPlanId());
+                dl.setVisible(true);
+                setVisible(false);
+                dl.setLocationRelativeTo(null);
+                dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            }
+        }
+    }
+
+    public void updateStatusPlan(int id) {
+        try {
+            if (getPlanId() == 0) {
+                JOptionPane.showMessageDialog(null, "Pleas choose Plan");
+            } else {
+                System.out.println("SQL");
+                System.out.println("" + id);
+                String sql = "update PLAN set planStatus =? where planID =?";
+                pstm1 = conn.prepareStatement(sql);
+                pstm1.setInt(1, 1);
+                pstm1.setInt(2, id);
+                pstm1.executeUpdate();
+                System.out.println("OK");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+    public void startPlan() {
+        if (getPlanId() == 0) {
+            JOptionPane.showMessageDialog(null, "Pleas choose Plan");
+        } else {
+            System.out.println("Clicked Start Button");
+            if (getPlanStatus() == 1) {
+                System.out.println("No");
+                showMessageDialog(null, "Your plan is starting!!");
+            } else if (getPlanStatus() == 0) {
+                Object[] options = {"OK", "Cancle"};
+                int n = JOptionPane.showOptionDialog(deleteBtn,
+                        "Do you want start plan?",
+                        "Start Plan!!!",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        options,
+                        options[0]);
+                if (n == 0) {
+                    updateStatusPlan(getPlanId());
+                    setVisible(false);
+                    Home h1 = new Home();
+                    h1.setVisible(true);
+                    h1.pack();
+
+                    System.out.println("stratPlanEnd");
+                }
+            }
+        }
+    }
+
+    public void backToHome() {
         System.out.println("Clicked Home button");
-        GUIMyPlan1 gmp = new GUIMyPlan1();
-        gmp.setVisible(true);
-        gmp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        gmp.setLocationRelativeTo(null);
+        Home h = new Home();
+        h.setVisible(true);
+        h.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        h.setLocationRelativeTo(null);
         this.setVisible(false);
-    }//GEN-LAST:event_homeBtnActionPerformed
+    }
 
-    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
+    public void createMyPlan() {
         System.out.println("Clicked Create");
-        CreatePlan1 cp = new CreatePlan1();
+        CreatePlan cp = new CreatePlan();
         cp.setVisible(true);
         cp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         cp.setLocationRelativeTo(null);
         this.setVisible(false);
+    }
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        showMyPlanTable();
+    }//GEN-LAST:event_formWindowActivated
+
+    private void myPlanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_myPlanMouseClicked
+        clickMyPlanTable();
+    }//GEN-LAST:event_myPlanMouseClicked
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        editMyPlan();
+    }//GEN-LAST:event_editBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        deleteMyPlan();
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void addListBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addListBtnActionPerformed
+        addAddListToDetailOfMyPlan();
+    }//GEN-LAST:event_addListBtnActionPerformed
+
+    private void detailListBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailListBtnActionPerformed
+        clickToDetailList();
+    }//GEN-LAST:event_detailListBtnActionPerformed
+
+    private void lblAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAddMouseClicked
+        addAddListToDetailOfMyPlan();
+    }//GEN-LAST:event_lblAddMouseClicked
+
+    private void lblDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDetailMouseClicked
+        clickToDetailList();
+    }//GEN-LAST:event_lblDetailMouseClicked
+
+    private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
+        startPlan();
+    }//GEN-LAST:event_startBtnActionPerformed
+
+    private void lblstartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblstartMouseClicked
+        startPlan();
+    }//GEN-LAST:event_lblstartMouseClicked
+
+    private void lbleditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbleditMouseClicked
+        editMyPlan();
+    }//GEN-LAST:event_lbleditMouseClicked
+
+    private void lbldeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbldeleteMouseClicked
+        deleteMyPlan();
+    }//GEN-LAST:event_lbldeleteMouseClicked
+
+    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+        backToHome();
+    }//GEN-LAST:event_homeBtnActionPerformed
+
+    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
+        createMyPlan();
     }//GEN-LAST:event_createBtnActionPerformed
 
     /**
@@ -874,27 +864,28 @@ public class MyPlan2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MyPlan2.class
+            java.util.logging.Logger.getLogger(MyPlan.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MyPlan2.class
+            java.util.logging.Logger.getLogger(MyPlan.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MyPlan2.class
+            java.util.logging.Logger.getLogger(MyPlan.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MyPlan2.class
+            java.util.logging.Logger.getLogger(MyPlan.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MyPlan2().setVisible(true);
+                new MyPlan().setVisible(true);
             }
         });
     }

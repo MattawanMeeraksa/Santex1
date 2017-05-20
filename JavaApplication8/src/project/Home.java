@@ -32,7 +32,7 @@ import org.netbeans.lib.awtextra.AbsoluteConstraints;
  *
  * @author Administrator
  */
-public class GUIMyPlan1 extends javax.swing.JFrame {
+public class Home extends javax.swing.JFrame {
 
     private Connection conn = null;
     private PreparedStatement pstm = null;
@@ -51,13 +51,15 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
     private Date start;
     private Date end;
 
-    public GUIMyPlan1() {
+    public Home() {
         try {
             smallCheckListPanel = new JPanel[0];
             initComponents();
             conn = MySQLConnect.getMySQLConnection();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -301,15 +303,6 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
         Calendar.setFont(new java.awt.Font("Yu Gothic Light", 0, 12)); // NOI18N
         Calendar.setTodayButtonText("");
         Calendar.setTodayButtonVisible(true);
-        Calendar.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                CalendarAncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         Calendar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 CalendarPropertyChange(evt);
@@ -450,7 +443,6 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
 
         for (int i = 0; i < listName.size(); i++) {
             try {
-                //if(ckStatus(listName.get(i).getId())){
                 int count = i;
                 smallCheckListPanel[i] = new JPanel();
                 checkList[i] = new JCheckBox();
@@ -527,25 +519,20 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
     }
 
     public void checkListActionPerformed(java.awt.event.ActionEvent evt, int count) {
-
         if (checkList[count].isSelected() == true) {
-            //listName.get(count).setCk(true);
-
             System.out.println("" + listId);
             System.out.println("Check list " + (count + 1) + " is selected");
 
         } else if (checkList[count].isSelected() == false) {
             System.out.println("Check list " + (count + 1) + " is not selected");
-//               statusListDone[count]=false;
         }
     }
 
-    private void CalendarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CalendarPropertyChange
-
-        String sql = null;
-        listName.clear();
-        listId.clear();
+    public void clickCalendar() {
         try {
+            String sql = null;
+            listName.clear();
+            listId.clear();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("EEEE"); //ไวใช้บอกวันว่าจันทร์หรืออังคารหรือ...
@@ -607,35 +594,29 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
                 txtDay.setText(dateFormat.format(Calendar.getCalendar().getTime()));
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
-            System.out.println(ex.getMessage());
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
-            Logger.getLogger(GUIMyPlan1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_CalendarPropertyChange
+    }
 
-    private void CalendarAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_CalendarAncestorAdded
-
-
-    }//GEN-LAST:event_CalendarAncestorAdded
-
-    private void myplanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myplanBtnActionPerformed
-        MyPlan2 mp = new MyPlan2();
+    public void backToMyPlan() {
+        MyPlan mp = new MyPlan();
         mp.setVisible(true);
         mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mp.setLocationRelativeTo(null);
         this.setVisible(false);
-    }//GEN-LAST:event_myplanBtnActionPerformed
+    }
 
-    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        CreatePlan1 cp = new CreatePlan1();
+    public void createPlan() {
+        CreatePlan cp = new CreatePlan();
         cp.setVisible(true);
         cp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         cp.setLocationRelativeTo(null);
         this.setVisible(false);
-    }//GEN-LAST:event_createBtnActionPerformed
+    }
 
-    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+    public void saveCheckList() {
         ArrayList<ToDoList> list = this.listName;
         for (int i = 0; i < list.size(); i++) {
             if (this.checkList[i].isSelected()) {
@@ -646,13 +627,12 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
             this.checkList[i].setSelected(false);
         }
         repaint();
-    }//GEN-LAST:event_refreshBtnActionPerformed
+    }
 
-    public boolean updateListStatus(int id, int i) {
-        int result = 0;
+    public void updateListStatus(int id, int temp) {
         try {
             System.out.println(listName.size());
-            if (checkList[i].isSelected() == true) {
+            if (checkList[temp].isSelected() == true) {
                 System.out.println("BEFORE UPDATE");
                 String sql = "INSERT INTO STATUSLIST (statusDone, list_ID, listDate) VALUES (?, ?, ?)";
                 pstm = conn.prepareStatement(sql);
@@ -662,50 +642,61 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
                 java.sql.Date myDate2 = new java.sql.Date(Calendar.getDate().getTime());
                 pstm.setDate(3, myDate2);
                 System.out.println("BEFORE UPDATE EXE  2");
-                result = pstm.executeUpdate();
+                pstm.executeUpdate();
+
                 System.out.println("UPDATE LAEW");
-                checkList[i].setForeground(new java.awt.Color(153, 255, 51));
-                labelCheckList[i].setForeground(new java.awt.Color(153, 255, 51));
+                checkList[temp].setForeground(new java.awt.Color(153, 255, 51));
+                labelCheckList[temp].setForeground(new java.awt.Color(153, 255, 51));
                 bigpanelCheckList.repaint();
                 bigpanelCheckList.revalidate();
             }
-            if (checkList[i].isSelected() == false) {
-                System.out.println("Check list " + (i + 1) + " is not selected");
-                String sql = "INSERT INTO STATUSLIST (statusDone, list_ID, listDate) VALUES (?, ?, ?)";
-                pstm = conn.prepareStatement(sql);
-                pstm.setInt(1, 0);
-                pstm.setInt(2, id);
-                java.sql.Date myDate2 = new java.sql.Date(Calendar.getDate().getTime());
-                pstm.setDate(3, myDate2);
-                result = pstm.executeUpdate();
-            }
+//            if (checkList[temp].isSelected() == false) {
+//                System.out.println("Check list " + (temp + 1) + " is not selected");
+//                String sql = "INSERT INTO STATUSLIST (statusDone, list_ID, listDate) VALUES (?, ?, ?)";
+//                pstm = conn.prepareStatement(sql);
+//                pstm.setInt(1, 0);
+//                pstm.setInt(2, id);
+//                java.sql.Date myDate2 = new java.sql.Date(Calendar.getDate().getTime());
+//                pstm.setDate(3, myDate2);
+//            }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
-        return result > 0;
     }
+    private void CalendarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CalendarPropertyChange
+        clickCalendar();
+    }//GEN-LAST:event_CalendarPropertyChange
+
+    private void myplanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myplanBtnActionPerformed
+        backToMyPlan();
+    }//GEN-LAST:event_myplanBtnActionPerformed
+
+    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
+        createPlan();
+    }//GEN-LAST:event_createBtnActionPerformed
+
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+        saveCheckList();
+    }//GEN-LAST:event_refreshBtnActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public void chooseDayFromComboBox() throws ClassNotFoundException, SQLException {
-        // Connection conn = MySQLConnect.getMySQLConnection();
-        System.out.println("selecting..");
-        pstm = conn.prepareStatement("SELECT startDate,endDate from PLAN where planID =");
-        ResultSet rs = pstm.executeQuery();
-        Date st;
-        Date end;
-        while (rs.next()) {
-            st = rs.getDate("startDate");
-            end = rs.getDate("endDate");
-//            System.out.println("" + st);
-//            System.out.println("" + end);
-            this.start = start;
-            this.end = end;
-            Calendar.setDate(start);
-        }
-    }
-
+//    public void chooseDayFromComboBox() throws ClassNotFoundException, SQLException {
+//         Connection conn = MySQLConnect.getMySQLConnection();
+//        System.out.println("selecting..");
+//        pstm = conn.prepareStatement("SELECT startDate,endDate from PLAN where planID =");
+//        ResultSet rs = pstm.executeQuery();
+//        Date st;
+//        Date end;
+//        while (rs.next()) {
+//            st = rs.getDate("startDate");
+//            end = rs.getDate("endDate");
+//            this.start = start;
+//            this.end = end;
+//            Calendar.setDate(start);
+//        }
+//    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -720,14 +711,26 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIMyPlan1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIMyPlan1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIMyPlan1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIMyPlan1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -736,7 +739,7 @@ public class GUIMyPlan1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUIMyPlan1().setVisible(true);
+                new Home().setVisible(true);
 
             }
         });

@@ -228,6 +228,9 @@
               <Font name="Century Gothic" size="16" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtListFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDes">
           <Properties>
@@ -235,6 +238,9 @@
               <Font name="Century Gothic" size="16" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtDesFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtReps">
           <Properties>

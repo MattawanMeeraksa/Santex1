@@ -25,12 +25,12 @@ import javax.swing.text.MaskFormatter;
  *
  * @author Administrator
  */
-public class AddList1 extends java.awt.Dialog {
+public class AddList extends java.awt.Dialog {
 
     private int planId = 0;
     private Date startDate;
     private Date endDate;
-    MyPlan2 mp;
+    MyPlan mp;
     Connection conn = null;
     PreparedStatement pstm = null;
     private int day;
@@ -55,27 +55,25 @@ public class AddList1 extends java.awt.Dialog {
     /**
      * Creates new form AddList1
      */
-    public AddList1(java.awt.Frame parent, boolean modal, MyPlan2 mp, int planId, Date startDate, Date endDate) {
+    public AddList(java.awt.Frame parent, boolean modal, MyPlan mp, int planId, Date startDate, Date endDate) {
         super(parent, modal);
         try {
-
             this.planId = planId;
             this.startDate = startDate;
             this.endDate = endDate;
             initComponents();
             this.mp = mp;
-            conn = MySQLConnect.getMySQLConnection();
-            chooseDayFromComboBox();
             txtListPlanId.setText(this.planId + "");
             txtListPlanId.setVisible(false);
-
             System.out.println(mp.getPlanName());
+            conn = MySQLConnect.getMySQLConnection();
+            chooseDayFromComboBox();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AddList1.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         } catch (SQLException ex) {
-            Logger.getLogger(AddList1.class.getName()).log(Level.SEVERE, null, ex);
-
+            ex.printStackTrace();
         }
+
     }
 
     /**
@@ -128,8 +126,18 @@ public class AddList1 extends java.awt.Dialog {
         lblReps.setText("Reps");
 
         txtList.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
+        txtList.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtListFocusLost(evt);
+            }
+        });
 
         txtDes.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
+        txtDes.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDesFocusLost(evt);
+            }
+        });
 
         txtReps.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         txtReps.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -343,72 +351,16 @@ public class AddList1 extends java.awt.Dialog {
         dispose();
     }//GEN-LAST:event_closeDialog
 
-    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+    public void addAddListToDetailListOfMyPlan() {
         try {
-            Connection conn = MySQLConnect.getMySQLConnection();
             System.out.println("Clicked Save button");
 
-            try {
-                if (txtList.getText().equals("") || txtDes.getText().equals("") || txtReps.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Your input is incorrect");
-                } else {
-                    String sqlList = "insert into LIST(listName,descriptionList,reps,`set`,list_planID,list_nameDay)"
-                            + " values (?,?,?,?,?,?)";
-                    pstm = conn.prepareStatement(sqlList);
-                    pstm.setString(1, txtList.getText());
-                    pstm.setString(2, txtDes.getText());
-                    pstm.setString(3, txtReps.getText());
-                    String r = txtReps.getText();
-                    int reps = Integer.parseInt(r);
-                    pstm.setString(4, txtSet.getText());
-                    String s = txtSet.getText();
-                    int set = Integer.parseInt(s);
-                    pstm.setString(5, txtListPlanId.getText());
-                    pstm.setString(6, boxChooseDay.getSelectedItem() + "");
-                    String l = txtListPlanId.getText();
-                    int listPlanId = Integer.parseInt(l);
-                    pstm.executeUpdate();
-                    JOptionPane.showMessageDialog(null, "Add list successfully");
-                    MyPlan2 frame = new MyPlan2();
-                    frame.setVisible(true);
-                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    frame.setLocationRelativeTo(null);
-                    frame.setResizable(false);
-                    setVisible(false);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(AddList1.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                conn.close();
-            }
-
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AddList1.class.getName()).log(Level.SEVERE, null, ex);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(AddList1.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_saveBtnActionPerformed
-
-    private void cancelBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtn1ActionPerformed
-        System.out.println("Clicked Cancel button");
-        MyPlan2 mp = new MyPlan2();
-        mp.setVisible(true);
-        mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mp.setLocationRelativeTo(null);
-        mp.setResizable(false);
-        setVisible(false);
-    }//GEN-LAST:event_cancelBtn1ActionPerformed
-
-    private void lblsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsaveMouseClicked
-        try {                                     
-            Connection conn = MySQLConnect.getMySQLConnection();
-            System.out.println("Clicked Save button");
-            try {
-                String sql = "insert into LIST(listName,descriptionList,reps,`set`,list_planID,list_nameDay)"
+            if (txtList.getText().equals("") || txtDes.getText().equals("") || txtReps.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Your input is incorrect");
+            } else {
+                String sqlList = "insert into LIST(listName,descriptionList,reps,`set`,list_planID,list_nameDay)"
                         + " values (?,?,?,?,?,?)";
-                pstm = conn.prepareStatement(sql);
+                pstm = conn.prepareStatement(sqlList);
                 pstm.setString(1, txtList.getText());
                 pstm.setString(2, txtDes.getText());
                 pstm.setString(3, txtReps.getText());
@@ -423,46 +375,36 @@ public class AddList1 extends java.awt.Dialog {
                 int listPlanId = Integer.parseInt(l);
                 pstm.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Add list successfully");
-                MyPlan2 frame = new MyPlan2();
+                MyPlan frame = new MyPlan();
                 frame.setVisible(true);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setLocationRelativeTo(null);
                 frame.setResizable(false);
                 setVisible(false);
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AddList1.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(AddList1.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            try {
-                conn.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(AddList1.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            ex.printStackTrace();
         }
-    }//GEN-LAST:event_lblsaveMouseClicked
+    }
 
-    private void lblcancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblcancelMouseClicked
+    public void backToMyPlan() {
         System.out.println("Clicked Cancel button");
-        MyPlan2 mp = new MyPlan2();
+        MyPlan mp = new MyPlan();
         mp.setVisible(true);
         mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mp.setLocationRelativeTo(null);
         mp.setResizable(false);
         setVisible(false);
-    }//GEN-LAST:event_lblcancelMouseClicked
+    }
 
-    private void txtRepsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRepsFocusLost
-        int txt;
+    public void checkUserInputReps() {
+        int input;
         try {
-            txt = Integer.parseInt(txtReps.getText());
-            if (txt == 0) {
+            input = Integer.parseInt(txtReps.getText());
+            if (input == 0) {
                 txtReps.setText("");
                 noti1.setVisible(true);
-            } else if (txt > 0 && txt <= 100) {
+            } else if (input > 0 && input <= 100) {
                 noti1.setVisible(false);
             } else {
                 noti1.setVisible(true);
@@ -471,18 +413,17 @@ public class AddList1 extends java.awt.Dialog {
         } catch (NumberFormatException ex) {
             txtReps.setText("");
             noti1.setVisible(true);
-            //noti1.setVisible(true);
         }
-    }//GEN-LAST:event_txtRepsFocusLost
+    }
 
-    private void txtSetFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSetFocusLost
-        int txt;
+    public void checkUserInputSet() {
+        int input;
         try {
-            txt = Integer.parseInt(txtSet.getText());
-            if (txt == 0) {
+            input = Integer.parseInt(txtSet.getText());
+            if (input == 0) {
                 txtSet.setText("");
                 noti2.setVisible(true);
-            } else if (txt > 0 && txt <= 100) {
+            } else if (input > 0 && input <= 100) {
                 noti2.setVisible(false);
             } else {
                 noti2.setVisible(true);
@@ -491,9 +432,43 @@ public class AddList1 extends java.awt.Dialog {
         } catch (NumberFormatException ex) {
             txtSet.setText("");
             noti2.setVisible(true);
-            //noti1.setVisible(true);
         }
+    }
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        addAddListToDetailListOfMyPlan();
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void cancelBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtn1ActionPerformed
+        backToMyPlan();
+    }//GEN-LAST:event_cancelBtn1ActionPerformed
+
+    private void lblsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsaveMouseClicked
+        addAddListToDetailListOfMyPlan();
+    }//GEN-LAST:event_lblsaveMouseClicked
+
+    private void lblcancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblcancelMouseClicked
+        backToMyPlan();
+    }//GEN-LAST:event_lblcancelMouseClicked
+
+    private void txtRepsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRepsFocusLost
+        checkUserInputReps();
+    }//GEN-LAST:event_txtRepsFocusLost
+
+    private void txtSetFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSetFocusLost
+        checkUserInputSet();
     }//GEN-LAST:event_txtSetFocusLost
+
+    private void txtListFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtListFocusLost
+        if (!(Pattern.matches("^[a-zA-Z0-9 ]+$", txtList.getText()))) {
+            txtList.setText("");
+        }      
+    }//GEN-LAST:event_txtListFocusLost
+
+    private void txtDesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDesFocusLost
+        if (!(Pattern.matches("^[a-zA-Z0-9 ]+$", txtDes.getText()))) {
+            txtDes.setText("");
+        }
+    }//GEN-LAST:event_txtDesFocusLost
 
     /**
      * @param args the command line arguments
@@ -503,7 +478,7 @@ public class AddList1 extends java.awt.Dialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 
-//                AddList1 dialog = new AddList1(new java.awt.Frame(), true, new MyPlan2(), planId,startDate,endDate);
+//                AddList dialog = new AddList(new java.awt.Frame(), true, new MyPlan(), planId,startDate,endDate);
 //                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 //                    public void windowClosing(java.awt.event.WindowEvent e) {
 //                        System.exit(0);
@@ -514,19 +489,23 @@ public class AddList1 extends java.awt.Dialog {
         });
     }
 
-    public void chooseDayFromComboBox() throws ClassNotFoundException, SQLException {
-        //Connection conn = MySQLConnect.getMySQLConnection();
-        System.out.println("selecting..");
-        pstm = conn.prepareStatement("SELECT nameDay,dayperweek from PLAN where planID = " + planId);
-        ResultSet rs = pstm.executeQuery();
-        while (rs.next()) {
-            String days = rs.getString("nameDay");
-            int start = 0;
-            for (int i = 0; i < rs.getInt("dayperweek"); i++) {
-                String eachDay = days.substring(start, days.indexOf(" ", start));
-                start = days.indexOf(" ", start) + 1;
-                boxChooseDay.addItem(eachDay);
+    public void chooseDayFromComboBox() {
+        try {
+            System.out.println("selecting.."+planId);
+            pstm = conn.prepareStatement("SELECT nameDay,dayperweek from PLAN where planID = "+planId);
+            System.out.println("Dai laew na");
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                String days = rs.getString("nameDay");
+                int start = 0;
+                for (int i = 0; i < rs.getInt("dayperweek"); i++) {
+                    String eachDay = days.substring(start, days.indexOf(" ", start));
+                    start = days.indexOf(" ", start) + 1;
+                    boxChooseDay.addItem(eachDay);
+                }
             }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
 

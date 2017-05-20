@@ -176,9 +176,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtPName">
-          <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPNameKeyTyped"/>
-          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -192,9 +189,6 @@
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
               </Properties>
-              <Events>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDesKeyTyped"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -230,9 +224,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="End Date"/>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblEndDateMouseClicked"/>
-          </Events>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="startDateChoose">
           <Properties>

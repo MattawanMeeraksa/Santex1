@@ -193,9 +193,6 @@
               <Dimension value="[59, 20]"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDesActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtReps">
           <Properties>
@@ -276,9 +273,6 @@
               <Dimension value="[59, 20]"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtLNameActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="photolbl">
           <Properties>

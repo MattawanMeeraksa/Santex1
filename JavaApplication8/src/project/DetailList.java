@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Administrator
  */
-public class DetailList1 extends javax.swing.JFrame {
+public class DetailList extends javax.swing.JFrame {
 
     DefaultTableModel model;
     Connection conn = null;
@@ -37,6 +37,24 @@ public class DetailList1 extends javax.swing.JFrame {
     private int list_planId;
     private String nameDay;
     private int planStatus;
+    private Date startDate;
+    private Date endDate;
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
 
     public int getPlanStatus() {
         return planStatus;
@@ -129,25 +147,32 @@ public class DetailList1 extends javax.swing.JFrame {
     /**
      * Creates new form DetailList1
      */
-    public DetailList1() {
-        initComponents();
+    public DetailList() {
         try {
+            initComponents();
             conn = MySQLConnect.getMySQLConnection();
         } catch (ClassNotFoundException ex) {
-            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
-    public DetailList1(int planId, int planStatus) {
+    public DetailList(int planId, int planStatus) {
         this();
         this.planId = planId;
         this.planStatus = planStatus;
+        if (planStatus == 1) {
+            lbldelete.setEnabled(false);
+            lbledit.setEnabled(false);
+        } else {
+            lbldelete.setEnabled(true);
+            lbledit.setEnabled(true);
+        }
 
     }
 
-    public DetailList1(int planId) {
+    public DetailList(int planId) {
         this.planId = planId;
 
     }
@@ -417,7 +442,7 @@ public class DetailList1 extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 759, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -434,7 +459,7 @@ public class DetailList1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+    public void showDetaiListTable() {
         try {
             //ถ้าค่าเปลี่ยนก็อัพเดทอัตโนมัติ
             model = (DefaultTableModel) planListTable.getModel();
@@ -452,142 +477,17 @@ public class DetailList1 extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MyPlan.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_formWindowActivated
+    }
 
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        System.out.println("Clicked Back Button");
-        MyPlan2 mp = new MyPlan2();
-        mp.setVisible(true);
-        mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mp.setLocationRelativeTo(null);
-        this.setVisible(false);
-    }//GEN-LAST:event_backBtnActionPerformed
-
-    private void lblbackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblbackMouseClicked
-        System.out.println("Clicked Back Button");
-        MyPlan2 mp = new MyPlan2();
-        mp.setVisible(true);
-        mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mp.setLocationRelativeTo(null);
-        this.setVisible(false);
-    }//GEN-LAST:event_lblbackMouseClicked
-
-    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        System.out.println("Clicked Delete Button");
+    public void clickDetailListTable() {
         try {
-            System.out.println("" + listID);
-            String sql = "delete from LIST where listName=? and listID=" + listID;
-            PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.setString(1, listPlanName);
-            pstm.executeUpdate();
-            Object[] options = {"Yes", "No"}; //เป็นปุ่มที่ให้เลือกว่าจะกดอะไร
-            int n = JOptionPane.showOptionDialog(deleteBtn, //1.เป็นชนิดของปุ่ม
-                    "Do you want to delete this list?", //2.เป็นข้อความโชว์บนกล่อง message
-                    "Delete List!!!", //3.title ของ message box
-                    JOptionPane.YES_NO_CANCEL_OPTION, //4.ชนิดของ optionPane ว่าเป็น yes/no
-                    JOptionPane.QUESTION_MESSAGE,
-                    null, //ไม่ใช้ไอคอน do not use a custom Icon
-                    options, //ชื่อของในแต่ละปุ่ม the titles of button ที่มี yes no
-                    options[0]); //default button title
-            // ถ้ากด yes จะทำให้ n มีค่าเป็น 0
-            if (n == 0) {
-                //ให้มันแสดงเฉยๆว่าแพลนนั้นถูกลบออกไปแล้วแต่กดเลือกอะไรไม่ได้นอกจากแค่กด ok หรือปิดหน้าจอไป
-                JOptionPane.showMessageDialog(null, "Your list is deleted");
-                repaint();
-            } else {
-                System.out.println("Canceled");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_deleteBtnActionPerformed
+            System.out.println("Clicked PlanListTable");
+            txtDay.setText(planListTable.getValueAt(planListTable.getSelectedRow(), 0) + "");
+            txtListPlan.setText(planListTable.getValueAt(planListTable.getSelectedRow(), 1) + "");
+            txtDes.setText(planListTable.getValueAt(planListTable.getSelectedRow(), 2) + "");
 
-    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-        if (getPlanStatus() == 1) {
-            showMessageDialog(null, "Your plan is starting!!");
-            lbledit.setEnabled(false);
-        } else if (getPlanStatus() == 0) {
-            try {
-                lbledit.setEnabled(true);
-                EditListPlan ep = new EditListPlan(getPlanId(), getListPlanName(), getListDes(), getReps(), getSet(), getListID());
-                System.out.println(getPlanId());
-                System.out.println(getNameDay());
-                ep.setVisible(true);
-                ep.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                ep.setLocationRelativeTo(null);
-                this.setVisible(false);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(DetailList1.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(DetailList1.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_editBtnActionPerformed
-
-    private void lbleditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbleditMouseClicked
-        if (getPlanStatus() == 1) {
-            showMessageDialog(null, "Your plan is starting!!");
-        } else if (getPlanStatus() == 0) {
-            try {
-                EditListPlan ep = new EditListPlan(getPlanId(), getListPlanName(), getListDes(), getReps(), getSet(), getListID());
-                System.out.println(getPlanId());
-                System.out.println(getNameDay());
-                ep.setVisible(true);
-                ep.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                ep.setLocationRelativeTo(null);
-                this.setVisible(false);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(DetailList1.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(DetailList1.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_lbleditMouseClicked
-
-    private void lbldeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbldeleteMouseClicked
-        System.out.println("Clicked Delete Button");
-        try {
-            System.out.println("" + listID);
-            String sql = "delete from LIST where listName=? and listID=" + listID;
-            pstm = conn.prepareStatement(sql);
-            pstm.setString(1, listPlanName);
-            pstm.executeUpdate();
-            Object[] options = {"Yes", "No"}; //เป็นปุ่มที่ให้เลือกว่าจะกดอะไร
-            int n = JOptionPane.showOptionDialog(deleteBtn, //1.เป็นชนิดของปุ่ม
-                    "Do you want to delete this list?", //2.เป็นข้อความโชว์บนกล่อง message
-                    "Delete List!!!", //3.title ของ message box
-                    JOptionPane.YES_NO_CANCEL_OPTION, //4.ชนิดของ optionPane ว่าเป็น yes/no
-                    JOptionPane.QUESTION_MESSAGE,
-                    null, //ไม่ใช้ไอคอน do not use a custom Icon
-                    options, //ชื่อของในแต่ละปุ่ม the titles of button ที่มี yes no
-                    options[0]); //default button title
-
-            // ถ้ากด yes จะทำให้ n มีค่าเป็น 0
-            if (n == 0) {
-                //ให้มันแสดงเฉยๆว่าแพลนนั้นถูกลบออกไปแล้วแต่กดเลือกอะไรไม่ได้นอกจากแค่กด ok หรือปิดหน้าจอไป
-                JOptionPane.showMessageDialog(null, "Your list is deleted");
-                MyPlan2 sp = new MyPlan2();
-
-                sp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                sp.setVisible(true);
-                sp.setLocationRelativeTo(null);
-                setVisible(false);
-            } else {
-                System.out.println("Canceled");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_lbldeleteMouseClicked
-
-    private void planListTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_planListTableMouseClicked
-        System.out.println("Clicked PlanListTable");
-        txtDay.setText(planListTable.getValueAt(planListTable.getSelectedRow(), 0) + "");
-        txtListPlan.setText(planListTable.getValueAt(planListTable.getSelectedRow(), 1) + "");
-        txtDes.setText(planListTable.getValueAt(planListTable.getSelectedRow(), 2) + "");
-        try {
             String sql = "select * from LIST where listName=?";
             pstm = conn.prepareStatement(sql);
             pstm.setString(1, planListTable.getValueAt(planListTable.getSelectedRow(), 1) + "");
@@ -600,17 +500,6 @@ public class DetailList1 extends javax.swing.JFrame {
                 System.out.println("reps = " + rs.getInt("reps"));
                 txtReps.setText(rs.getInt("reps") + "");
                 txtSet.setText(rs.getInt("set") + "");
-//                if (rs.getInt("listStatus") == 1) {
-//                    txtStatusList.setText("Starting");
-//                    txtStatusList.setForeground(new java.awt.Color(51, 255, 51));
-//                } else if (rs.getInt("listStatus") == 0) {
-//                    txtStatusList.setText("Not start");
-//                    txtStatusList.setForeground(new java.awt.Color(255, 0, 0));
-//                }
-//                else if(rs.getInt("listStatus") == 2) {
-//                    txtStatusList.setText("Finished");
-//                    txtStatusList.setForeground(new java.awt.Color(32,21,93));  
-//                }
 
                 setnameDay(rs.getString("list_nameDay"));
                 setDay(rs.getString("list_nameDay"));
@@ -626,10 +515,115 @@ public class DetailList1 extends javax.swing.JFrame {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(MyPlan2.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         } catch (ArrayIndexOutOfBoundsException ex) {
-            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
+    }
+
+    public void backToMyPlan() {
+        System.out.println("Clicked Back Button");
+        MyPlan mp = new MyPlan();
+        mp.setVisible(true);
+        mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mp.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }
+
+    public void deleteList() {
+        try {
+            if (getPlanStatus() == 1) {
+                showMessageDialog(null, "Your plan is starting!!");
+            } else {
+                if (getListID() == 0) {
+                    JOptionPane.showMessageDialog(null, "Pleas choose List");
+                } else {
+                    System.out.println("Clicked Delete Button");
+                    System.out.println("" + listID);
+                    Object[] options = {"Yes", "No"}; //เป็นปุ่มที่ให้เลือกว่าจะกดอะไร
+                    int n = JOptionPane.showOptionDialog(deleteBtn, //1.เป็นชนิดของปุ่ม
+                            "Do you want to delete this list?", //2.เป็นข้อความโชว์บนกล่อง message
+                            "Delete List!!!", //3.title ของ message box
+                            JOptionPane.YES_NO_CANCEL_OPTION, //4.ชนิดของ optionPane ว่าเป็น yes/no
+                            JOptionPane.QUESTION_MESSAGE,
+                            null, //ไม่ใช้ไอคอน do not use a custom Icon
+                            options, //ชื่อของในแต่ละปุ่ม the titles of button ที่มี yes no
+                            options[0]); //default button title
+                    // ถ้ากด yes จะทำให้ n มีค่าเป็น 0
+                    if (n == 0) {
+                        //ให้มันแสดงเฉยๆว่าแพลนนั้นถูกลบออกไปแล้วแต่กดเลือกอะไรไม่ได้นอกจากแค่กด ok หรือปิดหน้าจอไป
+                        String sql = "delete from LIST where listName=? and listID=" + listID;
+                        pstm = conn.prepareStatement(sql);
+                        pstm.setString(1, listPlanName);
+                        pstm.executeUpdate();
+                        JOptionPane.showMessageDialog(null, "Your list is deleted");
+
+                        repaint();
+                    } else {
+                        System.out.println("Canceled");
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void editList() {
+        try {
+            if (getPlanStatus() == 1) {
+                showMessageDialog(null, "Your plan is starting!!");
+            } else if (getPlanStatus() == 0) {
+                if (getListID() == 0) {
+                    JOptionPane.showMessageDialog(null, "Pleas choose List");
+                } else {
+                    lbledit.setEnabled(true);
+                    EditListPlan ep = new EditListPlan(getPlanId(), getListPlanName(), getListDes(), getReps(), getSet(), getListID());
+                    System.out.println(getPlanId());
+                    System.out.println(getNameDay());
+                    ep.setVisible(true);
+                    ep.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    ep.setLocationRelativeTo(null);
+                    this.setVisible(false);
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        showDetaiListTable();
+    }//GEN-LAST:event_formWindowActivated
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        backToMyPlan();
+    }//GEN-LAST:event_backBtnActionPerformed
+
+    private void lblbackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblbackMouseClicked
+        backToMyPlan();
+    }//GEN-LAST:event_lblbackMouseClicked
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        deleteList();
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        editList();
+    }//GEN-LAST:event_editBtnActionPerformed
+
+    private void lbleditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbleditMouseClicked
+        editList();
+    }//GEN-LAST:event_lbleditMouseClicked
+
+    private void lbldeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbldeleteMouseClicked
+        deleteList();
+    }//GEN-LAST:event_lbldeleteMouseClicked
+
+    private void planListTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_planListTableMouseClicked
+        clickDetailListTable();
     }//GEN-LAST:event_planListTableMouseClicked
     /**
      * @param args the command line arguments
@@ -648,20 +642,21 @@ public class DetailList1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DetailList1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetailList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DetailList1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetailList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DetailList1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetailList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DetailList1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetailList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DetailList1().setVisible(true);
+                new DetailList().setVisible(true);
             }
         });
     }

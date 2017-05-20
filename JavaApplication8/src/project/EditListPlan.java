@@ -29,7 +29,6 @@ public class EditListPlan extends javax.swing.JFrame {
     private int planId;
     private int listID;
     private String nameDay;
-   
 
     private EditListPlan() {
         initComponents();
@@ -38,16 +37,16 @@ public class EditListPlan extends javax.swing.JFrame {
     }
 
     public EditListPlan(int planId) {
-        this.planId = planId;
         try {
+            this.planId = planId;
             initComponents();
+            conn = MySQLConnect.getMySQLConnection();
             setTitle("Edit");
             setResizable(false);
-            conn = MySQLConnect.getMySQLConnection();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EditListPlan.class.getName()).log(Level.SEVERE, null, ex);
+           ex.printStackTrace();
         } catch (SQLException ex) {
-            Logger.getLogger(EditListPlan.class.getName()).log(Level.SEVERE, null, ex);
+           ex.printStackTrace();
         }
     }
 
@@ -58,25 +57,12 @@ public class EditListPlan extends javax.swing.JFrame {
         this.reps = reps;
         this.set = set;
         this.listID = listID;
-        //this.nameDay = nameDay;
-        try {
-          
-            initComponents();
-            conn = MySQLConnect.getMySQLConnection();
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        } catch (NullPointerException ex) {
-            System.out.println(ex.getMessage());
-        }
+        initComponents();
+        conn =  MySQLConnect.getMySQLConnection();
         txtLName.setText(listPlanName);
         txtDes.setText(listDescription);
         txtReps.setText(reps + "");
         txtSet.setText(set + "");
-       
-        //boxChooseDay
-
     }
 
     public String getListDescription() {
@@ -156,11 +142,6 @@ public class EditListPlan extends javax.swing.JFrame {
 
         txtDes.setFont(new java.awt.Font("Yu Gothic", 0, 15)); // NOI18N
         txtDes.setMinimumSize(new java.awt.Dimension(59, 20));
-        txtDes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDesActionPerformed(evt);
-            }
-        });
 
         txtReps.setFont(new java.awt.Font("Yu Gothic", 0, 15)); // NOI18N
         txtReps.setMinimumSize(new java.awt.Dimension(59, 20));
@@ -196,11 +177,6 @@ public class EditListPlan extends javax.swing.JFrame {
 
         txtLName.setFont(new java.awt.Font("Yu Gothic", 0, 15)); // NOI18N
         txtLName.setMinimumSize(new java.awt.Dimension(59, 20));
-        txtLName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtLNameActionPerformed(evt);
-            }
-        });
 
         photolbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/edit5.png"))); // NOI18N
 
@@ -362,112 +338,97 @@ public class EditListPlan extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtLNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLNameActionPerformed
-        setResizable(false);
-    }//GEN-LAST:event_txtLNameActionPerformed
-
-    private void txtDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesActionPerformed
-        setResizable(false);
-    }//GEN-LAST:event_txtDesActionPerformed
-
-    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-          System.out.println("listID" + listID);
+    public void saveToUpdateEditListPlan(){
         try {
-            String sql = "update LIST set ListName = ? , descriptionList = ? , reps = ? , `set` = ? where listID=" + listID;
-            pstm = (PreparedStatement) conn.prepareStatement(sql);
-            pstm.setString(1, txtLName.getText());
-            pstm.setString(2, txtDes.getText());
-            pstm.setString(3, txtReps.getText());
-            pstm.setString(4, txtSet.getText());
-            pstm.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Edit successfully");
-            DetailList1 dl = new DetailList1(planId);
-            dl.setVisible(true);
-            dl.setLocationRelativeTo(null);
-            dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            this.setVisible(false);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(CreatePlan1.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("listID" + listID);
+                String sql = "update LIST set ListName = ? , descriptionList = ? , reps = ? , `set` = ? where listID=" + listID;
+                pstm = (PreparedStatement) conn.prepareStatement(sql);
+                pstm.setString(1, txtLName.getText());
+                pstm.setString(2, txtDes.getText());
+                pstm.setString(3, txtReps.getText());
+                pstm.setString(4, txtSet.getText());
+                pstm.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Edit successfully");
+                DetailList dl = new DetailList(planId);
+                dl.setVisible(true);
+                dl.setLocationRelativeTo(null);
+                dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                this.setVisible(false);
+        }  catch (SQLException ex) {
+            ex.printStackTrace();
         }
-    }//GEN-LAST:event_saveBtnActionPerformed
-
-    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
-        DetailList1 dl = new DetailList1(planId);
+    }
+    
+    public void backToDetailList(){
+        DetailList dl = new DetailList(planId);
         dl.setVisible(true);
         dl.setLocationRelativeTo(null);
         dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(false);
-    }//GEN-LAST:event_cancelBtnActionPerformed
-
-    private void lblcancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblcancelMouseClicked
-        DetailList1 dl = new DetailList1(planId);
-        dl.setVisible(true);
-        dl.setLocationRelativeTo(null);
-        dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(false);
-    }//GEN-LAST:event_lblcancelMouseClicked
-
-    private void lblsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsaveMouseClicked
-         System.out.println("listID" + listID);
+    }
+    
+     public void checkUserInputReps(){
+        int input;
         try {
-            String sql = "update LIST set ListName = ? , descriptionList = ? , reps = ? , `set` = ? where listID=" + listID;
-            pstm = (PreparedStatement) conn.prepareStatement(sql);
-            pstm.setString(1, txtLName.getText());
-            pstm.setString(2, txtDes.getText());
-            pstm.setString(3, txtReps.getText());
-            pstm.setString(4, txtSet.getText());
-            pstm.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Edit successfully");
-            DetailList1 dl = new DetailList1(planId);
-            dl.setVisible(true);
-            dl.setLocationRelativeTo(null);
-            dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            this.setVisible(false);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(CreatePlan1.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_lblsaveMouseClicked
-
-    private void txtRepsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRepsFocusLost
-         int txt;
-        try {
-            txt = Integer.parseInt(txtReps.getText());
-            if (txt == 0) {
+            input = Integer.parseInt(txtReps.getText());
+            if (input == 0) {
                 txtReps.setText("");
                 noti1.setVisible(true);
-            }else if(txt > 0 && txt <=100){
+            } else if (input > 0 && input <= 100) {
                 noti1.setVisible(false);
-            }else {
+            } else {
                 noti1.setVisible(true);
                 txtReps.setText("");
             }
         } catch (NumberFormatException ex) {
             txtReps.setText("");
             noti1.setVisible(true);
-            //noti1.setVisible(true);
+            
         }
-    }//GEN-LAST:event_txtRepsFocusLost
-
-    private void txtSetFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSetFocusLost
-        int txt;
+    }
+    
+    public void checkUserInputSet(){
+         int input;
         try {
-            txt = Integer.parseInt(txtSet.getText());
-            if (txt == 0) {
+            input = Integer.parseInt(txtSet.getText());
+            if (input == 0) {
                 txtSet.setText("");
                 noti2.setVisible(true);
-            }else if(txt > 0 && txt <=100){
+            } else if (input > 0 && input <= 100) {
                 noti2.setVisible(false);
-            }else {
+            } else {
                 noti2.setVisible(true);
                 txtSet.setText("");
             }
         } catch (NumberFormatException ex) {
             txtSet.setText("");
             noti2.setVisible(true);
-            //noti1.setVisible(true);
+            
         }
+    }
+    
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        saveToUpdateEditListPlan();
+    }//GEN-LAST:event_saveBtnActionPerformed
+    
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        backToDetailList();
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void lblcancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblcancelMouseClicked
+       backToDetailList();
+    }//GEN-LAST:event_lblcancelMouseClicked
+
+    private void lblsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsaveMouseClicked
+       saveToUpdateEditListPlan();
+    }//GEN-LAST:event_lblsaveMouseClicked
+    
+    private void txtRepsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRepsFocusLost
+        checkUserInputReps();
+    }//GEN-LAST:event_txtRepsFocusLost
+
+    private void txtSetFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSetFocusLost
+       checkUserInputSet();
     }//GEN-LAST:event_txtSetFocusLost
 
 //    public void tt() throws ClassNotFoundException, SQLException {
@@ -483,12 +444,10 @@ public class EditListPlan extends javax.swing.JFrame {
 //            for (int i = 1; i <= rs.getInt("dayperweek"); i++) {
 //                String eachDay = days.substring(start, days.indexOf(" ", start));
 //                start = days.indexOf(" ", start) + 1;
-                //boxChooseDay.addItem(eachDay);
-
+    //boxChooseDay.addItem(eachDay);
 //            }
- //       }
+    //       }
     //}
-
     /**
      * @param args the command line arguments
      */
