@@ -699,7 +699,7 @@ public class MyPlan extends javax.swing.JFrame {
         if (getPlanStatus() == 1) {
             showMessageDialog(null, "Your plan is starting!!");
             DetailList dl = new DetailList(getPlanId(), getPlanStatus());
-            EditListPlan edlp = new EditListPlan(getPlanId());
+            EditList edlp = new EditList(getPlanId());
             System.out.println(getPlanId());
             dl.setVisible(true);
             dl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -711,7 +711,7 @@ public class MyPlan extends javax.swing.JFrame {
             } else {
                 System.out.println("Clicked DetailList button");
                 DetailList dl = new DetailList(getPlanId(), getPlanStatus());
-                EditListPlan edlp = new EditListPlan(getPlanId());
+                EditList edlp = new EditList(getPlanId());
                 System.out.println(getPlanId());
                 dl.setVisible(true);
                 setVisible(false);

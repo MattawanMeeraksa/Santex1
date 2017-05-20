@@ -578,7 +578,7 @@ public class DetailList extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Pleas choose List");
                 } else {
                     lbledit.setEnabled(true);
-                    EditListPlan ep = new EditListPlan(getPlanId(), getListPlanName(), getListDes(), getReps(), getSet(), getListID());
+                    EditList ep = new EditList(getPlanId(), getListPlanName(), getListDes(), getReps(), getSet(), getListID());
                     System.out.println(getPlanId());
                     System.out.println(getNameDay());
                     ep.setVisible(true);

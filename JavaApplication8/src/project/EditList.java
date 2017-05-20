@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author user
  */
-public class EditListPlan extends javax.swing.JFrame {
+public class EditList extends javax.swing.JFrame {
 
     Connection conn = null;
     PreparedStatement pstm = null;
@@ -30,13 +30,13 @@ public class EditListPlan extends javax.swing.JFrame {
     private int listID;
     private String nameDay;
 
-    private EditListPlan() {
+    private EditList() {
         initComponents();
         setTitle("Edit");
         setResizable(false);
     }
 
-    public EditListPlan(int planId) {
+    public EditList(int planId) {
         try {
             this.planId = planId;
             initComponents();
@@ -50,7 +50,7 @@ public class EditListPlan extends javax.swing.JFrame {
         }
     }
 
-    EditListPlan(int planId, String listPlanName, String listDescription, int reps, int set, int listID) throws ClassNotFoundException, SQLException {
+    EditList(int planId, String listPlanName, String listDescription, int reps, int set, int listID) throws ClassNotFoundException, SQLException {
         this.planId = planId;
         this.listPlanName = listPlanName;
         this.listDescription = listDescription;
@@ -455,7 +455,7 @@ public class EditListPlan extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditListPlan().setVisible(true);
+                new EditList().setVisible(true);
             }
         });
     }
