@@ -89,18 +89,25 @@ public class EditPlan extends javax.swing.JFrame {
     }
 
     public EditPlan(int planId, String planName, String planDes, Date startDate, Date endDate, int dayPerWeek, String nameDay) {
-        this.planId = planId;
-        this.planName = planName;
-        this.planDes = planDes;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.dayPerWeek = dayPerWeek;
-        this.nameDay = nameDay;
-        initComponents();
-        txtPName.setText(planName);
-        txtDes.setText(planDes);
-        startDateChoose.setDate(startDate);
-        endDateChoose.setDate(endDate);
+        try {
+            conn = MySQLConnect.getMySQLConnection();
+            this.planId = planId;
+            this.planName = planName;
+            this.planDes = planDes;
+            this.startDate = startDate;
+            this.endDate = endDate;
+            this.dayPerWeek = dayPerWeek;
+            this.nameDay = nameDay;
+            initComponents();
+            txtPName.setText(planName);
+            txtDes.setText(planDes);
+            startDateChoose.setDate(startDate);
+            endDateChoose.setDate(endDate);
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**
@@ -326,16 +333,20 @@ public class EditPlan extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Your input is incorrect");
             } else {
                 String sql = "update PLAN SET planName = ? , descriptionPlan = ? , startDate = ? , endDate = ? where planID=" + planId;
-                PreparedStatement pstm = conn.prepareStatement(sql);
+                System.out.println(""+planId);
+                pstm = conn.prepareStatement(sql);
                 pstm.setString(1, txtPName.getText());
                 pstm.setString(2, txtDes.getText());
                 pstm.setDate(3, ((java.sql.Date) startDate));
                 pstm.setDate(4, ((java.sql.Date) endDate));
                 pstm.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Plan created successfully");
-                DetailList dl = new DetailList(getPlanId());
-                System.out.println(getPlanId());
-                dl.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Edit plan successfully");
+                MyPlan mp = new MyPlan();
+                mp.setVisible(true);
+                this.setVisible(false);
+//                DetailList dl = new DetailList(getPlanId());
+//                System.out.println(getPlanId());
+//                dl.setVisible(true);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

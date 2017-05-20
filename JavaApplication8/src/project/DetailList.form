@@ -3,6 +3,9 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1341, 710]"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -31,7 +34,10 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" pref="759" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jPanel1" pref="751" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -98,9 +104,9 @@
                   </Group>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="385" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="210" max="32767" attributes="0"/>
               </Group>
-              <Component id="jPanel2" alignment="1" pref="759" max="32767" attributes="0"/>
+              <Component id="jPanel2" alignment="1" pref="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -157,7 +163,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtSet" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtSet" alignment="0" pref="341" max="32767" attributes="0"/>
                           <Component id="lblListPlan" min="-2" max="-2" attributes="0"/>
                           <Component id="lblSet" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblDay" min="-2" max="-2" attributes="0"/>
@@ -166,7 +172,7 @@
                           <Component id="txtDay" alignment="1" max="32767" attributes="0"/>
                           <Component id="txtListPlan" alignment="1" max="32767" attributes="0"/>
                           <Component id="txtReps" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jScrollPane2" min="-2" pref="341" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -330,11 +336,14 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="txtDes">
+                <Component class="javax.swing.JTextArea" name="txtDes">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="columns" type="int" value="20"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic Light" size="17" style="1"/>
                     </Property>
+                    <Property name="rows" type="int" value="5"/>
                   </Properties>
                 </Component>
               </SubComponents>

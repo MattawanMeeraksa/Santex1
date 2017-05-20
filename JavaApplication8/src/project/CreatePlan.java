@@ -484,86 +484,6 @@ public class CreatePlan extends javax.swing.JFrame {
         setVisible(false);
     }
 
-    public void chooseDay() {
-        //Sunday
-        if (sunCheck.isSelected() == true) {
-            System.out.println("Selected Sunday");
-            sun = "Sunday ";
-            setSun(sun);
-            dpwAll++;
-        } else if (sunCheck.isSelected() == false) {
-            System.out.println("Not Selected Sunday");
-            sun = "";
-            dpwAll = 0;
-        }
-        //Monday
-        if (monCheck.isSelected() == true) {
-            System.out.println("Selected Monday");
-            mon = "Monday ";
-            setMon(mon);
-            dpwAll++;
-        } else if (monCheck.isSelected() == false) {
-            System.out.println("Not Selected Monday");
-            mon = "";
-            dpwAll = 0;
-        }
-        //Tuesday
-        if (tuesCheck.isSelected() == true) {
-            System.out.println("Selected Tuesday");
-            tues = "Tuesday ";
-            setTues(tues);
-            dpwAll++;
-        } else if (tuesCheck.isSelected() == false) {
-            System.out.println("Not Selected Tuesday");
-            tues = "";
-            dpwAll = 0;
-        }
-        //Wednesday
-        if (wedCheck.isSelected() == true) {
-            System.out.println("Selected Wednesday");
-            wedn = "Wednesday ";
-            setWedn(wedn);
-            dpwAll++;
-        } else if (tuesCheck.isSelected() == false) {
-            System.out.println("Not Selected Wednesday");
-            wedn = "";
-            dpwAll = 0;
-        }
-        //Thursday
-        if (thuCheck.isSelected() == true) {
-            System.out.println("Selected Thursday");
-            thru = "Thursday ";
-            setThru(thru);
-            dpwAll++;
-        } else if (tuesCheck.isSelected() == false) {
-            System.out.println("Not Selected Thursday");
-            thru = "";
-            dpwAll = 0;
-        }
-        //Friday
-        if (friCheck.isSelected() == true) {
-            System.out.println("Selected Friday");
-            fri = "Friday ";
-            setFri(fri);
-            dpwAll++;
-        } else if (friCheck.isSelected() == false) {
-            System.out.println("Not Selected Friday");
-            fri = "";
-            dpwAll = 0;
-        }
-
-        //Saturday
-        if (satCheck.isSelected() == true) {
-            System.out.println("Selected Saturday");
-            sat = "Saturday ";
-            setSat(sat);
-            dpwAll++;
-        } else if (satCheck.isSelected() == false) {
-            System.out.println("Not Selected Saturday");
-            sat = "";
-            dpwAll = 0;
-        }
-    }
 
     public void checkUserInputPlanName() {
         if (!(Pattern.matches("^[a-zA-Z0-9 ]+$", txtPName.getText()))) {
@@ -576,6 +496,7 @@ public class CreatePlan extends javax.swing.JFrame {
             txtDes.setText("");
         }
     }
+    
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         createMyPlan();
@@ -594,31 +515,94 @@ public class CreatePlan extends javax.swing.JFrame {
     }//GEN-LAST:event_lblcancelMouseClicked
 
     private void sunCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sunCheckActionPerformed
-        chooseDay();
+       if (sunCheck.isSelected() == true) {
+            System.out.println("Selected Sunday");
+            sun = "Sunday ";
+            setSun(sun);
+            dpwAll++;
+        } else if (sunCheck.isSelected() == false) {
+            System.out.println("Not Selected Sunday");
+            sun = "";
+            dpwAll = 0;
+        }
     }//GEN-LAST:event_sunCheckActionPerformed
 
     private void monCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monCheckActionPerformed
-        chooseDay();
+        if (monCheck.isSelected() == true) {
+            System.out.println("Selected Monday");
+            mon = "Monday ";
+            setMon(mon);
+            dpwAll++;
+        } else if (monCheck.isSelected() == false) {
+            System.out.println("Not Selected Monday");
+            mon = "";
+            dpwAll = 0;
+        }
     }//GEN-LAST:event_monCheckActionPerformed
 
     private void tuesCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tuesCheckActionPerformed
-        chooseDay();
+        if (tuesCheck.isSelected() == true) {
+            System.out.println("Selected Tuesday");
+            tues = "Tuesday ";
+            setTues(tues);
+            dpwAll++;
+        } else if (tuesCheck.isSelected() == false) {
+            System.out.println("Not Selected Tuesday");
+            tues = "";
+            dpwAll = 0;
+        }
     }//GEN-LAST:event_tuesCheckActionPerformed
 
     private void wedCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wedCheckActionPerformed
-        chooseDay();
+        if (wedCheck.isSelected() == true) {
+            System.out.println("Selected Wednesday");
+            wedn = "Wednesday ";
+            setWedn(wedn);
+            dpwAll++;
+        } else if (wedCheck.isSelected() == false) {
+            System.out.println("Not Selected Wednesday");
+            wedn = "";
+            dpwAll = 0;
+        }
     }//GEN-LAST:event_wedCheckActionPerformed
 
     private void thuCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thuCheckActionPerformed
-        chooseDay();
+        if (thuCheck.isSelected() == true) {
+            System.out.println("Selected Thursday");
+            thru = "Thursday ";
+            setThru(thru);
+            dpwAll++;
+        } else if (thuCheck.isSelected() == false) {
+            System.out.println("Not Selected Thursday");
+            thru = "";
+            dpwAll = 0;
+        }
     }//GEN-LAST:event_thuCheckActionPerformed
 
     private void friCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friCheckActionPerformed
-        chooseDay();
+        if (friCheck.isSelected() == true) {
+            System.out.println("Selected Friday");
+            fri = "Friday ";
+            setFri(fri);
+            dpwAll++;
+        } else if (friCheck.isSelected() == false) {
+            System.out.println("Not Selected Friday");
+            fri = "";
+            dpwAll = 0;
+        }
     }//GEN-LAST:event_friCheckActionPerformed
 
     private void satCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satCheckActionPerformed
-        chooseDay();
+        if (satCheck.isSelected() == true) {
+            System.out.println("Selected Saturday");
+            sat = "Saturday ";
+            setSat(sat);
+            dpwAll++;
+        } else if (satCheck.isSelected() == false) {
+            System.out.println("Not Selected Saturday");
+            sat = "";
+            dpwAll = 0;
+        }
     }//GEN-LAST:event_satCheckActionPerformed
 
     private void txtPNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPNameFocusLost

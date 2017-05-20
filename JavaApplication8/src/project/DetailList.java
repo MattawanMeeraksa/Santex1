@@ -173,7 +173,9 @@ public class DetailList extends javax.swing.JFrame {
     }
 
     public DetailList(int planId) {
+        this();
         this.planId = planId;
+        
 
     }
 
@@ -203,7 +205,7 @@ public class DetailList extends javax.swing.JFrame {
         editBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        txtDes = new javax.swing.JLabel();
+        txtDes = new javax.swing.JTextArea();
         lblback = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -211,6 +213,7 @@ public class DetailList extends javax.swing.JFrame {
         planListTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1341, 710));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -282,7 +285,10 @@ public class DetailList extends javax.swing.JFrame {
             }
         });
 
+        txtDes.setEditable(false);
+        txtDes.setColumns(20);
         txtDes.setFont(new java.awt.Font("Yu Gothic Light", 1, 17)); // NOI18N
+        txtDes.setRows(5);
         jScrollPane2.setViewportView(txtDes);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -306,7 +312,7 @@ public class DetailList extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtSet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtSet, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
                     .addComponent(lblListPlan)
                     .addComponent(lblSet)
                     .addComponent(lblDay)
@@ -315,7 +321,7 @@ public class DetailList extends javax.swing.JFrame {
                     .addComponent(txtDay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtListPlan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtReps, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -441,8 +447,8 @@ public class DetailList extends javax.swing.JFrame {
                         .addComponent(lblback, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
+                .addContainerGap(210, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -453,7 +459,9 @@ public class DetailList extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 751, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -536,7 +544,7 @@ public class DetailList extends javax.swing.JFrame {
                 showMessageDialog(null, "Your plan is starting!!");
             } else {
                 if (getListID() == 0) {
-                    JOptionPane.showMessageDialog(null, "Pleas choose List");
+                    JOptionPane.showMessageDialog(null, "Please select List");
                 } else {
                     System.out.println("Clicked Delete Button");
                     System.out.println("" + listID);
@@ -575,7 +583,7 @@ public class DetailList extends javax.swing.JFrame {
                 showMessageDialog(null, "Your plan is starting!!");
             } else if (getPlanStatus() == 0) {
                 if (getListID() == 0) {
-                    JOptionPane.showMessageDialog(null, "Pleas choose List");
+                    JOptionPane.showMessageDialog(null, "Please select List");
                 } else {
                     lbledit.setEnabled(true);
                     EditList ep = new EditList(getPlanId(), getListPlanName(), getListDes(), getReps(), getSet(), getListID());
@@ -656,7 +664,7 @@ public class DetailList extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DetailList().setVisible(true);
+                //new DetailList().setVisible(true);
             }
         });
     }
@@ -681,7 +689,7 @@ public class DetailList extends javax.swing.JFrame {
     private javax.swing.JLabel lbledit;
     private javax.swing.JTable planListTable;
     private javax.swing.JLabel txtDay;
-    private javax.swing.JLabel txtDes;
+    private javax.swing.JTextArea txtDes;
     private javax.swing.JLabel txtListPlan;
     private javax.swing.JLabel txtReps;
     private javax.swing.JLabel txtSet;

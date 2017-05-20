@@ -153,7 +153,7 @@ public class EditList extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 30)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Edit List Plan");
+        jLabel1.setText("Edit List ");
 
         txtSet.setFont(new java.awt.Font("Yu Gothic", 0, 15)); // NOI18N
         txtSet.setMinimumSize(new java.awt.Dimension(59, 20));
@@ -230,7 +230,7 @@ public class EditList extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addComponent(photolbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(103, 103, 103)
@@ -431,23 +431,6 @@ public class EditList extends javax.swing.JFrame {
        checkUserInputSet();
     }//GEN-LAST:event_txtSetFocusLost
 
-//    public void tt() throws ClassNotFoundException, SQLException {
-//        Connection conn = MySQLConnect.getMySQLConnection();
-//        System.out.println("selecting..");
-//        PreparedStatement pstm = conn.prepareStatement("SELECT nameDay,dayperweek from PLAN where planID = " + planId);
-//        ResultSet rs = pstm.executeQuery();
-//        while (rs.next()) {
-//            String days = rs.getString("nameDay");
-//            System.out.println("" + rs.getString("nameDay"));
-//            System.out.println("" + rs.getInt("dayperweek"));
-//            int start = 0;
-//            for (int i = 1; i <= rs.getInt("dayperweek"); i++) {
-//                String eachDay = days.substring(start, days.indexOf(" ", start));
-//                start = days.indexOf(" ", start) + 1;
-    //boxChooseDay.addItem(eachDay);
-//            }
-    //       }
-    //}
     /**
      * @param args the command line arguments
      */
@@ -455,7 +438,7 @@ public class EditList extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditList().setVisible(true);
+             //   new EditList().setVisible(true);
             }
         });
     }

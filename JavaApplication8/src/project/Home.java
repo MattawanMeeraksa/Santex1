@@ -134,6 +134,8 @@ public class Home extends javax.swing.JFrame {
         myplanBtn = new javax.swing.JButton();
         createBtn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jPanel4 = new javax.swing.JPanel();
         Calendar = new com.toedter.calendar.JCalendar();
         jPanel5 = new javax.swing.JPanel();
@@ -260,6 +262,14 @@ public class Home extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/exercise (1).png"))); // NOI18N
 
+        jTextArea1.setBackground(new java.awt.Color(51, 51, 51));
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Instruction : \n1. if the color of checklist is yellow, list of \ntoday is wating for checking.\n\n2. If the color of checklist is green, list \nwas end.\n\n3. If the color of checklist is red\n    - the list that was skipped.\n    - the list haven't be coming yet.\n");
+        jScrollPane2.setViewportView(jTextArea1);
+
         javax.swing.GroupLayout LeftLayout = new javax.swing.GroupLayout(Left);
         Left.setLayout(LeftLayout);
         LeftLayout.setHorizontalGroup(
@@ -267,16 +277,22 @@ public class Home extends javax.swing.JFrame {
             .addGroup(LeftLayout.createSequentialGroup()
                 .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LeftLayout.createSequentialGroup()
-                        .addGap(56, 56, 56)
                         .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(myplanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(createBtn)))
+                            .addGroup(LeftLayout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(txtSantex, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel6))
+                            .addGroup(LeftLayout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(myplanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(createBtn))))
+                        .addGap(0, 49, Short.MAX_VALUE))
                     .addGroup(LeftLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(txtSantex, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                        .addGap(26, 26, 26)
+                        .addComponent(jScrollPane2)))
+                .addContainerGap())
         );
         LeftLayout.setVerticalGroup(
             LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,11 +303,13 @@ public class Home extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addComponent(txtSantex, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel6))
-                .addGap(72, 72, 72)
+                .addGap(32, 32, 32)
                 .addComponent(myplanBtn)
-                .addGap(49, 49, 49)
+                .addGap(36, 36, 36)
                 .addComponent(createBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jPanel1.add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 726));
@@ -406,14 +424,14 @@ public class Home extends javax.swing.JFrame {
         refreshBtn.setBackground(new java.awt.Color(255, 255, 255));
         refreshBtn.setFont(new java.awt.Font("Century Gothic", 1, 22)); // NOI18N
         refreshBtn.setForeground(new java.awt.Color(255, 255, 255));
-        refreshBtn.setText("Refresh");
+        refreshBtn.setText("Save");
         refreshBtn.setContentAreaFilled(false);
         refreshBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshBtnActionPerformed(evt);
             }
         });
-        jPanel4.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1131, 390, -1, 50));
+        jPanel4.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 390, -1, 50));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 0, -1, -1));
 
@@ -775,7 +793,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton myplanBtn;
     private javax.swing.JButton refreshBtn;
     private javax.swing.JScrollPane scrollActToday;

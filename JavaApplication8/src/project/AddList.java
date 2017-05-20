@@ -115,7 +115,7 @@ public class AddList extends java.awt.Dialog {
 
         addList.setFont(new java.awt.Font("Century Gothic", 1, 32)); // NOI18N
         addList.setForeground(new java.awt.Color(255, 255, 255));
-        addList.setText("Add List Plan");
+        addList.setText("Add List");
 
         lblDes.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         lblDes.setForeground(new java.awt.Color(255, 255, 255));
@@ -237,7 +237,7 @@ public class AddList extends java.awt.Dialog {
                         .addGap(23, 23, 23)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addList, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(addList, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
@@ -346,11 +346,6 @@ public class AddList extends java.awt.Dialog {
     /**
      * Closes the dialog
      */
-    private void closeDialog(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeDialog
-        setVisible(false);
-        dispose();
-    }//GEN-LAST:event_closeDialog
-
     public void addAddListToDetailListOfMyPlan() {
         try {
             System.out.println("Clicked Save button");
@@ -389,11 +384,6 @@ public class AddList extends java.awt.Dialog {
 
     public void backToMyPlan() {
         System.out.println("Clicked Cancel button");
-        MyPlan mp = new MyPlan();
-        mp.setVisible(true);
-        mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mp.setLocationRelativeTo(null);
-        mp.setResizable(false);
         setVisible(false);
     }
 
@@ -434,6 +424,24 @@ public class AddList extends java.awt.Dialog {
             noti2.setVisible(true);
         }
     }
+
+    public void checkUserInputListName() {
+        if (!(Pattern.matches("^[a-zA-Z0-9 ]+$", txtList.getText()))) {
+            txtList.setText("");
+        }
+    }
+
+    public void checkUserInputListDescription() {
+        if (!(Pattern.matches("^[a-zA-Z0-9 ]+$", txtDes.getText()))) {
+            txtDes.setText("");
+        }
+    }
+
+    private void closeDialog(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeDialog
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_closeDialog
+
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         addAddListToDetailListOfMyPlan();
     }//GEN-LAST:event_saveBtnActionPerformed
@@ -459,15 +467,11 @@ public class AddList extends java.awt.Dialog {
     }//GEN-LAST:event_txtSetFocusLost
 
     private void txtListFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtListFocusLost
-        if (!(Pattern.matches("^[a-zA-Z0-9 ]+$", txtList.getText()))) {
-            txtList.setText("");
-        }      
+        checkUserInputListName();
     }//GEN-LAST:event_txtListFocusLost
 
     private void txtDesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDesFocusLost
-        if (!(Pattern.matches("^[a-zA-Z0-9 ]+$", txtDes.getText()))) {
-            txtDes.setText("");
-        }
+        checkUserInputListDescription();
     }//GEN-LAST:event_txtDesFocusLost
 
     /**
@@ -491,8 +495,8 @@ public class AddList extends java.awt.Dialog {
 
     public void chooseDayFromComboBox() {
         try {
-            System.out.println("selecting.."+planId);
-            pstm = conn.prepareStatement("SELECT nameDay,dayperweek from PLAN where planID = "+planId);
+            System.out.println("selecting.." + planId);
+            pstm = conn.prepareStatement("SELECT nameDay,dayperweek from PLAN where planID = " + planId);
             System.out.println("Dai laew na");
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
