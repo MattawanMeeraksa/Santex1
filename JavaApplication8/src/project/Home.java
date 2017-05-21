@@ -234,7 +234,7 @@ public class Home extends javax.swing.JFrame {
 
         txtSantex.setFont(new java.awt.Font("Century Gothic", 1, 45)); // NOI18N
         txtSantex.setForeground(new java.awt.Color(255, 255, 255));
-        txtSantex.setText("SANTEX");
+        txtSantex.setText("Exercise Plan");
 
         myplanBtn.setBackground(new java.awt.Color(102, 102, 102));
         myplanBtn.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
@@ -275,41 +275,40 @@ public class Home extends javax.swing.JFrame {
         LeftLayout.setHorizontalGroup(
             LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LeftLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(myplanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(createBtn))
+                .addGap(0, 209, Short.MAX_VALUE))
+            .addGroup(LeftLayout.createSequentialGroup()
                 .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LeftLayout.createSequentialGroup()
-                        .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(LeftLayout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(txtSantex, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel6))
-                            .addGroup(LeftLayout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(myplanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(createBtn))))
-                        .addGap(0, 49, Short.MAX_VALUE))
-                    .addGroup(LeftLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(jScrollPane2)))
+                        .addComponent(jScrollPane2))
+                    .addGroup(LeftLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(txtSantex, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)))
                 .addContainerGap())
         );
         LeftLayout.setVerticalGroup(
             LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LeftLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
                 .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LeftLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(txtSantex, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel6))
-                .addGap(32, 32, 32)
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabel6))
+                    .addGroup(LeftLayout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(txtSantex, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29)
                 .addComponent(myplanBtn)
                 .addGap(36, 36, 36)
                 .addComponent(createBtn)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         jPanel1.add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 726));
@@ -433,20 +432,20 @@ public class Home extends javax.swing.JFrame {
         });
         jPanel4.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 390, -1, 50));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 0, -1, -1));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, -1, 730));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1700, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1811, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setBounds(0, 0, 1722, 782);
+        setBounds(0, 0, 1833, 782);
     }// </editor-fold>//GEN-END:initComponents
 
     public void loopCheckList() {
@@ -477,12 +476,14 @@ public class Home extends javax.swing.JFrame {
                 labelCheckList[i].setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
                 labelCheckList[i].setForeground(new java.awt.Color(255, 255, 255));
                 labelCheckList[i].setText(listName.get(i).getName());
-
+                
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = new Date();
-                SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+                SimpleDateFormat sdf = new SimpleDateFormat("EEEE"); //เป็น format ในการบอกว่าเป็นวันอะไรในสัปดาห์เช่นจันทร์หรืออังคาร
                 String toDay2 = dateFormat.format(date);
-                String dayCar = dateFormat.format(Calendar.getCalendar().getTime());
+                String dayCar = dateFormat.format(Calendar.getCalendar().getTime()); 
+                //getTime() : ใช้คืนค่า Object date ที่เก็บค่าวันที่และเวลาเอาไว้
+                //Calendar.getCalendar() : 
                 System.out.println(toDay2);
                 System.out.println("dateDone = " + listName.get(i).getDateDone());
                 if (listName.get(i).getStatus() == 1 && listName.get(i).getDateDone() != null) {
@@ -546,6 +547,7 @@ public class Home extends javax.swing.JFrame {
         }
     }
 
+    //งง
     public void clickCalendar() {
         try {
             String sql = null;
@@ -633,7 +635,9 @@ public class Home extends javax.swing.JFrame {
         cp.setLocationRelativeTo(null);
         this.setVisible(false);
     }
-
+    
+    
+//งงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงง
     public void saveCheckList() {
         ArrayList<ToDoList> list = this.listName;
         for (int i = 0; i < list.size(); i++) {
@@ -646,6 +650,7 @@ public class Home extends javax.swing.JFrame {
         }
         repaint();
     }
+    //งง
 
     public void updateListStatus(int id, int temp) {
         try {
