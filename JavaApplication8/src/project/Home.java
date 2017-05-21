@@ -494,7 +494,7 @@ public class Home extends javax.swing.JFrame {
                 
                 
                 //ถ้า listNameตำแหน่งที่ i มี status = 1 และ listNameตำแหน่งที่ i มี datedone ไม่เท่ากับ nullก็คือมีค่า
-                //ในส่วนของตรงนี้จะกลายเป็นสีเขียว
+                //ถ้ามีสภานะเป็น done ในส่วนของตรงนี้จะกลายเป็นสีเขียว
                 if (listName.get(i).getStatus() == 1 && listName.get(i).getDateDone() != null) {
                     smallCheckListPanel[i].add(labelCheckList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 14, -1, -1));
                     checkList[i].setBackground(new java.awt.Color(51, 51, 51));
@@ -519,7 +519,7 @@ public class Home extends javax.swing.JFrame {
                 //ถ้าไม่ใช่ทั้งกรณีแรกและกรณี2ก็คือไม่ใช่วันปัจจุบันและมี status เป็น null
                 else {
                     //เช็คว่า listname ตำแหน่งที่ i เป็นวันอะไร(วันในสัปดาห์)ต้องตรงตามตัวอักษรเป๊ะๆของ getThisDay
-                    //และวันนี้มีค่าเหมือนกับวันที่กดปฏิทนหรือเปล่าและ listName ตำแหน่งทที่ i ที่มี status = 1
+                    //และวันนี้มีค่าเหมือนกับวันที่กดปฏิทินหรือเปล่าและ listName ตำแหน่งทที่ i ที่มี status = 1
                     //ถ้าใช่ให้ checkList ตำแหน่งที่ i หายไปและทำการ remove ตำแหน่งที่ i ออกไปและ refresh หน้านั้นโดยใช้ repaint
                     if (listName.get(i).getDays().equalsIgnoreCase(getThisDay()) && toDay2.equals(dayCar) && listName.get(i).getStatus() == 1) {
                         checkList[i].setVisible(false);
@@ -607,7 +607,8 @@ public class Home extends javax.swing.JFrame {
                 listName1.add(rs.getString("listName")); //เมื่อวนแล้วเจอข้อมูลก็เอาเข้าไปเก็บใน arraylist ชื่อ listname1
                 System.out.println(listName1);
                 //listName ที่เป็น type todolist : มีการ add ข้อมูลลงใน listName โดยรับข้อมูลผ่าน object ที่ชื่อว่า Todolist
-                listName.add(new ToDoList(rs.getInt("listID"), rs.getString("listName"), rs.getString("list_nameDay")));   //สร้าง object TodoList ไปเก็บไว้ใน arraylist listname
+                listName.add(new ToDoList(rs.getInt("listID"), rs.getString("listName"), rs.getString("list_nameDay")));   
+                //สร้าง object TodoList ไปเก็บไว้ใน arraylist listname
                 listId.add(rs.getInt("listID")); // วนเจอข้อมูลก็ add ข้อมูลลงไปใน arraylist listid
                 System.out.println("listId = " + rs.getInt("listID"));
                 //select ข้อมูลทุกอย่างใน statuslist โดยมีเงื่อนไขว่า 

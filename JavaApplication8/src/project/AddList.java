@@ -350,7 +350,7 @@ public class AddList extends java.awt.Dialog {
     public void addAddListToDetailListOfMyPlan() {
         try {
             System.out.println("Clicked Save button");
-            if (txtList.getText().equals("") || txtDes.getText().equals("") || txtReps.getText().equals("")) {
+            if (txtList.getText().equals("") || txtDes.getText().equals("") || txtReps.getText().equals("") || txtSet.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Your input is incorrect");
             } else {
                 String sqlList = "insert into LIST(listName,descriptionList,reps,`set`,list_planID,list_nameDay)"
