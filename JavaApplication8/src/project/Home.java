@@ -231,7 +231,7 @@ public class Home extends javax.swing.JFrame {
 
         Left.setBackground(new java.awt.Color(51, 51, 51));
 
-        txtSantex.setFont(new java.awt.Font("Century Gothic", 1, 45)); // NOI18N
+        txtSantex.setFont(new java.awt.Font("Century Gothic", 1, 40)); // NOI18N
         txtSantex.setForeground(new java.awt.Color(255, 255, 255));
         txtSantex.setText("Exercise Plan");
 
@@ -280,13 +280,13 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(myplanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(createBtn))
-                .addGap(0, 196, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(LeftLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(txtSantex, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addGap(21, 21, 21))
+                .addGap(56, 56, 56))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LeftLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -297,12 +297,12 @@ public class Home extends javax.swing.JFrame {
             .addGroup(LeftLayout.createSequentialGroup()
                 .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LeftLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel6))
+                        .addGap(83, 83, 83)
+                        .addComponent(txtSantex, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(LeftLayout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(txtSantex, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(47, 47, 47)
+                        .addGap(53, 53, 53)
+                        .addComponent(jLabel6)))
+                .addGap(27, 27, 27)
                 .addComponent(myplanBtn)
                 .addGap(36, 36, 36)
                 .addComponent(createBtn)
@@ -311,7 +311,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
-        jPanel1.add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 726));
+        jPanel1.add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 726));
 
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
         jPanel4.setMaximumSize(new java.awt.Dimension(1260, 700));
@@ -326,7 +326,7 @@ public class Home extends javax.swing.JFrame {
                 CalendarPropertyChange(evt);
             }
         });
-        jPanel4.add(Calendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 630, 390));
+        jPanel4.add(Calendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 630, 390));
 
         jPanel5.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -366,7 +366,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, -1, -1));
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
 
         jPanel6.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -431,7 +431,7 @@ public class Home extends javax.swing.JFrame {
         });
         jPanel4.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 390, -1, 50));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 1160, 730));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 1160, 720));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -444,10 +444,10 @@ public class Home extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setBounds(0, 0, 1642, 782);
+        setBounds(0, 0, 1612, 782);
     }// </editor-fold>//GEN-END:initComponents
     
-    //สร้าง panel ให้เป็นลูปห
+    //สร้าง panel ให้เป็นลูปตามจำนวนของ listName
     public void loopCheckList() {
         bigpanelCheckList.removeAll();
         int y = 10;
@@ -458,6 +458,7 @@ public class Home extends javax.swing.JFrame {
         labelCheckList = new JLabel[listName.size()];
         JLabel[] status = new JLabel[listName.size()];
 
+        //วนสร้างตามจำนวน listName
         for (int i = 0; i < listName.size(); i++) {
             try {
                 int count = i;
@@ -584,7 +585,7 @@ public class Home extends javax.swing.JFrame {
            //โดยที่มีเงื่อนไขว่าวันเริ่มต้นต้อง <= วันปัจจุบัน และวันสิ้นสุดต้อง >= วันปัจจุบันโดยใช้เทียบเป็น 
             //Stringคือทำการ cast type จาก date มาเป็น string และจัด format ให้เหมือนกับ type date
             sql = "SELECT * FROM LIST INNER JOIN PLAN ON LIST.list_planID = PLAN.planID "
-                    + "WHERE startDate<=? AND endDate>=? AND list_nameDay =?";
+                    + "WHERE startDate<=? AND endDate>=? AND list_nameDay =? AND planStatus=?";
             //เป็นการ parse จาก String ให้กลายเป็น type date
             Date dateToday = dateFormat.parse(dateFormat.format(date));
             //ถ้าวันที่เรากดหของปัจจุบันอยู่ก่อนหน้าวันปัจจุบันที่เป็น type date ให้ใช้ sql
@@ -596,8 +597,7 @@ public class Home extends javax.swing.JFrame {
             pstm.setString(1, dateFormat.format(Calendar.getCalendar().getTime()));
             pstm.setString(2, dateFormat.format(Calendar.getCalendar().getTime()));
             pstm.setString(3, selectedDay);
-           // String d = "";
-
+            pstm.setInt(4,1);
             ResultSet rs = pstm.executeQuery();
             actToday.setText("");
             int rsCount = 0;
@@ -654,6 +654,7 @@ public class Home extends javax.swing.JFrame {
         }
     }
 
+    //method นี้ทำให้กลับมาหน้า myPlan
     public void backToMyPlan() {
         MyPlan mp = new MyPlan();
         mp.setVisible(true);
@@ -661,7 +662,8 @@ public class Home extends javax.swing.JFrame {
         mp.setLocationRelativeTo(null);
         this.setVisible(false);
     }
-
+    
+    //method crate plan ก็คือใช้สร้างแผนการออกกำลังกาย
     public void createPlan() {
         CreatePlan cp = new CreatePlan();
         cp.setVisible(true);
@@ -670,8 +672,7 @@ public class Home extends javax.swing.JFrame {
         this.setVisible(false);
     }
     
-    
-//งงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงง
+    //method นี้เกิดขึ้นเมื่อกด save ตอนที่กด checklist
     public void saveCheckList() {
         ArrayList<ToDoList> list = this.listName;
         //วนลูปตามจำนวนที่gen มา
@@ -685,8 +686,8 @@ public class Home extends javax.swing.JFrame {
         }
         repaint();
     }
-    //งง
-
+    
+    //method นี้จะใช้สำหรับเมื่อมีการติ๊กถูกแล้วจะส่งค่าไปให้กับ database
     public void updateListStatus(int id, int temp) {
         try {
             System.out.println(listName.size());

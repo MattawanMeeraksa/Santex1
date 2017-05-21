@@ -32,6 +32,7 @@ public class CreatePlan extends javax.swing.JFrame {
     private String fri = "";
     private String sat = "";
     private int dpwAll = 0;
+    private int dpwMon,dpwTue,dpwWed,dpwThu,dpwFri,dpwSat,dpwSun;
 
     public String getNameDay() {
         return nameDay;
@@ -449,6 +450,7 @@ public class CreatePlan extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Your input is incorrect");
             } else {
                 nameDay = "" + sun + mon + tues + wedn + thru + fri + sat;
+                dpwAll = dpwMon+dpwTue+dpwWed+dpwThu+dpwFri+dpwSat+dpwSun;
                 String sql = "insert into PLAN(planName,descriptionPlan,nameDay, startDate,endDate,dayperweek) values (?,?,?,?,?,?)";
                 pstm = conn.prepareStatement(sql);
                 pstm.setString(1, txtPName.getText());
@@ -492,7 +494,7 @@ public class CreatePlan extends javax.swing.JFrame {
     }
 
     public void checkUserInputPlanDescription() {
-        if (!(Pattern.matches("^[a-zA-Z0-9 ]+$", txtDes.getText()))) {
+        if (!(Pattern.matches("^[a-zA-Z0-9 \n]+$", txtDes.getText()))) {
             txtDes.setText("");
         }
     }
@@ -519,11 +521,11 @@ public class CreatePlan extends javax.swing.JFrame {
             System.out.println("Selected Sunday");
             sun = "Sunday ";
             setSun(sun);
-            dpwAll++;
+            dpwSun++;
         } else if (sunCheck.isSelected() == false) {
             System.out.println("Not Selected Sunday");
             sun = "";
-            dpwAll = 0;
+            dpwSun = 0;
         }
     }//GEN-LAST:event_sunCheckActionPerformed
 
@@ -532,11 +534,11 @@ public class CreatePlan extends javax.swing.JFrame {
             System.out.println("Selected Monday");
             mon = "Monday ";
             setMon(mon);
-            dpwAll++;
+            dpwMon++;
         } else if (monCheck.isSelected() == false) {
             System.out.println("Not Selected Monday");
             mon = "";
-            dpwAll = 0;
+            dpwMon = 0;
         }
     }//GEN-LAST:event_monCheckActionPerformed
 
@@ -545,11 +547,11 @@ public class CreatePlan extends javax.swing.JFrame {
             System.out.println("Selected Tuesday");
             tues = "Tuesday ";
             setTues(tues);
-            dpwAll++;
+            dpwTue++;
         } else if (tuesCheck.isSelected() == false) {
             System.out.println("Not Selected Tuesday");
             tues = "";
-            dpwAll = 0;
+            dpwTue = 0;
         }
     }//GEN-LAST:event_tuesCheckActionPerformed
 
@@ -558,11 +560,11 @@ public class CreatePlan extends javax.swing.JFrame {
             System.out.println("Selected Wednesday");
             wedn = "Wednesday ";
             setWedn(wedn);
-            dpwAll++;
+            dpwWed++;
         } else if (wedCheck.isSelected() == false) {
             System.out.println("Not Selected Wednesday");
             wedn = "";
-            dpwAll = 0;
+            dpwWed = 0;
         }
     }//GEN-LAST:event_wedCheckActionPerformed
 
@@ -571,11 +573,11 @@ public class CreatePlan extends javax.swing.JFrame {
             System.out.println("Selected Thursday");
             thru = "Thursday ";
             setThru(thru);
-            dpwAll++;
+            dpwThu++;
         } else if (thuCheck.isSelected() == false) {
             System.out.println("Not Selected Thursday");
             thru = "";
-            dpwAll = 0;
+            dpwThu = 0;
         }
     }//GEN-LAST:event_thuCheckActionPerformed
 
@@ -584,11 +586,11 @@ public class CreatePlan extends javax.swing.JFrame {
             System.out.println("Selected Friday");
             fri = "Friday ";
             setFri(fri);
-            dpwAll++;
+            dpwFri++;
         } else if (friCheck.isSelected() == false) {
             System.out.println("Not Selected Friday");
             fri = "";
-            dpwAll = 0;
+            dpwFri = 0;
         }
     }//GEN-LAST:event_friCheckActionPerformed
 
@@ -597,11 +599,11 @@ public class CreatePlan extends javax.swing.JFrame {
             System.out.println("Selected Saturday");
             sat = "Saturday ";
             setSat(sat);
-            dpwAll++;
+            dpwSat++;
         } else if (satCheck.isSelected() == false) {
             System.out.println("Not Selected Saturday");
             sat = "";
-            dpwAll = 0;
+            dpwSat = 0;
         }
     }//GEN-LAST:event_satCheckActionPerformed
 

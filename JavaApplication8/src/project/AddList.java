@@ -370,11 +370,6 @@ public class AddList extends java.awt.Dialog {
                 int listPlanId = Integer.parseInt(l);
                 pstm.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Add list successfully");
-                MyPlan frame = new MyPlan();
-                frame.setVisible(true);
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.setLocationRelativeTo(null);
-                frame.setResizable(false);
                 setVisible(false);
             }
         } catch (SQLException ex) {
