@@ -322,6 +322,7 @@
               <SubComponents>
                 <Component class="javax.swing.JTextArea" name="jTextArea1">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
                     </Property>
@@ -333,7 +334,10 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="rows" type="int" value="5"/>
-                    <Property name="text" type="java.lang.String" value="Instruction : &#xa;1. if the color of checklist is yellow, list of &#xa;today is wating for checking.&#xa;&#xa;2. If the color of checklist is green, list &#xa;was end.&#xa;&#xa;3. If the color of checklist is red&#xa;    - the list that was skipped.&#xa;    - the list haven&apos;t be coming yet.&#xa;"/>
+                    <Property name="text" type="java.lang.String" value="Instruction : &#xa;1. if the color of checklist is yellow, list of &#xa;today is wating for checking.&#xa;&#xa;2. If the color of checklist is green, list &#xa;was end and you are checked already.&#xa;&#xa;3. If the color of checklist is red&#xa;    - the list that was skipped.&#xa;    - the list haven&apos;t be coming yet.&#xa;"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="null"/>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>

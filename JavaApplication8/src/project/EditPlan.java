@@ -162,7 +162,10 @@ public class EditPlan extends javax.swing.JFrame {
         lblDes.setForeground(new java.awt.Color(255, 255, 255));
         lblDes.setText("Description");
 
+        txtPName.setFont(new java.awt.Font("Yu Gothic", 0, 15)); // NOI18N
+
         txtDes.setColumns(20);
+        txtDes.setFont(new java.awt.Font("Yu Gothic", 0, 15)); // NOI18N
         txtDes.setRows(5);
         jScrollPane1.setViewportView(txtDes);
 
@@ -233,12 +236,12 @@ public class EditPlan extends javax.swing.JFrame {
                                 .addComponent(lblStartDate)
                                 .addComponent(lblEndDate))
                             .addGap(7, 7, 7))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(txtPName, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(startDateChoose, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(endDateChoose, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(endDateChoose, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(80, 80, 80))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,7 +293,7 @@ public class EditPlan extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(endDateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEndDate))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -328,7 +331,6 @@ public class EditPlan extends javax.swing.JFrame {
     
     public void saveToUpdateEditPlan(){
          try {
-
              if (txtPName.getText().equals("") || txtDes.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Your input is incorrect");
             } else {
@@ -398,7 +400,7 @@ public class EditPlan extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditPlan().setVisible(true);
+               // new EditPlan().setVisible(true);
             }
         });
     }

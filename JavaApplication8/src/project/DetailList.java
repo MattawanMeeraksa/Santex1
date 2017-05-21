@@ -175,8 +175,6 @@ public class DetailList extends javax.swing.JFrame {
     public DetailList(int planId) {
         this();
         this.planId = planId;
-        
-
     }
 
     /**
@@ -482,8 +480,10 @@ public class DetailList extends javax.swing.JFrame {
     public void showDetaiListTable() {
         try {
             //ถ้าค่าเปลี่ยนก็อัพเดทอัตโนมัติ
-            model = (DefaultTableModel) planListTable.getModel();
+            model = (DefaultTableModel) planListTable.getModel(); //getModel() : TableModel ที่ประกอบไปด้วยข้อมูลที่จะโชว์โดยตารางนี้
+            //ใช้เพื่อกำหนดแถวให้กับ model
             model.setRowCount(0); //บอกว่าแถวแรกของตารางเป็น 0
+            //select column ที่กำหนดจากตาราง LIST โดยมีเงื่อนไขว่าเอา list_planID ที่มีค่า planId
             String sql = "SELECT listName, list_nameDay,descriptionList FROM LIST WHERE list_planID= ?";
             pstm = conn.prepareStatement(sql);
             pstm.setInt(1, planId);

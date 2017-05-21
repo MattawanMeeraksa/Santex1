@@ -61,7 +61,6 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public int getPlanID() {
@@ -262,12 +261,14 @@ public class Home extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Santex/image/exercise (1).png"))); // NOI18N
 
+        jTextArea1.setEditable(false);
         jTextArea1.setBackground(new java.awt.Color(51, 51, 51));
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea1.setRows(5);
-        jTextArea1.setText("Instruction : \n1. if the color of checklist is yellow, list of \ntoday is wating for checking.\n\n2. If the color of checklist is green, list \nwas end.\n\n3. If the color of checklist is red\n    - the list that was skipped.\n    - the list haven't be coming yet.\n");
+        jTextArea1.setText("Instruction : \n1. if the color of checklist is yellow, list of \ntoday is wating for checking.\n\n2. If the color of checklist is green, list \nwas end and you are checked already.\n\n3. If the color of checklist is red\n    - the list that was skipped.\n    - the list haven't be coming yet.\n");
+        jTextArea1.setBorder(null);
         jScrollPane2.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout LeftLayout = new javax.swing.GroupLayout(Left);
@@ -453,7 +454,7 @@ public class Home extends javax.swing.JFrame {
         int y = 10;
         bigpanelCheckList.repaint();
         bigpanelCheckList.revalidate();
-        smallCheckListPanel = new JPanel[listName.size()];
+        smallCheckListPanel = new JPanel[listName.size()]; //สร้างตามจำนวนที่เก็บ
         checkList = new JCheckBox[listName.size()];
         labelCheckList = new JLabel[listName.size()];
         JLabel[] status = new JLabel[listName.size()];
@@ -464,6 +465,7 @@ public class Home extends javax.swing.JFrame {
                 smallCheckListPanel[i] = new JPanel();
                 checkList[i] = new JCheckBox();
                 checkList[i].addActionListener(new java.awt.event.ActionListener() {
+                    //เป็นการสร้าง actionให้กับ checkList
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         checkListActionPerformed(evt, count);
                     }
@@ -476,15 +478,17 @@ public class Home extends javax.swing.JFrame {
                 labelCheckList[i].setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
                 labelCheckList[i].setForeground(new java.awt.Color(255, 255, 255));
                 labelCheckList[i].setText(listName.get(i).getName());
+               
                 System.out.println(Calendar.getCalendar().getTime());
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = new Date();
                 SimpleDateFormat sdf = new SimpleDateFormat("EEEE"); //เป็น format ในการบอกว่าเป็นวันอะไรในสัปดาห์เช่นจันทร์หรืออังคาร
-                String toDay2 = dateFormat.format(date);
+                String toDay2 = dateFormat.format(date); //เก็บค่าของวันปัจจุบัน
                 String dayCar = dateFormat.format(Calendar.getCalendar().getTime()); 
                 //getTime() : ใช้คืนค่า Object date ที่เก็บค่าวันที่และเวลาเอาไว้
                 //Calendar.getCalendar() : ออกมาเป็นรายละเอียดต่าง
-                //Calendar.getCalendar() : จะออกมาเป็นวันที่ Sun May 21 12:08:07 ICT 2017 ตามเวลาปัจจุบันและ timezone
+                //Calendar.getCalendar().getTime() : จะออกมาเป็นวันที่ Sun May 21 12:08:07 ICT 2017 
+                //ตามเวลาปัจจุบันและ timezone
                 System.out.println(toDay2); //ออกมาในรูป yyyy-MM-dd ก็คือตามวันปัจจุบันและตาม format ที่กำหนดไว้
                 System.out.println("dateDone = " + listName.get(i).getDateDone());
                 
@@ -572,12 +576,14 @@ public class Home extends javax.swing.JFrame {
             listName.clear();
             listId.clear();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("EEEE"); //ไวใช้บอกวันว่าจันทร์หรืออังคารหรือ...
-            String toDay = sdf.format(date);
+            Date date = new Date(); //ได้เวลาปัจจุบันออกมาเป็นรูปนี้ Sun May 21 19:10:58 ICT 2017
+            SimpleDateFormat sdf = new SimpleDateFormat("EEEE"); //ไว้ใช้บอกวันว่าจันทร์หรืออังคารหรือ...
+            String toDay = sdf.format(date); //เปลี่ยน format ตามที่เรากำหนด
             String selectedDay = sdf.format(Calendar.getCalendar().getTime());
             setThisDay(toDay);
-           //
+           //select ข้อมูลทุกอย่างของตาราง List ที่มีส่วนที่เหมือนกันคือ list_planID กับ planID
+           //โดยที่มีเงื่อนไขว่าวันเริ่มต้นต้อง <= วันปัจจุบัน และวันสิ้นสุดต้อง >= วันปัจจุบันโดยใช้เทียบเป็น 
+            //Stringคือทำการ cast type จาก date มาเป็น string และจัด format ให้เหมือนกับ type date
             sql = "SELECT * FROM LIST INNER JOIN PLAN ON LIST.list_planID = PLAN.planID "
                     + "WHERE startDate<=? AND endDate>=? AND list_nameDay =?";
             //เป็นการ parse จาก String ให้กลายเป็น type date
@@ -587,10 +593,11 @@ public class Home extends javax.swing.JFrame {
                 System.out.println("before this day");
             }
             pstm = conn.prepareStatement(sql); //INNER JOIN STATUSLIST ON LIST.listID = STATUSLIST.list_ID
+            //format เปลี่ยนจาก date ให้เป็น string ตาม format ที่เราตั้งไว้
             pstm.setString(1, dateFormat.format(Calendar.getCalendar().getTime()));
             pstm.setString(2, dateFormat.format(Calendar.getCalendar().getTime()));
             pstm.setString(3, selectedDay);
-            String d = "";
+           // String d = "";
 
             ResultSet rs = pstm.executeQuery();
             actToday.setText("");
@@ -598,23 +605,31 @@ public class Home extends javax.swing.JFrame {
             while (rs.next()) {
                 actToday.append("Exercise : " + rs.getString("listname") + "\n"); //กล่องด้านบนปริ้นตามจำนวน listname
                 System.out.println("Exercise : " + rs.getString("listname"));
-                listName1.add(rs.getString("listName"));
-                listName.add(new ToDoList(rs.getInt("listID"), rs.getString("listName"), rs.getString("list_nameDay")));
-                listId.add(rs.getInt("listID"));
+                listName1.add(rs.getString("listName")); //เมื่อวนแล้วเจอข้อมูลก็เอาเข้าไปเก็บใน arraylist ชื่อ listname1
+                System.out.println(listName1);
+                //listName ที่เป็น type todolist : มีการ add ข้อมูลลงใน listName โดยรับข้อมูลผ่าน object ที่ชื่อว่า Todolist
+                listName.add(new ToDoList(rs.getInt("listID"), rs.getString("listName"), rs.getString("list_nameDay")));   //สร้าง object TodoList ไปเก็บไว้ใน arraylist listname
+                listId.add(rs.getInt("listID")); // วนเจอข้อมูลก็ add ข้อมูลลงไปใน arraylist listid
                 System.out.println("listId = " + rs.getInt("listID"));
+                //select ข้อมูลทุกอย่างใน statuslist โดยมีเงื่อนไขว่า 
+                //list_Id ของตาราง STATUSLIST จะต้องเท่ากับ listID ของตาราง LIST
+                //และ listDate จะต้องเป็นวันปัจจุบันโดยที่มี type เป็น date
                 String sqlStatus = "SELECT * FROM STATUSLIST WHERE list_id=" + rs.getInt("listID")
                         + " AND listDate='" + dateFormat.format(Calendar.getCalendar().getTime()) + "'";
+                //ใส่ไปตรงๆเลยเพราะเราไม่ได้ใช้อะไรเอ่ย
                 Statement s = conn.createStatement();
                 ResultSet rsStatus = s.executeQuery(sqlStatus);
                 while (rsStatus.next()) {
+                    //ไปดึง listname ที่ตำแหน่ง 0 ออกมาแล้วไป set ค่าให้กับมัน
+                    //Timestamp เก็บข้อมูลละเอียดกว่า date
                     listName.get(rsCount).setDateDone(rsStatus.getTimestamp("listDate"));
                     listName.get(rsCount).setStatus(rsStatus.getInt("statusDone"));
                     listName.get(rsCount).setStatusId(rsStatus.getInt("statusId"));
                 }
                 System.out.println("listId from object = " + listName.get(rsCount).getId());
-
                 Date dateSelectday = dateFormat.parse(dateFormat.format(Calendar.getCalendar().getTime()));
                 System.out.println("time dateSelectday = " + dateSelectday);
+                //ถ้าเวลาที่เราเลือกมันไม่เท่ากับค่าที่อยู่ใน listname มันก็จะปริ้นไม่เท่ากับ -> จะไปset ค่า datedone ที่อยู่ใน listNameให้เป็น null
                 if (!dateSelectday.equals(listName.get(rsCount).getDateDone())) {
                     System.out.println("not equal!");
                     listName.get(rsCount).setDateDone(null);
@@ -623,10 +638,11 @@ public class Home extends javax.swing.JFrame {
                 actToday.append("   - set : " + rs.getInt("set") + "\n");
                 rsCount++;
             }
-            tmp_listName = listName;
+            tmp_listName = listName; //จะเก็บค่าที่เราวนลูปแล้วก็เก็บมา
             tmp_listId = listId;
             loopCheckList();
-
+            
+            System.out.println(dateFormat.format(date));
             if (dateFormat.format(Calendar.getCalendar().getTime()).equals(dateFormat.format(date))) {
                 txtDay.setText(dateFormat.format(date));
             } else {
@@ -659,13 +675,14 @@ public class Home extends javax.swing.JFrame {
 //งงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงง
     public void saveCheckList() {
         ArrayList<ToDoList> list = this.listName;
+        //วนลูปตามจำนวนที่gen มา
         for (int i = 0; i < list.size(); i++) {
             if (this.checkList[i].isSelected()) {
                 updateListStatus(list.get(i).getId(), i);
-                checkList[i].setEnabled(false);
+                checkList[i].setEnabled(false); //ทำให้มันติ๊กไม่ได้
             } else {
             }
-            this.checkList[i].setSelected(false);
+            this.checkList[i].setSelected(false); //ทำให้ตัวนั้นยังไม่ได้ติ๊กถูก
         }
         repaint();
     }

@@ -475,12 +475,12 @@ public class CreatePlan extends javax.swing.JFrame {
 
     public void backToHome() {
         System.out.println("Clicked Cancel button");
-        Home h = new Home();
-        h.pack();
-        h.setVisible(true);
-        h.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        h.setLocationRelativeTo(null);
-        h.setResizable(false);
+        MyPlan mp = new MyPlan();
+        mp.pack();
+        mp.setVisible(true);
+        mp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mp.setLocationRelativeTo(null);
+        mp.setResizable(false);
         setVisible(false);
     }
 

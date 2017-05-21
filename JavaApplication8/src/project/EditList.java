@@ -341,6 +341,8 @@ public class EditList extends javax.swing.JFrame {
     public void saveToUpdateEditListPlan(){
         try {
             System.out.println("listID" + listID);
+            //อัพเดทค่าไปที่ตาราง LIST กำหนดให้ listname,des,rep,set มีค่าเป็นอะไรเอ่ยแล้วไปกำหนดค่าให้มันด้านล่าง
+            //โดยมีเงื่อนไขที่ว่าจะต้องเป็น listID นี้
                 String sql = "update LIST set ListName = ? , descriptionList = ? , reps = ? , `set` = ? where listID=" + listID;
                 pstm = (PreparedStatement) conn.prepareStatement(sql);
                 pstm.setString(1, txtLName.getText());
