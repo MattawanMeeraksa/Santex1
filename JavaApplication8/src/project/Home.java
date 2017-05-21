@@ -476,16 +476,21 @@ public class Home extends javax.swing.JFrame {
                 labelCheckList[i].setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
                 labelCheckList[i].setForeground(new java.awt.Color(255, 255, 255));
                 labelCheckList[i].setText(listName.get(i).getName());
-                
+                System.out.println(Calendar.getCalendar().getTime());
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = new Date();
                 SimpleDateFormat sdf = new SimpleDateFormat("EEEE"); //เป็น format ในการบอกว่าเป็นวันอะไรในสัปดาห์เช่นจันทร์หรืออังคาร
                 String toDay2 = dateFormat.format(date);
                 String dayCar = dateFormat.format(Calendar.getCalendar().getTime()); 
                 //getTime() : ใช้คืนค่า Object date ที่เก็บค่าวันที่และเวลาเอาไว้
-                //Calendar.getCalendar() : 
-                System.out.println(toDay2);
+                //Calendar.getCalendar() : ออกมาเป็นรายละเอียดต่าง
+                //Calendar.getCalendar() : จะออกมาเป็นวันที่ Sun May 21 12:08:07 ICT 2017 ตามเวลาปัจจุบันและ timezone
+                System.out.println(toDay2); //ออกมาในรูป yyyy-MM-dd ก็คือตามวันปัจจุบันและตาม format ที่กำหนดไว้
                 System.out.println("dateDone = " + listName.get(i).getDateDone());
+                
+                
+                //ถ้า listNameตำแหน่งที่ i มี status = 1 และ listNameตำแหน่งที่ i มี datedone ไม่เท่ากับ nullก็คือมีค่า
+                //ในส่วนของตรงนี้จะกลายเป็นสีเขียว
                 if (listName.get(i).getStatus() == 1 && listName.get(i).getDateDone() != null) {
                     smallCheckListPanel[i].add(labelCheckList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 14, -1, -1));
                     checkList[i].setBackground(new java.awt.Color(51, 51, 51));
@@ -496,20 +501,31 @@ public class Home extends javax.swing.JFrame {
                     checkList[i].setText("Done");
                     checkList[i].setEnabled(false);
 
-                } else if (toDay2.equals(dayCar)) {
+                } 
+                //ถ้า today2(วันปัจจุบัน) มีค่าเท่ากับ dayCar(วันที่กดปฏิทิน)
+                //ให้ติ๊กได้และให้ text เป็นสีเหลือง
+                else if (toDay2.equals(dayCar)) {
                     smallCheckListPanel[i].add(labelCheckList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 14, -1, -1));
                     checkList[i].setBackground(new java.awt.Color(51, 51, 51));
                     checkList[i].setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
                     checkList[i].setForeground(Color.YELLOW);
                     checkList[i].setText("Done");
                     labelCheckList[i].setForeground(Color.YELLOW);
-                } else {
+                } 
+                //ถ้าไม่ใช่ทั้งกรณีแรกและกรณี2ก็คือไม่ใช่วันปัจจุบันและมี status เป็น null
+                else {
+                    //เช็คว่า listname ตำแหน่งที่ i เป็นวันอะไร(วันในสัปดาห์)ต้องตรงตามตัวอักษรเป๊ะๆของ getThisDay
+                    //และวันนี้มีค่าเหมือนกับวันที่กดปฏิทนหรือเปล่าและ listName ตำแหน่งทที่ i ที่มี status = 1
+                    //ถ้าใช่ให้ checkList ตำแหน่งที่ i หายไปและทำการ remove ตำแหน่งที่ i ออกไปและ refresh หน้านั้นโดยใช้ repaint
                     if (listName.get(i).getDays().equalsIgnoreCase(getThisDay()) && toDay2.equals(dayCar) && listName.get(i).getStatus() == 1) {
                         checkList[i].setVisible(false);
                         bigpanelCheckList.remove(i);
                         bigpanelCheckList.repaint();
                         bigpanelCheckList.revalidate();
-                    } else {
+                    } 
+                    //ถ้าไม่ตรงกับกรณีด้านบน
+                    else {
+                        //ให้ตัวอักษรเป็นสีแดงและไม่สามารถติ๊กเครื่องหมายได้
                         smallCheckListPanel[i].add(labelCheckList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 14, -1, -1));
                         checkList[i].setBackground(new java.awt.Color(51, 51, 51));
                         checkList[i].setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
@@ -521,6 +537,7 @@ public class Home extends javax.swing.JFrame {
                         labelCheckList[i].setForeground(Color.red);
                     }
                 }
+                //ในส่วนตรงนี้จะเป็นการเพิ่ม component ลงไปในส่วนต่างๆของหน้านี้
                 smallCheckListPanel[i].add(checkList[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
                 bigpanelCheckList.add(status[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
                 bigpanelCheckList.add(smallCheckListPanel[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(15, y, 440, -1));
@@ -537,6 +554,7 @@ public class Home extends javax.swing.JFrame {
 
     }
 
+    //เป็น method ที่เป็น action ของ checkList ทีเราเพิ่มมาเพราะเนื่องจากว่าเราให้จำนวนเช็คลิสมีตามจำนวนของ listName
     public void checkListActionPerformed(java.awt.event.ActionEvent evt, int count) {
         if (checkList[count].isSelected() == true) {
             System.out.println("" + listId);
@@ -547,7 +565,7 @@ public class Home extends javax.swing.JFrame {
         }
     }
 
-    //งง
+    //เรียกใช้เมื่อมีการกดวันที่ในปฏิทินของเรา
     public void clickCalendar() {
         try {
             String sql = null;
@@ -559,9 +577,12 @@ public class Home extends javax.swing.JFrame {
             String toDay = sdf.format(date);
             String selectedDay = sdf.format(Calendar.getCalendar().getTime());
             setThisDay(toDay);
+           //
             sql = "SELECT * FROM LIST INNER JOIN PLAN ON LIST.list_planID = PLAN.planID "
                     + "WHERE startDate<=? AND endDate>=? AND list_nameDay =?";
+            //เป็นการ parse จาก String ให้กลายเป็น type date
             Date dateToday = dateFormat.parse(dateFormat.format(date));
+            //ถ้าวันที่เรากดหของปัจจุบันอยู่ก่อนหน้าวันปัจจุบันที่เป็น type date ให้ใช้ sql
             if (Calendar.getCalendar().getTime().before(dateToday)) {
                 System.out.println("before this day");
             }
@@ -575,9 +596,7 @@ public class Home extends javax.swing.JFrame {
             actToday.setText("");
             int rsCount = 0;
             while (rs.next()) {
-
-                //actToday.append();
-                actToday.append("Exercise : " + rs.getString("listname") + "\n");
+                actToday.append("Exercise : " + rs.getString("listname") + "\n"); //กล่องด้านบนปริ้นตามจำนวน listname
                 System.out.println("Exercise : " + rs.getString("listname"));
                 listName1.add(rs.getString("listName"));
                 listName.add(new ToDoList(rs.getInt("listID"), rs.getString("listName"), rs.getString("list_nameDay")));
