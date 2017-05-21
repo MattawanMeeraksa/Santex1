@@ -588,7 +588,7 @@ public class DetailList extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }
-
+    //ไปหน้า edit
     public void editList() {
         try {
             if (getPlanStatus() == 1) {

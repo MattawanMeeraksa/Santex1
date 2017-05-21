@@ -55,6 +55,7 @@ public class AddList extends java.awt.Dialog {
     /**
      * Creates new form AddList1
      */
+    //หน้าเก่าส่งค่ามาให้หน้านี้ ก็คือ myplan ส่งค่ามาให้หน้านี้
     public AddList(java.awt.Frame parent, boolean modal, MyPlan mp, int planId, Date startDate, Date endDate) {
         super(parent, modal);
         try {
@@ -63,8 +64,8 @@ public class AddList extends java.awt.Dialog {
             this.endDate = endDate;
             initComponents();
             this.mp = mp;
-            txtListPlanId.setText(this.planId + "");
-            txtListPlanId.setVisible(false);
+            txtListPlanId.setText(this.planId + ""); //เอาค่ามาจาก myplan
+            txtListPlanId.setVisible(false); //set ไม่ให้มันมองเห็นแต่รูว่าส่งค่ามา
             System.out.println(mp.getPlanName());
             conn = MySQLConnect.getMySQLConnection();
             chooseDayFromComboBox();
@@ -349,7 +350,6 @@ public class AddList extends java.awt.Dialog {
     public void addAddListToDetailListOfMyPlan() {
         try {
             System.out.println("Clicked Save button");
-
             if (txtList.getText().equals("") || txtDes.getText().equals("") || txtReps.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Your input is incorrect");
             } else {
@@ -357,13 +357,13 @@ public class AddList extends java.awt.Dialog {
                         + " values (?,?,?,?,?,?)";
                 pstm = conn.prepareStatement(sqlList);
                 pstm.setString(1, txtList.getText());
-                pstm.setString(2, txtDes.getText());
-                pstm.setString(3, txtReps.getText());
-                String r = txtReps.getText();
-                int reps = Integer.parseInt(r);
-                pstm.setString(4, txtSet.getText());
+                pstm.setString(2, txtDes.getText()); 
+                String r = txtReps.getText(); //เป็น String
+                int reps = Integer.parseInt(r); //เอา String มาเปลี่ยน type ให้เป็น int
+                pstm.setInt(3, reps);
                 String s = txtSet.getText();
                 int set = Integer.parseInt(s);
+                pstm.setInt(4, set);
                 pstm.setString(5, txtListPlanId.getText());
                 pstm.setString(6, boxChooseDay.getSelectedItem() + "");
                 String l = txtListPlanId.getText();
@@ -437,6 +437,30 @@ public class AddList extends java.awt.Dialog {
         }
     }
 
+    //เลือกวัน
+    public void chooseDayFromComboBox() {
+        try {
+            System.out.println("selecting.." + planId);
+            pstm = conn.prepareStatement("SELECT nameDay,dayperweek from PLAN where planID = " + planId); 
+            //ไป select ค่า nameDay,dayperweek โดยมีเงื่อนไขว่าต้องเป็นไอดีของแพลนนี้
+            System.out.println("Dai laew na");
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                String days = rs.getString("nameDay");
+                int start = 0;
+                //วนลูปตามจำนวน dayperweek
+                for (int i = 0; i < rs.getInt("dayperweek"); i++) {
+                    //substring ใส่ตัวเริ่ม : start กับตัวจบก็คือหาตำแหน่งที่มีเว้นววรคโดยเริ่มจาก start
+                    String eachDay = days.substring(start, days.indexOf(" ", start)); //set ค่าให้ eachdayโดยตัดจากstart จนถึงช่องว่างตัวแรก
+                    start = days.indexOf(" ", start) + 1; //ทำการเปลี่ยนค่า start ให้เป็นตัวล่าสุดที่เราเจอ
+                    boxChooseDay.addItem(eachDay); //เพิ่ม item ให้กับ combobox ตามจำนวนที่ตัดมาได้
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     private void closeDialog(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeDialog
         setVisible(false);
         dispose();
@@ -492,27 +516,7 @@ public class AddList extends java.awt.Dialog {
             }
         });
     }
-
-    public void chooseDayFromComboBox() {
-        try {
-            System.out.println("selecting.." + planId);
-            pstm = conn.prepareStatement("SELECT nameDay,dayperweek from PLAN where planID = " + planId);
-            System.out.println("Dai laew na");
-            ResultSet rs = pstm.executeQuery();
-            while (rs.next()) {
-                String days = rs.getString("nameDay");
-                int start = 0;
-                for (int i = 0; i < rs.getInt("dayperweek"); i++) {
-                    String eachDay = days.substring(start, days.indexOf(" ", start));
-                    start = days.indexOf(" ", start) + 1;
-                    boxChooseDay.addItem(eachDay);
-                }
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addList;
     private javax.swing.JComboBox<String> boxChooseDay;

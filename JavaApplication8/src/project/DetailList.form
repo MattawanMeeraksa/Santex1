@@ -60,7 +60,6 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="816" max="-2" attributes="0"/>
-                          <EmptySpace pref="72" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
@@ -75,9 +74,9 @@
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -165,17 +164,15 @@
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jScrollPane4" pref="341" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jScrollPane3" max="32767" attributes="0"/>
-                              <Component id="txtSet" alignment="0" pref="341" max="32767" attributes="0"/>
-                              <Component id="lblListPlan" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblSet" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblDay" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblReps" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtReps" alignment="1" max="32767" attributes="0"/>
-                              <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jScrollPane3" max="32767" attributes="0"/>
+                          <Component id="txtSet" alignment="0" pref="341" max="32767" attributes="0"/>
+                          <Component id="lblListPlan" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblSet" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDay" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblReps" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtReps" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
