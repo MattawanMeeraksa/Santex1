@@ -56,17 +56,17 @@ public class AddList extends java.awt.Dialog {
      * Creates new form AddList1
      */
     //หน้าเก่าส่งค่ามาให้หน้านี้ ก็คือ myplan ส่งค่ามาให้หน้านี้
-    public AddList(java.awt.Frame parent, boolean modal, MyPlan mp, int planId, Date startDate, Date endDate) {
+    public AddList(java.awt.Frame parent, boolean modal, int planId, Date startDate, Date endDate) {
         super(parent, modal);
         try {
             this.planId = planId;
             this.startDate = startDate;
             this.endDate = endDate;
             initComponents();
-            this.mp = mp;
+            //this.mp = mp;
             txtListPlanId.setText(this.planId + ""); //เอาค่ามาจาก myplan
-            txtListPlanId.setVisible(false); //set ไม่ให้มันมองเห็นแต่รูว่าส่งค่ามา
-            System.out.println(mp.getPlanName());
+            txtListPlanId.setVisible(false); //set ไม่ให้มันมองเห็นแต่รู้ว่าส่งค่ามา
+//            System.out.println(mp.getPlanName());
             conn = MySQLConnect.getMySQLConnection();
             chooseDayFromComboBox();
         } catch (ClassNotFoundException ex) {
@@ -437,18 +437,17 @@ public class AddList extends java.awt.Dialog {
         try {
             System.out.println("selecting.." + planId);
             pstm = conn.prepareStatement("SELECT nameDay,dayperweek from PLAN where planID = " + planId); 
-            //ไป select ค่า nameDay,dayperweek โดยมีเงื่อนไขว่าต้องเป็นไอดีของแพลนนี้
+            
             System.out.println("Dai laew na");
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 String days = rs.getString("nameDay");
                 int start = 0;
-                //วนลูปตามจำนวน dayperweek
+                
                 for (int i = 0; i < rs.getInt("dayperweek"); i++) {
-                    //substring ใส่ตัวเริ่ม : start กับตัวจบก็คือหาตำแหน่งที่มีเว้นววรคโดยเริ่มจาก start
-                    String eachDay = days.substring(start, days.indexOf(" ", start)); //set ค่าให้ eachdayโดยตัดจากstart จนถึงช่องว่างตัวแรก
-                    start = days.indexOf(" ", start) + 1; //ทำการเปลี่ยนค่า start ให้เป็นตัวล่าสุดที่เราเจอ
-                    boxChooseDay.addItem(eachDay); //เพิ่ม item ให้กับ combobox ตามจำนวนที่ตัดมาได้
+                    String eachDay = days.substring(start, days.indexOf(" ", start)); 
+                    start = days.indexOf(" ", start) + 1; 
+                    boxChooseDay.addItem(eachDay); 
                 }
             }
         } catch (SQLException ex) {

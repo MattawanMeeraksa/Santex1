@@ -346,9 +346,6 @@ public class EditPlan extends javax.swing.JFrame {
                 MyPlan mp = new MyPlan();
                 mp.setVisible(true);
                 this.setVisible(false);
-//                DetailList dl = new DetailList(getPlanId());
-//                System.out.println(getPlanId());
-//                dl.setVisible(true);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -363,11 +360,20 @@ public class EditPlan extends javax.swing.JFrame {
     }//GEN-LAST:event_lblcancelMouseClicked
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-       saveToUpdateEditPlan();
+       if(startDateChoose.getDate().before(endDateChoose.getDate())){
+            saveToUpdateEditPlan();
+        }else if(startDateChoose.getDate().after(endDateChoose.getDate())){
+            JOptionPane.showMessageDialog(null, "You can't choose end date before start date");
+        }
+        
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void lblsave1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsave1MouseClicked
-       saveToUpdateEditPlan();
+       if(startDateChoose.getDate().before(endDateChoose.getDate())){
+            saveToUpdateEditPlan();
+        }else if(startDateChoose.getDate().after(endDateChoose.getDate())){
+            JOptionPane.showMessageDialog(null, "You can't choose end date before start date");
+        }
     }//GEN-LAST:event_lblsave1MouseClicked
 
     /**

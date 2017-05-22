@@ -199,6 +199,7 @@ public class CreatePlan extends javax.swing.JFrame {
         lblEndDate.setText("End Date");
 
         startDateChoose.setDateFormatString("yyyy-MM-dd");
+        startDateChoose.setMinSelectableDate(new java.util.Date(-62135791085000L));
 
         endDateChoose.setDateFormatString("yyyy-MM-dd");
 
@@ -501,7 +502,12 @@ public class CreatePlan extends javax.swing.JFrame {
     
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        createMyPlan();
+        if(startDateChoose.getDate().before(endDateChoose.getDate())){
+            createMyPlan();
+        }else if(startDateChoose.getDate().after(endDateChoose.getDate())){
+            JOptionPane.showMessageDialog(null, "You can't choose end date before start date");
+        }
+        
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
@@ -509,7 +515,11 @@ public class CreatePlan extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void lblsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsaveMouseClicked
-        createMyPlan();
+        if(startDateChoose.getDate().before(endDateChoose.getDate())){
+            createMyPlan();
+        }else if(startDateChoose.getDate().after(endDateChoose.getDate())){
+            JOptionPane.showMessageDialog(null, "You can't choose endDate before startDate");
+        }
     }//GEN-LAST:event_lblsaveMouseClicked
 
     private void lblcancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblcancelMouseClicked
@@ -517,15 +527,19 @@ public class CreatePlan extends javax.swing.JFrame {
     }//GEN-LAST:event_lblcancelMouseClicked
 
     private void sunCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sunCheckActionPerformed
-       if (sunCheck.isSelected() == true) {
+       //ถ้าช่องติ๊กวันอาทิตย์ถูกติ๊กปุ๊ป
+        if (sunCheck.isSelected() == true) {
             System.out.println("Selected Sunday");
+            //ไปกำหนดค่าที่เป็น string ให้กับ sun ว่า "Sunday "
             sun = "Sunday ";
+            //และ setSun ให้เป็นคำว่า Sunday
             setSun(sun);
-            dpwSun++;
+            dpwSun++; //บวกเพิ่มค่า dpwSun ให้เป็น 1
+            //ถ้าวันอาทิตย์ไม่ได้ถูกติ๊ก
         } else if (sunCheck.isSelected() == false) {
             System.out.println("Not Selected Sunday");
-            sun = "";
-            dpwSun = 0;
+            sun = ""; //กำหนดค่า String ให้ตัวแปร sun ว่าเป็นตัวเปล่าๆ
+            dpwSun = 0; //และกำหนดค่า int dpwSun เป็น 0 เพราะว่าไม่ได้เลือก
         }
     }//GEN-LAST:event_sunCheckActionPerformed
 
